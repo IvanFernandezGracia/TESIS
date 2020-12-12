@@ -670,7 +670,7 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
         \newpage
 
         
-        \subsubsection{Singularidades}
+        \subsubsection{Singularidades}\label{CAP4_SINGULARIDAD}
         
         Se debe tener especial cuidado en el diseño de estos manipuladores paralelos para evitar singularidades. Cuando un manipulador está en una posición singular, la matriz jacobiana también es singular. En el caso de los manipuladores paralelos conviene trabajar con un jacobiano de dos partes, matriz jacobiana inversa   $J_{ \theta }$  y la directa  $ J_{x} $ . La ventaja es que un jacobiano bipartito permite, de forma natural, la identificación y clasificación de varios tipos de singularidades. Una de las formas de analizar las singularidades es igualando el determinante de la matriz jacobiana igual a cero y extraer varias posturas indeseables robot delta. Desde la ecuación  (\ref{eq:cap4_eq_26}) se puede observar y clasificar la singularidad en 3 situaciones:
         
@@ -1025,19 +1025,417 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
 
 \section{Espacio de trabajo}
 
-confirmar 3
+En esta sección se da a conocer la definición de espacio de trabajo por algunos científicos que se han especializado en esta problemática para robots, se presentan de manera general los 2 métodos más utilizados para determinar el espacio y se muestran las restricciones de un robot delta relacionadas con este tema.
 
     \subsection{Definición}
+    En los últimos años, los robots que incluyen una estructura paralela atrajeron la atención de los investigadores del mundo académico. Entre los robots con estructura paralela más famosos se encuentran los provistos de la estructura paralela delta de 3 grados de libertad.  Al comparar los robots que incluyen manipuladores de estructuras en serie con los que incluyen manipuladores de estructuras paralelas, se puede notar que: la estructura paralela tiene una lista de ventajas, como alta rigidez, disponibilidad para transportar objetos más pesados, posicionamiento más preciso, etc. Estas ventajas también vienen dadas por el hecho de que las fuerzas inerciales y de gravedad del objeto manipulado es absorbida por cada enlace cinemático aparte \cite{Laribi08}\cite{DASH2005776}. Las desventajas son: espacio de trabajo más estrecho y un control más difícil \cite{DASH2005776}.  
+    
+    El espacio de trabajo de un robot se define como la región en el espacio cartesiano tridimensional que puede ser alcanzada por un punto de su efector final \cite{LARIBI2007859}, es decir, en el caso de un robot Delta, es la región en el espacio tridimensional que puede alcanzar el punto central de su plataforma móvil. 
+    
+    \begin{figure}[htb]
+        \centering
+        \includegraphics[width=0.7\linewidth]{Main/Chapter4/Images4/cap4_ws_1.png}
+        \caption{Fotografía de un paraguas}
+        \label{f:Cap4_ws_1}
+    \end{figure}  
+    
+    \newpage
+    
     \subsection{Métodos}
-    \subsection{Tipos de restricciones}
     
+    El espacio de trabajo de los robots ha sido estudiado intensamente a lo largo de los años por varios investigadores. Los espacios de trabajo más comunes, según Merlet, son: el espacio de trabajo de traducción, el espacio de trabajo de orientación, el espacio de trabajo accesible, el espacio de trabajo de orientación inclusiva, el espacio de trabajo de orientación total, el espacio de trabajo de destreza, el espacio de trabajo total con orientación reducida \cite{Laribi08} y \cite{AFFI2004311}.
     
+    Se han utilizado básicamente las siguientes categorías de métodos para determinar el espacio de trabajo: métodos geométricos y métodos de digitalización, siendo este último el más usado.
+    El método geométrico \cite{delta_Urrea} se basa en obtener un objeto geométrico que describa todas las posibles posiciones del efector final y que satisfagan las restricciones del robot. Se obtiene un objeto geométrico para cada cadena cinemática del robot y el espacio de trabajo es la intersección de los objetos geométricos obtenidos.
+    
+    El método de discretización \cite{delta_Urrea}, que se basa en métodos numéricos, consiste en discretizar el espacio en tres dimensiones, resolviendo la cinemática inversa para cada punto y verificando las restricciones que limitan dicho espacio de trabajo (Ottaviano and Ceccarelli, 2000). La exactitud del volumen de trabajo del robot Delta, depende de la probabilidad de que los puntos seleccionados aleatoriamente puedan ser alcanzados por el robot. 
+    
+    En esta tesis se basa en el método de discretización, sin embargo, será modificado para que el algoritmo calcule la cantidad exacta de los puntos en el espacio que es capaz de alcanzar la plataforma móvil del robot \cite{delta_Urrea}. El algoritmo se basa en la solución de la cinemática directa para todas las posibles combinaciones de los actuadores, obteniendo en cada caso un punto en el espacio. El punto pertenece al espacio de trabajo del robot sí y solo sí cumple con todas las restricciones impuestas.
     
     \newpage
 
+    
+    \subsection{Tipos de restricciones}
+    El movimiento de los robots manipuladores dentro del espacio de trabajo puede estar restringido por varios factores, tales como: los límites constructivos de los acoplamientos cinemáticos pasivos, los límites dados por los dispositivos de accionamiento de los acoplamientos cinemáticos activos, las cohesiones dadas por los elementos constructivos del robot, así como por puntos o áreas de singularidad que pueden dividir el espacio de trabajo en varios componentes \cite{Laribi08}. 
+    
+    Las restricciones que se toman en cuenta en este documento para determinar el espacio de trabajo del robot delta son principalmente: 
+   
+    \begin{itemize}
+    	\item Limites impuesto de los ángulos de los actuadores [  \(  \theta _{1i,min} \)  -   \(  \theta _{1i,max} \)  ] para cada actuador  \( i= \{ 1,2,3 \}  \)  .\par
+    
+    	\item Resolución basada en tamaño del paso de los actuadores, es decir, la discretización del rango impuesto por los límites del punto anterior  \(  \Delta  \theta _{1i} \)  para cada actuador  \( i= \{ 1,2,3 \}  \) .\par
+    
+    	\item Restricciones de ángulos internos en base a restricción de las juntas o rotulas  \(  \theta _{2i} \)  y  \(  \theta _{3i} \) .\par
+    
+    	\item Singularidades que se determinan mediante el determinante del jacobiano  \( J=J_{x}^{-1}J_{ \theta } \)   cuando este es cercano a 0. Estas singularidades son las mismas explicadas en la sección \ref{CAP4_SINGULARIDAD}.
+    \end{itemize}
+    
+    
+    En la ilustracion \ref{f:Cap4_ws_2} se visualizan de mejor manera las 6 restricciones a considerar:
+    
+    
+    \begin{figure}[htb]
+        \centering
+        \includegraphics[width=0.8\linewidth]{Main/Chapter4/Images4/cap4_ws_2.png}
+        \caption{Fotografía de un paraguas}
+        \label{f:Cap4_ws_2}
+    \end{figure}   
+
+    \newpage
+
 \section{Trayectorias}
+
+    El objetivo principal de esta sección es explicar de manera general la implementación de las trayectorias en robots y dar a conocer detalladamente la trayectoria que se utiliza en este trabajo de grado.
+    
+    En primer lugar, se define que es una trayectoria, se exponen sus objetivos y se propone un diagrama de flujo con relación a los pasos que se realizan para obtenerlas.
+    
+    En segundo lugar, se presentan 5 clasificaciones de trayectorias más comunes por los científicos y expertos en robótica para todo tipo de robots.
+    
+    Finalmente, se describe la trayectoria como la combinación de 2 partes: una descripción puramente geométrica de la secuencia de configuraciones logradas por el robot y una escala de tiempo que especifica los tiempos en que se alcanzan esas configuraciones. A partir del punto de vista anterior, se consideran el caso de las trayectorias punto a punto tanto en el espacio de articulaciones como en el espacio de cartesiano.
+    
     \subsection{Definición de trayectorias}
+        Un camino geométrico $p$ es un conjunto de puntos en el espacio articular o cartesiano que un manipulador de un robot debe seguir, en otras palabras, es una descripción puramente geométrica. La ecuación (\ref{eq:cap4_tray_1}) representa un camino geométrico en el espacio cartesiano: 
+
+        \begin{equation}
+            p(s) = [x(s), y(s), z(s)]^T
+        \label{eq:cap4_tray_1}
+    \end{equation}  
+    
+    Una trayectoria es un camino geométrico $p(s)$  más consideraciones temporales $s(t)$ . Estas consideraciones temporales pueden estar restringidas por velocidades o aceleraciones impuestas a lo largo del camino. Usualmente se escoge un camino y luego se escoge la ley temporal para la trayectoria.
+    
+    \begin{equation}
+            p(s(t)) = [x(s(t)), y(s(t)), z(s(t))]^T
+        \label{eq:cap4_tray_2}
+    \end{equation}  
+    
+    
+    \begin{figure}[htb]
+        \centering
+        \includegraphics[width=0.7\linewidth]{Main/Chapter4/Images4/cap4_tray_1.png}
+        \caption{Fotografía de un paraguas}
+        \label{f:Cap4_tray_1}
+    \end{figure}    
+    
+    \newpage
+    
     \subsection{Nomenclatura de trayectorias}
+        Un camino geométrico $\theta(s)$ esta en función de un parámetro de camino escalar $s$, que asume que es $0$ al comienzo del camino y $1$ al final, en un punto en el espacio de configuración del robot $\Theta$.
+        
+    \begin{equation}
+        \theta: s \rightarrow   \Theta 
+        \label{eq:cap4_tray_3}
+    \end{equation}  
+    
+        \begin{equation}
+        \theta: [0;1] \rightarrow   \Theta
+        \label{eq:cap4_tray_4}
+    \end{equation}
+    
+    A medida que $s$ aumenta de $0$ a $1$, el robot se mueve a lo largo de la trayectoria. A veces, $s$ se toma como tiempo y se permite que varíe desde el tiempo $s=0$ hasta el tiempo total de movimiento $s=T$, pero a menudo es útil separar el papel del parámetro de trayectoria geométrica $s$  del parámetro de tiempo $t$. Una escala de tiempo $s(t)$ se le asigna un valor $s$ a cada tiempo $t$ $ \in [0; T]$:
+
+    \begin{equation}
+        s: t \rightarrow   [0;1] 
+        \label{eq:cap4_tray_5}
+    \end{equation}  
+    
+        \begin{equation}
+        s: [0; T] \rightarrow   [0;1] 
+        \label{eq:cap4_tray_6}
+    \end{equation}
+
+
+    Juntos, un camino geométrico $\theta(s)$ y una escala de tiempo $s(t)$  definen una trayectoria $\theta(s(t))$  o $\theta(t)$   para abreviar. Usando la regla de la cadena, la velocidad y la aceleración a lo largo de la trayectoria se pueden escribir como:
+
+
+    \begin{equation}
+        \dot{\theta} = \frac{d\theta}{ds} \dot{s}
+        \label{eq:cap4_tray_7}
+    \end{equation}  
+    
+        \begin{equation}
+        \ddot{\theta} = \frac{d\theta}{ds} \ddot{s} + \frac{d^2\theta}{ds^2} \dot{s}^2
+        \label{eq:cap4_tray_8}
+    \end{equation}
+
+
+    Para asegurar que la aceleración del robot (y por lo tanto la dinámica) esté bien definida, $\theta(s)$ y $s(t)$ deben ser dos veces diferenciales.
+
+    \newpage
+    
     \subsection{Objetivo y procedimiento de generación de trayectorias}
+    
+    El control cinemático en robótica es una herramienta que permite establecer cuáles son las trayectorias que debe seguir cada articulación del robot a lo largo del tiempo para conseguir los objetivos fijados por el usuario, tales como:
+    
+    \begin{itemize}
+        \item 	Punto de destino
+         \item  Tipo de trayectoria del extremo
+         \item  Tiempo total invertido
+
+    \end{itemize}
+    
+    
+    Para ello es necesario tomar en cuenta las restricciones físicas de los accionamientos y criterios de calidad tales como sensibilidad, precisión, repetitividad, etc.
+    
+    Un procedimiento típico para la generación de trayectorias en robots es el que se aprecia en la ilustracion \ref{f:Cap4_tray_3}:
+    
+    \begin{figure}[htb]
+        \centering
+        \includegraphics[width=0.65\linewidth]{Main/Chapter4/Images4/cap4_tray_3.png}
+        \caption{Fotografía de un paraguas}
+        \label{f:Cap4_tray_3}
+    \end{figure}  
+    
+    
+
+        \newpage
+
     \subsection{Clasificación de trayectorias}
+        En esta sección se presentan 5 clasificaciones mas utilizadas para agrupar las trayectorias todo tipo de robots:
+        
+        \subsubsection{Según el espacio }
+            Según la importancia que se le asigna al camino de la trayectoria de un brazo robótico o un efector final de un punto inicial a un punto final en una tarea específica, se pueden dividir en 2 grupos: trayectorias cartesianas y trayectorias articulares. Las trayectorias cartesianas se utilizan cuando es necesario que el robot siga una determinada trayectoria geométrica. Acerca de estas trayectorias, es importante recalcar que sirven para evitar obstáculos, la visualización del camino generado es más fácil y requiere de cinemática inversa. Por el contrario, las trayectorias articulares se ocupan cuando se requiere ir de un punto a otro sin importar la trayectoria. 
+            
+           \begin{figure}[htb]
+             \centering
+             \label{f:cap4_tray_4a}
+                \includegraphics[width=0.6\textwidth]{Main/Chapter4/Images4/cap4_tray_4a.png}
+             \caption{Múltiples imágenes A}
+        \end{figure}            
+
+
+           \begin{figure}[htb]
+             \centering
+             \label{f:cap4_tray_4b}
+                \includegraphics[width=0.6\textwidth]{Main/Chapter4/Images4/cap4_tray_4b.png}
+             \caption{Múltiples imágenes B}
+        \end{figure}         
+            
+            
+         \newpage   
+        
+        \subsubsection{Según la geometría del camino }
+            El punto de vista principal de esta clasificación es en la forma de la función que representa la trayectoria, ya sea cartesiana o articular. Existen muchos tipos, algunos de estos son:
+            \begin{itemize}
+                \item         Trayectorias rectilíneas
+                \item        Trayectorias polinomiales
+                \item        Trayectorias exponenciales
+                \item        Trayectorias cicloides
+            \end{itemize}
+                
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=1\linewidth]{Main/Chapter4/Images4/cap4_tray_5.png}
+            \caption{Fotografía de un paraguas}
+            \label{f:Cap4_tray_5}
+        \end{figure}              
+            
+        \newpage   
+
+        
+        \subsubsection{Según la ley temporal }
+            Esta clasificación se basa en las especificaciones de puntos en el camino (velocidades, posición donde detenerse), restricciones impuestas por los actuadores o tareas especificadas (máximo torque, máxima velocidad) o en considerar criterios de optimización (mínimo tiempo, mínima energía o una combinación de ambos).  Ejemplos de aquellas son:
+            \begin{itemize}
+                \item   Trayectorias tipo bang-bang (on/off) en aceleración
+                \item   Trayectorias trapezoidales en velocidad
+                \item   Trayectorias polinomiales
+            \end{itemize}
+            
+           \begin{figure}[htb]
+             \centering
+              \subfloat[Gatito]{
+             \label{f:cap4_tray_6a}
+                \includegraphics[width=0.5\textwidth]{Main/Chapter4/Images4/cap4_tray_6a.png}}
+              \subfloat[Tigre]{
+             \label{f:cap4_tray_6b}
+                \includegraphics[width=0.5\textwidth]{Main/Chapter4/Images4/cap4_tray_6b.png}}
+             \caption{Múltiples imágenes}
+             \label{f:cap4_tray_6}
+        \end{figure}            
+            
+            
+            
+        
+        \subsubsection{Según la coordinación }
+            Esta categoría toma toda la atención a la sincronía que tienen las articulaciones en un desplazamiento de un robot de un punto a otro. Se puede dividir en dos grupos: trayectorias coordinadas e independientes. Las trayectorias coordinadas se refieren a que todas las articulaciones inician y terminan el movimiento al mismo tiempo y en simultáneo, mientras que las trayectorias independientes el movimiento de cada articulación es independiente.
+        
+                 \newpage   
+
+        
+        
+        \subsubsection{Según el tipo de tarea }
+            Dependiendo de la tarea que se quiera realizar, se pueden subdividir en 3 tipos las trayectorias según los puntos por los que debe recorrer el efector final o el ultimo brazo del robot en el espacio cartesiano o articular:
+
+            \begin{itemize}
+                \item 	 Trayectorias punto a punto: ir de un punto a otro sin importar la trayectoria 
+                \item 	 Trayectorias de puntos vías: ir de un punto a otro, pero pasando por puntos intermedios
+                \item 	 Trayectorias continuas (continuidad de velocidad, aceleración): ir de un punto a otro por una trayectoria especifica teóricamente de puntos infinitos
+            \end{itemize}
+        
+
     \subsection{Trayectorias punto a punto}
+        El tipo de movimiento más simple es desde el reposo en una configuración hasta el reposo en otra. A esto lo llamamos movimiento de punto a punto. El tipo de trayectoria más simple para el movimiento de punto a punto es una línea recta. Las rutas en línea recta y sus escalas de tiempo se analizan a continuación. Las ideas en esta seccion son extraidas del libro creado por los academicos de la Universidad de Northwestern  \cite{moder_robot}.
+    
+        \subsubsection{Trayectorias en Linea Recta}
+            Una línea recta comienza con una configuración inicial $\theta_{inicio}$ hasta una configuración final $\theta_{fin}$ que pueden ser definidas en espacio de articulaciones o en espacio cartesiano. La línea recta se puede escribir: 
+        
+            \begin{equation}
+                \theta(s)= \theta_{inicio} + s(\theta_{fin}-\theta_{inicio}) ; s \in [0,1]
+                \label{eq:cap4_tray_9}
+             \end{equation}
+            
+            Sus derivadas son:
+            \begin{equation}
+                \frac{d\theta}{ds}=\theta_{fin}-\theta_{inicio}
+                \label{eq:cap4_tray_10}
+             \end{equation}      
+            \begin{equation}
+                \frac{d^2\theta}{ds^2}=0
+                \label{eq:cap4_tray_11}
+             \end{equation}  
+            
+            Las líneas rectas en el espacio articular generalmente no producen un movimiento en línea recta del efector final en el espacio cartesiano. Si se desean movimientos en línea recta en el espacio cartesiano, $X_{inicio}$ y $X_{fin}$ pueden especificar las configuraciones de inicio y finalización. Si $X_{inicio}$ y $X_{fin}$ están representados por un conjunto mínimo de coordenadas, entonces una línea recta se define como:
+            
+            \begin{equation}
+                X(s)= X_{inicio} + s(X_{fin}-X_{inicio}) ; s \in [0,1]
+                \label{eq:cap4_tray_12}
+             \end{equation}    
+                
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=1\linewidth]{Main/Chapter4/Images4/cap4_tray_7.png}
+                \caption{Fotografía de un paraguas}
+                \label{f:Cap4_tray_7}
+            \end{figure}  
+            
+        En comparación con el caso en el que se utilizan coordenadas articuladas, se deben abordar las siguientes cuestiones:
+        \begin{itemize}
+                \item Si el camino pasa cerca de una singularidad cinemática, las velocidades de las articulaciones pueden volverse excesivamente grandes para la mayoría de las escalas de tiempo del camino.
+                \item Dado que el espacio de trabajo en el que se desenvuelve el efector final de un robot puede no ser convexo en coordenadas X, algunos puntos en una línea recta entre dos puntos finales alcanzables pueden no ser accesibles. 
+        \end{itemize}
+
+        \newpage
+
+            
+            
+            
+        \subsubsection{Escala temporal de un camino en línea recta}
+            Una escala de tiempo $s(t)$ de una trayectoria debe garantizar que el movimiento sea lo suficientemente suave y que se satisfaga cualquier restricción sobre la velocidad y aceleración del robot. Para una trayectoria en línea recta en el espacio articular de la forma de la ecuacion (\ref{eq:cap4_tray_9}), las velocidades y aceleraciones articulares escaladas en el tiempo son respectivamente:
+        
+        
+            \begin{equation}
+                \dot{\theta}=\dot{s} (\theta_{fin}-\theta_{inicio})
+                \label{eq:cap4_tray_13}
+             \end{equation}      
+             
+            \begin{equation}
+                \ddot{\theta}=\ddot{s} (\theta_{fin}-\theta_{inicio})
+                \label{eq:cap4_tray_14}
+             \end{equation}  
+        
+    Para un camino en línea recta en el espacio cartesiano parametrizado por un conjunto mínimo de coordenadas $X\in{\Re}^m$, simplemente se reemplaza $\theta$, $\dot{\theta}$,$\ddot{\theta}$ por $X$, $\dot{X}$,$\ddot{X}$ .        
+        
+        \paragraph{Escala de tiempo polinomial}
+        
+            Una forma conveniente para la escala de tiempo $s(t)$ es un polinomio cúbico en función del tiempo: 
+            
+            \begin{equation}
+                s(t)= a_{0}+a_{1}t+a_{2}t^{2}+a_{3}t^{3}
+                \label{eq:cap4_tray_15}
+             \end{equation}     
+        
+            Un movimiento de punto a punto desde el tiempo $0$ al  $T$ imponer las restricciones iniciales:
+        
+            \begin{equation}
+                s(0)= \dot{s}(0) = 0 
+                \label{eq:cap4_tray_16}
+             \end{equation} 
+             
+             y las restricciones terminales:
+             
+            \begin{equation}
+                s(T) = 1 
+                \label{eq:cap4_tray_17}
+             \end{equation} 
+            \begin{equation}
+                \dot{s}(T) = 0 
+                \label{eq:cap4_tray_18}
+             \end{equation}         
+             
+            Derivando la ecuación (\ref{eq:cap4_tray_15}):
+            \begin{equation}
+                \dot{s}(t)= a_{1}+2a_{2}t+3a_{3}t^{2}
+                \label{eq:cap4_tray_19}
+             \end{equation}     
+            
+        Evaluando la ecuación (\ref{eq:cap4_tray_19}) en  $t = 0$ , $t = T$ y resolviendo las cuatro restricciones (\ref{eq:cap4_tray_16}),(\ref{eq:cap4_tray_17}),(\ref{eq:cap4_tray_18}) :
+        
+            \begin{equation}
+                 a_{0}=0;a_{1}=0;a_{2}=\frac{3}{T^2};a_{3}=-\frac{2}{T^3}
+                \label{eq:cap4_tray_20}
+             \end{equation}     
+        
+        Reemplazando los coeficientes $a_i$ en la ecuación (\ref{eq:cap4_tray_15}): 
+        
+            \begin{equation}
+                s(t)=a_{2}t^{2}+a_{3}t^{3} = (\frac{3}{T^2})t^{2}+(-\frac{2}{T^3})t^{3}
+                \label{eq:cap4_tray_21}
+             \end{equation}  
+             
+
+            Sustituyendo la ecuación (\ref{eq:cap4_tray_21}) y sus derivadas en las ecuaciones (\ref{eq:cap4_tray_9}),(\ref{eq:cap4_tray_13}) y  (\ref{eq:cap4_tray_14}) :
+            
+            \begin{equation}
+                \theta(t)= \theta_{inicio} + \left(  \frac{3t^{2}}{T^2}-\frac{2t^{3}}{T^3} \right) (\theta_{fin}-\theta_{inicio})            
+                \label{eq:cap4_tray_22}
+             \end{equation}   
+             
+            \begin{equation}
+                  \dot{\theta}(t)= \left(  \frac{6t}{T^2}-\frac{6t^{2}}{T^3} \right) (\theta_{fin}-\theta_{inicio})
+                \label{eq:cap4_tray_23}
+             \end{equation} 
+             
+            \begin{equation}
+                \ddot{\theta}(t)= \left(  \frac{6}{T^2}-\frac{12t}{T^3} \right) (\theta_{fin}-\theta_{inicio})
+                \label{eq:cap4_tray_24}
+             \end{equation} 
+             
+             \begin{figure}[htb]
+                \centering
+                \includegraphics[width=0.8\linewidth]{Main/Chapter4/Images4/cap4_tray_8.png}
+                \caption{Fotografía de un paraguas}
+                \label{f:Cap4_tray_8}
+            \end{figure}  
+             
+             
+        Las velocidades máximas de la articulación se alcanzan en el punto medio del movimiento, $t = T/2$ : 
+        
+            \begin{equation}
+                  {\dot{\theta}}_{max}= \frac{3}{2T} (\theta_{fin}-\theta_{inicio})
+                \label{eq:cap4_tray_25}
+             \end{equation} 
+
+        Las aceleraciones y desaceleraciones máximas de la articulación se logran en $t = 0$ y $t = T$:
+        
+            \begin{equation}
+                  {\ddot{\theta}}_{max}= \left | { \frac{6}{T^2} (\theta_{fin}-\theta_{inicio})} \right|
+                \label{eq:cap4_tray_26}
+             \end{equation} 
+        
+            \begin{equation}
+                  {\ddot{\theta}}_{min}= -\left | { \frac{6}{T^2} (\theta_{fin}-\theta_{inicio})} \right|
+                \label{eq:cap4_tray_27}
+             \end{equation} 
+             
+        Si existen límites conocidos en las velocidades máximas de la articulación $\left|\dot{\theta} \right|  \leq  {\dot{\theta}}_{limite} $  y las aceleraciones máximas de la articulación  $\left|\ddot{\theta} \right|  \leq  {\ddot{\theta}}_{limite} $ , estos límites se pueden verificar para ver si el tiempo de movimiento solicitado $T$ es factible. Alternativamente, se podría resolver $T$ para encontrar el tiempo de movimiento mínimo posible que satisfaga la restricción de velocidad o aceleración más restrictiva
+        
+        \newpage
+
+             
+        \paragraph{Perfiles de movimiento trapezoidal}
+ 
+
+        \newpage
+
+    
+    
+    
