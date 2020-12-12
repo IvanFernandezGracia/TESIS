@@ -1,0 +1,542 @@
+\chapter{Desarrollo de la solución}\label{CAP6}
+
+\section{Diagrama de flujo}
+        \newpage
+
+\section{Software ROS}
+    explicar que se ara en esta seccion funciones orden y de donde se sacan sistema SI y orden 
+        \newpage
+
+    \subsection{Metodología A}
+
+ \subsubsection{Cinemática directa}
+    \begin{algorithm}[H]
+        \caption{Cinemática Directa Metodología A} 
+        \SetKwInput{KwInput}{Input}                % Set the Input
+        \SetKwInput{KwOutput}{Output}              % set the Output
+        \SetKwInput{KwObjetivo}{Objetivo}                % Set the Input
+        \SetKwInput{Kwfile}{Nombre archivo}                % Set the Input
+        
+        \DontPrintSemicolon
+          \KwObjetivo {Hallar la posición del efector final del robot delta dada una configuración articular}
+          \Kwfile{$delta.kinematics.t1m.adams.py$}
+          \KwInput{$\theta_1,\theta_2,\theta_3$}
+          \KwOutput{$E_0(x_0,y_0,z_0)$}
+          
+          % Set Function Names{\theta }_1,{\theta }_2,{\theta }_3
+          \SetKwFunction{FSub}{forward}
+           \SetKwProg{Fn}{}{:}{}
+        
+          \tcc{FUNCION PRINCIPAL}
+            \Fn{\FSub{${\theta }_1$,${\theta }_2$,${\theta }_3$}}{
+                \tcc{Calcular Centros de esferas (Ecuaciones tabla [\ref{tab:cap4_tabla_3}])}
+                $(x_1,y_1,z_1)$=${J^'}_1\left(0,\left[-\frac{f-e}{2\sqrt{3}}-r_f{\mathrm{cos} \left({\theta }_1\right)\ }\right],-r_f{\mathrm{sin}\mathrm{n} \left({\theta }_1\right)\ }\right)$\;
+                $(x_2,y_2,z_2)$=${J^'}_2(\left[\frac{f-e}{2\sqrt{3}}+r_f{\mathrm{cos} \left({\theta }_2\right)\ }\right]\mathrm{cos}\mathrm{}(30{}^\circ ),\left[\frac{f-e}{2\sqrt{3}}+r_f{\mathrm{cos} \left({\theta }_2\right)\ }\right]\mathrm{sin}\mathrm{}(30{}^\circ ),-r_f{\mathrm{sin} \left({\theta }_2\right)\ })$\;
+                $(x_3,y_3,z_3)$=${J^'}_3(-\left[\frac{f-e}{2\sqrt{3}}+r_f{\mathrm{cos} \left({\theta }_3\right)\ }\right]\mathrm{cos}\mathrm{}(30{}^\circ ),\left[\frac{f-e}{2\sqrt{3}}+r_f{\mathrm{cos} \left({\theta }_3\right)\ }\right]\mathrm{sin}\mathrm{}(30{}^\circ ),-r_f{\mathrm{sin} \left({\theta }_3\right)\ })$\;
+                \tcc{Calcular intersección de las 3 esferaS (Ecuaciones de la \ref{eq:cap4_eq_3} a la \ref{eq:cap4_eq_13})}
+                $d= \left(y_2- y_1\right)x_3-\left(y_3-y_1\right)x_2- \left(y_2-y_3\right)x_1$\;
+                $w_1={x_1}^2+{y_1}^2 +{z_1}^2$\;
+                $w_2={x_2}^2+{y_2}^2 +{z_2}^2$\;
+                $w_3={x_3}^2+{y_3}^2 +{z_3}^2$\;
+                $a_1=\frac{\left(z_2-z_1\right)\left(y_3-y_1\right)-\left(z_3-z_1\right)\left(y_2-y_1\right)}{d}$\;
+                $b_1=\left(\frac{1}{2*(-d)}\right)*\left(\left(w_2 - w_1\right)\left(y_3-y_1\right)-\left(w_3 - w_1\right)\left(y_2-y_1\right)\right)$\;
+                $a_2=\frac{-1}{d}*\left[\left(z_2-z_1\right)x_3-(z_3-z_1)x_2+(z_3-z_2)x_1\right]$\;
+                $b_2=\frac{1}{2d}*[\left(w_2-w_1\right)x_3-\left(w_3-w_1\right)x_2+\left(w_3-w_2)\right)x_1$\;
+                $A = {a_1}^2+{a_2}^2+1$\;
+                $B = 2(a_1(b_1-x_1)+a_2(b_2-y_1)-z_1)$\;
+                $C=  ({(b_1-x_1)}^2+{(b_2-y_1)}^2+{z_1}^2- {r_e}^2)$\;
+                $E_0(x_0,y_0,z_0) =  \left(a_1z+\ b_1,a_2z+\ b_2,\frac{-B-\ \sqrt{\left(B^2\right)-\left(4AC\right)}}{2A}\right)$\;
+                           \KwRet  $(x_0,y_0,z_0)$\;
+                }
+    \end{algorithm}
+    
+    \newpage
+ 
+ \subsubsection{Cinemática inversa}
+     \begin{algorithm}[H]
+            \caption{Cinemática Inversa Metodología A} 
+            \SetKwInput{KwInput}{Input}                % Set the Input
+            \SetKwInput{KwOutput}{Output}              % set the Output
+            \SetKwInput{KwObjetivo}{Objetivo}                % Set the Input
+            \SetKwInput{Kwfile}{Nombre archivo}                % Set the Input
+            
+            \DontPrintSemicolon
+              \KwObjetivo {Hallar la posición de los actuadores en el espacio articular dada la posición del centroide del efector final}
+              \Kwfile{$delta.kinematics.t1m.adams.py$}
+              \KwInput{$E_0(x_0,y_0,z_0)$}
+              \KwOutput{${\theta }_1$,${\theta }_2$,${\theta }_3$}
+              
+                % Set Function Names
+              \SetKwFunction{FSum}{inverse}
+              \SetKwFunction{FSub}{$angle.yz$}
+            
+              \tcc{FUNCION PRINCIPAL}
+              \SetKwProg{Fn}{}{:}{}
+              \Fn{\FSum{$x_0,y_0,z_0$}}{
+              \tcc{Rotación del sistema de referencia Local en $0^{\circ}$}
+                ${x}_{0 ^{\circ}}=x_0$\;
+                ${y}_{0 ^{\circ}}=y_0$\;
+                ${z}_{0 ^{\circ}}=z_0$\;
+              \tcc{Rotación del sistema de referencia Local en $120^{\circ}$}
+                ${x}_{120 ^{\circ}}=x_0*cos120+y_0*sin120$\;
+                ${y}_{120 ^{\circ}}=y_0*cos120-x_0*sin120$\;
+                ${z}_{120 ^{\circ}}=z_0$\;
+              \tcc{Rotación del sistema de referencia Local en $240^{\circ}$}
+                ${x}_{240 ^{\circ}}=x_0*cos120-y_0*sin120$\;
+                ${y}_{240 ^{\circ}}=y_0*cos120+x_0*sin120$\;
+                ${z}_{240 ^{\circ}}=z_0$\;
+                
+              \tcc{Calcular angulos de los actuadores}
+              \tcc{Cambiar orden de ángulos al sistema Referencia Global}
+                 ${\theta }_2=angle.yz({x}_{0 ^{\circ}} , {y}_{0 ^{\circ}} , {z}_{0 ^{\circ}},0 ^{\circ})$\;    
+                 ${\theta }_3=angle.yz({x}_{120 ^{\circ}},{y}_{120 ^{\circ}},{z}_{120 ^{\circ}},120 ^{\circ})$\;
+                 ${\theta }_1=angle.yz({x}_{240 ^{\circ}},{y}_{240 ^{\circ}},{z}_{240 ^{\circ}},240 ^{\circ})$\;
+            
+               \KwRet $[{\theta }_1,{\theta }_2,{\theta }_3]$\;
+              }
+    \end{algorithm}
+    
+\newpage
+
+    \begin{algorithm}
+          \ContinuedFloat
+          \caption{Cinemática Inversa Metodología A (Continuacion...)}
+          \tcc{SUBFUNCIONES}
+          \SetKwProg{Fn}{}{:}{}
+          \Fn{\FSub{${x}_{{ \phi }_i} , {y}_{{ \phi }_i} , {z}_{{ \phi }_i}$, { \phi }_i}}{
+               \tcc{Actuador $F_{i}$ en el plano $Y'Z'$ (sistema de referencia Local rotado en ${ \phi }_i$)}
+                $y_{1}= y_{F_{i}} = -\frac{f}{2\sqrt[]{3}}$\;
+                $z_{1}=z_{F_{i}}=0$\;        
+               \tcc{ Proyección de la Junta Esférica $E_{i}$ en el plano $Y'Z'$(sistema de referencia Local rotado en ${ \phi }_i$)}    
+                $y_{2}= y_{E'_{i}} = {y}_{{ \phi }_i}-\frac{e}{2\sqrt[]{3}}$\;
+                $z_{2}=z_{E'_{i}}={z}_{{ \phi }_i} $\;
+                \tcc{Junta Esférica $J_{i}$ de la cadena cinemática i en posición ${ \phi }_i$}
+                $a=\frac{{x}_{{ \phi }_i}^{2}+y_{2}^{2}+{z}_{{ \phi }_i}^{2}+r_{f}^{2}- r_{e}^{2}~-y_{1}^{2}}{2{z}_{{ \phi }_i}}$\;
+                $b=\frac{ \left( y_{1}-y_{2} \right) }{z_{2}}$\;
+                $x_{J_{i}}=0$\;
+                $y_{J_{i}}=$ $\frac{(y_{1}-ab )-\sqrt{ (a+by_{1}) ^{2}+ (b^{2}+1)r_{f}^{2}}}{b^{2}+1}$\;
+                $z_{J_{i}}=a+b*y_{J_{i}}$\;
+                \tcc{ Calculo del Angulo ${\theta }_i$ de la cadena cinemática i en posición ${ \phi }_i$}
+                ${\theta }_i=\arctan( ~\frac{z_{J_{i}}}{y_{F_{i}}-y_{J_{i}}})$\;
+                \KwRet${\theta }_i$\;
+          }
+    \end{algorithm}
+
+ 
+\newpage
+  
+        
+    \subsubsection{Jacobiano}
+            
+        \begin{algorithm}[H]
+            \caption{Jacobiano Metodología A} 
+            \SetKwInput{KwInput}{Input}                % Set the Input
+            \SetKwInput{KwOutput}{Output}              % set the Output
+            \SetKwInput{KwObjetivo}{Objetivo}                % Set the Input
+            \SetKwInput{Kwfile}{Nombre archivo}                % Set the Input
+            
+              \DontPrintSemicolon
+              \KwObjetivo {Hallar la matriz jacobiana}
+              \Kwfile{$jacobian.tm1.adams.py$}
+              \KwInput{$P_x,P_y,P_z,{\theta }_{11},{\theta }_{12},{\theta }_{13}$}
+              \KwOutput{ $J_{\theta }, J_{x },\theta _{31},\theta _{32},\theta _{33},\theta _{21},\theta _{22},\theta _{23}, J$}
+               
+                % Set Function Names,
+              \SetKwFunction{FSum}{jacobian.total}
+              \SetKwFunction{FSub}{calculo.theta3i}
+            
+              \tcc{FUNCION PRINCIPAL}
+              \SetKwProg{Fn}{}{:}{}
+              \Fn{\FSum{$P_x$,$P_y$,$P_z$,${\theta }_{11}$,${\theta }_{12}$,${\theta }_{13}$}}{
+                  \tcc{Cambiar ángulos y punto P al sistema Referencia Local}
+                  \tcc{Posición actuadores $\phi$ respecto a ejes YX S.ref Local}
+                   $({\phi}_{0 ^{\circ}},{\phi}_{120 ^{\circ}},{\phi}_{240 ^{\circ}})=(0,120,240)$\;
+                  \tcc{Calcular angulo $\theta _{3i}$ }
+                  $\theta _{31}=calculo.theta3i(P_x,P_y, {\phi}_{0 ^{\circ}})$\;
+                  $\theta _{32}=calculo.theta3i(P_x,P_y, {\phi}_{120 ^{\circ}})$\;
+                  $\theta _{33}=calculo.theta3i(P_x,P_y, {\phi}_{240 ^{\circ}})$\;
+                  \tcc{Calcular angulo $\theta _{2i}$ }
+                  $\theta _{21}=calculo.theta2i(P_x,P_y,P_z,{\theta }_{31}, {\phi}_{0 ^{\circ}})$\;
+                  $\theta _{22}=calculo.theta2i(P_x,P_y,P_z,{\theta }_{32}, {\phi}_{120 ^{\circ}})$\;
+                  $\theta _{23}=calculo.theta2i(P_x,P_y,P_z,{\theta }_{33}, {\phi}_{240 ^{\circ}})$\;
+                  \tcc{Calcular Matriz $J_{x}$ }
+                  $ J_{1x}=calculo.jix($\theta _{11},\theta _{21},\theta _{31},${ \phi }_{0 ^{\circ}})$\;
+                  $ J_{2x}=calculo.jix($\theta _{12},\theta _{22},\theta _{32},${ \phi }_{120 ^{\circ}})$\;
+                  $ J_{3x}=calculo.jix($\theta _{13},\theta _{23},\theta _{33},${ \phi }_{240 ^{\circ}})$\;
+                  $ J_{1y}=calculo.jiy($\theta _{11},\theta _{21},\theta _{31},${ \phi }_{0 ^{\circ}})$\;
+                  $ J_{2y}=calculo.jiy($\theta _{12},\theta _{22},\theta _{32},${ \phi }_{120 ^{\circ}})$\;
+                  $ J_{3y}=calculo.jiy($\theta _{13},\theta _{23},\theta _{33},${ \phi }_{240 ^{\circ}})$\; 
+                   $ J_{1z}=calculo.jiz($\theta _{11},\theta _{21},\theta _{31},${ \phi }_{0 ^{\circ}})$\;
+                  $ J_{2z}=calculo.jiz($\theta _{12},\theta _{22},\theta _{32},${ \phi }_{120 ^{\circ}})$\;
+                  $ J_{3z}=calculo.jiz($\theta _{13},\theta _{23},\theta _{33},${ \phi }_{240 ^{\circ}})$\; 
+                  $ J_{x}=[J_{1x},J_{1y},J_{1z};J_{2x},J_{2y},J_{2z};J_{3x},J_{3y},J_{3z}]$\;
+                  \tcc{Calcular Matriz $J_{ \theta }$ }
+                    $J_{1 \theta }=a~\sin  \theta _{21}~sin~ \theta _{31}$\;
+                    $J_{2 \theta }=a~\sin  \theta _{22}~sin~ \theta _{32}$\;  
+                    $J_{3 \theta }=a~\sin  \theta _{23}~sin~ \theta _{33}$\;  
+                    $J_{ \theta }=[J_{1 \theta },0,0;0,J_{2 \theta },0;0,0,J_{3 \theta }]$\;  
+                \tcc{Calcular Matriz $J$ }
+                    $J=J_{x}^{-1}J_{ \theta } $\;
+                \tcc{Cambiar al sistema Referencia Global}
+        
+                  \KwRet $[J_{\theta }, J_{x},\theta _{31},\theta _{32},\theta _{33},\theta _{21},\theta _{22},\theta _{23}, J]$
+                  }
+        \end{algorithm}
+        
+\newpage
+
+\begin{algorithm}
+          \ContinuedFloat
+          \caption{Jacobiano Metodología A (Continuacion...)}
+          \tcc{SUBFUNCIONES}
+          
+          \tcc{Calcular angulo ${\theta }_{3i}$}  
+          \SetKwProg{Fn}{}{:}{}
+          \Fn{\FSub{$P_x$,$P_y$ ,$\phi_i$}}{
+            $c_{yi}= (-P_x)*(sin({ \phi }_i))+(P_y)*(cos({ \phi }_i))$\;    
+            $\theta _{3i}= \cos ^{-1}\frac{c_{yi}}{b}$\;    
+                \KwRet${\theta }_{3i}$\;   } 
+        
+          \tcc{Calcular angulo ${\theta }_{2i}$}
+          \SetKwProg{Fn}{}{:}{}
+          \SetKwFunction{FSub}{calculo.theta2i}
+          \Fn{\FSub{$P_x$,$P_y$,$P_z$,${\theta }_{3i}$,$\phi_i$}}{
+                      	$c_{xi}=(P_x)*(cos({ \phi }_i))+(P_y)*(sin({ \phi }_i))+ h-r$\; 
+            	$c_{yi}= (-P_x)*(sin({ \phi }_i))+(P_y)*(cos({ \phi }_i))$\; 
+        	    $c_{zi}=P_z$\; 
+        
+                $\theta _{2i}=\cos ^{-1} \left( \frac{c_{xi}^{2}+c_{yi}^{2}+c_{zi}^{2}-a^{2}-b^{2}~}{2ab sin~ \theta _{3i}} \right)$\;        
+                \KwRet${\theta }_{2i}$\;  }
+                
+                
+           \tcc{Calcular componentes Matriz $J_x$}
+           \SetKwFunction{FSub}{calculo.jix}
+           \SetKwProg{Fn}{}{:}{}
+           \Fn{\FSub{$\theta _{1i}$,$\theta _{2i}$,$\theta _{3i}$, $\phi_i$}}{
+            $ J_{ix}=\cos  \left(  \theta _{1i}+ \theta _{2i} \right) sin~ \theta _{3i}\cos  \phi _{i}-cos  \theta _{3i}\sin  \phi _{i}~ $\;    
+            \KwRet$J_{ix}$\;  }
+                
+                
+          \SetKwFunction{FSub}{calculo.jiy}
+           \SetKwProg{Fn}{}{:}{}
+          \Fn{\FSub{$\theta _{1i}$,$\theta _{2i}$,$\theta _{3i}$,$\phi_i$}}{
+            $J_{iy}=\cos  \left(  \theta _{1i}+ \theta _{2i} \right) sin~ \theta _{3i}\sin  \phi _{i}+ cos  \theta _{3i}\cos  \phi _{i}~$\;    
+            \KwRet$J_{iy}$\;  }   
+                    
+            
+           \SetKwFunction{FSub}{calculo.jiz}
+           \SetKwProg{Fn}{}{:}{}
+          \Fn{\FSub{$\theta _{1i}$,$\theta _{2i}$,$\theta _{3i}$,$\phi_i$}}{
+            $ J_{iz}=sin \left(  \theta _{1i}+ \theta _{2i} \right) sin~ \theta _{3i}~ $\;    
+            \KwRet$J_{iz}$\;} 
+            
+          \tcc{Calcular componentes Matriz $J_{\theta }$}
+          \SetKwFunction{FSub}{calculo.jthetai}
+          \Fn{\FSub{$\theta_{2i}$,$\theta _{3i}$,$\phi_i$}}{
+                $J_{i \theta }=a~\sin  \theta _{2i}~sin~ \theta _{3i}$\; 
+                \KwRet$J_{i \theta }$\;   }
+\end{algorithm}
+
+        \newpage
+        \subsubsection{Dinámica Inversa}
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        \newpage
+
+        
+    \subsection{Metodología B}
+        \subsubsection{Cinemática directa}
+        
+\begin{algorithm}[H]
+    \caption{Cinemática Directa Metodología B} 
+    \SetKwInput{KwInput}{Input}                % Set the Input
+    \SetKwInput{KwOutput}{Output}              % set the Output
+    \SetKwInput{KwObjetivo}{Objetivo}                % Set the Input
+    \SetKwInput{Kwfile}{Nombre archivo}                % Set the Input
+    
+    \DontPrintSemicolon
+      \KwObjetivo {Hallar la posición del efector final del robot delta dada una configuración articular}
+      \Kwfile{$delta.kinematics.Paderborn.tm1.adams$}
+      \KwInput{$\theta_1,\theta_2,\theta_3$}
+      \KwOutput{$P_0(P_{0x},P_{0y},P_{0z})$}
+      
+      % Set Function Names{\theta }_1,{\theta }_2,{\theta }_3
+      \SetKwFunction{FSub}{forward.Paderborn}
+       \SetKwProg{Fn}{}{:}{}
+    
+      \tcc{FUNCION PRINCIPAL}
+        \Fn{\FSub{${\theta }_1$,${\theta }_2$,${\theta }_3$}}{
+            \tcc{Calcular Centros de esferas (Ecuaciones (\ref{eq:cap4_MB_3}),(\ref{eq:cap4_MB_4}),(\ref{eq:cap4_MB_5}))}
+            \tcc{Ordenar angulos segun sistema de referencia Local}
+            
+            $(x_1,y_1,z_1)$=$\overrightarrow{J'_{2}} \left [  0,-\frac{(f-e)}{2\sqrt{3}}-L_{A}cos(\theta_2),-L_{A}sin(\theta_2)\right]$\;
+            
+            $(x_2,y_2,z_2)$=$\overrightarrow{J'_{3}} \left [\left( \frac{(f-e)}{2\sqrt{3}}+{L}_{A}cos(\theta_3)\right) cos(30^\circ), \left(\frac{(f-e)}{2\sqrt{3}} + {L}_{A}cos(\theta_3)\right) sin(30^\circ), -L_{A}sin(\theta_3)\right]$\;
+            
+            $(x_3,y_3,z_3)$=$\overrightarrow{J'_{1}} \left [\left( \frac{(f-e)}{2\sqrt{3}}+{L}_{A}cos(\theta_1)\right) cos(30^\circ), \left(\frac{(f-e)}{2\sqrt{3}} + {L}_{A}cos(\theta_1)\right) sin(30^\circ), -L_{A}sin(\theta_1)\right]$\;
+            
+            \tcc{Calcular intersección de las 3 esferaS (Ecuaciones de la \ref{eq:cap4_eq_3} a la \ref{eq:cap4_eq_13})}
+            $d= \left(y_2- y_1\right)x_3-\left(y_3-y_1\right)x_2- \left(y_2-y_3\right)x_1$\;
+            $w_1={x_1}^2+{y_1}^2 +{z_1}^2$\;
+            $w_2={x_2}^2+{y_2}^2 +{z_2}^2$\;
+            $w_3={x_3}^2+{y_3}^2 +{z_3}^2$\;
+            $a_1=\frac{\left(z_2-z_1\right)\left(y_3-y_1\right)-\left(z_3-z_1\right)\left(y_2-y_1\right)}{d}$\;
+            $b_1=\left(\frac{1}{2*(-d)}\right)*\left(\left(w_2 - w_1\right)\left(y_3-y_1\right)-\left(w_3 - w_1\right)\left(y_2-y_1\right)\right)$\;
+            $a_2=\frac{-1}{d}*\left[\left(z_2-z_1\right)x_3-(z_3-z_1)x_2+(z_3-z_2)x_1\right]$\;
+            $b_2=\frac{1}{2d}*[\left(w_2-w_1\right)x_3-\left(w_3-w_1\right)x_2+\left(w_3-w_2)\right)x_1$\;
+            $A = {a_1}^2+{a_2}^2+1$\;
+            $B = 2(a_1(b_1-x_1)+a_2(b_2-y_1)-z_1)$\;
+            $C=  ({(b_1-x_1)}^2+{(b_2-y_1)}^2+{z_1}^2- {r_e}^2)$\;
+            $P_0(P_{0x},P_{0y},P_{0z}) =  \left(a_1z+\ b_1,a_2z+\ b_2,\frac{-B-\ \sqrt{\left(B^2\right)-\left(4AC\right)}}{2A}\right)$\;
+                       \KwRet  $(P_{0x},P_{0y},P_{0z})$\;
+            }
+\end{algorithm}
+
+\newpage        
+ 
+        
+     
+        
+        \newpage
+
+\subsubsection{Cinemática inversa}
+        
+    \begin{algorithm}[H]
+            \caption{Cinemática Inversa Metodología B} 
+            \SetKwInput{KwInput}{Input}                % Set the Input
+            \SetKwInput{KwOutput}{Output}              % set the Output
+            \SetKwInput{KwObjetivo}{Objetivo}                % Set the Input
+            \SetKwInput{Kwfile}{Nombre archivo}                % Set the Input
+            
+            \DontPrintSemicolon
+              \KwObjetivo {Hallar la posición de los actuadores en el espacio articular dada la posición del centroide del efector final}
+              \Kwfile{$delta.kinematics.Paderborn.tm1.adams$}
+              \KwInput{$P_0(P_{0x},P_{0y},P_{0z})$}
+              \KwOutput{${\theta }_1$,${\theta }_2$,${\theta }_3$}
+              
+                % Set Function Names
+              \SetKwFunction{FSum}{inverse.Paderborn}
+              \SetKwFunction{FSub}{$angle.yz.Paderborn$}
+            
+              \tcc{FUNCION PRINCIPAL}
+              \SetKwProg{Fn}{}{:}{}
+              \Fn{\FSum{$P_{0x},P_{0y},P_{0z}$}}{
+              \tcc{Rotación del sistema de referencia Local en $0^{\circ}$}
+                ${x}_{0 ^{\circ}}=P_{0x}$\;
+                ${y}_{0 ^{\circ}}=P_{0y}$\;
+                ${z}_{0 ^{\circ}}=P_{0z}$\;
+              \tcc{Rotación del sistema de referencia Local en $120^{\circ}$}
+                ${x}_{120 ^{\circ}}=P_{0x}*cos120+P_{0y}*sin120$\;
+                ${y}_{120 ^{\circ}}=P_{0y}*cos120-P_{0x}*sin120$\;
+                ${z}_{120 ^{\circ}}=P_{0z}$\;
+              \tcc{Rotación del sistema de referencia Local en $240^{\circ}$}
+                ${x}_{240 ^{\circ}}=P_{0x}*cos120-P_{0y}*sin120$\;
+                ${y}_{240 ^{\circ}}=P_{0y}*cos120+P_{0x}*sin120$\;
+                ${z}_{240 ^{\circ}}=P_{0z}$\;
+                
+              \tcc{Calcular angulos de los actuadores}
+              \tcc{Cambiar orden de ángulos al sistema Referencia Global}
+                 ${\theta }_2=angle.yz.Paderborn({x}_{0 ^{\circ}} , {y}_{0 ^{\circ}} , {z}_{0 ^{\circ}},0 ^{\circ})$\;    
+                 ${\theta }_3=angle.yz.Paderborn({x}_{120 ^{\circ}},{y}_{120 ^{\circ}},{z}_{120 ^{\circ}},120 ^{\circ})$\;
+                 ${\theta }_1=angle.yz.Paderborn({x}_{240 ^{\circ}},{y}_{240 ^{\circ}},{z}_{240 ^{\circ}},240 ^{\circ})$\;
+            
+               \KwRet $[{\theta }_1,{\theta }_2,{\theta }_3]$\;
+              }
+    \end{algorithm}
+    
+    \clearpage   
+        
+\begin{algorithm}
+      \ContinuedFloat
+      \caption{Cinemática Inversa Metodología B (Continuacion...)}
+      \tcc{SUBFUNCIONES}
+      \SetKwProg{Fn}{}{:}{}
+      \Fn{\FSub{${x}_{{ \varphi }_i} , {y}_{{ \varphi }_i} , {z}_{{ \varphi }_i}$, { \varphi }_i}}{
+           \tcc{Actuador $F_{i}$ en el plano $Y'Z'$ (sistema de referencia Local rotado en ${ \varphi }_i$)}
+            $y_{1}= y_{F_{i}} = -\frac{f}{2\sqrt[]{3}}$\;
+            $z_{1}=z_{F_{i}}=0$\;        
+           \tcc{ Proyección de la Junta Esférica $P_{0}$ en el plano $Y'Z'$(sistema de referencia Local rotado en ${ \varphi }_i$)}    
+            $y_{2}= y_{P'_{0}} = {y}_{{ \varphi }_i}-\frac{e}{2\sqrt[]{3}}$\;
+            $z_{2}=z_{P'_{0}}={z}_{{ \varphi }_i} $\;
+            \tcc{Junta Esférica $J_{i}$ de la cadena cinemática i en posición ${ \varphi }_i$}
+            $a=\frac{{x}_{{ \varphi }_i}^{2}+y_{2}^{2}+{z}_{{ \varphi }_i}^{2}+R_{A}^{2}- R_{B}^{2}~-y_{1}^{2}}{2{z}_{{ \varphi }_i}}$\;
+            $b=\frac{ \left( y_{1}-y_{2} \right) }{z_{2}}$\;
+            $x_{J_{i}}=0$\;
+            $y_{J_{i}}=$ $\frac{(y_{1}-ab )-\sqrt{ (a+by_{1}) ^{2}+ (b^{2}+1)r_{f}^{2}}}{b^{2}+1}$\;
+            $z_{J_{i}}=a+b*y_{J_{i}}$\;
+            \tcc{ Calculo del Angulo ${\theta }_i$ de la cadena cinemática i en posición ${ \varphi }_i$}
+            ${\theta }_i=\arctan( ~\frac{z_{J_{i}}}{y_{F_{i}}-y_{J_{i}}})$\;
+            \KwRet${\theta }_i$\;
+      }
+\end{algorithm}
+    
+        \newpage
+
+ \subsubsection{Jacobiano}
+     
+         \begin{algorithm}[H]
+            \caption{Jacobiano Metodología B} 
+            \SetKwInput{KwInput}{Input}                % Set the Input
+            \SetKwInput{KwOutput}{Output}              % set the Output
+            \SetKwInput{KwObjetivo}{Objetivo}                % Set the Input
+            \SetKwInput{Kwfile}{Nombre archivo}                % Set the Input
+            
+            \DontPrintSemicolon
+              \KwObjetivo {Hallar la matriz jacobiana}
+              \Kwfile{$jacobian.Paderborn.tm1.v2.adams.py$}
+              \KwInput{$P_{0x},P_{0y},P_{0z},{\theta }_{1},{\theta }_{2},{\theta }_{3}$}
+              \KwOutput{ $-J_{1 }, J_{2}, J$}
+               
+                % Set Function Names,
+              \SetKwFunction{FSum}{jacobian.calculo.Paderborn}
+
+              \tcc{FUNCION PRINCIPAL}
+              \SetKwProg{Fn}{}{:}{}
+              \Fn{\FSum{$P_x$,$P_y$,$P_z$,${\theta }_{11}$,${\theta }_{12}$,${\theta }_{13}$}}{
+              \tcc{Cambiar ángulos y punto P al sistema Referencia Local}
+              \tcc{Posición actuadores $\varphi$ respecto a ejes $YX$ S.ref Local}
+              $({\phi}_{0 ^{\circ}},${\phi}_{120 ^{\circ}},${\phi}_{240 ^{\circ}})=(0,120,240)$\;
+
+              \tcc{Calcular  $\overrightarrow{s_{i}}$ Transpose  }
+              $\overrightarrow{s_{1}}^T={si(P_{0x},P_{0y},P_{0z},{\theta }_{1},\varphi_{0 ^{\circ}})}^T$\;
+              $\overrightarrow{s_{2}}^T={si(P_{0x},P_{0y},P_{0z},{\theta }_{2},\varphi_{120 ^{\circ}})}^T$\;
+              $\overrightarrow{s_{3}}^T={si(P_{0x},P_{0y},P_{0z},{\theta }_{3},\varphi_{240 ^{\circ}})}^T$\;
+              \tcc{Calcular $\overrightarrow{b_{i}}$  }
+              $\overrightarrow{b_{1}}={bi({\theta }_{1},\varphi_{0 ^{\circ}})}$\;
+              $\overrightarrow{b_{2}}={bi({\theta }_{2},\varphi_{120 ^{\circ}})}$\;
+              $\overrightarrow{b_{3}}={bi({\theta }_{3},\varphi_{240 ^{\circ}})}$\;
+              
+              \tcc{Calcular componentes $J_{1}$ }
+              $J_{1}$=\left.    
+              {\begin{bmatrix}
+                 $\overrightarrow{s_{1}}^T(0)$ & $\overrightarrow{s_{1}}^T(1)$ & $\overrightarrow{s_{1}}^T(2)$\\
+                $\overrightarrow{s_{2}}^T(0)$ & $\overrightarrow{s_{2}}^T(1)$ & $\overrightarrow{s_{2}}^T(2)$\\
+                $\overrightarrow{s_{3}}^T(0)$ & $\overrightarrow{s_{3}}^T(1)$ & $\overrightarrow{s_{3}}^T(2)$ 
+            \end{bmatrix}}^{-1}
+            \right.
+
+              \tcc{Calcular $J_{2}$ }
+              $J_{2}$=\left.    
+              \begin{bmatrix}
+                 $\overrightarrow{s_{1}}^T \cdot \overrightarrow{b_{1}} $ & $0$ & $0$\\
+                $0$ & $\overrightarrow{s_{2}}^T \cdot \overrightarrow{b_{2}}$ & $0$\\
+                $0$ & $0$ & $\overrightarrow{s_{3}}^T \cdot \overrightarrow{b_{3}}$
+            \end{bmatrix}
+            \right.
+
+              \tcc{Calcular $J$ ecuacion (\ref{eq:cap4_MB_14}) }
+                $J=-J_{1}J_{2}$\;
+                
+               
+            \tcc{Cambiar al sistema Referencia Global}
+    
+              \KwRet $[-J_{1},J_{2},J]$   }
+        \end{algorithm}
+ 
+
+\begin{algorithm}
+          \ContinuedFloat
+          \caption{Jacobiano Metodología B (Continuacion...)}
+          \tcc{SUBFUNCIONES}
+          
+          \tcc{Calcular $\overrightarrow{s_{i}}$ }
+          \SetKwProg{Fn}{}{:}{}
+          \SetKwFunction{FSub}{si}
+          \Fn{\FSub{$P_{0x}$,$P_{0y}$,$P_{0z}$,${\theta }_{i}$,$\varphi_i$}}{
+                \tcc{Vector efector final }
+                $\overrightarrow{P_{0}}=
+                \left.          
+                \begin{bmatrix}
+                P_{0x} \\
+                P_{0y} \\
+                P_{0z}
+            \end{bmatrix}  \right.$\;
+                \tcc{Matriz de rotacion respecto a ángulo 
+               $\varphi_i$ }
+            $R_{i}^{R}=matri.rot(\varphi_i)$\;
+            \tcc{Vector posición actuador i respecto a sistema referencia local }
+            $R={R}_{A}-{R}_{B}$\;
+            $ \overrightarrow{F_{i}}=R_{i}^{R} 
+                \left.          
+                \begin{bmatrix}
+               R \\
+                0 \\
+                0
+            \end{bmatrix}  \right.$\;
+            \tcc{Vector brazo i respecto a sistema referencia local }
+             $\overrightarrow{\xi_{F_{i}J_{i}}}=R_{i}^{R}
+              \left.          
+                \begin{bmatrix}
+               L_{A} cos(\theta_i) \\
+                0 \\
+                -L_{A} sin(\theta_i)
+            \end{bmatrix}  \right.$\;
+            \tcc{calculo $\overrightarrow{s_{i}}$ ecuacion (\ref{eq:cap4_MB_12})}
+            $ \overrightarrow{s_{i}} & = \overrightarrow{P_{0}}- \left(\overrightarrow{F_{i}}+\overrightarrow{\xi_{F_{i}J_{i}}} \right)$\;
+            \KwRet$\overrightarrow{s_{i}}$\;  }
+                
+          \tcc{Calcular $\overrightarrow{b_{i}}$ }
+          \SetKwProg{Fn}{}{:}{}
+          \SetKwFunction{FSub}{bi}
+          \Fn{\FSub{${\theta }_{i}$,$\varphi_i$}}{
+                \tcc{Matriz de rotacion respecto a ángulo 
+               $\varphi_i$ }
+            $R_{i}^{R}=matri.rot(\varphi_i)$\;
+            \tcc{calculo $\overrightarrow{b_{i}}$ ecuacion (\ref{eq:cap4_MB_15}) }
+            $ \overrightarrow{b_{i}} =  R_{i}^{R}      \begin{bmatrix}
+                L_{A} sin(\theta_i) \\
+                0\\
+                L_{A} cos(\theta_i) 
+            \end{bmatrix}$\;
+            \KwRet$\overrightarrow{b_{i}}$\;  }
+        
+          \tcc{Calcular Matriz de rotacion $R_{i}^{R}$ ecuacion (\ref{eq:cap4_MB_13})}
+          \SetKwProg{Fn}{}{:}{}
+          \SetKwFunction{FSub}{matri.rot}
+          \Fn{\FSub{$\varphi_i$}}{
+            $ R_{i}^{R} =
+        \begin{bmatrix}
+                cos(\varphi_i)&-sin(\varphi_i)&0 \\
+                sin(\varphi_i)&cos(\varphi_i)&0 \\
+                0&0&1
+            \end{bmatrix}$\;
+            \KwRet$R_{i}^{R}$\;  }
+\end{algorithm}
+
+        \newpage
+
+\subsubsection{Dinámica Inversa}
+        \newpage
+
+        
+    \subsection{Espacio de Trabajo}
+    \newpage
+
+    \subsection{Trayectoria}
+    \newpage
+
+
+
+\section{Interfaz de visualización Rviz}
+\section{Adams}
+\section{Validación de Cinemática de Posición}
+\section{Validación de Cinemática de Velocidad}
+\section{Validación de Dinámica Inversa}

@@ -1,0 +1,1040 @@
+\chapter{Modelación física y matemática}\label{CAP4}
+    
+\section{Desarrollo de modelación y metodologías}
+
+\section{Nomenclatura y sistemas de referencia global}
+     \newpage
+
+\section{Metodología A}
+
+    \subsection{Modelacion Cinemática de Posición}
+    
+        En esta sección, se da a conocer una solución para calcular la cinemática inversa y cinemática directa de un robot paralelo tipo delta. Con el fin de solucionar el problema cinemático, se emplean las ideas y modelación del robot delta propuestas por la referencia bibliográfica \cite{Diseno_e_implementacion_de_un_sistema_de_control_para_la_representacion_grafica_a_partir_de_imagenes}.
+        
+        \subsubsection{Nomenclatura de Parámetros Geométricos y Sistema de Referencia Local}
+
+        \begin{figure}[htb]
+             \centering
+             \includegraphics[width=0.5\linewidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_1.png}
+              \caption{Fotografía de un paraguas}
+              \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_1}
+        \end{figure}
+
+ 
+
+        En la figura \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_1} se aprecia las piezas mecánicas básicas de un robot delta, tales como la  base fija, un efector móvil , brazos y antebrazos. En la siguiente tabla muestra la relación entre la numeración en la figura \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_1} y su descripción:
+        
+        \begin{table}[h]
+            \centering
+            \begin{tabular}{c c}
+            \hline
+                \textbf{Numero}& \textbf{Descripción} \\ 
+            \hline             \hline
+             1 & Base fija \\
+            \hline
+             2 & Brazo \\
+            \hline
+             3 & Junta esférica \\
+            \hline
+             4 & Antebrazo\\
+            \hline
+             5 & Efector final \\
+             \hline
+             6 & Actuador  \\
+             \hline
+            \end{tabular}
+           \caption{Referencias del dibujo}
+           \label{tab:cap4_tabla_1}
+        \end{table}
+
+        \newpage
+        
+        \begin{figure}[htb]
+             \centering
+             \includegraphics[width=0.6\linewidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_2.png}
+              \caption{Fotografía de un paraguas}
+              \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_2}
+        \end{figure}
+        
+        En la siguiente tabla se presenta la simbología de los principales parámetros para el desarrollo de la solución cinemática propuesta en este capitulo: 
+        
+        \begingroup
+            \renewcommand{\arraystretch}{1.5}
+            \begin{table}[H]
+            \centering
+            \begin{tabular}{c m{12cm}}
+               \hline
+               \textbf{Simbología}  & \multicolumn{1}{c|}{\textbf{Descripción}}  \\\hline\hline
+               $r_{f}$  & Longitud del brazo                                    \\\hline
+               $r_{e}$  & Longitud del antebrazo                                \\\hline               
+               $f$  & Lado de base fija                                         \\\hline
+               $e$  & Lado del efector                                          \\\hline
+               $\theta_{i}$  & Ángulo del actuador i    \\\hline
+               $F_{i}$  & Coordenadas de la posición del actuador i=1,2,3.    \\\hline
+               $E_{i}$  & Coordenadas de las juntas esféricas que unen el antebrazo con el efector (punto medio del lado
+               del triangulo que forma el efector) i=1,2,3.    \\\hline
+               $E_{0}(x_{0},y_{0},z_{0})$  & Coordenadas del centroide del efector   \\\hline               
+            \end{tabular}
+            \caption{Referencias del dibujo}
+            \label{tab:cap4_tabla_2}
+        \end{table}
+        \endgroup
+        
+        
+        
+        
+        \newpage
+
+    
+        \subsubsection{Cinemática directa} 
+        El fin de la cinemática directa es hallar la posición del efector final del robot delta dada una configuración articular, en este caso la de los actuadores.
+
+        \begin{equation}
+            \left({\theta }_1,{\theta }_2,{\theta }_3\right)\ \to E_0(x_0,y_0,z_0)\
+        \end{equation}
+
+        \begin{figure}[htb]
+             \centering
+             \includegraphics[width=0.8\linewidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_3.png}
+              \caption{Fotografía de un paraguas}
+              \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_3}
+        \end{figure}
+        
+        Las posiciones en el espacio de los brazos del robot delta ya están definidos gracias a que se conoce los ángulos de los actuadores $({\theta }_1,{\theta }_2,{\theta }_3)$ y la longitud de los brazos $r_f$. 
+        
+        Por otro lado, de los antebrazos solo se conoce la posición de la junta esférica $J_i$ que los une con los brazos. Como resultado del incompleto conocimiento espacial de esta pieza, la posición y orientación de cada antebrazo está restringida por una esfera con centro en la junta esférica $J_i$, con radio equivalente al largo del antebrazo $r_e$. 
+        
+        Para finalizar se realiza una traslación de las esferas mencionadas anteriormente para obtener las coordenadas del centroide del efector final $E_0$. Esta translación produce 3 nuevas esferas, con nuevos centros y de radio equivalente al largo del antebrazo $r_e$. Las nuevas esferas se intersecan en el centroide del efector $E_0$ .Como último paso, para calcular las coordenadas del punto $E_0(x_0,y_0,z_0)$ se realiza un sistema de ecuaciones no lineal con 3 restricciones (esferas que contienen los antebrazos) y 3 incógnitas (coordenadas $(x_0,y_0,z_0)$ del efector final) .
+
+        \newpage
+        
+        Los 3 centros y radios de las nuevas esferas que se intersecan en el centroide del efector $E_0(x_0,y_0,z_0)$ son:
+        
+    \vspace{-1em}
+
+        \begin{center}
+        \renewcommand{\arraystretch}{2.5}
+        
+            \begin{table}[H]
+            \centering
+            \begin{tabular}{p{1.4cm} c c } 
+                 \hline
+                 \textbf{Centros}  &  \textbf{Centros esferas}  & \textbf{Radio} \\ [0.1ex] 
+                 \hline\hline
+                         $\left(x_1,y_1,z_1\right)$ &
+                         ${J^'}_1\left(0,\left[-\frac{f-e}{2\sqrt{3}}-r_f{\mathrm{cos} \left({\theta }_1\right)\ }\right],-r_f{\mathrm{sin}\mathrm{n} \left({\theta }_1\right)\ }\right)$ & 
+                                                 $r_e$ \\ 
+                \hline
+                          $\left(x_2,y_2,z_2\right)$ & ${J^'}_2(\left[\frac{f-e}{2\sqrt{3}}+r_f{\mathrm{cos} \left({\theta }_2\right)\ }\right]\mathrm{cos}\mathrm{}(30{}^\circ ),\left[\frac{f-e}{2\sqrt{3}}+r_f{\mathrm{cos} \left({\theta }_2\right)\ }\right]\mathrm{sin}\mathrm{}(30{}^\circ ),-r_f{\mathrm{sin} \left({\theta }_2\right)\ })$ & $r_e$ \\
+                \hline
+                           $\left(x_3,y_3,z_3\right)$ & ${J^'}_3(-\left[\frac{f-e}{2\sqrt{3}}+r_f{\mathrm{cos} \left({\theta }_3\right)\ }\right]\mathrm{cos}\mathrm{}(30{}^\circ ),\left[\frac{f-e}{2\sqrt{3}}+r_f{\mathrm{cos} \left({\theta }_3\right)\ }\right]\mathrm{sin}\mathrm{}(30{}^\circ ),-r_f{\mathrm{sin} \left({\theta }_3\right)\ })$ & $r_e$ \\ [1ex] 
+                 \hline
+            \end{tabular}
+            \caption{Referencias del dibujo}
+            \label{tab:cap4_tabla_3}
+            \end{table}
+        \end{center}
+        
+    \vspace{-3.5em}
+
+    Para simplificar las ecuaciones algebraicas de las esferas, se escriben los centros $\left(x_i,y_i,z_i\right)\ ,\ i=1,2,3$
+    
+        \vspace{-1em}
+
+    
+    \begin{equation}
+    \left\lbrace
+    \begin{array}{ll}
+    {\left(x-x_1\right)}^2+{\left(y-y_1\right)}^2\ +{\left(z-z_1\right)}^2=\ {r_e}^2\  \\ 
+    {\left(x-x_2\right)}^2+{\left(y-y_2\right)}^2\ +{\left(z-z_2\right)}^2=\ {r_e}^2 \\ 
+    {\left(x-x_3\right)}^2+{\left(y-y_3\right)}^2\ +{x\left(z-z_3\right)}^2=\ {r_e}^2
+    \end{array}
+    \right.
+    \label{eq:cap4_eq_2}
+    \end{equation}
+
+
+    Despu\'{e}s de un extenso desarrollo alg\'{e}brico, la soluci\'{o}n del sistema de ecuaciones  (\ref{eq:cap4_eq_2}) es:
+
+    \vspace{-2.5em}
+
+    \begin{align}
+    \begin{split}
+            E_0\left(x_0,y_0,z_0\right)&={} \left(a_1z+\ b_1,a_2z+\ b_2,\frac{-B-\ \sqrt{\left(B^2\right)-\left(4AC\right)}}{2*A}\right)\\
+    \end{split}
+    \label{eq:cap4_eq_3}
+    \end{align}
+    
+
+    Donde:
+    \vspace{-1.0em}
+        
+    \begin{align}
+        z={}& \frac{-B-\ \sqrt{\left(B^2\right)-\left(4AC\right)}}{2A}
+        \label{eq:cap4_eq_4} \\
+        A={}& {a_1}^2+{a_2}^2+1
+        \label{eq:cap4_eq_5} \\
+        B={}&  2\left(a_1(b_1-x_1)+a_2(b_2-y_1)-z_1\right)
+        \label{eq:cap4_eq_6} \\
+        C={}& ({(b_1-x_1)}^2+{(b_2-y_1)}^2+{z_1}^2- {r_e}^2) 
+        \label{eq:cap4_eq_7} \\
+        a_1={}& \frac{\left(z_2-z_1\right)\left(y_3-y_1\right)-\left(z_3-z_1\right)\left(y_2-y_1\right)}{d} 
+        \label{eq:cap4_eq_8} \\
+        b_1={}& \left(\frac{1}{2*(-d)}\right)*\left(\left(w_2 - w_1\right)\left(y_3-y_1\right)-\left(w_3 - w_1\right)\left(y_2-y_1\right)\right)
+        \label{eq:cap4_eq_9} \\
+        a_2={}& \frac{-1}{d}*\left[\left(z_2-z_1\right)x_3-(z_3-z_1)x_2+(z_3-z_2)x_1\right]
+        \label{eq:cap4_eq_10} \\
+        b_2={}& \frac{1}{2d}*[\left(w_2-w_1\right)x_3-\left(w_3-w_1\right)x_2+\left(w_3-w_2)\right)x_1
+        \label{eq:cap4_eq_11} \\
+        d={}& \left(y_2- y_1\right)x_3-\left(y_3-y_1\right)x_2- \left(y_2-y_3\right)x_1
+        \label{eq:cap4_eq_12} \\
+        w_i={}& {x_i}^2+{y_i}^2 +{z_i}^2
+        \label{eq:cap4_eq_13} 
+    \end{align}
+
+         \newpage
+
+
+        \subsubsection{Cinemática inversa} 
+        El objetivo de la cinemática inversa es hallar la posición de los actuadores en el espacio articular dada la posición del centroide del efector final.
+        
+        \begin{equation}
+            E_0(x_0,y_0,z_0)\ \to \left({\theta }_1,{\theta }_2,{\theta }_3\right)
+        \end{equation}
+        
+        
+        \begin{figure}[htb]
+             \centering
+             \includegraphics[width=0.35\linewidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_4.png}
+              \caption{Fotografía de un paraguas}
+              \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_4}
+        \end{figure}
+        
+         Se tiene la informaci\'{o}n de las coordenadas de las juntas esf\'{e}ricas $E_i$ a causa de que se sabe la posici\'{o}n centroide del efector final $E_0(x_0,y_0,z_0)$ y que cada lado del tri\'{a}ngulo formado por la base fija son paralelos a los lados del triangulo formado por el efector, es decir, tanto la orientaci\'{o}n como la inclinaci\'{o}n entre la base fija y el efector son iguales.  
+
+        En relaci\'{o}n con los antebrazos, solo se conoce el punto $E_i$ , que coincide con las posiciones de cada junta esf\'{e}rica unida al efector. Esto trae como consecuencia que cada antebrazo esta restringido por esferas con centros en las juntas esf\'{e}ricas $E_i$ con radio equivalente al largo del antebrazo $r_e$.
+    
+        Acerca de los brazos solo se tiene conocimiento de los puntos $F_i$, que son la posici\'{o}n de cada actuador. Los actuadores son juntas revolutas y restringen le movimiento de cada brazo en planos. La configuraci\'{o}n espacial de estos planos para cada cadena cinem\'{a}tica es determinada por los puntos $F_i$ ,$O$ (origen) y el plano de la que contiene la base fija. El plano que contiene la base fija es perpendicular a los planos que restringen el movimiento de los brazos. En consecuencia, la posici\'{o}n de los puntos extremos de cada brazo, es decir, los puntos $J_i$ (junta esf\'{e}rica), est\'{a}n restringidos por circunferencias como se muestra en la ilustracion \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_3} .
+
+        Para finalizar, se calcula la intersecci\'{o}n entre las circunferencias para cada cadena cinem\'{a}tica, en otras palabras, los puntos  $J_i$ . Una vez obtenida la posici\'{o}n de las 3 juntas $J_i$, con algebra simple se calculan $\left({\theta }_1,{\theta }_2,{\theta }_3\right)$.
+        
+                \newpage
+
+
+        En el caso del actuador  $i=1$ , los centros de las circunferencias que intersección la junta esf\'{e}rica $J_1$ son:
+        
+        \begin{center}
+        \renewcommand{\arraystretch}{2.5}
+        
+            \begin{table}[H]
+            \centering
+            \begin{tabular}{p{1.4cm} c c } 
+                 \hline
+                 \textbf{Centros}  &  \textbf{Centros esferas}  & \textbf{Radio} \\ [0.1ex] 
+                 \hline\hline
+                         $\left(y_1,z_1\right)$ &
+                        $F_1\left(y_{F_1}\,z_{F_1}\right)=\left(-\frac{f}{2\sqrt{3}},0\right)$\textit{} & 
+                                                 $r_f$  \\ 
+                \hline
+                          $(y_2,z_2)$&
+                          ${E^'}_{1}$ $(y_{{E^'}_1}$ $z_{{E^'}_1}$ $)=(y_0-\frac{e}{2\sqrt{3}},z_0)$ &
+                          $r_2=\sqrt{{r_e}^2-{x_o}^2}$ \\
+                \hline
+            \end{tabular}
+            \caption{Referencias del dibujo}
+            \label{tab:cap4_tabla_4}
+            \end{table}
+        \end{center}
+    \vspace{-2.5em}
+        
+Las ecuaciones cartesianas de las dos circunferencias quedan representadas en términos de  $y_{1},z_{1},r_{f},r_{f},~y_{2},z_{2},\sqrt[]{r_{e}^{2}-x_{o}^{2}}$ para simplificar la escritura de los cálculos:
+
+    \begin{equation}
+    \left\lbrace
+    \begin{array}{ll}
+    \left( y-y_{1} \right) ^{2} + \left( z-z_{1} \right) ^{2}= r_{f}^{2}~\\
+    \left( y-y_{2} \right) ^{2} + \left( z-z_{2} \right) ^{2}= r_{e}^{2}-x_{o}^{2}\\ 
+    \end{array}
+    \right.
+    \label{eq:cap4_eq_15}
+    \end{equation}
+
+La solución del sistema de ecuaciones (\ref{eq:cap4_eq_15}) es:
+
+    \begin{equation}
+    J_{1}= \left( x_{J_{1}},y_{J_{1}},z_{J_{1}} \right) = \left( 0,y,a+by \right)
+    \label{eq:cap4_eq_16}
+    \end{equation}
+
+    Donde:
+
+    \begin{equation}
+        y=\frac{ \left( y_{1}-ab \right) -\sqrt[]{ \left[  \left( a+by_{1} \right) ^{2}+ \left( b^{2}+1 \right) r_{f}^{2} \right] }}{ \left( b^{2}+1 \right) }
+    \label{eq:cap4_eq_17}
+    \end{equation}
+
+    \begin{equation}
+        b=\frac{ \left( y_{1}-y_{2} \right) }{z_{2}}~ 
+    \label{eq:cap4_eq_18}
+    \end{equation}
+    
+    \begin{equation}
+        a= \frac{x_{o}^{2}+y_{2}^{2}+z_{0}^{2}+r_{f}^{2}- r_{e}^{2}~-y_{1}^{2}}{2z_{0}} 
+    \label{eq:cap4_eq_19}
+    \end{equation}
+
+                \newpage
+
+En último lugar, se determina el ángulo \( ~ \theta _{1} \)  por medio del triángulo rectángulo formado en el brazo y la proyección del mismo en el plano XY:
+
+    \begin{equation}
+        \theta _{1}=\arctan  \left( ~\frac{z_{J_{1}}}{y_{F_{1}}-y_{J_{1}}} \right)  
+        \label{eq:cap4_eq_20}
+    \end{equation}
+    
+    Donde:  \( y_{F_{1}}= - \frac{f}{2~\sqrt[]{3}} \)
+
+    
+        \begin{figure}[htb]
+             \centering
+             \includegraphics[width=0.25\linewidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_5.png}
+              \caption{Fotografía de un paraguas}
+              \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_5}
+        \end{figure}
+
+
+
+
+Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \theta _{2} \)  y  \(  \theta _{3} \)  por medio de matrices de rotación, con un ángulo de rotación de 120$ ^{\circ} $  para la cadena cinemática con el actuador 2 y de 240$ ^{\circ} $  para la cadena cinemática con el actuador 3. Estas matrices giran el sistema de referencia local en 120$ ^{\circ} $  y 240$ ^{\circ} $ . 
+
+        \begin{figure}[htb]
+             \centering
+             \includegraphics[width=0.8\linewidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_6.png}
+              \caption{Fotografía de un paraguas}
+              \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_6}
+        \end{figure}
+
+        \newpage
+
+    \subsection{Modelación cinemática de la velocidad}
+        En esta sección, se da a conocer un método para calcular la matriz jacobiana y su estrecha relación con las singularidades de un robot paralelo tipo delta. Se implementan las ideas extraídas del paper \cite{Hsu_modelling_ai}
+    
+        \subsubsection{Nomenclatura de Parámetros Geométricos y Sistema deReferencia Loca}
+        
+        En la ilustración \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_7} se pueden visualizar 3 cadenas cinemáticas las cuales se componen de 4 partes mecánicas: la base fija, los brazos accionados, las barras seguidoras y la plataforma móvil.
+        
+        \begin{figure}[htb]
+             \centering
+             \includegraphics[width=0.45\linewidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_7.png}
+              \caption{Fotografía de un paraguas}
+              \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_7}
+        \end{figure}
+        
+        
+        En la tabla \ref{tab:cap4_tabla_5} muestra la relación entre la numeración en la figura anterior y su descripción:
+        
+        \begin{table}[h]
+            \centering
+            \begin{tabular}{c c}
+            \hline
+                \textbf{Numero}& \textbf{Descripción} \\ 
+            \hline             \hline
+             1 & plataforma móvil \\
+            \hline
+             2 & barras seguidoras \\
+            \hline
+             3 & brazos accionados \\
+            \hline
+             4 & base fija\\
+            \hline
+             5 & Juntas universales \\
+             \hline
+            \end{tabular}
+           \caption{Referencias del dibujo}
+           \label{tab:cap4_tabla_5}
+        \end{table}
+      
+    \newpage
+
+      En la tabla \ref{tab:cap4_tabla_6} se presenta la simbologia de las principales longitudes para el desarrollo de la solución cinematica propuesta en este capitulo:
+
+        \begingroup
+            \renewcommand{\arraystretch}{1.5}
+            \begin{table}[H]
+            \centering
+            \begin{tabular}{c m{12cm}}
+               \hline
+               \textbf{Simbología}  & \multicolumn{1}{c}{\textbf{Descripción}}  \\
+               \hline           \hline            
+             $a$ & Longitud de los brazos accionados \\
+            \hline
+             $b$ & Longitud de las barras seguidoras \\
+            \hline
+             $r$ & Longitud desde el centro de la base fija a un actuador i \\
+            \hline
+             $h$ & Longitud del centro de la plataforma móvil a una junta universal unida a él.\\
+            \hline
+            \end{tabular}
+            \caption{Referencias del dibujo}
+           \label{tab:cap4_tabla_6}
+        \end{table}
+        \endgroup        
+
+    En la tabla \ref{tab:cap4_tabla_7} se presenta la simbologia de los principales puntos para el desarrollo de la solucion cinematica propuesta en este capitulo: 
+    
+        \begingroup
+            \renewcommand{\arraystretch}{1.5}
+            \begin{table}[H]
+            \centering
+            \begin{tabular}{c m{12cm}}
+               \hline
+               \textbf{Simbología}  & \multicolumn{1}{c}{\textbf{Descripción}}  \\\hline
+            \hline            
+             $A_{i}$ & Punto que representa la posición de actuador i \\
+            \hline
+             $ B_{i}$ & Punto que representa la posición de las juntas universales que unen los brazos accionados y las barras seguidoras \\
+            \hline
+             $C_{i}$ & Punto que representa la posición de las juntas universales que unen las barras seguidoras con la plataforma móvil \\
+            \hline
+             $P$ & Punto que representa el centro de la plataforma móvil.\\
+            \hline
+            \end{tabular}
+            \caption{Referencias del dibujo}
+           \label{tab:cap4_tabla_7}
+        \end{table}
+        \endgroup
+    
+    En la tabla \ref{tab:cap4_tabla_8} se presenta la simbologia de los principales angulos para el desarrollo de la solucion cinematica propuesta en este capitulo: 
+    
+        \begingroup
+            \renewcommand{\arraystretch}{1.5}
+            \begin{table}[H]
+            \centering
+            \begin{tabular}{c m{12cm}}
+               \hline
+               \textbf{Simbología}  & \multicolumn{1}{c}{\textbf{Descripción}}  \\\hline
+            \hline            
+             $\phi _{i}$ & Ángulo que representa la posición angular de los 3 actuadores sobre el plano de la base fija $ \{ $ 0$ ^{\circ} $ , 120$ ^{\circ} $ , 240$ ^{\circ} $ $ \} $ \\
+            \hline
+             $ \theta _{1i}$ & Angulo que representa la posición angular de las barras accionadas respecto al eje que contiene los puntos del origen del sistema de referencia local y A_{i}  \\
+            \hline
+            \end{tabular}
+            \caption{Referencias del dibujo}
+           \label{tab:cap4_tabla_8}
+        \end{table}
+        \endgroup    
+    
+        \newpage
+    
+        En la tabla \ref{tab:cap4_tabla_9} se presenta la simbologia de los principales sistemas de referencia para el desarrollo de la solucion cinematica propuesta en este capitulo: 
+        
+        \begingroup
+            \renewcommand{\arraystretch}{1.5}
+            \begin{table}[H]
+            \centering
+            \begin{tabular}{c m{12cm}}
+               \hline
+               \textbf{Simbología}  & \multicolumn{1}{c}{\textbf{Descripción}}  \\\hline
+            \hline            
+             $O$ – $xyz$ & Ángulo que representa la posición angular de los 3 actuadores sobre el plano de la base fija $ \{ $ 0$ ^{\circ} $ , 120$ ^{\circ} $ , 240$ ^{\circ} $ $ \} $ \\
+            \hline
+             $  A_{i}$ – $x_{i}y_{i}z_{i}$ & Angulo que representa la posición angular de las barras accionadas respecto al eje que contiene los puntos del origen del sistema de referencia local y A_{i}  \\
+            \hline
+            \end{tabular}
+            \caption{Referencias del dibujo}
+           \label{tab:cap4_tabla_9}
+        \end{table}
+        \endgroup        
+        
+    \newpage
+
+        \subsubsection{Vectorización y ángulos de las articulaciones}
+        
+        La ilustracion \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_8} define los ángulos de articulación asociados con la extremidad  \( i \) .  \(  \theta _{2i} \)  se define desde la línea extendida de  \( \overrightarrow{A_{i}B_{i}} \)  hasta la línea definida por la intersección del plano del paralelogramo y el plano  \( x_{i}-z_{i} \)  y  \(  \theta _{3i} \)  se mide desde la dirección  \( y_{i} \)  hasta  \( \overrightarrow{B_{i}C_{i}} \) .
+        
+        \begin{figure}[htb]
+             \centering
+             \includegraphics[width=0.8\linewidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_8.png}
+              \caption{Fotografía de un paraguas}
+              \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_8}
+        \end{figure}
+        
+        
+        En la tabla \ref{tab:cap4_tabla_10} se presenta las descripciones de los vectores mostrados \colorbox{Yellow}{en la ilustración de arriba:}
+        
+        \begingroup
+            \renewcommand{\arraystretch}{1.5}
+            \begin{table}[H]
+            \centering
+            \begin{tabular}{c m{12cm}}
+               \hline
+               \textbf{Simbología}  & \multicolumn{1}{c}{\textbf{Descripción}}  \\\hline
+            \hline            
+             \overrightarrow{A_{i}B_{i}} & Vector que representa el brazo accionado i \\
+            \hline
+             \overrightarrow{B_{i}C_{i}} & Vector que representa la barra seguidora i.  \\
+            \hline
+             \overrightarrow{OP} & Vector que representa el centro de la plataforma móvil.  \\
+            \hline
+             \overrightarrow{PC_{i}} & Vector que representa la distancia entre el centro de la plataforma móvil y una junta universal unidad a la cadena cinemática i.  \\
+            \hline
+             \overrightarrow{OA_{i}} & Vector que representa la posición de los actuadores respecto al origen O.  \\
+            \hline
+            \end{tabular}
+            \caption{Referencias del dibujo}
+           \label{tab:cap4_tabla_10}
+        \end{table}
+        \endgroup      
+        
+
+      Se puede escribir una ecuación de cierre de bucle para cada extremidad vectorialmente:  
+        
+    \begin{equation}
+    \overrightarrow{A_{i}B_{i}}+ \overrightarrow{B_{i}C_{i}}~~ =\overrightarrow{OP}~ +\overrightarrow{~PC_{i}} -\overrightarrow{OA_{i}~} 
+    \label{eq:cap4_eq_21}
+    \end{equation}
+    
+            \newpage
+
+    
+    Reescribiendo la ecuacion (\ref{eq:cap4_eq_21}) en el marco de coordenadas $A_{i} – x_{i} y_{i} z_{i}$  conduce a la siguiente representación matricial:   
+
+    \begin{equation}
+         a \left[ \begin{matrix}
+        cos~ \theta _{1i}\\
+        0\\
+        sin~ \theta _{1i}\\
+        \end{matrix}
+         \right] +b \left[ \begin{matrix}
+        sin~ \theta _{3i} cos⁡ \left(  \theta _{1i}+ \theta _{2i} \right) \\
+        cos~ \theta _{3i}\\
+        sin~ \theta _{3i}sin \left(  \theta _{1i}+ \theta _{2i} \right) \\
+        \end{matrix}
+         \right] = \left[ \begin{matrix}
+        \cos  \phi _{i}  &  \sin  \phi _{i}  &  0\\
+        -sin \phi _{i}  &  \cos  \phi _{i}  &  0\\
+        0  &  0  &  1\\
+        \end{matrix}
+         \right]  \left[ \begin{matrix}
+        p_{x}\\
+        p_{y}\\
+        p_{z}\\
+        \end{matrix}
+         \right] +  \left[ \begin{matrix}
+        h\\
+        0\\
+        0\\
+        \end{matrix}
+         \right] - \left[ \begin{matrix}
+        r\\
+        0\\
+        0\\
+        \end{matrix}
+         \right] ~= \left[ \begin{matrix}
+        c_{xi}\\
+        c_{yi}\\
+        c_{zi}\\
+        \end{matrix}
+         \right] ~
+        \label{eq:cap4_eq_22}
+    \end{equation}    
+    
+    Donde la posición del punto $C_{i} (c_{xi},c_{yi},c_{zi})$ esta en relación con el marco de coordenadas $A_{i}$ – $x_{i} y_{i} z_{i}$.
+    
+    Realizando algebra en la ecuación anterior se puede determinar los ángulos $\theta_{2i}$ y $\theta_{3i}$ con las siguientes ecuaciones: 
+    
+    \begin{equation}
+       \theta _{3i}= \cos ^{-1}\frac{c_{yi}}{b} 
+        \label{eq:cap4_eq_23}
+    \end{equation}
+     
+    \begin{equation}
+    \theta _{2i}=\cos ^{-1} \left( \frac{c_{xi}^{2}+c_{yi}^{2}+c_{zi}^{2}-a^{2}-b^{2}~}{2ab sin~ \theta _{3i}} \right) 
+     \label{eq:cap4_eq_24}
+    \end{equation}
+    
+    
+    Con $\theta _{3i}$ y $\theta_{2i}$ determinados, solo queda un par de ecuaciones con $\theta_{1i}$ como la única incógnita que se deriva de la ecuacion (\ref{eq:cap4_eq_22}). Por lo tanto, es posible obtener  $\theta_{1i}$.
+
+    
+        \newpage
+
+        \subsubsection{Jacobiano}
+        
+        La matriz jacobiana tradicional proporciona una transformación de la velocidad del efector final en el espacio cartesiano a las velocidades articulares accionadas.
+        
+        \begin{figure}[htb]
+             \centering
+             \includegraphics[width=0.5\linewidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_10.png}
+              \caption{Fotografía de un paraguas}
+              \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_10}
+        \end{figure}
+        
+        Con referencia a la ilustracion \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_10}, una ecuación de cierre de bucle para una extremidad i en marco de coordenadas  \( A_{i} \) – \( x_{i}y_{i}z_{i} \) se puede escribir como:
+        
+        \begin{equation}
+             \overrightarrow{OP}+\overrightarrow{~PC_{i}} =\overrightarrow{OA_{i}}+\overrightarrow{A_{i}B_{i}}+\overrightarrow{B_{i}C_{i}}  
+         \label{eq:cap4_eq_25}
+        \end{equation}
+
+        Al diferenciar vectorialmente la ecuación (\ref{eq:cap4_eq_25}) con respecto a el tiempo y separando las componentes de velocidad de la plataforma móvil de las velocidades angulares de los actuadores se llega a la siguiente expresión:
+        
+        \begin{equation}
+            J_{x}v_{p}=J_{ \theta }\dot{ \theta } 
+            \label{eq:cap4_eq_26}
+        \end{equation}
+        
+        La expresion matricial de la ecuacion (\ref{eq:cap4_eq_26}) es:
+        
+        \begin{equation}
+                \left[ \begin{matrix}
+                J_{1x}  &  J_{1y}  &  J_{1z}\\
+                J_{2x}  &  J_{2y}  &  J_{2z}\\
+                J_{3x}  &  J_{3y}  &  J_{3z}\\
+                \end{matrix}
+                 \right]  \left[ \begin{matrix}
+                v_{px}\\
+                v_{py}\\
+                v_{pz}\\
+                \end{matrix}
+                 \right] = \left[ \begin{matrix}
+                J_{1 \theta }~  &  0  &  0\\
+                0  &  J_{2 \theta }~~  &  0\\
+                0  &  0  &  J_{3 \theta }~\\
+                \end{matrix}
+                 \right]  \left[ \begin{matrix}
+                \dot{ \theta _{11}}~\\
+                \dot{ \theta _{12}}\\
+                \dot{ \theta _{13}}~\\
+                \end{matrix}
+                 \right]
+                \label{eq:cap4_eq_27}
+        \end{equation}
+        
+    Donde: 
+    
+    \begin{equation}
+        J_{ix}=\cos  \left(  \theta _{1i}+ \theta _{2i} \right) sin~ \theta _{3i}\cos  \phi _{i}-cos  \theta _{3i}\sin  \phi _{i}~
+        \label{eq:cap4_eq_28}
+    \end{equation}
+    \vspace{-3.5em}
+
+    \begin{equation}
+        J_{iy}=\cos  \left(  \theta _{1i}+ \theta _{2i} \right) sin~ \theta _{3i}\sin  \phi _{i}+ cos  \theta _{3i}\cos  \phi _{i}~ 
+        \label{eq:cap4_eq_29}
+    \end{equation}
+    \vspace{-3.5em}
+
+    \begin{equation}
+          J_{iz}=sin \left(  \theta _{1i}+ \theta _{2i} \right) sin~ \theta _{3i}~  
+          \label{eq:cap4_eq_30}
+    \end{equation}
+    \vspace{-3.5em}
+
+    \begin{equation}
+         J_{i \theta }=a~\sin  \theta _{2i}~sin~ \theta _{3i}
+         \label{eq:cap4_eq_31}
+    \end{equation}
+         \vspace{-3.5em}
+   
+            \newpage
+    
+    Manipulando algebraicamente la ecuación (\ref{eq:cap4_eq_26}):
+    
+     \begin{equation}
+        v_{p}=J\dot{ \theta }
+        \label{eq:cap4_eq_32}
+    \end{equation}   
+    
+    Finalmente, el jacobiano es $J$ y representa el cambio de las posiciones en el espacio cartesiano de la plataforma móvil respecto al cambio de los ángulos en el espacio articular de los actuadores:
+        
+    \begin{equation}
+          ~~J= \left[ \begin{matrix}
+            \frac{ \partial x}{ \partial  \theta _{1}}  &  \frac{ \partial x}{ \partial  \theta _{2}}  &  \frac{ \partial x}{ \partial  \theta _{3}}\\
+            \frac{ \partial y}{ \partial  \theta _{1}}  &  \frac{ \partial y}{ \partial  \theta _{2}}  &  \frac{ \partial y}{ \partial  \theta _{3}}\\
+            \frac{ \partial z}{ \partial  \theta _{1}}  &  \frac{ \partial z}{ \partial  \theta _{2}}  &  \frac{ \partial z}{ \partial  \theta _{3}}\\
+        \end{matrix}
+        \right]   
+         \label{eq:cap4_eq_33}
+    \end{equation}\    
+        
+        
+     Donde: \par
+
+       $J=J_{x}^{-1}J_{ \theta }$  es el jacobiano del robot delta
+
+        $v_{p}= \left[ v_{px},v_{py},v_{pz} \right] ^{T}$ es la velocidad del del punto  $p$ en la plataforma móvil
+
+        $\dot{ \theta }= \left[ \dot{ \theta _{11}},\dot{ \theta _{12}},\dot{ \theta _{13}}  \right] ^{T}$  es la velocidad angular de los actuadores
+        
+        \newpage
+
+        
+        \subsubsection{Singularidades}
+        
+        Se debe tener especial cuidado en el diseño de estos manipuladores paralelos para evitar singularidades. Cuando un manipulador está en una posición singular, la matriz jacobiana también es singular. En el caso de los manipuladores paralelos conviene trabajar con un jacobiano de dos partes, matriz jacobiana inversa   $J_{ \theta }$  y la directa  $ J_{x} $ . La ventaja es que un jacobiano bipartito permite, de forma natural, la identificación y clasificación de varios tipos de singularidades. Una de las formas de analizar las singularidades es igualando el determinante de la matriz jacobiana igual a cero y extraer varias posturas indeseables robot delta. Desde la ecuación  (\ref{eq:cap4_eq_26}) se puede observar y clasificar la singularidad en 3 situaciones:
+        
+        \begin{figure}[htb]
+         \centering
+          \subfloat[Gatito]{
+         \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_9a}
+            \includegraphics[width=0.3\textwidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_9a.png}}
+          \subfloat[Tigre]{
+         \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_9b}
+            \includegraphics[width=0.3\textwidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_9b.png}}
+          \subfloat[Conejo]{
+         \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_9c}
+            \includegraphics[width=0.3\textwidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_9c.png}}
+         \caption{Múltiples imágenes}
+         \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_9}
+        \end{figure}
+        
+        \begin{itemize}
+	        \item {\fontsize{10pt}{12.0pt}\selectfont Cuando  $\det  \left( J_{ \theta } \right) =0$ . Esto significa que  $\theta _{2i}=0$  o  $\pi$ , o \   $\theta _{3i}=0$ o  $\pi$  , para  \( i = \{ 1,2 ,3 \}  \) . En esta situación los tres pares de barras seguidoras son paralelos. Por tanto, la plataforma móvil tiene tres grados de libertad y se mueve a lo largo de una superficie esférica y gira sobre el eje perpendicular a la plataforma móvil (ilustracion \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_9a}) .Al mismo tiempo esta configuración representa el límite del espacio de trabajo, es decir, los puntos más lejanos que puede alcanzar el robot. }
+
+	        \item {\fontsize{10pt}{12.0pt}\selectfont Cuando  $\det  \left( J_{x} \right) =0 $ . Esto significa que    $ \theta _{1i}+  \theta _{2i}=0$  o  $\pi$ , o $\theta _{3i}=0$  o  $ \pi $   , para  \( i = \{ 1,2 ,3 \}  \) . En esta situación dos pares de barras seguidoras son paralelas. Los la plataforma móvil tiene un grado de libertad; es decir, la plataforma móvil se mueve en una sola dirección (ilustracion \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_9b}).}
+
+	        \item {\fontsize{10pt}{12.0pt}\selectfont Cuando $ \det  \left( J_{ \theta } \right) =0 $  y $ \det  \left( J_{x} \right) =0 $. Esta situación ocurre cuando  $  \theta _{3i}=0$ o  $ \pi  $  , para  \( i = \{ 1,2 ,3 \}  \) . En esta situación dos pares de barras seguidoras están en el mismo plano o dos planos paralelos. La plataforma móvil tiene un grado de libertad; es decir, la plataforma móvil gira sobre el eje horizontal solamente (ilustracion \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_9c})}
+\end{itemize}
+
+    
+    \newpage
+
+
+    
+    \subsection{Modelación dinámica}
+        \subsubsection{Ecuaciones de Lagrange}
+            La aplicación directa de las Leyes de Newton al movimiento de sistemas de partículas es sustituida por una propuesta más general, un método para encontrar las ecuaciones de movimiento para todos los sistemas dinámicos, desarrollado por el matemático Joseph Louis Lagrange. En el anexo \ref{anexoB} primero se habla de los conceptos básicos hasta llegar a la formulación de Lagrange. Se obtienen las ecuaciones de Lagrange partiendo del principio de D’Alembert.  Toda la información en esta sección es recopilada de la referencia \cite{INTRO_MECANICA_LAGRAGE}.
+
+    \newpage
+
+\section{Metodología B}
+
+    \subsection{Modulación cinemática de la Posición}\label{MB_MP}
+    
+            Con el objetivo de modelar la cinemática del robot delta, en esta sección se implementan las ideas expuestas en la fuente \cite{Path_Planning_and_Trajectory_Optimization}, que aborda en uno de sus capítulos la problemática de cinemática directa e inversa.
+    
+        \subsubsection{Nomenclatura de Parámetros Geométricos y Sistema de Referencia Local}
+
+            En la ilustracion \ref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_1}, se presenta las partes mecánicas y la nomenclatura de los parámetros del robot delta simplificado para resolver el problema de cinemática con su respectivo sistema de referencia local:
+
+            \begin{figure}[htb]
+                 \centering
+                 \includegraphics[width=0.5\linewidth]{Main/Chapter4/Images4/Metodo_B_Modelacion_Cinematica_Posicion_1.png}
+                  \caption{Fotografía de un paraguas}
+                  \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_1}
+            \end{figure}        
+        
+        
+        En la tabla \ref{tab:cap4_tabla_11} muestra la relación entre la numeración en la figura anterior y su descripción:
+        
+        
+        \begin{table}[h]
+            \centering
+            \begin{tabular}{c c}
+            \hline
+                \textbf{Numero}& \textbf{Descripción} \\ 
+            \hline             \hline
+             1 & Base Fija \\
+            \hline
+             2 & Brazo \\
+            \hline
+             3 & Junta esférica \\
+            \hline
+             4 & Antebrazo\\
+            \hline
+             5 & Efector final \\
+             \hline
+             6 & Actuador \\
+             \hline
+            \end{tabular}
+           \caption{Referencias del dibujo}
+           \label{tab:cap4_tabla_11}
+        \end{table}
+        
+        
+        \newpage
+
+        Antes de empezar los cálculos de cinemática, es mejor explicar algunos términos que se utilizará ampliamente en la formulación cinemática.
+        
+        
+         \begin{figure}[htb]
+             \centering
+              \subfloat[Gatito]{
+             \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_2a}
+                \includegraphics[width=0.5\textwidth]{Main/Chapter4/Images4/Metodo_B_Modelacion_Cinematica_Posicion_2a.png}}
+              \subfloat[Tigre]{
+             \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_2b}
+                \includegraphics[width=0.4\textwidth]{Main/Chapter4/Images4/Metodo_B_Modelacion_Cinematica_Posicion_2b.png}}
+             \caption{Múltiples imágenes}
+             \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_2}
+        \end{figure}
+        
+        
+        Los parámetros necesarios para resolver la cinemática del robot delta se presentan en la ilustración \ref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_2} y la  tabla \ref{tab:cap4_tabla_12}:
+        
+        \begingroup
+            \renewcommand{\arraystretch}{1.5}
+            \begin{table}[H]
+            \centering
+            \begin{tabular}{c m{12cm}}
+               \hline
+               \textbf{Parametro}  & \multicolumn{1}{c}{\textbf{Descripción}}  \\
+               \hline           \hline            
+             $L_A$ & Largo del brazo \\
+            \hline
+             $L_B$ & Largo del antebrazo \\
+            \hline
+             $R_A$ & Distancia entre el centro de la base fija y la junta revoluta o actuador \\
+            \hline
+             $R_B$ & Distancia entre el centro del efector a la junta que lo une con el antebrazo\\
+            \hline
+             $f$ & longitud de un lado del triángulo equilátero inscribe el círculo formado por los puntos $F'_1$, $F'_2$ y $F'_3$ (base fija)\\
+            \hline
+             $e$ & longitud de un lado del equilátero triángulo inscribe el círculo formado por los puntos $P'_1$, $P'_2$ y $P'_3$ (efector final)\\
+            \hline
+             $\theta_i$ & Angulo de los actuadores\\
+            \hline
+             $J_i$ & Punto de la junta esférica que conecta los brazos con el antebrazo\\
+            \hline            
+             $F_i$ & Punto de la posición de los actuadores\\
+            \hline  
+             $P_0$ & posición del final efector en el espacio cartesiano con respecto al sistema de coordenadas con origen $O$ en el centroide de la base fija\\
+            \hline            
+            \end{tabular}
+            \caption{Referencias del dibujo}
+           \label{tab:cap4_tabla_12}
+        \end{table}
+        \endgroup     
+        
+        
+        \newpage
+
+\subsubsection{Cinemática Directa}
+        
+        En\ la cinemática directa, se calcula la posición del efector final del manipulador robótico a partir de la información dada de los ángulos en los actuadores.
+
+
+        \begin{equation}
+            \theta _{1},~ \theta _{2}, \theta _{3}~~~ \rightarrow ~  {P_{0}} \left( P_{0x},P_{0y},P_{0z} \right)
+        \label{eq:cap4_MB_1}
+        \end{equation}
+
+        El método de solución de la cinemática directa en esta sección es el mismo que el empleado para la metodología A de este capitulo. Lo único que cambia es la nomenclatura de los parámetros y la orientación del sistema de referencia local.
+        
+            \begin{figure}[htb]
+                 \centering
+                 \includegraphics[width=0.7\linewidth]{Main/Chapter4/Images4/Metodo_B_Modelacion_Cinematica_Posicion_3.png}
+                  \caption{Fotografía de un paraguas}
+                  \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_3}
+            \end{figure}        
+        
+    Al igual que metodo A, el resultado de las traslaciones de las 3 esferas con centros en las juntas esféricas  \( J_{1},~J_{2},J_{3} \)  producen tres nuevas esferas con radio  \( L_{B} \)  y centro en los puntos  \( J'_{1},~J'_{2},J'_{3} \)   que se cruzan en el punto  \( P_{0} \) . Las coordenadas del vector  \( \overrightarrow{P_{0}}=  \left[ P_{0x},P_{0y},P_{0z} \right] ^{T} \)  se pueden obtener resolviendo las tres ecuaciones que representan las nuevas esferas en el espacio cartesiano simultáneamente. Las ecuaciones son        
+        \begin{equation}
+            \left( P_{0x}-J'_{ix} \right) ^{2}+ \left( P_{0y}-J'_{iy} \right) ^{2}+ \left( P_{0z}-J'_{iz} \right) ^{2}=L_{B}^{2}~
+        \label{eq:cap4_MB_2}
+        \end{equation}        
+  
+    Por lo tanto, se dispone de un sistema de ecuaciones con 3 ecuaciones (\ref{eq:cap4_MB_2}) para $i=1,2,3$ y con 3 incógnitas \( P_{0x},P_{0y},P_{0z} \) .  
+    
+    \newpage
+
+    Las coordenadas de los puntos  \( J'_{1},~J'_{2},J'_{3} \)  encuentra en los siguientes vectores  (\ref{eq:cap4_MB_3}), (\ref{eq:cap4_MB_4}) y (\ref{eq:cap4_MB_5}) respectivamente:  
+  
+          \begin{equation}
+                \overrightarrow{J'_{1}}= \left [\left( \frac{(f-e)}{2\sqrt{3}}+{L}_{A}cos(\theta_1)\right) cos(30^\circ), \left(\frac{(f-e)}{2\sqrt{3}} + {L}_{A}cos(\theta_1)\right) sin(30^\circ), -L_{A}sin(\theta_1)\right]
+        \label{eq:cap4_MB_3}
+        \end{equation}    
+        
+        \begin{equation}
+                \overrightarrow{J'_{2}}= \left [  0,-\frac{(f-e)}{2\sqrt{3}}-L_{A}cos(\theta_2),-L_{A}sin(\theta_2)\right]
+        \label{eq:cap4_MB_4}
+        \end{equation}    
+        
+        \begin{equation}
+                \overrightarrow{J'_{3}}= \left [\left( \frac{(f-e)}{2\sqrt{3}}+{L}_{A}cos(\theta_3)\right) cos(30^\circ), \left(\frac{(f-e)}{2\sqrt{3}} + {L}_{A}cos(\theta_3)\right) sin(30^\circ), -L_{A}sin(\theta_3)\right]
+        \label{eq:cap4_MB_5}
+        \end{equation}    
+  
+      El método algebraico para resolver el sistema de ecuaciones (\ref{eq:cap4_MB_2}), en otras palabras, la intersección de las 3 esferas trasladadas, es el mismo que en el metodo A, especificamente desde la ecuación (\ref{eq:cap4_eq_2}).
+  
+ \newpage
+        
+        
+
+\subsubsection{Cinemática Inversa}
+
+      En la cinemática inversa, se calculan los ángulos de las articulaciones, en este caso, los actuadores gracias a la posición dada de efector final en el espacio cartesiano. 
+      
+        \begin{equation}
+              P_{0} \left( P_{0x},P_{0y},P_{0z} \right) ~~ \rightarrow    \theta _{1},~ \theta _{2}, \theta _{3} 
+        \label{eq:cap4_MB_6}
+        \end{equation}\par      
+      
+     En esta sección, el método de solución de la cinemática inversa es el mismo que el empleado para la metodología A de este capitulo. Lo único que cambia es la nomenclatura de los parámetros y la orientación del sistema de referencia local.
+  
+           \begin{figure}[htb]
+             \centering
+              \subfloat[Gatito]{
+             \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_4a}
+                \includegraphics[width=0.5\textwidth]{Main/Chapter4/Images4/Metodo_B_Modelacion_Cinematica_Posicion_4a.png}}
+              \subfloat[Tigre]{
+             \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_4b}
+                \includegraphics[width=0.4\textwidth]{Main/Chapter4/Images4/Metodo_B_Modelacion_Cinematica_Posicion_4b.png}}
+             \caption{Múltiples imágenes}
+             \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_4}
+        \end{figure}
+  
+      Primero se empieza por calcular en ángulo del actuador 2. Se trabaja sobre el marco de referencia $YZ$ ya que el brazo  \overline{\( F_{2}J_{2}  \)} solo puede moverse en ese plano como se muestra en la ilustracion \ref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_4a}. Sobre el mismo plano $ YZ $ se proyecta el antebrazo para obtener una segunda restricción geométrica en la junta  \( J_{2} \) . Por lo explicado anteriormente, la posición de la junta esférica  \( J_{2} \)  está restringida por 2 circunferencias. Se dibuja el primer círculo con centro  \( F_{2} \)  y radio  \( L_{A} \) . El segundo círculo se dibuja con el centro en el punto  \( P'_{2} \) ( proyección de $P_{2}$ sobre plano $YZ$)  y radio  \( \sqrt[]{L_{B}^{2}-P_{0x}^{2}} \) .
+      
+     \newpage
+
+      La ecuación \ref{eq:cap4_MB_7} y\ref{eq:cap4_MB_8} representan los círculos con radio  \( L_{A} \)  y  \( \sqrt[]{L_{B}^{2}-P_{0x}^{2}} \)  respectivamente, como se muestra en la figura \ref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_4b}.
+  
+  
+        \begin{equation}
+              (J_{2y}-F_{2y})^2 + (J_{2z}-F_{2z})^2=  L_{A}^{2}  \Rightarrow  \left (J_{2y} + \frac{f}{2\sqrt{3}}\right)^2 + J_{2z}^{2}= L_{A}^{2}
+        \label{eq:cap4_MB_7}
+        \end{equation}
+        
+        
+        \begin{equation} 
+              (J_{2y}-{P'}_{2y})^2 + (J_{2z}-{P'}_{2z})^2= L_{B}^{2} -P_{0z}^2  \Rightarrow   \left (J_{2y} - P_{0y}+ \frac{e}{2\sqrt{3}}\right)^2 + ({J}_{2z}-{P}_{0z}) = L_{B}^{2} -P_{0z}^2
+        \label{eq:cap4_MB_8}
+        \end{equation}  
+    
+    
+        El valor de  \( J_{2y} \)  y  \( J_{2z} \)  se puede calcular resolviendo simultáneamente la ecuación \ref{eq:cap4_MB_7} y \ref{eq:cap4_MB_8} al igual que en el metodo A. Todas las demás variables en este sistema de ecuaciones se asumen como conocidas o se miden a partir de la estructura geométrica del robot paralelo delta. Una vez que se conocen estos valores, se puede usar trigonometría simple para calcular el  \(  \theta _{2} \)  como se indica en la siguiente ecuacion \ref{}:
+        
+        \begin{equation} 
+            \theta_2=arctan \left(\frac{J_{2z}}{{F}_{2y}-{J}_{2y}}\right)
+        \label{eq:cap4_MB_9}
+        \end{equation}  
+   
+   
+        La estructura simétrica del robot paralelo delta da la ventaja de calcular los ángulos  \(  \theta _{1} \)  y  \(  \theta _{3} \)  faltantes aplicando el mismo procedimiento para  \(  \theta _{2} \) . Para ello, se rotar el marco de referencia local en un ángulo de 120º en sentido antihorario y horario, respectivamente.   
+           
+     
+        \newpage
+
+\subsection{Modelación cinemática de la velocidad}
+    
+        Con el objetivo de modelar la cinemática de velocidad del robot delta, en esta sección se implementa las ideas expuestas en la fuente \cite{Path_Planning_and_Trajectory_Optimization},  con los mismos parámetros, jerga y nomenclatura de la seccion  \ref{MB_MP}
+        La base de la modelacion cinematica de velocidad es determinar la matriz jacobiana  \( J \) . Esta juega un papel importante en el modelo dinámico del manipulador robótico como se aprecia en secciones posteriores.\par
+        
+        La matriz jacobiana para el robot paralelo delta fue calculada por primera vez por Codourey \cite{Codourey:31400}. En este método, las derivadas parciales se calcularon numéricamente. La matriz jacobiana para robots paralelos también se puede calcular vinculando la variable de espacio cartesiano con las variables de espacio de articulación mediante un conjunto de ecuaciones restringidas. Guglielmetti \cite{Guglielmetti:31706} fue la primera persona que aplicó este enfoque para calcular la matriz jacobiana para el robot paralelo Delta. Codourey \cite{DynamicCodourey} aborda una versión simplificada de la formulación de Guglielmetti. En esta tesis, se adopta el método de Codourey para calcular la matriz jacobiana.
+
+        \subsubsection{Jacobiano}
+
+        La matriz jacobiana $J$ describe la relación entre las velocidades espaciales cartesianas y las velocidades articulares como se indica en la ecuación (\ref{eq:cap4_MB_10}).
+
+        \begin{equation} 
+            \overrightarrow{\dot{P_{0}}}=J\overrightarrow{\dot{ \theta }}~ 
+            \label{eq:cap4_MB_10}
+        \end{equation}  
+   
+        Para encontrar una expresión de la matriz jacobiana, se utilizar la longitud del antebrazo de un robot paralelo delta como una ecuación de restricción.
+
+        \begin{equation} 
+            \overrightarrow{s_{i}}^T \cdot \overrightarrow{s_{i}} - L_{B}^{2} = 0
+            \label{eq:cap4_MB_11}
+        \end{equation} 
+
+            \begin{figure}[htb]
+                 \centering
+                 \includegraphics[width=0.4\linewidth]{Main/Chapter4/Images4/Metodo_B_Modelacion_Cinematica_Posicion_5.png}
+                  \caption{Fotografía de un paraguas}
+                  \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_5}
+            \end{figure}  
+
+        \newpage
+        Donde: 
+        
+    \begin{align}
+        \overrightarrow{s_{i}} & = \overrightarrow{P_{0}}- \left(\overrightarrow{F_{i}}+\overrightarrow{\xi_{F_{i}J_{i}}} \right)\\&= 
+            \begin{bmatrix}
+                P_{0x} \\
+                P_{0y} \\
+                P_{0z}
+            \end{bmatrix} -  R_{i}^{R}
+            \left( 
+            \begin{bmatrix}
+                R \\
+                0\\
+                0
+            \end{bmatrix} + 
+            \begin{bmatrix}
+                L_{A} cos(\theta_i) \\
+                0\\
+                -L_{A} sin(\theta_i) 
+            \end{bmatrix}
+            \right)
+        \label{eq:cap4_MB_12}
+    \end{align}
+    
+    En (\ref{eq:cap4_MB_12}), $[P_{0x},P_{0y},P_{0z}]$ es la posición del efector final $\overrightarrow{P_{0}}$ , y el superíndice $R$ es el marco de referencia local $O-xyz$ como se muestra en la ilustracion \ref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_5}. $R$ es la diferencia entre ${R}_{A}$ y ${R}_{B}$.
+    Debido a la simetría en la estructura del robot paralelo delta, cada brazo se puede tratar por separado. Cada brazo está separado por un ángulo de 120° grados y la posición del sistema de referencia correspondiente para cada brazo $O_i - x_i y_i z_i$  es el mismo que el superindice $R$ pero girado en un ángulo para cada brazo $i={1,2 ,3}$, respectivamente. 
+    La matriz de transformación  o  la  matriz de rotación se indica en (\ref{eq:cap4_MB_13}).
+    
+       \begin{equation}
+         R_{i}^{R} =
+        \begin{bmatrix}
+                cos(\varphi_i)&-sin(\varphi_i)&0 \\
+                sin(\varphi_i)&cos(\varphi_i)&0 \\
+                0&0&1
+            \end{bmatrix}
+        \label{eq:cap4_MB_13}
+    \end{equation}  
+    
+    
+    Derivando la ecuación (\ref{eq:cap4_MB_11})y realizando álgebra básica se llega a la siguiente expresión del jacobiano $J$: 
+    
+    \begin{equation}
+        J = -J_{1}J_{2}=-
+        {\begin{bmatrix}
+                \overrightarrow{s_{1}}^T \\
+                \overrightarrow{s_{2}}^T \\
+                \overrightarrow{s_{3}}^T
+            \end{bmatrix}}^{-1}
+        {\begin{bmatrix}
+                \overrightarrow{s_{1}}^{T} \cdot \overrightarrow{b_{1}} &0&0\\
+                0 &\overrightarrow{s_{2}}^{T}\cdot \overrightarrow{b_{2}}&0\\
+                0 &0&\overrightarrow{s_{3}}^{T}\cdot \overrightarrow{b_{3}}
+            \end{bmatrix}}
+        \label{eq:cap4_MB_14}
+    \end{equation}  
+    
+    Donde:
+    \begin{equation}
+        \overrightarrow{b_{i}} = R_{i}^{R}             
+        \begin{bmatrix}
+                L_{A} sin(\theta_i) \\
+                0\\
+                L_{A} cos(\theta_i) 
+            \end{bmatrix}
+        \label{eq:cap4_MB_15}
+    \end{equation}  
+    
+    En el caso de los robots en serie, la matriz jacobiana es solo una función de $\overrightarrow{\theta}$   , pero para los robots paralelos, la matriz jacobiana depende de la información del espacio articular $\overrightarrow{\theta}$   así como de la posición del efector final $\overrightarrow{P_0}$   .
+        \newpage
+
+    \subsection{Modelación dinámica}
+    
+    \newpage
+
+
+\section{Espacio de trabajo}
+    \subsection{Definición}
+    \subsection{Métodos}
+    \subsection{Tipos de restricciones}
+    
+    
+    
+    \newpage
+
+\section{Trayectorias}
+    \subsection{Definición de trayectorias}
+    \subsection{Nomenclatura de trayectorias}
+    \subsection{Objetivo y procedimiento de generación de trayectorias}
+    \subsection{Clasificación de trayectorias}
+    \subsection{Trayectorias punto a punto}

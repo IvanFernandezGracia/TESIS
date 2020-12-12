@@ -1,0 +1,182 @@
+
+\documentclass[11pt,oneside]{book}
+
+\usepackage{textcomp}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb,bm}
+\usepackage{gensymb}
+\usepackage{graphicx,color}
+\usepackage{caption}
+\usepackage[spanish]{babel}
+\usepackage{float}
+\usepackage[left=4cm,right=2.5cm,top=2.5cm,bottom=2.5cm,headheight=35pt]{geometry}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\usepackage{url}
+\usepackage[title]{appendix}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=black,
+    citecolor=black,
+    urlcolor=black,
+    pdftitle={},
+    pdfsubject={},
+    pdfauthor={},
+    pdfkeywords={}
+}
+
+% INICIO***********paquetes de dibujo*******
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{pst-all}	%call the pstricks package
+\usepackage{pst-3dplot}
+\usepackage{pst-solides3d}
+%\newpsobject{malla}{psgrid}{subgriddiv=1,griddots=10,gridlabels=6pt}
+% FIN***********paquetes de dibujo*******
+
+
+\usepackage{comment}
+\usepackage{multirow,array}
+\usepackage[singlespacing]{setspace}
+\usepackage{fancyhdr}
+\usepackage{fancybox}
+\usepackage{import}
+\usepackage[scale=1.2]{ccicons}
+\usepackage{booktabs}
+\usepackage{xspace}
+\usepackage[utf8]{inputenc}
+\usepackage[style=spanish]{csquotes}
+\usepackage{subfig}
+\usepackage{tabularx}
+
+\usepackage{xcolor}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+
+\usepackage[backend=biber]{biblatex}
+\addbibresource{Back/References.bib}
+\usepackage{mathtools}
+\parskip=2pt
+
+\renewcommand{\rmdefault}{phv}
+\renewcommand{\sfdefault}{phv}
+\sffamily
+
+
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\renewcommand{\headrulewidth}{0.pt}
+\cfoot{}
+\rfoot{\thepage}
+\renewcommand{\footrulewidth}{0.pt}
+
+\makeatletter
+
+
+
+% \let\plainappendixpage\appendixpagename
+% \makeatletter
+% \renewcommand{\appendixpage}{
+%   \begingroup
+%   \let\ps@plain\ps@empty
+%   \plainappendixpage
+%   \endgroup}
+% \makeatother
+
+\graphicspath{
+{Main/Chapter1/Images1/}
+{Main/Chapter2/Images2/}
+{Main/Chapter3/Images3/}
+{Main/Chapter4/Images4/}
+{Main/Chapter5/Images5/}
+{Main/Chapter6/Images6/}
+{Main/Chapter7/Images7/}
+{Main/Chapter8/Images8/}
+{Front/Images}
+{Back/Images}
+}
+
+\begin{document}
+	
+\singlespacing
+
+\renewcommand{\contentsname}{Tabla de Contenido}
+\renewcommand{\listtablename}{Índice de Tablas}
+\renewcommand{\listfigurename}{Índice de Figuras}
+\renewcommand{\bibname}{Bibliografía}
+\renewcommand{\tablename}{\small\bf Tabla}
+\renewcommand{\figurename}{\small\bf Figura}
+\newcommand{\paginiciales}[1]{\begin{center}\begin{huge}\textbf{#1}\end{huge}\end{center}}
+\renewcommand{\appendixname}{Apéndice}
+\renewcommand{\appendixtocname}{APÉNDICE}
+\renewcommand{\appendixpagename}{APÉNDICE}
+\newcommand\tr{\rule{0pt}{4.5ex}}
+\newcommand\br{\rule[-3ex]{0pt}{3ex}}
+
+\include{Front/TitlePage}
+\include{Front/Copyright}
+
+
+\frontmatter 
+\pagenumbering{roman}
+
+
+\phantomsection  
+\include{Front/Resumen}
+\phantomsection 
+\include{Front/Abstract}
+\phantomsection  
+\include{Front/Dedicatoria}
+
+\addtocontents{toc}{\protect\thispagestyle{fancy}} 
+\tableofcontents
+\newpage
+
+\addtocontents{lot}{\protect\thispagestyle{fancy}} 
+\listoftables
+\addcontentsline{toc}{chapter}{Índice de Tablas}%\newpage
+
+\addtocontents{lof}{\protect\thispagestyle{fancy}} 
+\listoffigures
+\addcontentsline{toc}{chapter}{Índice de Figuras}%\newpage
+
+\onehalfspacing
+\mainmatter 
+
+% \include{Main/Chapter1/Chapter1}
+% \include{Main/Chapter2/Chapter2}
+% \include{Main/Chapter3/Chapter3}
+\include{Main/Chapter4/Chapter4}
+% \include{Main/Chapter5/Chapter5}
+\include{Main/Chapter6/Chapter6}
+% \include{Main/Chapter7/Chapter7}
+% \include{Main/Chapter8/Chapter8}
+
+\singlespacing
+\backmatter
+\phantomsection
+\addcontentsline{toc}{chapter}{BIBLIOGRAFÍA}
+\addtocontents{References}{\protect\thispagestyle{fancy}} 
+\makeatother
+\makeatletter
+\printbibliography
+
+
+\mainmatter
+\appendix
+\clearpage
+\noappendicestocpagenum
+\addappheadtotoc 
+\appendixpage
+\include{Back/Appendix}
+
+
+\end{document}
