@@ -528,7 +528,7 @@
 
         
     \subsection{Espacio de Trabajo}
-    El fin de obtener el espacio de trabajo del robot delta es calcular todas las posiciones posibles y viables del efector final. El siguiente diagrama de flujo representa una solución, donde las dimensiones del robot y los parámetros de las restricciones son valores conocidos anteriormente. Es importante recalcar que la nomenclatura en esta sección es la misma que se implementa para determinar el jacobiano del robot delta de la sección \ref{ma_jac}.  
+     Encontrar el espacio de trabajo de un robot delta significa calcular todas las posiciones posibles y viables del efector final. El siguiente diagrama de flujo representa una de las muchas soluciones que existen, donde las dimensiones del robot y los parámetros de las restricciones son valores preestablecidos. Es importante recalcar que la nomenclatura en esta sección es la misma que se implementa para determinar el jacobiano del robot delta de la sección \ref{ma_jac}.  
     
              \begin{figure}[htb]
                 \centering
@@ -537,7 +537,7 @@
                 \label{f:Cap6_ws_2}
             \end{figure}  
 
-    La idea principal de esta solución es calcular la mayor cantidad de configuraciones posibles del efector final en base a sus dimensiones y evaluar si cumplen con restricciones impuestas. Se obtienen dichas configuraciones cartesianas del efector $(P_x,P_y,P_z)$  utilizando la cinemática directa y variando la configuración articular $\theta_{11}$,$\theta_{12}$,$\theta_{13}$ en los rangos $[\theta_{11min}-\theta_{11max}]$, $[\theta_{12min}-\theta_{12max}]$, $[\theta_{13min}-\theta_{13max}]$ respectivamente. Todos estos rangos se discretizan con un paso impuesto \(  \Delta  \theta _{1i} \). Si el punto  $(P_x,P_y,P_z)$ cumple con todas las restricciones, el punto pertenece al espacio de trabajo. Al contrario, si el punto no cumple con una o mas restricciones, este no pertenece al espacio de trabajo.
+    CAMBIARDIAGRAMA La idea principal de la solución propuesta es calcular un grupo significativo de configuraciones $(P_x,P_y,P_z)$ posibles del efector final en base a sus dimensiones y evaluar si cumplen con restricciones impuestas. Se obtienen las configuraciones cartesianas del efector $(P_x,P_y,P_z)$  utilizando la cinemática directa y variando los angulos $\theta_{11}$,$\theta_{12}$,$\theta_{13}$ en los rangos $[\theta_{11min}-\theta_{11max}]$, $[\theta_{12min}-\theta_{12max}]$, $[\theta_{13min}-\theta_{13max}]$ respectivamente. Todos estos rangos se discretizan con un paso impuesto \(  \Delta  \theta _{1i} \). Si el punto  $(P_x,P_y,P_z)$ cumple con todas las restricciones, el punto pertenece al espacio de trabajo. Al contrario, si el punto no cumple con una o mas restricciones, este no pertenece al espacio de trabajo.
 
         \newpage
 
@@ -551,18 +551,20 @@
             \end{figure}  
 
 
-    Para calcular el espacio de trabajo se crea un nodo en ROS. La tarea especifica de este nodo es calcular y guardar los puntos en el espacio cartesiano del efector final que son viables o posibles según restricciones impuestas. 
+    Para calcular el espacio de trabajo se crea un nodo en ROS. La tarea especifica de este nodo es calcular, guardar y graficar los puntos $(P_x,P_y,P_z)$ del efector final que cumplen con las restricciones impuestas. 
     La representación gráfica del nodo se presenta en la ilustración \ref{f:Cap6_ws_1}: 
     
                 \begin{figure}[htb]
                 \centering
-                \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/cap6_ws_1.png}
+                \includegraphics[width=0.9\linewidth]{Main/Chapter6/Images6/cap6_ws_1.png}
                 \caption{Fotografía de un paraguas}
                 \label{f:Cap6_ws_1}
             \end{figure}  
     
     
-    En este nodo, las dimensiones del robot y las restricciones son establecidas antes de calcular el espacio de trabajo. La única entrada es el paso \(  \Delta  \theta _{1i} \). La cinematica directa y el jacobiano se calculan a partir del método A, específicamente  el desarrollado en las secciones \ref{ma_cd} y \ref{ma_jac} respectivamente. Se utiliza este método por la razón de que el jacobiano $J$ se puede bipartir en dos matrices $(J_{x}$  y  $J_{ \theta })$ donde cada una de ellas representa una singularidad especifica . Ademas, el metodo A tiene la ventaja que tiene las ecuaciones para determinar los ángulos interiores $\theta_{2i}$ y $\theta_{3i}$.
+    En este nodo, las dimensiones del robot y las restricciones son establecidas antes de calcular el espacio de trabajo. La única entrada es el paso de la discretizacion de los rangos \(  \Delta  \theta _{1i} \). La cinematica directa y el jacobiano se calculan a partir del método A, específicamente los desarrollados en las secciones \ref{ma_cd} y \ref{ma_jac} respectivamente. Se emplea este método por la razón de que el jacobiano $J$ se puede bipartir en dos matrices $(J_{x}$  y  $J_{ \theta })$, donde cada una de ellas representa una singularidad especifica . Ademas, el metodo A tiene la ventaja que tiene las ecuaciones para determinar los ángulos interiores $\theta_{2i}$ y $\theta_{3i}$.
+    
+    \newpage
     
     El valor de los parámetros de las restricciones impuestas en este trabajo de grado se presentan y se explican en la tabla \ref{t:cap6_ws_1}: 
     
@@ -570,21 +572,21 @@
             \renewcommand{\arraystretch}{1.5}
             \begin{table}[H]
             \centering
-            \begin{tabular}{c m{8cm} c c}
+            \begin{tabular}{c m{7.5cm} c c}
                \hline
                \textbf{Restriccion}  & \textbf{Explicacion} & \textbf{Min}& \textbf{Max}\\
                \hline           \hline            
              $\theta_{1i}$ & Colisión entre los brazos y la base fija & $-90^{\circ}$ & $90^{\circ}$\\
             \hline
-             $\Delta\theta _{1i}$ & Pasos de discretizacion de rangos de $\theta_{1i}$ muy bajos implica costo computacional alto& $1^{\circ}$ & $90^{\circ}$ \\
+             $\Delta\theta _{1i}$ & Pasos de discretizacion de rangos $\theta_{1i}$ muy bajos implica costo computacional alto& $1^{\circ}$ & $90^{\circ}$ \\
             \hline
              $\theta _{2i}$ & Angulo debe ser menor a $180^{\circ}$ ya que en esa situación el brazo y antebrazo podrían ser colineales y producir singularidades. Ademas esta restriccion asegura que el calculo de la cinemática de posición sea la correcto ya que descarta una de las soluciones & $5^{\circ}$ & $175^{\circ}$ \\
             \hline
-             $\theta _{3i}$ & Angulo respecto a la inclinación máxima de las roturas, generalmente son de $13^{\circ}$ & $75^{\circ}$ & $165^{\circ}$ \\
+             $\theta _{3i}$ & Angulo respecto a la inclinación máxima de las rotulas por catalogo, generalmente son de $13^{\circ}$ & $75^{\circ}$ & $165^{\circ}$ \\
             \hline
-             $J_{x}$ & Depende de la precisión o factor de seguridad& $5*10^{-1}$ & $\inf$ \\
+             $J_{x}$ & Depende de la precisión o factor de seguridad subjetivo& $5*10^{-1}$ & $\inf$ \\
             \hline
-             $J_{\theta}$ & Depende de la precisión o factor de seguridad & $1*10^{-4}$ & $\inf$ \\
+             $J_{\theta}$ & Depende de la precisión o factor de seguridad subjetivo& $1*10^{-4}$ & $\inf$ \\
             \hline
              $X$ & Limite X de espacio de trabajo impuesto por el fabricante & $-100[mm]$ & $+100[mm]$ \\
             \hline            
@@ -598,16 +600,16 @@
         \end{table}
         \endgroup     
         
-                  \begin{figure}[htb]
+         \begin{figure}[htb]
                 \centering
-                \includegraphics[width=0.2\linewidth]{Main/Chapter6/Images6/cap6_ws_4.png}
+                \includegraphics[width=0.1\linewidth]{Main/Chapter6/Images6/cap6_ws_4.png}
                 \caption{Fotografía de un paraguas}
                 \label{f:Cap6_ws_4}
             \end{figure}    
     
         \newpage
 
-    El siguiente algoritmo presenta el pseudocódigo de la función dentro del nodo para determinar el espacio de trabajo:
+    El siguiente algoritmo presenta el pseudocódigo de la función dentro del nodo que determinar el espacio de trabajo:
     
 \begin{algorithm}[H]
     \caption{Espacio de Trabajo} 
@@ -617,43 +619,62 @@
     \SetKwInput{Kwfile}{Nombre archivo}                % Set the Input
     
     \DontPrintSemicolon
-      \KwObjetivo {Encontrar todas las posiciones}
-      \Kwfile{$delta.kinematics.Paderborn.tm1.adams$}
-      \KwInput{$\theta_1,\theta_2,\theta_3$}
-      \KwOutput{$P_0(P_{0x},P_{0y},P_{0z})$}
+      \KwObjetivo {Encontrar el espacio de trabajo del robot delta a partir de sus dimensiones y restricciones impuestas.}
+      \Kwfile{$workspace.py$}
+      \KwInput{ $\Delta\theta _{1i}$}
+      \KwOutput{$[\mathcal{W}_{(J_{x},J_{\theta})},\mathcal{W}_{J_{x}},\mathcal{W}_{J_{\theta}},\mathcal{W}_{(J_{x},J_{\theta},Limites)}]$}
       
       % Set Function Names{\theta }_1,{\theta }_2,{\theta }_3
-      \SetKwFunction{FSub}{forward.Paderborn}
+      \SetKwFunction{FSub}{espaciotrabajo}
        \SetKwProg{Fn}{}{:}{}
     
       \tcc{FUNCION PRINCIPAL}
-        \Fn{\FSub{${\theta }_1$,${\theta }_2$,${\theta }_3$}}{
-            \tcc{Calcular Centros de esferas (Ecuaciones (\ref{eq:cap4_MB_3}),(\ref{eq:cap4_MB_4}),(\ref{eq:cap4_MB_5}))}
-            \tcc{Ordenar angulos segun sistema de referencia Local}
-            
-            $(x_1,y_1,z_1)$=$\overrightarrow{J'_{2}} \left [  0,-\frac{(f-e)}{2\sqrt{3}}-L_{A}cos(\theta_2),-L_{A}sin(\theta_2)\right]$\;
-            
-            $(x_2,y_2,z_2)$=$\overrightarrow{J'_{3}} \left [\left( \frac{(f-e)}{2\sqrt{3}}+{L}_{A}cos(\theta_3)\right) cos(30^\circ), \left(\frac{(f-e)}{2\sqrt{3}} + {L}_{A}cos(\theta_3)\right) sin(30^\circ), -L_{A}sin(\theta_3)\right]$\;
-            
-            $(x_3,y_3,z_3)$=$\overrightarrow{J'_{1}} \left [\left( \frac{(f-e)}{2\sqrt{3}}+{L}_{A}cos(\theta_1)\right) cos(30^\circ), \left(\frac{(f-e)}{2\sqrt{3}} + {L}_{A}cos(\theta_1)\right) sin(30^\circ), -L_{A}sin(\theta_1)\right]$\;
-            
-            \tcc{Calcular intersección de las 3 esferaS (Ecuaciones de la \ref{eq:cap4_eq_3} a la \ref{eq:cap4_eq_13})}
-            $d= \left(y_2- y_1\right)x_3-\left(y_3-y_1\right)x_2- \left(y_2-y_3\right)x_1$\;
-            $w_1={x_1}^2+{y_1}^2 +{z_1}^2$\;
-            $w_2={x_2}^2+{y_2}^2 +{z_2}^2$\;
-            $w_3={x_3}^2+{y_3}^2 +{z_3}^2$\;
-            $a_1=\frac{\left(z_2-z_1\right)\left(y_3-y_1\right)-\left(z_3-z_1\right)\left(y_2-y_1\right)}{d}$\;
-            $b_1=\left(\frac{1}{2*(-d)}\right)*\left(\left(w_2 - w_1\right)\left(y_3-y_1\right)-\left(w_3 - w_1\right)\left(y_2-y_1\right)\right)$\;
-            $a_2=\frac{-1}{d}*\left[\left(z_2-z_1\right)x_3-(z_3-z_1)x_2+(z_3-z_2)x_1\right]$\;
-            $b_2=\frac{1}{2d}*[\left(w_2-w_1\right)x_3-\left(w_3-w_1\right)x_2+\left(w_3-w_2)\right)x_1$\;
-            $A = {a_1}^2+{a_2}^2+1$\;
-            $B = 2(a_1(b_1-x_1)+a_2(b_2-y_1)-z_1)$\;
-            $C=  ({(b_1-x_1)}^2+{(b_2-y_1)}^2+{z_1}^2- {r_e}^2)$\;
-            $P_0(P_{0x},P_{0y},P_{0z}) =  \left(a_1z+\ b_1,a_2z+\ b_2,\frac{-B-\ \sqrt{\left(B^2\right)-\left(4AC\right)}}{2A}\right)$\;
-                       \KwRet  $(P_{0x},P_{0y},P_{0z})$\;
+        \Fn{\FSub{$\Delta\theta _{1i}$}}{
+            \tcc{Barrido de angulos $\theta _{11}$ , $\theta _{12}$ y $\theta _{13}$ con incrementos de $\Delta\theta _{1i}$}
+            \For{\theta _{11} \in [$\theta_{11min}$ - $\theta_{11max}]$;$\Delta\theta _{1i}$}    
+                { 
+                \For{\theta _{12} \in [$\theta_{12min}$ - $\theta_{12max}]$;$\Delta\theta _{1i}$}  
+                    { 
+                    \For{\theta _{13} \in [$\theta_{13min}$ - $\theta_{13max}]$;$\Delta\theta _{1i}$}    
+                        { 
+                        \tcc{Cinematica Directa}
+                	     $(P_{x},P_{y},P_{z})=forward(\theta _{12},\theta _{13},\theta _{11})$\;
+                        \tcc{Jacobiano}
+                        $[J_{\theta},J_{x},\theta_{31},\theta_{32},\theta_{33},\theta_{21},\theta_{22},\theta_{23},J] = jacobian.total(P_{x},P_{y},P_{z},\theta_{11},\theta_{12},\theta_{13})   $\;
+                        \tcc{Determinantes Jacobiano}
+                        $\left|J_{\theta}\right|=det(J_{\theta})$\;
+                        $\left|J_{x}\right|=det(J_{x})$\;
+                         \tcc{Restricciones}
+                          \If {$Restricciones$ $\theta_{2i}$} 
+                              {
+                                \If {$Restricciones$ $\theta_{3i}$} 
+                                      {
+                                      \If {$Restricciones$ \left|J_{x}\right| o $\left|J_{\theta}\right|$} 
+                                              {
+                                              $\mathcal{W}_{(J_{x},J_{\theta})} =(P_{x},P_{y},P_{z},\theta_{11},\theta_{12},\theta_{13})$ \\
+                                                  \If {$Restricciones$ $Limites XYZ$} 
+                                                  {
+                                                  $\mathcal{W}_{(J_{x},J_{\theta},limites)}=(P_{x},P_{y},P_{z},\theta_{11},\theta_{12},\theta_{13})$
+                                                  }
+                                              }
+                                        \Else{$(P_{x},P_{y},P_{z})$ No pertenece al espacio de trabajo\\}
+                                      \If {$Restricciones$ \left|J_{x}\right|} 
+                                              {
+                                               $\mathcal{W}_{J_{x}}=(P_{x},P_{y},P_{z},\theta_{11},\theta_{12},\theta_{13})$
+                                              }
+                                      \If {$Restricciones$ $\left|J_{\theta}\right|$} 
+                                              {
+                                               $\mathcal{W}_{J_{\theta}} =(P_{x},P_{y},P_{z},\theta_{11},\theta_{12},\theta_{13})$
+                                              }
+                                      
+                                    }
+                              }
+                        }  
+                    }           
+                }
+                       \KwRet  $[\mathcal{W}_{(J_{x},J_{\theta})},\mathcal{W}_{J_{x}},\mathcal{W}_{J_{\theta}},\mathcal{W}_{(J_{x},J_{\theta},Limites)}]$\;
             }
 \end{algorithm}
-    
     
     \newpage
 
