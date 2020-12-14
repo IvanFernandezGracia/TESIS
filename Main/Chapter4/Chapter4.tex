@@ -1086,7 +1086,7 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
 
     \newpage
 
-\section{Trayectorias}
+\section{Trayectorias}\label{cap4_tray}
 
     El objetivo principal de esta sección es explicar de manera general la implementación de las trayectorias en robots y dar a conocer detalladamente la trayectoria que se utiliza en este trabajo de grado.
     
@@ -1434,7 +1434,7 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
         \newpage
 
              
-        \paragraph{Perfiles de movimiento trapezoidal}
+        \paragraph{Perfiles de movimiento trapezoidal}\label{Perfiles_de_movimiento_trapezoidal}
         
         Las escalas de tiempo trapezoidales son bastante comunes en el control motor, particularmente para el movimiento de una sola articulación. El movimiento punto a punto consta de una fase de aceleración constante $\ddot{s}=a$ de tiempo $t_a$, seguida de una fase de velocidad constante $\dot{s}=v$ de tiempo $t = T-2t_a$, seguida de una fase de desaceleración constante $\ddot{s}=-a$ de tiempo $t_a$. El resultado del perfil $\dot{s}$ es un trapezoide y el perfil $s$ es la concatenación de una parábola, un segmento lineal y una parábola en función del tiempo (ilustracion \ref{f:Cap4_tray_9}).
 
@@ -1536,7 +1536,7 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
         \end{equation}
     \end{itemize}
         
-    Esta misma representación del perfil trapezoidal en esta sección tambien se puede encontrar en el libro \cite{trayectoria_trape_book}.
+    Esta misma representación del perfil trapezoidal en esta sección tambien se puede encontrar en el libro \cite{tray_trape}.
         
         
                 \newpage

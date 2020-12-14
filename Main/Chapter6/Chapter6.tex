@@ -15,6 +15,14 @@
      metodo b: cinematica de posiucio cinematica directa: cambiar posicionb a la salida!!! 
      metodo b: cinematica inversa no cambia posicio9n puntos P solo angulos
      !! 
+        0 RESUMEN DE QUE SE HACE 
+        1 DIAGRAMA DE FLUJO     
+        2 FUNCION DIBUJO
+        3 PSEUDOCODIGO
+        *** REVISAR CAP4 TEORIA - PSEUDOCOPDIGO - ANEXO - CODIGO
+     
+     
+     
         \newpage
 
     \subsection{Metodología A}
@@ -690,10 +698,109 @@
 
     \subsection{Trayectoria}
     
+    En esta seccion se explica el desarrollo para determinar la trayectoria en el espacio articular del robot delta, es decir, la trayectoria angular de los actuadores, a partir de una trayectoria lineal interpolada en el espacio cartesiano XYZ que recorre el efector final de un punto inicial $P_i$ a un punto final $P_f$ con restricciones de velocidad trapezoidal en dirección del camino geometrico.
+
+     \begin{figure}[htb]
+            \centering
+            \includegraphics[width=0.9\linewidth]{Main/Chapter6/Images6/cap6_trayectory_1.png}
+            \caption{Fotografía de un paraguas}
+            \label{f:cap6_trayectory_1}
+        \end{figure}    
+        
+    Esta trayectoria se compone de un camino geométrico lineal en el espacio cartesiano XYZ se llaman 'punto a punto en linea recta' y la escala temporal es de 'Perfil de Movimiento Trapezoidal respecto a la Velocidad' o 'Linear segment with Parabolic Blends (LSPB)', visto en la sección \ref{cap4_tray}. 
+    
+    El perfil de movimiento trapezoidal visto en la sección \ref{Perfiles_de_movimiento_trapezoidal} se puede modificar para que las ecuaciones consideren el punto inicial y final especificando la velocidad máxima y la aceleracion maxima de la siguiente manera:
+        \begin{equation}
+        \Large
+            q(t) = \left\lbrace
+                \begin{array}{ll}
+                q_0 + s\frac{a}{2}t^2&   0< t \leq \tau\\
+                q_0 - s\frac{V^2}{2a}+sVt &  \tau< t \leq T- \tau\\
+                q_1 + s \left( -\frac{aT^2}{2}+aTt-\frac{a}{2}t^2 \right) &  T- \tau< t \leq T\\
+            \end{array}
+            \right.
+            \label{eq:cap6_tray_1}
+        \end{equation}
+    
+    Donde:
+    \begin{equation*}
+       \text{$q_0$: $Punto$ $inicial$}
+    \end{equation*}
+    \begin{equation*}
+       \text{$q_1$: $Punto$ $final$ }
+    \end{equation*}
+    \begin{equation*}
+       \text{$V$: $velocidad$ $maxima$ $permitida$}
+    \end{equation*}
+    \begin{equation*}
+       \text{$a$: $aceleracion$ $maxima$ $permitida$}
+    \end{equation*}
     
     \newpage
+    
+    \begin{equation}
+        \tau=\frac{V}{a}
+    \label{eq:cap6_tray_4}
+    \end{equation}
+    \begin{equation}
+        T=s\frac{q_1-q_0}{V}+\frac{V}{a}
+    \label{eq:cap6_tray_5}
+    \end{equation}
+    \begin{equation}
+        s=signo(q_1-q_0)
+    \label{eq:cap6_tray_6}
+    \end{equation}
+    
+
+     \begin{figure}[htb]
+            \centering
+            \includegraphics[width=0.7\linewidth]{Main/Chapter6/Images6/cap6_trayectory_2.png}
+            \caption{Fotografía de un paraguas}
+            \label{f:cap6_trayectory_2}
+        \end{figure} 
 
 
+    \newpage
+
+    Para utilizar el perfil de velocidad trapezoidal en el camino geométrico lineal interpolado desde el punto inicial $P_i$ al punto final $P_f$ se aplican matrices de rotaciones. 
+    
+    
+    \begin{enumerate}[1.]
+        \item     Primero se traslada el sistema de referencia general $X_0Y_0Z_0$ al punto inicial $P_i$ generando un nuevo sistema de referencia $X_{trans}Y_{trans}Z_{trans}$ . 
+        
+        \item Luego se rota $X_{trans}Y_{trans}Z_{trans}$ sobre el eje $Z_{trans}$ en un angulo de $\theta_z$ generando un nuevo sistema de referencia $X_{rot_{\theta_z}}Y_{rot_{\theta_z}}Z_{rot_{\theta_z}}$. $\theta_z$  es el angulo interno entre el eje $X_{trans}$ y el vector   $\overrightarrow{$O_{X_{trans}Y_{trans}Z_{trans}}{P'}_f$}$ donde ${P'}_f$ es la  proyeccion de $P_f$ sobre el plano  $Y_{trans}Z_{trans}$.
+        
+        \item     Finalmente el marco de referencia $X_{rot_{\theta_z}}Y_{rot_{\theta_z}}Z_{rot_{\theta_z}}$ se rota sobre el eje  $Y_{rot_{\theta_z}}$ en un angulo de $\theta_y$ generando el ultimo sistema de referencia $X_{rot_{\theta_y}}Y_{rot_{\theta_y}}Z_{rot_{\theta_y}}$.
+        $\theta_y$  es el angulo interno entre el eje $X_{rot_{\theta_z}}$ y el vector   $\overrightarrow{$O_{X_{rot_{\theta_z}}Y_{rot_{\theta_z}}Z_{rot_{\theta_z}}}{P''}_f$}$ donde ${P''}_f$ es el punto  ${P}_f$ con respecto al sistema de referencia  $X_{rot_{\theta_z}}Y_{rot_{\theta_z}}Z_{rot_{\theta_z}}$ .
+         En el marco de referencia $X_{rot_{\theta_y}}Y_{rot_{\theta_y}}Z_{rot_{\theta_y}}$ se aplica el perfil de velocidad trapezoidal para que define la escala temporal de la trayectoria y la interpolación lineal en el espacio cartesiano del camino geométrico. 
+    \end{enumerate}
+    
+     \begin{figure}[htb]
+            \centering
+            \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/cap6_trayectory_3.png}
+            \caption{Fotografía de un paraguas}
+            \label{f:cap6_trayectory_3}
+        \end{figure} 
+        
+    \newpage
+        
+    El diagrama de flujo para el desarrollo de la trayectoria se presenta en la ilustracion \ref{cap6_trayectory_4}:
+    
+     \begin{figure}[htb]
+            \centering
+            \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/cap6_trayectory_4.png}
+            \caption{Fotografía de un paraguas}
+            \label{f:cap6_trayectory_4}
+        \end{figure}
+        
+    A partir de de el punto inicial $P_i$ y el punto final $P_f$ se realiza una traslación y 2 rotaciones para aplicar la escala temporal de perfil trapezoidal y la interpolación del camino geométrico lineal. Luego se aplica traslación y rotaciones inversas para obtener la trayectoria en el espacio cartesiano respecto al sistema de referencia general.Finalmente se emplea la cinematica inversa para conseguir las trayectorias en el espacio articular de los actuadores.     
+    
+    
+    \newpage
+    FUNCION DIBUJO
+    PSEUDOCODIGO
+
+    \newpage
 
 \section{Interfaz de visualización Rviz}
 \section{Adams}
