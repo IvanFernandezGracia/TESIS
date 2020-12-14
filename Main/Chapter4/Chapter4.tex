@@ -1435,10 +1435,108 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
 
              
         \paragraph{Perfiles de movimiento trapezoidal}
- 
+        
+        Las escalas de tiempo trapezoidales son bastante comunes en el control motor, particularmente para el movimiento de una sola articulación. El movimiento punto a punto consta de una fase de aceleración constante $\ddot{s}=a$ de tiempo $t_a$, seguida de una fase de velocidad constante $\dot{s}=v$ de tiempo $t = T-2t_a$, seguida de una fase de desaceleración constante $\ddot{s}=-a$ de tiempo $t_a$. El resultado del perfil $\dot{s}$ es un trapezoide y el perfil $s$ es la concatenación de una parábola, un segmento lineal y una parábola en función del tiempo (ilustracion \ref{f:Cap4_tray_9}).
 
-        \newpage
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=0.7\linewidth]{Main/Chapter4/Images4/cap4_tray_9.png}
+                \caption{Fotografía de un paraguas}
+                \label{f:Cap4_tray_9}
+            \end{figure}  
+    
+        La escala de tiempo trapezoidal no es tan suave como la escala de tiempo cúbico, pero tiene la ventaja, si se saben los límites constantes de las velocidades en las articulaciones  ${\dot{\theta}}_{limite} \in {\mathbb{R}}^n $   y los límites de aceleraciones de las articulaciones ${\ddot{\theta}}_{limite} \in {\mathbb{R}}^n $  , entonces el movimiento trapezoidal usado por la mayor $v$ y $a$  debe satisfacer:
+        
+        \begin{equation}
+             \left| ({\theta}_{final}-{\theta}_{inicio})v \right|   \leq {\dot{\theta}}_{limite}
+            \label{eq:cap4_tray_28}
+        \end{equation}
+        
+        \begin{equation}
+             \left| ({\theta}_{final}-{\theta}_{inicio})a \right|   \leq {\ddot{\theta}}_{limite}
+            \label{eq:cap4_tray_29}
+        \end{equation}
+        
+        Si ${v^2}/a > 1$, el robot nunca alcanza la velocidad $v$  durante el movimiento. El movimiento trifásico de aceleración-velocidad constante-desaceleración se convierte en un movimiento bifásico de aceleración-desaceleración llamado “bang-bang” y el perfil trapezoidal $\dot{s}̇(t)$ de la ilustracion \ref{f:Cap4_tray_9} se convierte en un triángulo.
+        
+        \begin{figure}[htb]
+                \centering
+                \includegraphics[width=0.27\linewidth]{Main/Chapter4/Images4/cap4_tray_10.png}
+                \caption{Fotografía de un paraguas}
+                \label{f:Cap4_tray_10}
+            \end{figure} 
+    
+    
+            \newpage
 
+        Suponiendo que ${v^2}/a \leq 1$ , el movimiento trapezoidal está completamente especificado por $v$,$a$,$t_a$ y  $T$ ,pero solo dos de estos pueden especificarse independientemente ya que deben satisfacer $s(T)=1$  y $v=at_a$ . Es poco probable que se especifique  $t_a$  de forma independiente, por lo que se elimina de las ecuaciones de movimiento mediante la sustitución ${t}_{a}=v/a$ . El perfil de movimiento durante las tres etapas (aceleración, velocidad constante, desaceleración) se puede escribir en términos de $v$,$a$ y $T$ de la siguiente manera:
+        
+        Para $0 \leq t \leq \frac{v}{a}$ :
+        \begin{equation}
+            \ddot{s}(t)=a 
+            \label{eq:cap4_tray_30}
+        \end{equation}
+        \begin{equation}
+            \dot{s}(t)=at
+            \label{eq:cap4_tray_31}
+        \end{equation}
+        \begin{equation}
+             s(t)=\frac{1}{2}at^2
+            \label{eq:cap4_tray_32}
+        \end{equation}
+        
+        Para $ \frac{v}{a} \leq t \leq  (T-\frac{v}{a})$ :
+        \begin{equation}
+            \ddot{s}(t)=0 
+            \label{eq:cap4_tray_33}
+        \end{equation}
+        \begin{equation}
+            \dot{s}(t)=v
+            \label{eq:cap4_tray_34}
+        \end{equation}
+        \begin{equation}
+             s(t)=vt - \frac{v^2}{2a}
+            \label{eq:cap4_tray_35}
+        \end{equation}
+        
+        Para $ (T-\frac{v}{a}) \leq t \leq  T$ :
+        \begin{equation}
+            \ddot{s}(t)=-a 
+            \label{eq:cap4_tray_36}
+        \end{equation}
+        \begin{equation}
+            \dot{s}(t)=a(T-t)
+            \label{eq:cap4_tray_37}
+        \end{equation}
+        \begin{equation}
+             s(t)=\frac{2avT-2v^2-a^2(t-T)^2}{2a}
+            \label{eq:cap4_tray_38}
+        \end{equation}        
+        
+    Dado que solo dos de $v$, $a$ y $T$ pueden elegirse independientemente, se tiene 3 opciones:
     
-    
-    
+    \begin{itemize}
+        \item Se elige $v$ y $a$  tal que $v^2/a \leq 1$ , asegurando un perfil trapezoidal de tres etapas y se resuelve $s(T)=1$ para $T$:
+        \begin{equation}
+            T=\frac{a + v^2}{va}
+            \label{eq:cap4_tray_39}
+        \end{equation}
+        Si $v$ y $a$  corresponden a las mayores velocidades y aceleraciones articulares posibles, este es el tiempo mínimo posible para el movimiento.
+        
+        \item 	Se elige $v$ y $T$ de modo que $2 \geq vT \geq 1$ , garantizando un perfil trapezoidal de tres etapas y que la velocidad máxima $v$ sea suficiente para alcanzar $s = 1$ en el tiempo $T$. Resolviendo $s(T)=1$   para $a$:
+        \begin{equation}
+            a=\frac{v^2}{vT-1}
+            \label{eq:cap4_tray_40}
+        \end{equation}
+        
+        \item 	Eligiendo $a$ y $T$ tal que $aT^2 \geq 4$ , asegurando que el movimiento sea completo en el tiempo $T$, resolviendo  $s(T)=1$  para $v$ : 
+        \begin{equation}
+            v=\frac{1}{2}(aT-\sqrt{a}\sqrt{aT^2 - 4})
+            \label{eq:cap4_tray_41}
+        \end{equation}
+    \end{itemize}
+        
+    Esta misma representación del perfil trapezoidal en esta sección tambien se puede encontrar en el libro \cite{trayectoria_trape_book}.
+        
+        
+                \newpage
