@@ -189,16 +189,14 @@
                   $ J_{3z}=calculo.jiz($\theta _{13},\theta _{23},\theta _{33},${ \phi }_{240 ^{\circ}})$\; 
                   $ J_{x}=[J_{1x},J_{1y},J_{1z};J_{2x},J_{2y},J_{2z};J_{3x},J_{3y},J_{3z}]$\;
                   \tcc{Calcular Matriz $J_{ \theta }$ }
-                    $J_{1 \theta }=a~\sin  \theta _{21}~sin~ \theta _{31}$\;
-                    $J_{2 \theta }=a~\sin  \theta _{22}~sin~ \theta _{32}$\;  
-                    $J_{3 \theta }=a~\sin  \theta _{23}~sin~ \theta _{33}$\;  
+                    $J_{1 \theta }=calculo.jthetai(\theta_{21}$,$\theta _{31}$,$\phi_{0 ^{\circ}})$\;
+                    $J_{2 \theta }=calculo.jthetai(\theta_{22}$,$\theta _{32}$,$\phi_{120 ^{\circ}})$\;
+                    $J_{3 \theta }=calculo.jthetai(\theta_{23}$,$\theta _{33}$,$\phi_{240 ^{\circ}})$\;
                     $J_{ \theta }=[J_{1 \theta },0,0;0,J_{2 \theta },0;0,0,J_{3 \theta }]$\;  
                 \tcc{Calcular Matriz $J$ }
                     $J=J_{x}^{-1}J_{ \theta } $\;
                 \tcc{Cambiar al sistema Referencia Global}
-        
-                  \KwRet $[J_{\theta }, J_{x},\theta _{31},\theta _{32},\theta _{33},\theta _{21},\theta _{22},\theta _{23}, J]$
-                  }
+                  \KwRet $[J_{\theta }, J_{x},\theta _{31},\theta _{32},\theta _{33},\theta _{21},\theta _{22},\theta _{23}, J]$\;}
         \end{algorithm}
         
 \newpage
@@ -667,16 +665,15 @@
                               {
                                 \If {$Restricciones$ $\theta_{3i}$} 
                                       {
-                                      \If {$Restricciones$ \left|J_{x}\right| o $\left|J_{\theta}\right|$} 
+                                      \If {$Restricciones$ $\left|J_{x}\right|$ o $\left|J_{\theta}\right|$} 
                                               {
-                                              $\mathcal{W}_{(J_{x},J_{\theta})} =(P_{x},P_{y},P_{z},\theta_{11},\theta_{12},\theta_{13})$ \\
+                                              $\mathcal{W}_{(J_{x},J_{\theta})} =(P_{x},P_{y},P_{z},\theta_{11},\theta_{12},\theta_{13})$ \;
                                                   \If {$Restricciones$ $Limites XYZ$} 
-                                                  {
-                                                  $\mathcal{W}_{(J_{x},J_{\theta},limites)}=(P_{x},P_{y},P_{z},\theta_{11},\theta_{12},\theta_{13})$
+                                                  { $\mathcal{W}_{(J_{x},J_{\theta},limites)}=(P_{x},P_{y},P_{z},\theta_{11},\theta_{12},\theta_{13})$ \;
                                                   }
                                               }
-                                        \Else{$(P_{x},P_{y},P_{z})$ No pertenece al espacio de trabajo\\}
-                                      \If {$Restricciones$ \left|J_{x}\right|} 
+                                        \Else{$(P_{x},P_{y},P_{z})$ No pertenece al espacio de trabajo\;}
+                                      \If {$Restricciones$ $\left|J_{x}\right|$} 
                                               {
                                                $\mathcal{W}_{J_{x}}=(P_{x},P_{y},P_{z},\theta_{11},\theta_{12},\theta_{13})$
                                               }
@@ -784,7 +781,7 @@
         
     \newpage
         
-    El diagrama de flujo para el desarrollo de la trayectoria se presenta en la ilustracion \ref{cap6_trayectory_4}:
+    El diagrama de flujo para el desarrollo de la trayectoria se presenta en la ilustración \ref{f:cap6_trayectory_4}:
     
      \begin{figure}[htb]
             \centering
@@ -797,13 +794,111 @@
     
     
     \newpage
-    FUNCION DIBUJO
-    PSEUDOCODIGO
+    
+    
+\subsubsection{Cinemática inversa}
+        
+    \begin{algorithm}[H]
+            \caption{Trayectoria} 
+            \SetKwInput{KwInput}{Input}                % Set the Input
+            \SetKwInput{KwOutput}{Output}              % set the Output
+            \SetKwInput{KwObjetivo}{Objetivo}                % Set the Input
+            \SetKwInput{Kwfile}{Nombre archivo}                % Set the Input
+            
+            \DontPrintSemicolon
+              \KwObjetivo {Escala de tiempo perfil de velocidad Trapezoidal LSPB e interpolación de camino geometrico lineal }
+              \Kwfile{$linear.speed.f.adams$}
+              \KwInput{$q_0,q_1,v_{max},a_{max},{n}_{\Delta Tramo1},{n}_{\Delta Tramo2}$}
+              \KwOutput{$tiempo,{X}_{rot_{\theta_y}},{\dot{X}}_{rot_{\theta_y}},{\ddot{X}}_{rot_{\theta_y}}$}
+              
+                % Set Function Names
+              \SetKwFunction{FSum}{$ls.v.a.total$}
+              \SetKwFunction{FSub}{$ls.v.a.puntual$}
+            
+              \tcc{FUNCION PRINCIPAL}
+              \SetKwProg{Fn}{}{:}{}
+              \Fn{\FSum{$q_0,q_1,v_{max},a_{max},{n}_{\Delta Tramo1},{n}_{\Delta Tramo2}$}}{
+              \tcc{Parametros de Curva LSPB}
+                ${n}_{\Delta Tramo3}={n}_{\Delta Tramo1}$  \tcp*{División Tramo 3 = Tramo 1}
+            	$\tau=v_{max}/a_{max}$ \tcp*{Tiempo total del tramo 1 y tramo 3}
+            	$s=signo(q1-q0)$\;
+            	$T=s\frac{(q_1-q_0)}{v_{max}}+\tau$ \tcp*{Tiempo total de la trayectoria}
+            	$\Delta_{tramo1}=(\tau)/{n}_{\Delta Tramo1}$\;
+            	$\Delta_{tramo2}=(T-2\tau)/{n}_{\Delta Tramo2}$\;
+            	$\Delta_{tramo3}=\Delta_{tramo1}$\;
+            	$n_{total}=\sum_{i=1}^{3} n_{\Delta Tramoi}+1$\tcp*{Total puntos de discretizacion}
+
+                \tcc{Verificar si alcanza la ${v}_{max}$ para {v}_{max}  }
+            	$T_f=2\sqrt{\frac{q_1-q_0}{a_{max}}}$ \tcp*{Tiempo total de la trayectoria para ${a}_{max}$}
+            	${v}_{max.por.acel}={a}_{max}(T_f/2)$\;
+            	
+                \If{{v}_{max.por.acel}\leq{v}_{max}}{
+                		${v}_{max}={v}_{max.por.acel}$\;
+                		$\tau=T_f/2$\;
+                		$T=T_f$\;
+                		$\Delta_{tramo1}=(\tau)/n_{\Delta Tramo1}$\;
+                		$\Delta_{tramo2}=0$\;
+                		${n}_{\Delta Tramo2}=0$\;
+                		$n_{total}=\sum_{i=1}^{3} n_{\Delta Tramoi}+1$\;
+                       }
+                \tcc{Calulcar Curva LSBP}
+                \For{ $i$ $in$ $range[0, n_{total}]$}    
+                { 
+                    $tiempo_i=tiempo_i+\Delta_{tramoi}$ \tcp*{$\Delta_{tramoi}$ depende de $i$}
+            		$X=ls.v.a.puntual(q_0,q_1,v_{max},a_{max},tiempo_i)$ \tcp*{LSPB}
+            		\tcc{Resultados Posición,Velocidad,Aceleración de LSBP}
+            		$ ({X}_{rot_{\theta_y}}[i],{\dot{X}}_{rot_{\theta_y}}[i],{\ddot{X}}_{rot_{\theta_y}}[i])=(X[0],X[1],X[2])$\;
+            		$tiempo[i]=tiempo_i$\;
+                }
+               \KwRet $[tiempo,{X}_{rot_{\theta_y}},{\dot{X}}_{rot_{\theta_y}},{\ddot{X}}_{rot_{\theta_y}}]$
+              }
+    \end{algorithm}
+    
+    \clearpage   
+        
+\begin{algorithm}
+      \ContinuedFloat
+      \caption{Trayectoria (Continuacion...)}
+      \tcc{SUBFUNCIONES}
+      \SetKwProg{Fn}{}{:}{}
+      \Fn{\FSub{$q_0,q_1,v_{max},a_{max},{tiempo}_{actual}$}}{
+            	$\tau=v_{max}/a_{max}$\;
+            	$s=signo(q_1-q_0)$\;
+            	$T=s\frac{(q_1-q_0)}{v_{max}}+\tau$\;
+        \tcc{Ecuaciones  LSPB (\ref{eq:cap6_tray_1})}
+        \tcc{Tramo 1}
+          \If{$(0 \leq {tiempo}_{actual}\leq \tau)$}
+            {
+        		$q_{actual}=q_0+s\frac{a_{max}}{2}{({tiempo}_{actual})}^2$\;
+        		$v_{actual}=s{a}_{max}({tiempo}_{actual})$\;
+        		$a_{actual}=s{a}_{max}$\;
+        		$ \KwRet[q_{actual},v_{actual},a_{actual}]$\;
+            }
+        \tcc{Tramo 2}
+            \ElseIf{$(\tau < {tiempo}_{actual}\leq T-\tau)$}
+            {
+        		$q_{actual}=q_0-(s\frac{{v_{max}}^2}{2{a}_{max}})+(s*{v}_{max}*{tiempo}_{actual})$\;
+        		$v_{actual}=s*{v}_{max}$\;
+        		$a_{actual}=0$\;
+        		$ \KwRet[q_{actual},v_{actual},a_{actual}]$\;
+            }
+        \tcc{Tramo 3}
+            \ElseIf{$(T-\tau<{tiempo}_{actual}\leq T)$}
+            {
+        		$q_{actual}=q_1+s\left(-\frac{a_{max}T^2}{2}+a_{max}T({tiempo}_{actual})-\frac{a_{max}}{2}{({tiempo}_{actual})}^2\right)$\;
+        		$v_{actual}=s(a_{max}T-a_{max}{tiempo}_{actual})$\;
+        		$a_{actual}=s(-a_{max})$\;
+        		$\KwRet[q_{actual},v_{actual},a_{actual}]$\;
+            }
+      }
+\end{algorithm}
+    
+        \newpage
+    
+    
 
     \newpage
 
 \section{Interfaz de visualización Rviz}
-\section{Adams}
-\section{Validación de Cinemática de Posición}
-\section{Validación de Cinemática de Velocidad}
-\section{Validación de Dinámica Inversa}
+\section{ADAMS}
+\section{Validación Cinemática y Dinámica}
