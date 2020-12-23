@@ -195,7 +195,7 @@
          \newpage
 
 
-        \subsubsection{Cinemática inversa} 
+        \subsubsection{Cinemática inversa} \label{ma_ci}
         El objetivo de la cinemática inversa es hallar la posición de los actuadores en el espacio articular dada la posición del centroide del efector final.
         
         \begin{equation}
@@ -316,7 +316,7 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
 
         \newpage
 
-    \subsection{Modelación cinemática de la velocidad}
+    \subsection{Modelación cinemática de la velocidad}\label{ma_cvel}
         En esta sección, se da a conocer un método para calcular la matriz jacobiana y su estrecha relación con las singularidades de un robot paralelo tipo delta. Se implementan las ideas extraídas del paper \cite{Hsu_modelling_ai}
     
         \subsubsection{Nomenclatura de Parámetros Geométricos y Sistema deReferencia Loca}
@@ -810,7 +810,7 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
         
         \newpage
 
-\subsubsection{Cinemática Directa}
+\subsubsection{Cinemática Directa}\label{mb_cd}
         
         En\ la cinemática directa, se calcula la posición del efector final del manipulador robótico a partir de la información dada de los ángulos en los actuadores.
 
@@ -862,7 +862,7 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
         
         
 
-\subsubsection{Cinemática Inversa}
+\subsubsection{Cinemática Inversa}\label{mb_ci}
 
       En la cinemática inversa, se calculan los ángulos de las articulaciones, en este caso, los actuadores gracias a la posición dada de efector final en el espacio cartesiano. 
       
@@ -917,7 +917,7 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
      
         \newpage
 
-\subsection{Modelación cinemática de la velocidad}
+\subsection{Modelación cinemática de la velocidad}\label{mb_cvel}
     
         Con el objetivo de modelar la cinemática de velocidad del robot delta, en esta sección se implementa las ideas expuestas en la fuente \cite{Path_Planning_and_Trajectory_Optimization},  con los mismos parámetros, jerga y nomenclatura de la seccion  \ref{MB_MP}
         La base de la modelacion cinematica de velocidad es determinar la matriz jacobiana  \( J \) . Esta juega un papel importante en el modelo dinámico del manipulador robótico como se aprecia en secciones posteriores.\par

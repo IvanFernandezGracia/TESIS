@@ -1,35 +1,247 @@
 \chapter{Desarrollo de la solución}\label{CAP6}
 
+
 \section{Diagrama de flujo}
+
+        \newpage
+
+
+\section{Validación Cinemática y Dinámica}
+
         \newpage
 
 \section{Software ROS}
-    explicar que se ara en esta seccion funciones orden y de donde se sacan sistema SI y orden 
-    METODOLOGIAA
-    metodologia b
-    espacio de trabajo: ordenar codigo
-    trayectoria 
-    OJO CON SIS TEMAS DE REFERENCIAS QLIAOS
-     metodod a : cinematica posicion sistema referencia igual, solo cambia orden angulos
-     metodo a: jacobiano sistema de referencia y angulos cambias de posicion
-     metodo b: cinematica de posiucio cinematica directa: cambiar posicionb a la salida!!! 
-     metodo b: cinematica inversa no cambia posicio9n puntos P solo angulos
-     !! 
-        0 RESUMEN DE QUE SE HACE 
-        1 DIAGRAMA DE FLUJO     
-        2 FUNCION DIBUJO
-        3 PSEUDOCODIGO
-        *** REVISAR CAP4 TEORIA - PSEUDOCOPDIGO - ANEXO - CODIGO
-     
-     
-     
+
+    Robot Operating Processing es una herramienta que sirve para ordenar y dividir en tareas especificas un robot complejo simplificando a los ingenieros la creación de estos. Estas tareas se representan en nodos, funciones y subfunciones que son escritos en lenguaje de programación python. En esta sección, estos algoritmos son explicados brevemente como una función con entradas y salidas definidas como se muestra en la ilustración \ref{f:Cap6_funtion_1} y explicados detalladamente en pseudocódigos como se puede visualizar en el algoritmo \ref{algo:cap6_1}. Los algoritmos se dividen en una función principal y en sus subfunciones.
+    
+        % Define block styles
+        \tikzstyle{block1} = [rectangle, draw=blue,fill=blue!20, text width=10em, text centered, minimum height=7em, minimum width=2.5em , text=black]
+        \tikzstyle{block2} = [rectangle, draw=black!50,fill=black!20, text width=10em, text centered, minimum height=4em, minimum width=2.5em ]
+        \tikzstyle{line} = [draw, -latex']
+         \begin{center}
+         \begin{figure}[htb]
+             \begin{tikzpicture}[node distance = 5cm, auto]
+                % Place nodes
+                \node [block1] (funcion) {\textbf{Objetivo\\del\\Algoritmo\\(Funcion)}};
+                \node [block2, left of=funcion] (input) {\textbf{Entradas\\(Input)}};
+                \node [block2, right of=funcion] (ouput) {\textbf{Salidas\\(Output)}};
+                % Draw edges
+                \path [line] (funcion) -- node {}(ouput);
+                \path [line] (input) -- node { }(funcion);
+            \end{tikzpicture}
+                \caption{Fotografía de un paraguas}
+                \label{f:Cap6_funtion_1}
+         \end{figure}
+         \end{center}
+
+     \begin{algorithm}[H]
+            \caption{Nombre del Algoritmo} 
+            \label{algo:cap6_1}
+            \SetKwInput{KwInput}{Input}                % Set the Input
+            \SetKwInput{KwOutput}{Output}              % set the Output
+            \SetKwInput{KwObjetivo}{Objetivo}                % Set the Input
+            \SetKwInput{Kwfile}{Nombre archivo}                % Set the Input
+            
+            \DontPrintSemicolon
+              \KwObjetivo {Explicación breve del objetivo principal del algoritmo}
+              \Kwfile{Nombre del archivo donde se encuentra el código del algoritmo}
+              \KwInput{$Entradas$}
+              \KwOutput{$Salidas$}
+              
+                % Set Function Names
+              \SetKwFunction{FSum}{$nombre.funcion.principal$}
+              \SetKwFunction{FSub}{$nombre.subfunciones$}
+            
+              \tcc{FUNCION PRINCIPAL}
+              \SetKwProg{Fn}{}{:}{}
+              \Fn{\FSum{$Input$}}{
+              \tcc{Algoritmo funcion principal*}
+               \KwRet $Output$\;
+              }
+          \tcc{SUBFUNCIONES}
+          \SetKwProg{Fn}{}{:}{}
+          \Fn{\FSub{$Input$, {\phi}_i}}{
+              \tcc{Algoritmo de subfunciones*}
+                \KwRet$Output$\;
+          }
+    \end{algorithm}
+    
+    
         \newpage
 
+
+    Las tareas realizadas en ROS son principalmente los conceptos teóricos del capitulo \ref{CAP4}:
+
+\tikzset{
+  basic/.style  = {draw, text width=2cm, drop shadow, font=\sffamily, rectangle},
+  root/.style   = {basic, rounded corners=2pt, thin, align=center, fill=white},
+  level-2/.style = {basic, rounded corners=6pt, thin,align=center, fill=white, text width=3cm},
+  level-3/.style = {basic, thin, align=center, fill=white, text width=2.2cm}
+}
+
+\begin{center}
+        \begin{figure}[H]
+            \begin{tikzpicture}[
+                  level 1/.style={sibling distance=10em, level distance=7em},
+                %   {edge from parent fork down},
+                  edge from parent/.style={->,solid,black,thick,sloped,draw}, 
+                  edge from parent path={(\tikzparentnode.south) -- (\tikzchildnode.north)},
+                  >=latex, node distance=1.9cm, edge from parent fork down]
+    
+                % root of the the initial tree, level 1
+                \node[root] {\textbf{Algoritmos ROS}}
+                % The first level, as children of the initial tree
+                  child {node[level-2] (c1) {\textbf{Metodologia\\  A}}}
+                  child {node[level-2] (c2) {\textbf{Metodologia\\  B}}}
+                  child {node[level-2] (c3) {\textbf{Espacio \\ de\\  Trabajo}}}
+                  child {node[level-2] (c4) {\textbf{Trayectoria}}};
+                
+                % The second level, relatively positioned nodes
+                \begin{scope}[every node/.style={level-3}]
+                    \node [below of = c1, xshift=10pt] (c11) {Cinematica Directa};
+                    \node [below of = c11] (c12) {Cinematica Inversa};
+                    \node [below of = c12] (c13) {Jacobiano};
+                    \node [below of = c13] (c14) {Cinematica\\de\\Aceleracion};
+                    \node [below of = c14] (c15) {Dinamica Inversa};
+    
+                    \node [below of = c2, xshift=10pt] (c21) {Cinematica Directa};
+                    \node [below of = c21] (c22) {Cinematica Inversa};
+                    \node [below of = c22] (c23) {Jacobiano};
+                    \node [below of = c23] (c24) {Cinematica\\de\\Aceleracion};
+                    \node [below of = c24] (c25) {Dinamica Inversa};
+    
+                \end{scope}
+                
+                % lines from each level 1 node to every one of its "children"
+                \foreach \value in {1,2,3,4,5}
+                  \draw[->] (c1.195) |- (c1\value.west);
+                
+                \foreach \value in {1,2,3,4,5}
+                  \draw[->] (c2.195) |- (c2\value.west);
+                
+            \end{tikzpicture}
+            
+                \caption{This is a simple Taxonomy}
+                \label{fig:my_label}
+        \end{figure}
+ \end{center}
+   
+    \newpage
+
     \subsection{Metodología A}
+    
+    Las siguientes ilustraciones (\ref{f:Cap6_funtion_2} a la \ref{f:Cap6_funtion_6}) representan de forma visual los algoritmos, tareas o funciones planteadas en esta sección con respecto a la  metodología A del capitulo \ref{CAP4}, de igual forma que en la ilustración \ref{f:Cap6_funtion_1}. Las entradas y las salidas de cada función son escritas con las misma nomenclatura de cada sección con que fue inspirado el algoritmo respectivamente. Es notorio recalcar que cada algoritmo es obtenido de diferentes referencias bibliográficas, por lo que los sistemas de referencia y el orden numérico de los ángulos de los actuadores son diferentes. Por ende, las entradas y las salidas en cada algoritmo son transformadas del sistema global al sistema de referencia local y viceversa.     
+    
+
+            \hspace{1cm}
+
+
+    % Define block styles
+    \tikzstyle{block1} = [rectangle, draw=blue,fill=blue!20, text width=10em, text centered, minimum height=3em, minimum width=2.5em , text=black]
+    \tikzstyle{block2} = [rectangle, draw=black!50,fill=black!20, text width=10em, text centered, minimum height=3em, minimum width=2.5em ]
+    \tikzstyle{line} = [draw, -latex']
+
+    \begin{figure}[h]
+        \centering
+        \begin{subfigure}
+                \centering
+                 \begin{tikzpicture}[node distance = 5cm, auto]
+                    % Place nodes
+                    \node [block1] (funcion) {\textbf{Cinemática Directa\\ Sección (\ref{ma_cd})}};
+                    \node [block2, left of=funcion] (input) {\textbf{$\theta_1,\theta_2,\theta_3$}};
+                    \node [block2, right of=funcion] (ouput) {\textbf{$E_0(x_0,y_0,z_0)$}};
+                    % Draw edges
+                    \path [line] (funcion) -- node {}(ouput);
+                    \path [line] (input) -- node { }(funcion);
+                \end{tikzpicture}
+                    \caption{Fotografía de un paraguas}
+                    \label{f:Cap6_funtion_2}
+        \end{subfigure}
+        
+        \hspace{1cm}
+
+        \begin{subfigure}
+                \centering
+                 \begin{tikzpicture}[node distance = 5cm, auto]
+                    % Place nodes
+                    \node [block1] (funcion) {\textbf{Cinemática Inversa\\ Sección (\ref{ma_ci})}};
+                    \node [block2, left of=funcion] (input) {\textbf{$E_0(x_0,y_0,z_0)$}};
+                    \node [block2, right of=funcion] (ouput) {\textbf{$\theta_1,\theta_2,\theta_3$}};
+                    % Draw edges
+                    \path [line] (funcion) -- node {}(ouput);
+                    \path [line] (input) -- node { }(funcion);
+                \end{tikzpicture}
+                    \caption{Fotografía de un paraguas}
+                    \label{f:Cap6_funtion_3}
+        \end{subfigure}
+        
+                \hspace{1cm}
+
+        \begin{subfigure}
+                \centering
+                 \begin{tikzpicture}[node distance = 5cm, auto]
+                    % Place nodes
+                    \node [block1] (funcion) {\textbf{Jacobiano\\ Sección (\ref{ma_cvel})}};
+                    \node [block2, left of=funcion] (input) {\textbf{$P_x,P_y,P_z,{\theta }_{11},{\theta }_{12},{\theta }_{13}$}};
+                    \node [block2, right of=funcion] (ouput) {\textbf{$ J,J_{\theta }, J_{x },$\\$\theta _{31},\theta _{32},\theta _{33},$\\$\theta _{21},\theta _{22},\theta _{23}$}};
+                    % Draw edges
+                    \path [line] (funcion) -- node {}(ouput);
+                    \path [line] (input) -- node { }(funcion);
+                \end{tikzpicture}
+                    \caption{Fotografía de un paraguas}
+                    \label{f:Cap6_funtion_4}
+         \end{subfigure}
+         
+         
+                 \hspace{1cm}
+
+        \begin{subfigure}
+                \centering
+                 \begin{tikzpicture}[node distance = 5cm, auto]
+                    % Place nodes
+                    \node [block1] (funcion) {\textbf{Cinemática Aceleracion\\ Sección (\ref{})}};
+                    \node [block2, left of=funcion] (input) {\textbf{Entradas}};
+                    \node [block2, right of=funcion] (ouput) {\textbf{Salidas}};
+                    % Draw edges
+                    \path [line] (funcion) -- node {}(ouput);
+                    \path [line] (input) -- node { }(funcion);
+                \end{tikzpicture}
+                    \caption{Fotografía de un paraguas}
+                    \label{f:Cap6_funtion_5}
+         \end{subfigure}
+         
+                 \hspace{1cm}
+
+        \begin{subfigure}
+                \centering
+                 \begin{tikzpicture}[node distance = 5cm, auto]
+                    % Place nodes
+                    \node [block1] (funcion) {\textbf{Dinamica Inversa\\ Sección (\ref{})}};
+                    \node [block2, left of=funcion] (input) {\textbf{Entradas}};
+                    \node [block2, right of=funcion] (ouput) {\textbf{Salidas}};
+                    % Draw edges
+                    \path [line] (funcion) -- node {}(ouput);
+                    \path [line] (input) -- node { }(funcion);
+                \end{tikzpicture}
+                    \caption{Fotografía de un paraguas}
+                    \label{f:Cap6_funtion_6}
+         \end{subfigure}
+                \hspace{1cm}
+    \end{figure}
+
+
+
+
+
+
+
+
+    \newpage
 
  \subsubsection{Cinemática directa}
     \begin{algorithm}[H]
         \caption{Cinemática Directa Metodología A} 
+        \label{algo:cap6_2}
         \SetKwInput{KwInput}{Input}                % Set the Input
         \SetKwInput{KwOutput}{Output}              % set the Output
         \SetKwInput{KwObjetivo}{Objetivo}                % Set the Input
@@ -168,13 +380,11 @@
               \SetKwProg{Fn}{}{:}{}
               \Fn{\FSum{$P_x$,$P_y$,$P_z$,${\theta }_{11}$,${\theta }_{12}$,${\theta }_{13}$}}{
                   \tcc{Cambiar ángulos y punto P al sistema Referencia Local}
-                  \tcc{Posición actuadores $\phi$ respecto a ejes YX S.ref Local}
                    $({\phi}_{0 ^{\circ}},{\phi}_{120 ^{\circ}},{\phi}_{240 ^{\circ}})=(0,120,240)$\;
-                  \tcc{Calcular angulo $\theta _{3i}$ }
+                  \tcc{Calcular angulo $\theta _{3i}$ y $\theta _{2i}$}
                   $\theta _{31}=calculo.theta3i(P_x,P_y, {\phi}_{0 ^{\circ}})$\;
                   $\theta _{32}=calculo.theta3i(P_x,P_y, {\phi}_{120 ^{\circ}})$\;
                   $\theta _{33}=calculo.theta3i(P_x,P_y, {\phi}_{240 ^{\circ}})$\;
-                  \tcc{Calcular angulo $\theta _{2i}$ }
                   $\theta _{21}=calculo.theta2i(P_x,P_y,P_z,{\theta }_{31}, {\phi}_{0 ^{\circ}})$\;
                   $\theta _{22}=calculo.theta2i(P_x,P_y,P_z,{\theta }_{32}, {\phi}_{120 ^{\circ}})$\;
                   $\theta _{23}=calculo.theta2i(P_x,P_y,P_z,{\theta }_{33}, {\phi}_{240 ^{\circ}})$\;
@@ -196,7 +406,7 @@
                     $J_{ \theta }=[J_{1 \theta },0,0;0,J_{2 \theta },0;0,0,J_{3 \theta }]$\;  
                 \tcc{Calcular Matriz $J$ }
                     $J=J_{x}^{-1}J_{ \theta } $\;
-                \tcc{Cambiar al sistema Referencia Global}
+                \tcc{Cambiar al sistema Referencia Global al operar}
                   \KwRet $[J_{\theta }, J_{x},\theta _{31},\theta _{32},\theta _{33},\theta _{21},\theta _{22},\theta _{23}, J]$\;}
         \end{algorithm}
         
@@ -254,6 +464,12 @@
                 \KwRet$J_{i \theta }$\;   }
 \end{algorithm}
 
+
+        \newpage
+        \subsubsection{Cinematica de Aceleracion}
+
+
+
         \newpage
         \subsubsection{Dinámica Inversa}
         
@@ -280,6 +496,109 @@
 
         
     \subsection{Metodología B}
+    
+       0x00000000 Las siguientes ilustraciones (\ref{f:Cap6_funtion_2} a la \ref{f:Cap6_funtion_6}) representan de forma visual los algoritmos, tareas o funciones planteadas en esta sección con respecto a la  metodología A del capitulo \ref{CAP4}, de igual forma que en la ilustración \ref{f:Cap6_funtion_1}. Las entradas y las salidas de cada función son escritas con las misma nomenclatura de cada sección con que fue inspirado el algoritmo respectivamente. Es notorio recalcar que cada algoritmo es obtenido de diferentes referencias bibliográficas, por lo que los sistemas de referencia y el orden numérico de los ángulos de los actuadores son diferentes. Por ende, las entradas y las salidas en cada algoritmo son transformadas del sistema global al sistema de referencia local y viceversa.     
+    
+
+            \hspace{1cm}
+
+
+    % Define block styles
+    \tikzstyle{block1} = [rectangle, draw=blue,fill=blue!20, text width=10em, text centered, minimum height=3em, minimum width=2.5em , text=black]
+    \tikzstyle{block2} = [rectangle, draw=black!50,fill=black!20, text width=10em, text centered, minimum height=3em, minimum width=2.5em ]
+    \tikzstyle{line} = [draw, -latex']
+
+    \begin{figure}[h]
+        \centering
+        \begin{subfigure}
+                \centering
+                 \begin{tikzpicture}[node distance = 5cm, auto]
+                    % Place nodes
+                    \node [block1] (funcion) {\textbf{Cinemática Directa\\ Sección (\ref{mb_cd})}};
+                    \node [block2, left of=funcion] (input) {\textbf{$\theta_1,\theta_2,\theta_3$}};
+                    \node [block2, right of=funcion] (ouput) {\textbf{$P_0(P_{0x},P_{0y},P_{0z})$}};
+                    % Draw edges
+                    \path [line] (funcion) -- node {}(ouput);
+                    \path [line] (input) -- node { }(funcion);
+                \end{tikzpicture}
+                    \caption{Fotografía de un paraguas}
+                    \label{f:Cap6_funtion_7}
+        \end{subfigure}
+        
+        \hspace{1cm}
+
+        \begin{subfigure}
+                \centering
+                 \begin{tikzpicture}[node distance = 5cm, auto]
+                    % Place nodes
+                    \node [block1] (funcion) {\textbf{Cinemática Inversa\\ Sección (\ref{mb_ci})}};
+                    \node [block2, left of=funcion] (input) {\textbf{$P_0(P_{0x},P_{0y},P_{0z})$}};
+                    \node [block2, right of=funcion] (ouput) {\textbf{$\theta_1,\theta_2,\theta_3$}};
+                    % Draw edges
+                    \path [line] (funcion) -- node {}(ouput);
+                    \path [line] (input) -- node { }(funcion);
+                \end{tikzpicture}
+                    \caption{Fotografía de un paraguas}
+                    \label{f:Cap6_funtion_8}
+        \end{subfigure}
+        
+                \hspace{1cm}
+
+        \begin{subfigure}
+                \centering
+                 \begin{tikzpicture}[node distance = 5cm, auto]
+                    % Place nodes
+                    \node [block1] (funcion) {\textbf{Jacobiano\\ Sección (\ref{mb_cvel})}};
+                    \node [block2, left of=funcion] (input) {\textbf{$P_{0x},P_{0y},P_{0z},{\theta }_{1},{\theta }_{2},{\theta }_{3}$}};
+                    \node [block2, right of=funcion] (ouput) {\textbf{$-J_{1 }, J_{2}, J$}};
+                    % Draw edges
+                    \path [line] (funcion) -- node {}(ouput);
+                    \path [line] (input) -- node { }(funcion);
+                \end{tikzpicture}
+                    \caption{Fotografía de un paraguas}
+                    \label{f:Cap6_funtion_9}
+         \end{subfigure}
+         
+         
+                 \hspace{1cm}
+
+        \begin{subfigure}
+                \centering
+                 \begin{tikzpicture}[node distance = 5cm, auto]
+                    % Place nodes
+                    \node [block1] (funcion) {\textbf{Cinemática Aceleracion\\ Sección (\ref{})}};
+                    \node [block2, left of=funcion] (input) {\textbf{Entradas}};
+                    \node [block2, right of=funcion] (ouput) {\textbf{Salidas}};
+                    % Draw edges
+                    \path [line] (funcion) -- node {}(ouput);
+                    \path [line] (input) -- node { }(funcion);
+                \end{tikzpicture}
+                    \caption{Fotografía de un paraguas}
+                    \label{f:Cap6_funtion_10}
+         \end{subfigure}
+         
+                 \hspace{1cm}
+
+        \begin{subfigure}
+                \centering
+                 \begin{tikzpicture}[node distance = 5cm, auto]
+                    % Place nodes
+                    \node [block1] (funcion) {\textbf{Dinamica Inversa\\ Sección (\ref{})}};
+                    \node [block2, left of=funcion] (input) {\textbf{Entradas}};
+                    \node [block2, right of=funcion] (ouput) {\textbf{Salidas}};
+                    % Draw edges
+                    \path [line] (funcion) -- node {}(ouput);
+                    \path [line] (input) -- node { }(funcion);
+                \end{tikzpicture}
+                    \caption{Fotografía de un paraguas}
+                    \label{f:Cap6_funtion_11}
+         \end{subfigure}
+                \hspace{1cm}
+    \end{figure}
+    
+            \newpage
+
+    
         \subsubsection{Cinemática directa}
         
 \begin{algorithm}[H]
@@ -463,8 +782,7 @@
                 $J=-J_{1}J_{2}$\;
                 
                
-            \tcc{Cambiar al sistema Referencia Global}
-    
+            \tcc{Cambiar al sistema Referencia Global al operar $J$}
               \KwRet $[-J_{1},J_{2},J]$   }
         \end{algorithm}
  
@@ -539,6 +857,11 @@
 \end{algorithm}
 
         \newpage
+
+\subsubsection{Cinematica de Aceleracion}
+
+            \newpage
+
 
 \subsubsection{Dinámica Inversa}
         \newpage
@@ -797,8 +1120,7 @@
     \newpage
     
     
-\subsubsection{Cinemática inversa}
-        
+
     \begin{algorithm}[H]
             \caption{Trayectoria} 
             \SetKwInput{KwInput}{Input}                % Set the Input
@@ -902,4 +1224,3 @@
 
 \section{Interfaz de visualización Rviz}
 \section{ADAMS}
-\section{Validación Cinemática y Dinámica}
