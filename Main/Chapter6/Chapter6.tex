@@ -497,9 +497,8 @@
         
     \subsection{Metodología B}
     
-       0x00000000 Las siguientes ilustraciones (\ref{f:Cap6_funtion_2} a la \ref{f:Cap6_funtion_6}) representan de forma visual los algoritmos, tareas o funciones planteadas en esta sección con respecto a la  metodología A del capitulo \ref{CAP4}, de igual forma que en la ilustración \ref{f:Cap6_funtion_1}. Las entradas y las salidas de cada función son escritas con las misma nomenclatura de cada sección con que fue inspirado el algoritmo respectivamente. Es notorio recalcar que cada algoritmo es obtenido de diferentes referencias bibliográficas, por lo que los sistemas de referencia y el orden numérico de los ángulos de los actuadores son diferentes. Por ende, las entradas y las salidas en cada algoritmo son transformadas del sistema global al sistema de referencia local y viceversa.     
+       Al igual que la sección anterior, se presentan en las ilustraciones \ref{f:Cap6_funtion_7} a la \ref{f:Cap6_funtion_11} las tareas con respecto a la  metodología B del capitulo \ref{CAP4}. 
     
-
             \hspace{1cm}
 
 
@@ -894,13 +893,28 @@
     Para calcular el espacio de trabajo se crea un nodo en ROS. La tarea especifica de este nodo es calcular, guardar y graficar los puntos $(P_x,P_y,P_z)$ del efector final que cumplen con las restricciones impuestas. 
     La representación gráfica del nodo se presenta en la ilustración \ref{f:Cap6_ws_1}: 
     
-                \begin{figure}[htb]
-                \centering
-                \includegraphics[width=0.9\linewidth]{Main/Chapter6/Images6/cap6_ws_1.png}
+    
+        % Define block styles
+        \tikzstyle{block1} = [rectangle, draw=blue,fill=blue!20, text width=10em, text centered, minimum height=7em, minimum width=2.5em , text=black]
+        \tikzstyle{block2} = [rectangle, draw=black!50,fill=black!20, text width=10em, text centered, minimum height=4em, minimum width=2.5em ]
+        \tikzstyle{line} = [draw, -latex']
+         \begin{center}
+         \begin{figure}[htb]
+             \begin{tikzpicture}[node distance = 5cm, auto]
+                % Place nodes
+                    \node [block1] (funcion) {\textbf{Espacio\\de\\Trabajo}};
+                \node [block2, left of=funcion] (input) {\textbf{ $\Delta\theta _{1i}$\\$(Discretizacion$ $Espacio$ $Articular$$)$}};
+                \node [block2, right of=funcion] (ouput) {\textbf{$\mathcal{W}_{(J_{x},J_{\theta})},\mathcal{W}_{J_{x}},\\\mathcal{W}_{J_{\theta}},\mathcal{W}_{(J_{x},J_{\theta},Limites)}$\\($Espacios$ $de$ $Trabajo$ $en$ $coordenadas$ $cartesianas$ $y$ $articular$)}};
+                % Draw edges
+                \path [line] (funcion) -- node {}(ouput);
+                \path [line] (input) -- node { }(funcion);
+            \end{tikzpicture}
                 \caption{Fotografía de un paraguas}
                 \label{f:Cap6_ws_1}
-            \end{figure}  
-    
+         \end{figure}
+         \end{center}
+         
+        \vspace{-1cm}         
     
     En este nodo, las dimensiones del robot y las restricciones son establecidas antes de calcular el espacio de trabajo. La única entrada es el paso de la discretizacion de los rangos \(  \Delta  \theta _{1i} \). La cinematica directa y el jacobiano se calculan a partir del método A, específicamente los desarrollados en las secciones \ref{ma_cd} y \ref{ma_jac} respectivamente. Se emplea este método por la razón de que el jacobiano $J$ se puede bipartir en dos matrices $(J_{x}$  y  $J_{ \theta })$, donde cada una de ellas representa una singularidad especifica . Ademas, el metodo A tiene la ventaja que tiene las ecuaciones para determinar los ángulos interiores $\theta_{2i}$ y $\theta_{3i}$.
     
@@ -1021,12 +1035,28 @@
     
     En esta seccion se explica el desarrollo para determinar la trayectoria en el espacio articular del robot delta, es decir, la trayectoria angular de los actuadores, a partir de una trayectoria lineal interpolada en el espacio cartesiano XYZ que recorre el efector final de un punto inicial $P_i$ a un punto final $P_f$ con restricciones de velocidad trapezoidal en dirección del camino geometrico.
 
-     \begin{figure}[htb]
-            \centering
-            \includegraphics[width=0.9\linewidth]{Main/Chapter6/Images6/cap6_trayectory_1.png}
-            \caption{Fotografía de un paraguas}
-            \label{f:cap6_trayectory_1}
-        \end{figure}    
+        % Define block styles
+        \tikzstyle{block1} = [rectangle, draw=blue,fill=blue!20, text width=10em, text centered, minimum height=5em, minimum width=2.5em , text=black]
+        \tikzstyle{block2} = [rectangle, draw=black!50,fill=black!20, text width=10em, text centered, minimum height=4em, minimum width=2.5em ]
+        \tikzstyle{line} = [draw, -latex']
+         \begin{center}
+         \begin{figure}[htb]
+             \begin{tikzpicture}[node distance = 5cm, auto]
+                % Place nodes
+                    \node [block1] (funcion) {\textbf{Trayectoria}};
+                \node [block2, left of=funcion] (input) {\textbf{$P_i$ $P_f$}};
+                \node [block2, right of=funcion] (ouput) {\textbf{$Puntos$ $de$ $la$ \\ $Trayectoria$ \\$en$ $el$\\ $espacio$\\ $cartesiano$ $XYZ$}};
+                % Draw edges
+                \path [line] (funcion) -- node {}(ouput);
+                \path [line] (input) -- node { }(funcion);
+            \end{tikzpicture}
+                \caption{Fotografía de un paraguas}
+                \label{f:cap6_trayectory_1}
+         \end{figure}
+         \end{center}
+         
+        \vspace{-1cm}   
+
         
     Esta trayectoria se compone de un camino geométrico lineal en el espacio cartesiano XYZ se llaman 'punto a punto en linea recta' y la escala temporal es de 'Perfil de Movimiento Trapezoidal respecto a la Velocidad' o 'Linear segment with Parabolic Blends (LSPB)', visto en la sección \ref{cap4_tray}. 
     
@@ -1114,9 +1144,14 @@
             \label{f:cap6_trayectory_4}
         \end{figure}
         
-    A partir de de el punto inicial $P_i$ y el punto final $P_f$ se realiza una traslación y 2 rotaciones para aplicar la escala temporal de perfil trapezoidal y la interpolación del camino geométrico lineal. Luego se aplica traslación y rotaciones inversas para obtener la trayectoria en el espacio cartesiano respecto al sistema de referencia general.Finalmente se emplea la cinematica inversa para conseguir las trayectorias en el espacio articular de los actuadores.     
+    A partir de de el punto inicial $P_i$ y el punto final $P_f$ se realiza una traslación y 2 rotaciones para aplicar la escala temporal de perfil trapezoidal y la interpolación del camino geométrico lineal. Luego se aplica traslación y rotaciones inversas para obtener la trayectoria en el espacio cartesiano respecto al sistema de referencia general.Finalmente se emplea la cinemática inversa para conseguir las trayectorias en el espacio articular de los actuadores.     
     
-    
+         \begin{figure}[htb]
+            \centering
+            \includegraphics[width=0.9\linewidth]{Main/Chapter6/Images6/cap6_trayectory_1.png}
+            \caption{Fotografía de un paraguas}
+            \label{f:cap6_trayectory_5}
+        \end{figure}    
     \newpage
     
     
@@ -1223,4 +1258,16 @@
     \newpage
 
 \section{Interfaz de visualización Rviz}
+
+
+
+
+
+
+
+
+
+    \newpage
+
+
 \section{ADAMS}
