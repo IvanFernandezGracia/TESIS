@@ -120,11 +120,130 @@ Los pasos del diagrama de flujo son los siguientes:
     
     
 \section{Software Robor Operating System (ROS)}
-    Desde
-    \subsection{Arquitectura y conceptos}
-        Desde
-    \subsection{Herramientas y librerías}
-        Desde
+    
+    En esta sección se proporciona una descripción general de Robot Operating System, por sus siglas ROS y sus principales lineamientos. ROS es un marco para desarrollar software de robótica. El software está estructurado bajo un paradigma modular, pequeños paquetes que se comunican entre si mediante rápidos mensajes. Este paradigma se fomenta la reutilización de código y la colaboración global por sobre los entornos particulares.
+    
+    \begin{figure}[htb]
+        \centering
+        \includegraphics[width=0.5\linewidth]{Main/Chapter3/Images3/3-4/logo-ros.png}
+        \caption{Logotipo de ROS}
+        \label{f:Cap3-4_logo_ros}
+    \end{figure}
+    
+    \subsection{Historia}
+    
+        ROS es un gran proyecto que tiene muchos antepasados y contribuyentes. Mucha gente en la comunidad de investigación robótica sintió la necesidad de un marco de colaboración abierto. Varios proyectos en la Universidad de Stanford a mediados de la década de 2000 involucraban inteligencia artificial incorporada e integradora, como el Stanford AI Robot (STAIR) y el programa Personal Robots (PR), que crearon prototipos internos de los tipos de sistemas de software dinámicos y flexibles como lo es ROS. Se basó en Switchyard, que era parte de un proyecto de STAIR y fue escrito por Morgan Quigley en Stanford. En 2007, Willow Garage, Inc., una incubadora de robótica cercana, proporcionó importantes recursos para extender estos conceptos mucho más y crear implementaciones bien probadas. Desde el 2013 hasta el presente, ROS es mantenido permanentemente por la OSRF (Open Source Robotics Foundation) de Google y desde el 2017 cambio su nombre a Open Robotics.
+        
+        \begin{figure}[htbp]
+            \centering
+            \subfigure{\includegraphics[width=40mm]{Main/Chapter3/Images3/3-4/entidade-asociadas-al-inicio-de-ros-1.png}}
+            \subfigure{\includegraphics[width=60mm]{Main/Chapter3/Images3/3-4/entidade-asociadas-al-inicio-de-ros-2.png}}
+            \subfigure{\includegraphics[width=40mm]{Main/Chapter3/Images3/3-4/entidade-asociadas-al-inicio-de-ros-3.png}}
+            \caption{Entidades asociadas al inicio de ROS} 
+            \label{f:Cap3-4_entidades_inicio_ros}
+        \end{figure}
+        
+        La mayoría de las compañías y laboratorios de investigación en robótica están ahora portando su software a ROS. Esta tendencia también es visible en robots industriales, donde compañías están paulatinamente migrando de aplicaciones propietarias a ROS. El movimiento llamado ROS Industrial se ha incrementado en estos últimos años y su objetivo, básicamente, consiste en extender las capacidades avanzadas de ROS a la automatización y la robótica industrial. Este proyecto comenzó como un intento de colaboración de Yaskawa Motoman Robotics, Southwest Research Institute (SwRI) y Willow Garage. En enero de 2012, Shaun Edwards de SwRI fundó un software repositorio, alojado en Github, donde la comunidad robótica puede encontrar interfaces para manipuladores industriales, pinzas, sensores y redes de dispositivos.
+        
+        
+        Finalizando con la breve historia de ROS, se puede decir que se utiliza en estos momentos en todo el mundo en instituciones académicas, industriales y de investigación. Los desarrolladores han contribuido con miles de paquetes, incluidas soluciones de algunos de los principales expertos del mundo en áreas específicas. Las nuevas empresas de robots ofrecen interfaces ROS con sus productos, y las empresas de robots industriales establecidas también están introduciendo interfaces ROS. Con la adopción generalizada de ROS como el enfoque estándar de facto para la programación de robots, existe una nueva esperanza de acelerar las capacidades de los robots.
+
+    \subsection{Que es ROS}
+       ROS es una abreviatura de  Robot Operating System y es una plataforma de desarrollo de aplicaciones en robótica que provee estilos de programación (en particular, que se basa en nodos distribuidos y acoplados libremente); definiciones de interfaz y paradigmas para las comunicaciones entre nodos ; definiciones de interfaz para la incorporación de bibliotecas y paquetes; una colección de herramientas para visualización, depuración, registro de datos y diagnóstico del sistema; un repositorio de código fuente compartido; y puentes a múltiples bibliotecas útiles e independientes de código abierto.
+       
+       El objetivo principal de ROS es apoyar la reutilización de código en la investigación y el desarrollo de robótica. ROS es un marco distribuido de procesos (también conocido como nodos) que permite que los ejecutables se diseñen individualmente y se acoplen libremente en tiempo de ejecución. Estos procesos se pueden agrupar en paquetes, que se pueden compartir y distribuir fácilmente. ROS también es compatible con un sistema federado de repositorios de código que también permite la distribución de la colaboración. Este diseño, desde el nivel del sistema de archivos hasta el nivel de la comunidad, permite decisiones independientes sobre el desarrollo y la implementación, pero todos pueden combinarse con las herramientas de infraestructura ROS.
+       
+       ROS no es un sistema operativo convencional como Windows, Linux y Android en el sentido tradicional de gestión y programación de procesos; más bien, es un meta-sistema operativo que se ejecuta en el sistema operativo. ROS es un middleware, que proporciona los servicios que esperaría de un sistema operativo, incluida la abstracción de hardware, control de dispositivos de bajo nivel, implementación de funciones de uso común, transmisión de mensajes entre procesos y administración de paquetes. También proporciona herramientas y bibliotecas para obtener, compilar, escribir y ejecutar código en varios equipos.
+       
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/3-4/diferencia-ROS-SO.png}
+            \caption{Diferencias entre un sistema operativo convencional y ROS}
+            \label{f:Cap3-4_diferencias_ros_so}
+        \end{figure}
+        
+        Las principales características de ROS se pueden resumir de la siguiente manera:
+        
+        \begin{itemize}
+            \item \textbf{Plumbing:} ROS proporciona una infraestructura de mensajería de publicación y suscripción diseñada para respaldar la construcción rápida y sencilla de sistemas informáticos distribuidos.
+            \item \textbf{Herramientas} ROS proporciona un amplio conjunto de herramientas para configurar, iniciar, introspectar, depurar, visualizar, registrar, probar y detener sistemas informáticos distribuidos.
+            \item \textbf{Capacidades} ROS proporciona una amplia colección de bibliotecas que implementan funcionalidades robóticas útiles, con un enfoque en la movilidad, la manipulación y la percepción.
+            \item \textbf{Ecosistema:} ROS es apoyado y mejorado por una gran comunidad, con un fuerte enfoque en la integración y documentación. ros.org es una ventanilla única que busca y aprende sobre los miles de paquetes ROS que están disponibles a través de desarrolladores de todo el mundo.
+        \end{itemize}
+        
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=1.3\linewidth]{Main/Chapter3/Images3/3-4/caracteristicas-ros.png}
+            \caption{Principales características de ROS}
+            \label{f:Cap3-4_caracteristicas_ros}
+        \end{figure}
+        
+        Como se describe en la figura \ref{f:Cap3-4_caracteristicas_ros}, ROS es un sistema de apoyo para controlar un robot y sensor con una abstracción de hardware y desarrollar una aplicación de robot basada en sistemas operativos convencionales existentes.
+        
+        Un ejemplo se muestra en la Figura 2-2, la comunicación de datos ROS es compatible no solo con un sistema operativo, sino también con múltiples sistemas operativos, hardware y programas, lo que lo hace muy adecuado para el desarrollo de robots donde se combinan varios hardware. 
+        
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=0.9\linewidth]{Main/Chapter3/Images3/3-4/compatibilidad-ros.png}
+            \caption{Compatibilidad de ROS y otras plataformas}
+            \label{f:Cap3-4_compatibilidad_ros}
+        \end{figure}
+        
+    \subsection{Objetivos de ROS}
+    
+        Todos los marcos de software imponen sus filosofías de desarrollo a sus colaboradores directa o indirectamente, a través de sus modismos y prácticas comunes. En términos generales, ROS sigue la filosofía de desarrollo de software de Unix en varios aspectos clave. Esto tiende a hacer que ROS se sienta "natural" para los desarrolladores que provienen de Unix, pero algo "críptico" al principio para aquellos que han utilizado principalmente entornos de desarrollo gráfico en Windows o Mac OS X. Los siguientes párrafos describen varios aspectos filosóficos de ROS.
+        
+        \subsubsection{Peer to peer (Nodos)}
+        
+            Los sistemas ROS consisten en numerosos programas pequeños de computadora que se conectan entre sí e intercambian mensajes continuamente. Estos mensajes viajan directamente de un programa a otro; no hay un servicio de enrutamiento central. Aunque esto hace que la "plumbing" subyacente sea más compleja, el resultado es un sistema que escala mejor a medida que aumenta la cantidad de datos.
+            
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=0.9\linewidth]{Main/Chapter3/Images3/3-5/arquitectura-ros.png}
+                \caption{Arquitectura por nodos de ROS}
+                \label{f:Cap3-5_arquitectura_ros}
+            \end{figure}
+            
+        \subsubsection{Orientación hacia las herramientas}
+        
+            Como lo demuestra la arquitectura duradera de Unix, se pueden crear sistemas de software complejos a partir de muchos programas pequeños y genéricos. A diferencia de muchos otros marcos de software de robótica, ROS no tiene un entorno de ejecución y desarrollo integrado canónico. Tareas como navegar por el árbol del código fuente, visualizar las interconexiones del sistema, trazar gráficamente los flujos de datos, generar documentación, registrar datos, etc., son todas realizadas por programas separados. Esto fomenta la creación de implementaciones nuevas y mejoradas, ya que (idealmente) se pueden intercambiar por implementaciones más adecuadas para un dominio de tarea en particular. Las versiones recientes de ROS permiten que muchas de estas herramientas se compongan en procesos únicos para mayor eficiencia o para crear interfaces coherentes para operadores o depuración, pero el principio sigue siendo el mismo: las herramientas individuales en sí mismas son relativamente pequeñas y genéricas.
+            
+        \subsubsection{Multilenguaje}
+        
+            Muchas tareas de software son más fáciles de realizar en lenguajes de secuencias de comandos de "alta productividad" como Python o Ruby. Sin embargo, hay ocasiones en las que los requisitos de rendimiento exigen el uso de lenguajes más rápidos, como C ++. También hay varias razones por las que algunos programadores prefieren lenguajes como Lisp o MATLAB. Se han librado guerras interminables de correo electrónico, se están librando actualmente y, sin duda, se seguirá librando sobre qué idioma es el más adecuado para una tarea en particular. Reconociendo que todas estas opiniones tienen mérito, que los lenguajes tienen diferentes utilidades en diferentes contextos, y que la experiencia única de cada programador es muy importante al elegir un idioma, ROS eligió un enfoque multilingüe. Los módulos de software ROS se pueden escribir en cualquier idioma para el que se haya escrito una biblioteca cliente. En el momento de escribir este artículo, existen bibliotecas cliente para C ++, Python, LISP, Java, JavaScript, MATLAB, Ruby, Haskell, R, Julia y otros. Las bibliotecas de cliente ROS se comunican entre sí siguiendo una convención que describe cómo los mensajes se "aplanan" o "serializan" antes de transmitirse a través de la red. Este libro utilizará la biblioteca cliente de Python casi exclusivamente, para ahorrar espacio en los ejemplos de código y para su facilidad de uso general. Sin embargo, las tareas descritas en este libro se pueden realizar con cualquiera de las bibliotecas cliente.
+            
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=0.9\linewidth]{Main/Chapter3/Images3/3-5/esquema-multi-lenguaje-ros.png}
+                \caption{Esquema multilenguaje de ROS}
+                \label{f:Cap3-5_multilenguaje_ros}
+            \end{figure}
+            
+        \subsubsection{Pequeño}
+        
+            Las convenciones ROS alientan a los contribuyentes a crear bibliotecas independientes y luego empaquetar esas bibliotecas para que puedan enviar y recibir mensajes hacia y desde otros módulos ROS. Esta capa adicional está destinada a permitir la reutilización de software fuera de ROS para otras aplicaciones, y simplifica en gran medida la creación de pruebas automatizadas utilizando herramientas de integración continua estándar.
+            
+        \subsubsection{Libre y Open Source}
+        
+            El núcleo de ROS se publica bajo la licencia BSD permisiva, que permite el uso comercial y no comercial. ROS pas\subsua datos entre módulos mediante comunicación entre procesos (IPC), lo que significa que los sistemas construidos con ROS pueden tener licencias detalladas de sus diversos componentes. Los sistemas comerciales, por ejemplo, a menudo tienen varios módulos de fuente cerrada que se comunican con una gran cantidad de módulos de fuente abierta. Los proyectos académicos y de pasatiempos suelen ser de código abierto. El desarrollo de productos comerciales a menudo se realiza completamente detrás de un firewall. Todos estos casos de uso, y más, son comunes y perfectamente válidos bajo la licencia ROS.
+            
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=0.3\linewidth]{Main/Chapter3/Images3/3-5/licnecia-bsd-ros.png}
+                \caption{Licencia de ROS}
+                \label{f:Cap3-5_multilenguaje_ros}
+            \end{figure}
+            
+        
+            
+    
+        
+    
+        
+    
+    
+       
+       
 
 \section{Interfaz de visualización (Rviz)}
     Desde
