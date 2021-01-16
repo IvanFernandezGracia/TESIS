@@ -3,16 +3,88 @@
     
     En este capitulo se explica la solución adoptada para validar la cinemática y dinámica de un robot delta. Para ello implementan 3 herramientas a este trabajo: ROS, RVIZ y ADAMS. 
     
-    \begin{center}
+    \begin{figure}[h]
+        \centering
         \smartdiagram[bubble diagram]{Solucion,ROS,RVIZ,ADAMS}
-    \end{center}
+        \caption{Caption}
+        \label{fig:cap6_intro_1}
+    \end{figure}
 
-    Diagrama de flujo (nodo principal + rviz + adams) en grandes explicaicons
-
-    SIN PSEUDOCODIGO!!!! SOLO NOMBRAR EL NOMBRE DEL ARCHIVO
-    Diagrama de flujo nodo principal path linear st ( sin nomine de funciones solo los pasos)
+    Se sigue una serie de pasos para validad la cinemática y dinamica del robot delta:
+    
+    \begin{enumerate}
+        \item ROS y RVIZ
+            \begin{itemize}
+                \item {Trayectoria: Se crear trayectoria lineal (trapezoidal) en el espacio cartesiano $XYZ$ , velocidad $\dot{X}\dot{Y}\dot{Z}$ y aceleración $\ddot{X}\ddot{Y}\ddot{Z}$ del centroide del efector a partir de un punto inicial $P_i(x,y,z)$, un punto final $P_f(x,y,z)$, velocidad maxima $v_{max}$ y aceleración maxima $a_{max}$ deseada}
+                \item {Cinemática inversa: Se calcular la trayectoria en el espacio articular $\theta_{i=1,2,3}$ de los motores del robot delta.}
+                \item {Visualización: En Rviz se inicia la simulación de la trayectoria creada en los puntos anteriores. Esta visualización es una primera aproximación (a simple vista) de la validación cinemática del robot delta. Específicamente valida la cinemática inversa.}
+                \item {Guardar trayectoria: Se guarda en un archivo .txt los caminos geométricos $XYZ$, $\theta_{i=1,2,3}$ y la escala de tiempo.
+                }
+                \item {Velocidad y aceleración de los actuadores: Por medio de la cinemática de velocidad (Jacobiano) y la cinemática de aceleración se calculan las velocidades $\dot{\theta}_{i=1,2,3}$ y las aceleraciones $\ddot{\theta}_{i=1,2,3}$ de la trayectoria en el espacio articular}
+                \item{ Torque Motores: Como ya se saben los datos de posición, velocidad y aceleración le los motores de los motores se calcula el torque de ellos $\tau_{i=1,2,3}$.}
+                \item {Guardar torque: Se guarda en un archivo .txt el torque calculado por los motores (actuadores) con los algoritmos compilados en ROS.
+                }
+            \end{itemize}
+        \item ADAMS
+        \begin{itemize}
+            \item {Importación de la trayectoria: Se importan los datos de la trayectoria en el espacio articular $\theta_{i=1,2,3}$ , espacio cartesiano $XYZ$ y la escala de tiempo desde ROS}
+            \item {Dibujar trayectoria: Se dibuja la trayectoria cartesiana $XYZ$ importada desde ROS en el espacio de simulación de ADAMS para comprobar a simple vista que la trayectoria articular (impuesta a los motores) sea la correcta al momento de la simulación. El efector debe seguir dicha trayectoria cartesiana lineal si es que el robot delta esta bien configurado en ADAMS}
+            \item {Trayectoria articular y escala de tiempo: Se simula la trayectoria creada en ROS en el robot delta configurado en ADAMS, imponiendo a los motores (o sensores tipo junta) la trayectoria articular $\theta_{i=1,2,3}$ y su respectiva escala de tiempo exportada desde ROS.}
+            \item {Guardar torque: Se guarda en un archivo .txt el torque producido por los motores en simulación en ADAMS.  }
+        \end{itemize}
+        \item Validación Cinemática y Dinámica
+        \begin{itemize}
+            \item {Se comparan los resultados de torque de ROS y ADAMS. Si estos tienen errores relativamente bajos se asume que los algoritmos de cinemática y dinámica creados y compilados en ROS y la configuración del robot delta en ADAMS son correctas.}
+        \end{itemize}  
+    \end{enumerate}
 
         \newpage
+        
+    \tikzstyle{process} = [rectangle, minimum width=3em, minimum height=2em, text centered, draw=blue, fill=gray!10]
+    \tikzstyle{startend} = [ellipse, minimum width=2em, minimum height=1em, text centered, draw=red, fill=gray!10]
+    \tikzstyle{line} = [draw, -latex']
+    \tikzstyle{process_final} = [rectangle, minimum width=3em, minimum height=2em, text centered, draw=green, fill=gray!10]
+    \begin{figure}[h!]
+    \centering
+    \hfill\\
+    \begin{tikzpicture}[node distance=2em]
+        \node (S) [startend] {ROS y RVIZ};
+        \node (S1) [process, below of=S, yshift= -2em]{\textbf{Trayectoria}};
+        \node (S2) [process, below of=S1, yshift=-2em]{\textbf{Cinematica Inversa}};
+        \node (S3) [process, below of=S2, yshift=-2em]{\textbf{Vizualizacion}};
+        \node (S4) [process, below of=S3, yshift=-2em]{\textbf{Guardar Trayectoria}};
+        \node (S5) [process, below of=S4, yshift=-2em]{\textbf{Velocidad y Aceleracion de los Actuadores}};
+        \node (S6) [process, below of=S5, yshift=-2em,]{\textbf{Torque Motores.}};
+        \node (S7) [process, below of=S6, yshift=-2em,]{\textbf{Guardar Torque}};
+        \node (S8) [startend, below of=S7, yshift=-2em]{ADAMS};
+        \node (S9) [process, below of=S8, yshift=-2em]{\textbf{importacion}};
+        \node (S10) [process, below of=S9, yshift=-2em,]{\textbf{Dibujar}};
+        \node (S11) [process, below of=S10, yshift=-2em,]{\textbf{Trayectoria}};    
+        \node (S12) [process, below of=S11, yshift=-2em,]{\textbf{Guardar Torque}};
+        \node (S13) [startend, below of=S12, yshift=-2em]{\textbf{Validacion Cinematica y Dinamica}};
+        \node (S14) [process_final, right of=S13, xshift=20em,]{\textbf{Comparar Torques}};
+        \draw [line] (S) -- (S1);
+        \draw [line] (S1) -- (S2);
+        \draw [line] (S2) -- (S3);
+        \draw [line] (S3) -- (S4);
+        \draw [line] (S4) -- (S5);
+        \draw [line] (S5) -- (S6);
+        \draw [line] (S6) -- (S7);
+        \draw [line] (S7) -- (S8);
+        \draw [line] (S8) -- (S9);
+        \draw [line] (S9) -- (S10);
+        \draw [line] (S10) -- (S11);
+        \draw [line] (S11) -- (S12);
+        \draw [line] (S12) -- (S13);
+        \draw [line] (S13) -- (S14);
+        \draw [line] (S7) -| (S14);
+        \draw [line] (S12) -| (S14);
+        \end{tikzpicture}
+    \caption{Caption}
+    \label{fig:cap6_intro_2}
+    \end{figure}
+     \newpage
+
 
 \section{Software ROS}
 
@@ -131,6 +203,12 @@
  \end{center}
    
     \newpage
+    
+    \subsection{Función Principal}
+
+
+    \newpage
+
 
     \subsection{Metodología A}
     
