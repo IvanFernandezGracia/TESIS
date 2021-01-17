@@ -23,6 +23,7 @@ Los pasos del diagrama de flujo son los siguientes:
 \end{enumerate}
 
 \section{Estructura de un robot delta}
+00X0 : reordenar los títulos del cap al diagrama de abajo en formato general, y luego explicar los software específicos para nosotros
 
     El robot delta puede ser subdivido por categorías de acuerdo al grupo estructural al que pertenezcan. Estas categorías facilitan la generación de conceptos para cada grupo de manera independiente \cite{Robot_parelelo_tipo}
     
@@ -173,7 +174,7 @@ Los pasos del diagrama de flujo son los siguientes:
         
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=1.3\linewidth]{Main/Chapter3/Images3/3-4/caracteristicas-ros.png}
+            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/3-4/caracteristicas-ros.png}
             \caption{Principales características de ROS}
             \label{f:Cap3-4_caracteristicas_ros}
         \end{figure}
@@ -191,11 +192,11 @@ Los pasos del diagrama de flujo son los siguientes:
         
     \subsection{Objetivos de ROS}
     
-        Todos los marcos de software imponen sus filosofías de desarrollo a sus colaboradores directa o indirectamente, a través de sus modismos y prácticas comunes. En términos generales, ROS sigue la filosofía de desarrollo de software de Unix en varios aspectos clave. Esto tiende a hacer que ROS se sienta "natural" para los desarrolladores que provienen de Unix, pero algo "críptico" al principio para aquellos que han utilizado principalmente entornos de desarrollo gráfico en Windows o Mac OS X. Los siguientes párrafos describen varios aspectos filosóficos de ROS.
+        Todos los marcos de software imponen sus filosofías de desarrollo a sus colaboradores directa o indirectamente, a través de sus modismos y prácticas comunes. En términos generales, ROS sigue la filosofía de desarrollo de software de Unix en varios aspectos clave. Esto tiende a hacer que ROS se sienta ``natural'' para los desarrolladores que provienen de Unix, pero algo ``críptico'' al principio para aquellos que han utilizado principalmente entornos de desarrollo gráfico en Windows o Mac OS X. Los siguientes párrafos describen varios aspectos filosóficos de ROS.
         
         \subsubsection{Peer to peer (Nodos)}
         
-            Los sistemas ROS consisten en numerosos programas pequeños de computadora que se conectan entre sí e intercambian mensajes continuamente. Estos mensajes viajan directamente de un programa a otro; no hay un servicio de enrutamiento central. Aunque esto hace que la "plumbing" subyacente sea más compleja, el resultado es un sistema que escala mejor a medida que aumenta la cantidad de datos.
+            Los sistemas ROS consisten en numerosos programas pequeños de computadora que se conectan entre sí e intercambian mensajes continuamente. Estos mensajes viajan directamente de un programa a otro; no hay un servicio de enrutamiento central. Aunque esto hace que la ``plumbing'' subyacente sea más compleja, el resultado es un sistema que escala mejor a medida que aumenta la cantidad de datos.
             
             \begin{figure}[htb]
                 \centering
@@ -206,11 +207,11 @@ Los pasos del diagrama de flujo son los siguientes:
             
         \subsubsection{Orientación hacia las herramientas}
         
-            Como lo demuestra la arquitectura duradera de Unix, se pueden crear sistemas de software complejos a partir de muchos programas pequeños y genéricos. A diferencia de muchos otros marcos de software de robótica, ROS no tiene un entorno de ejecución y desarrollo integrado canónico. Tareas como navegar por el árbol del código fuente, visualizar las interconexiones del sistema, trazar gráficamente los flujos de datos, generar documentación, registrar datos, etc., son todas realizadas por programas separados. Esto fomenta la creación de implementaciones nuevas y mejoradas, ya que (idealmente) se pueden intercambiar por implementaciones más adecuadas para un dominio de tarea en particular. Las versiones recientes de ROS permiten que muchas de estas herramientas se compongan en procesos únicos para mayor eficiencia o para crear interfaces coherentes para operadores o depuración, pero el principio sigue siendo el mismo: las herramientas individuales en sí mismas son relativamente pequeñas y genéricas.
+            Como lo demuestra la arquitectura duradera de Unix, se pueden crear sistemas de software complejos a partir de muchos programas pequeños y genéricos. A diferencia de muchos otros marcos de software de robótica, ROS no tiene un entorno de ejecución y desarrollo integrado canónico. Tareas como navegar por el árbol del código fuente, visualizar las interconexiones del sistema, trazar gráficamente los flujos de datos, generar documentación, registrar datos, etc, son todas realizadas por programas separados. Esto fomenta la creación de implementaciones nuevas y mejoradas, ya que (idealmente) se pueden intercambiar por implementaciones más adecuadas para un dominio de tarea en particular. Las versiones recientes de ROS permiten que muchas de estas herramientas se compongan en procesos únicos para mayor eficiencia o para crear interfaces coherentes para operadores o depuración, pero el principio sigue siendo el mismo: las herramientas individuales en sí mismas son relativamente pequeñas y genéricas.
             
         \subsubsection{Multilenguaje}
         
-            Muchas tareas de software son más fáciles de realizar en lenguajes de secuencias de comandos de "alta productividad" como Python o Ruby. Sin embargo, hay ocasiones en las que los requisitos de rendimiento exigen el uso de lenguajes más rápidos, como C ++. También hay varias razones por las que algunos programadores prefieren lenguajes como Lisp o MATLAB. Se han librado guerras interminables de correo electrónico, se están librando actualmente y, sin duda, se seguirá librando sobre qué idioma es el más adecuado para una tarea en particular. Reconociendo que todas estas opiniones tienen mérito, que los lenguajes tienen diferentes utilidades en diferentes contextos, y que la experiencia única de cada programador es muy importante al elegir un idioma, ROS eligió un enfoque multilingüe. Los módulos de software ROS se pueden escribir en cualquier idioma para el que se haya escrito una biblioteca cliente. En el momento de escribir este artículo, existen bibliotecas cliente para C ++, Python, LISP, Java, JavaScript, MATLAB, Ruby, Haskell, R, Julia y otros. Las bibliotecas de cliente ROS se comunican entre sí siguiendo una convención que describe cómo los mensajes se "aplanan" o "serializan" antes de transmitirse a través de la red. Este libro utilizará la biblioteca cliente de Python casi exclusivamente, para ahorrar espacio en los ejemplos de código y para su facilidad de uso general. Sin embargo, las tareas descritas en este libro se pueden realizar con cualquiera de las bibliotecas cliente.
+            Muchas tareas de software son más fáciles de realizar en lenguajes de secuencias de comandos de "alta productividad" como Python o Ruby. Sin embargo, hay ocasiones en las que los requisitos de rendimiento exigen el uso de lenguajes más rápidos, como C ++. También hay varias razones por las que algunos programadores prefieren lenguajes como Lisp o MATLAB. Se han librado guerras interminables de correo electrónico, se están librando actualmente y, sin duda, se seguirá librando sobre qué idioma es el más adecuado para una tarea en particular. Reconociendo que todas estas opiniones tienen mérito, que los lenguajes tienen diferentes utilidades en diferentes contextos, y que la experiencia única de cada programador es muy importante al elegir un idioma, ROS eligió un enfoque multilingüe. Los módulos de software ROS se pueden escribir en cualquier idioma para el que se haya escrito una biblioteca cliente. En el momento de escribir este artículo, existen bibliotecas cliente para C ++, Python, LISP, Java, JavaScript, MATLAB, Ruby, Haskell, R, Julia y otros. Las bibliotecas de cliente ROS se comunican entre sí siguiendo una convención que describe cómo los mensajes se ``aplanan'' o ``serializan'' antes de transmitirse a través de la red. Este libro utilizará la biblioteca cliente de Python casi exclusivamente, para ahorrar espacio en los ejemplos de código y para su facilidad de uso general. Sin embargo, las tareas descritas en este libro se pueden realizar con cualquiera de las bibliotecas cliente.
             
             \begin{figure}[htb]
                 \centering
@@ -245,8 +246,144 @@ Los pasos del diagrama de flujo son los siguientes:
        
        
 
-\section{Interfaz de visualización (Rviz)}
-    Desde
+\section{Visualización}
+    
+    \subsection{Interfaz de visualización gráfica ROS visualization (Rviz)}
+
+        RVIZ es la abreviación de ROS visualización. Es un entorno de visualización 3D de uso general para robots, sensores y algoritmos. Permite visualizar mapas, robots, objetos, datos láser, imágenes de cámaras, nubes de puntos y marcadores.   Como la mayoría de las herramientas ROS, se puede utilizar para cualquier robot y configurar rápidamente para una aplicación en particular.
+        
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=0.5\linewidth]{Main/Chapter3/Images3/3-6/logo-rviz.png}
+            \caption{Logo del software Rviz}
+            \label{f:Cap3-6_logo_rviz}
+        \end{figure}
+        
+        RVIZ proporciona una interfaz sencilla para elegir la información que queremos que se muestre. La Figura 3.2 muestra un ejemplo de la interfaz RVIZ. A la izquierda podemos ver todos los elementos que muestra RVIZ. Cada elemento debe configurarse con el nombre de un tema específico. Entonces RVIZ se suscribe a ese tema y visualiza su información. En el medio está la ventana principal donde se muestra toda la información y a la izquierda podemos elegir las propiedades de la herramienta y cambiar entre diferentes vistas. RVIZ también permite al usuario crear complementos para agregar nuevas capacidades de visualización.
+        
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/3-6/interfaz-rviz.png}
+            \caption{Interfaz principal de Rviz}
+            \label{f:Cap3-6_interfaz_rviz}
+        \end{figure}
+    
+    \subsection{Interfaz de visualización gráfica ROS visualization (Rviz)}
+    
+        Un marco de coordenadas o frame es un concepto importante en ROS. Cualquier robot puede tener varios componentes, como un láser, una cámara, un sonar o brazos, y pueden tener un marco de coordenadas adjunto. Muchos algoritmos ROS requieren realizar un seguimiento de todos estos marcos de coordenadas.
+        
+        TF son las siglas en ingles de marco de transformadas (Transform frames) y es una de las librerías fundamentales de ROS. TF está diseñada para proporcionar una forma estándar de realizar un seguimiento de los marcos de coordenadas y transformar los datos dentro de todo el sistema a lo largo del tiempo. El paquete TF puede rastrear y mantener la relación entre múltiples marcos de coordenadas. Su función es proporcionar herramientas y funciones para definir todos los marcos de coordenadas de nuestro robot y transformar datos de un marco a otro, como por ejemplo puntos o vectores.
+        
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/3-6/ejemplo-multiples-frames-rviz.png}
+            \caption{Múltiples ``frames'' en Rviz}
+            \label{f:Cap3-6_frames_rviz}
+        \end{figure}
+        
+        La biblioteca tf opera en un sistema distribuido, por lo que la información correspondiente a los marcos de coordenadas de un robot está disponible para todos los componentes ROS en cualquier parte del sistema. Se crea una estructura de árbol con todos los marcos de coordenadas del sistema y todas las transformaciones se publican a través del tema “tf”.
+      
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/3-6/estructura-arbol-tf.png}
+            \caption{nose}
+            \label{f:Cap3-6_nose1}
+        \end{figure}    
+        
+        Esta biblioteca tiene dos módulos estándar, broadcaster y listener. Estos módulos están diseñados para integrarse con el ecosistema ROS, pero generalmente son útiles fuera de ROS [20]. El broadcaster envía actualizaciones periódicamente de la pose de los fotogramas de coordenadas al resto del sistema. El sistema es capaz de tener muchos broadcaster que proporcionan información sobre una parte diferente del robot [19] [21]. El listener recopila los valores recibidos y almacena en búfer todos los fotogramas de coordenadas que se emiten en el sistema y consulta las transformaciones específicas entre fotogramas [21].
+
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/3-6/esquema-funcionamiento-tf.png}
+            \caption{Ecosistema de la biblioteca TF}
+            \label{f:Cap3-6_ecosistema_tf}
+        \end{figure}   
+        
+        Además, TF ofrece una serie de herramientas o aplicaciones que facilitan al usuario la visualización del estado de las transformadas como:
+        
+        \begin{itemize}
+            \item \textbf{tf\_monitor:} Imrpime la información sobre el árbol de transformación actual.
+            \item \textbf{tf\_echo:} Imprime información sobre la transformación entre dos fotogramas.
+            \item \textbf{tf\_tree:} Crea un gráfico visual del árbol de transformación (en formato pdf).
+        \end{itemize}
+        
+        En la Figura \ref{f:Cap3-6_sistema_arbol_tf} se muestra un árbol de transformada haciendo uso de la herramienta rqt\_tf\_tree. En él se puede observar los distintos frames del sistema y sus relaciones
+        
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/3-6/ejemplo-frames-sistema-arbol.png}
+            \caption{Frames de un sistema visualizado mediante tf\_tree}
+            \label{f:Cap3-6_sistema_arbol_tf}
+        \end{figure} 
+        
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/3-6/nose2.png}
+            \caption{NO SE QUE ES}
+            \label{f:Cap3-6_NOSE_tf}
+        \end{figure} 
+        
+        Hay dos marcos de referencia que son importantes de conocer para obtener la visualización adecuada en Rviz:
+        
+        \begin{itemize}
+            \item \textbf{Fixed frame:} Es el más importante de los dos. El fixed frame o marco fijo es el marco de referencia utilizado como frame global. Por norma general, este marco se suele asociar al mapa o ``mundo'' para poder visualizar los datos de manera correcta.
+            \item \textbf{Target frame:} Es el sistema de coordenadas que sirve como referencia, por ejemplo, a la cámara o vista del visualizador, pudiendo tener distintas vistas e ir cambiando dependiendo de la perspectiva que se desee visualizar.
+        \end{itemize}
+        
+        Resumiendo esta sección, TF es una biblioteca con las siguientes características:
+        
+        \begin{itemize}
+            \item Es una herramienta para realizar un seguimiento de los marcos de coordenadas a lo largo del tiempo.
+            \item Mantiene la relación entre los marcos de coordenadas en una estructura de árbol almacenada en el tiempo
+            \item Permite al usuario transformar puntos y vectores entre marcos de coordenadas en cualquier momento deseado
+            \item Es implementado como modelo de publisher/subscriber en los temas con nombres /tf y /tf\_statics
+        \end{itemize}
+        
+        
+    \subsection{Unified Robot Description Format (URDF)}
+    
+        \subsubsection{Introducción URDF}
+    
+        En ROS, es posible visualizar un modelo de un robot mediante el uso de archivos de formato de descripción de robot unificado (URDF). Sin embargo, solo aquellos robots que tienen eslabones rígidos conectados mediante articulaciones pueden ser descritos mediante modelos URDF.  Se puede usar un modelo URDF para calcular la cinemática, agregar nuevos marcos de coordenadas y moverlos de acuerdo con los valores del codificador del robot. Además, puede incluir otras propiedades físicas como inercia, colisiones, dinámica de articulaciones, etc. 
+        
+        Los archivos URDF están basados en XML y como tal, están compuestos por etiquetas de XML especiales que pueden ser leídas para extracción de información. A la lectura del archivo para extraer la información importante del modelo se denomina parsing y al programa o función que lo realiza, parser.
+        
+        La descripción del modelo consiste básicamente en de unir dos conjuntos: el conjunto de enlaces (link) y el conjunto de uniones (Joint). La forma de construir y visualizar un modelo de robot en URDF es escribir y compilar el archivo URDF. Una vez que se crea la representación 3D de un robot mediante el uso de un archivo URDF, es posible utilizar dicha representación para simular el movimiento del robot. Para ello, el usuario debe publicar las condiciones del robot en TF, utilizando un nodo (o nodos) para publicar la información de transformación [22].
+        
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/3-7/representacion-de-eslabon-en-urdf.png}
+            \caption{Representación de un eslabón en URDF}
+            \label{f:Cap3-7_eslabon_urdf}
+        \end{figure} 
+        
+        \subsubsection{Links}
+        
+        El eslabones o enlaces (conjunto link) describen la parte física rígida del robot y permite especificar sus propiedades, como tamaño, forma, color o una malla 3D compleja importada. Consta de tres elementos:
+    
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/3-7/eslabon2.png}
+            \caption{nose}
+            \label{f:Cap3-7_noseee_urdf}
+        \end{figure} 
+
+        \begin{enumerate}
+            \item \textbf{Inertial:} Especifica las propiedades inerciales del link (posición del centro de masas, la masa y la matriz Inercia)
+            \item \textbf{Visual:} en este elemento viene especificado como debe estar representado el link. Es posible usar solidos simples como una esfera o un cilindro, o hacer representaciones más trabajadas como mallados o nube de puntos. Del mismo modo, también y se pueden definir los colores e importar texturas.
+            \item \textbf{Collision:} Describe las propiedades de colisión de los links. Puede ser una forma diferente a la visual, como una figura más simple que sea representativa, a fin de reducir los tiempos de calculo en las simulaciones.
+        \end{enumerate}
+        
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/3-7/representacion-de-eslabon-en-urdf.png}
+            \caption{Representación de un eslabón en URDF}
+            \label{f:Cap3-7_eslabon_urdf}
+        \end{figure} 
+        
+        
+    
+    
     
 \section{Software Algorithm Development and mining (ADAMS)}
 Desde

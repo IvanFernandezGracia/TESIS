@@ -18,7 +18,7 @@
                 \item {Trayectoria: Se crear trayectoria lineal (trapezoidal) en el espacio cartesiano $XYZ$ , velocidad $\dot{X}\dot{Y}\dot{Z}$ y aceleración $\ddot{X}\ddot{Y}\ddot{Z}$ del centroide del efector a partir de un punto inicial $P_i(x,y,z)$, un punto final $P_f(x,y,z)$, velocidad maxima $v_{max}$ y aceleración maxima $a_{max}$ deseada}
                 \item {Cinemática inversa: Se calcular la trayectoria en el espacio articular $\theta_{i=1,2,3}$ de los motores del robot delta.}
                 \item {Visualización: En Rviz se inicia la simulación de la trayectoria creada en los puntos anteriores. Esta visualización es una primera aproximación (a simple vista) de la validación cinemática del robot delta. Específicamente valida la cinemática inversa.}
-                \item {Guardar trayectoria: Se guarda en un archivo .txt los caminos geométricos $XYZ$, $\theta_{i=1,2,3}$ y la escala de tiempo.
+                \item {Guardar trayectoria: Se guarda en un archivo .txt los caminos geométricos  $XYZ$, $\theta_{i=1,2,3}$ y la escala de tiempo.
                 }
                 \item {Velocidad y aceleración de los actuadores: Por medio de la cinemática de velocidad (Jacobiano) y la cinemática de aceleración se calculan las velocidades $\dot{\theta}_{i=1,2,3}$ y las aceleraciones $\ddot{\theta}_{i=1,2,3}$ de la trayectoria en el espacio articular}
                 \item{ Torque Motores: Como ya se saben los datos de posición, velocidad y aceleración le los motores de los motores se calcula el torque de ellos $\tau_{i=1,2,3}$.}
@@ -40,29 +40,34 @@
 
         \newpage
         
+        %00X0 ERROR REORDENAR FLUJO https://lucid.app/lucidchart/invitations/accept/d9fb2a50-514b-4dbb-a955-3f29460f113e
+        
     \tikzstyle{process} = [rectangle, minimum width=3em, minimum height=2em, text centered, draw=blue, fill=gray!10]
     \tikzstyle{startend} = [ellipse, minimum width=2em, minimum height=1em, text centered, draw=red, fill=gray!10]
     \tikzstyle{line} = [draw, -latex']
     \tikzstyle{process_final} = [rectangle, minimum width=3em, minimum height=2em, text centered, draw=green, fill=gray!10]
+    \begin{center}
     \begin{figure}[h!]
     \centering
     \hfill\\
     \begin{tikzpicture}[node distance=2em]
         \node (S) [startend] {ROS y RVIZ};
-        \node (S1) [process, below of=S, yshift= -2em]{\textbf{Trayectoria}};
-        \node (S2) [process, below of=S1, yshift=-2em]{\textbf{Cinematica Inversa}};
-        \node (S3) [process, below of=S2, yshift=-2em]{\textbf{Vizualizacion}};
-        \node (S4) [process, below of=S3, yshift=-2em]{\textbf{Guardar Trayectoria}};
-        \node (S5) [process, below of=S4, yshift=-2em]{\textbf{Velocidad y Aceleracion de los Actuadores}};
-        \node (S6) [process, below of=S5, yshift=-2em,]{\textbf{Torque Motores.}};
-        \node (S7) [process, below of=S6, yshift=-2em,]{\textbf{Guardar Torque}};
+        \node (S1) [process, below of=S, yshift= -2em]{\textbf{Crear trayectoria lineal espacio cartesiano $XYZ$ , $\dot{X}\dot{Y}\dot{Z}$ y $\ddot{X}\ddot{Y}\ddot{Z}$ }};
+        \node (S2) [process, below of=S1, yshift=-2em]{\textbf{Calcular trayectoria en espacio articular $\theta_{i=1,2,3}$ (cinematica inversa)}};
+        \node (S3) [process, below of=S2, yshift=-2em]{\textbf{Vizualizacion de Trayectoria  a partir de $XYZ$ y $\theta_{i=1,2,3}$ configurando el robot delta en Rviz }};
+        \node (S4) [process, below of=S3, yshift=-2em]{\textbf{Guardar Trayectoria  $XYZ$, $\theta_{i=1,2,3}$ y la escala de tiempos $s(t)$ en archivo .txt}};
+        \node (S5) [process, below of=S4, yshift=-2em]{\textbf{Calcular la velocidad angular  $\dot{\theta}_{i=1,2,3}$ y aceleración angular  $\ddot{\theta}_{i=1,2,3}$ de los actuadores}};
+        \node (S6) [process, below of=S5, yshift=-2em,]{\textbf{Calcular torque de los motores  $\tau_{i=1,2,3}$ a partir de los datos adquiridos en los pasos anteriores.}};
+        \node (S7) [process, below of=S6, yshift=-2em,]{\textbf{Guardar Torque $\tau_{i=1,2,3}$ en archivo .txt}};
+        
         \node (S8) [startend, below of=S7, yshift=-2em]{ADAMS};
-        \node (S9) [process, below of=S8, yshift=-2em]{\textbf{importacion}};
-        \node (S10) [process, below of=S9, yshift=-2em,]{\textbf{Dibujar}};
-        \node (S11) [process, below of=S10, yshift=-2em,]{\textbf{Trayectoria}};    
-        \node (S12) [process, below of=S11, yshift=-2em,]{\textbf{Guardar Torque}};
+        \node (S9) [process, below of=S8, yshift=-2em]{\textbf{Importación de la trayectoria $\theta_{i=1,2,3}$, $XYZ$ y la escala de tiempo $s(t)$ desde ROS}};
+        \node (S10) [process, below of=S9, yshift=-2em,]{\textbf{Dibujar $XYZ$ en el espacio de simulacion de ADAMS}};
+        \node (S11) [process, below of=S10, yshift=-2em,]{\textbf{Insertar trayectoria $\theta_{i=1,2,3}$ y escala de tiempo $s(t)$ a los motores o juntas creadas en ADAMS}};    
+        \node (S12) [process, below of=S11, yshift=-2em,]{\textbf{Guardar Torque $\tau_{i=1,2,3}$ en archivo .txt}};
         \node (S13) [startend, below of=S12, yshift=-2em]{\textbf{Validacion Cinematica y Dinamica}};
-        \node (S14) [process_final, right of=S13, xshift=20em,]{\textbf{Comparar Torques}};
+        \node (S14) [process_final, right of=S13, xshift=20em,]{\textbf{Comparar Torques $\tau_{i=1,2,3}$}};
+        
         \draw [line] (S) -- (S1);
         \draw [line] (S1) -- (S2);
         \draw [line] (S2) -- (S3);
@@ -83,6 +88,8 @@
     \caption{Caption}
     \label{fig:cap6_intro_2}
     \end{figure}
+    \end{center}
+
      \newpage
 
 
@@ -204,8 +211,48 @@
    
     \newpage
     
-    \subsection{Función Principal}
+    \subsection{Nodo Principal}
+    Los algoritmos de los métodos A y B son utilizados finalmente para obtener el toque de los motores de un robot delta a partir de una trayectoria lineal especifica del efector final. Estos algoritmos son compilados en un nodo llamado: nodo principal. El pseudocódigo de el nodo es el siguiente:     
+    
+      \hspace{1cm}
 
+
+    \begin{algorithm}[H]
+        \caption{Nodo Principal} 
+        \label{algo:cap6_00}
+        \SetKwInput{KwInput}{Input}                % Set the Input
+        \SetKwInput{KwOutput}{Output}              % set the Output
+        \SetKwInput{KwObjetivo}{Objetivo}                % Set the Input
+        \SetKwInput{Kwfile}{Nombre archivo}                % Set the Input
+        
+        \DontPrintSemicolon
+          \KwObjetivo {Compilar los algoritmos de los Metodos A y B para obtener el torque de los motores del robot delta}
+          \Kwfile{$path.tm1.v2.adams.py$}
+          \KwInput{Punto inicial$P_i(x,y,z)$, punto final $P_f(x,y,z)$, velocidad maxima $v_{max}$ y aceleración maxima $a_{max}$ (para crear trayectoria)}
+          \KwOutput{Torque $\tau_{i=1,2,3}$ de los métodos A y B}
+          
+          % Set Function Names{\theta }_1,{\theta }_2,{\theta }_3
+          \SetKwFunction{FSub}{nodo}
+           \SetKwProg{Fn}{}{:}{}
+            \Fn{\FSub{$P_i(x,y,z),P_f(x,y,z),v_{max} ,a_{max}$}}{
+                \tcc{Crear Trayectoria}
+                $[XYZ ; \dot{X}\dot{Y}\dot{Z} ; \ddot{X}\ddot{Y}\ddot{Z},s(t))]=trayectoria(P_i(x,y,z),P_f(x,y,z),v_{max} ,a_{max})$\;            
+            
+                \tcc{Metodo A}
+                $[\theta_{1},\theta_{2},\theta_{3}]=cinematica.inversa(XYZ)$\;
+                $visualizacion.trayectoria.(XYZ,\theta_{1}\theta_{2}\theta_{3},s(t))$ \tcp*{RVIZ}       
+                $guardar.trayectoria (XYZ,\theta_{1}\theta_{2}\theta_{3},s(t))$\;
+                $( \dot{\theta}_{i=1,2,3} \ddot{\theta}_{i=1,2,3})=velocidad.y.aceleracion.angular(XYZ ; \dot{X}\dot{Y}\dot{Z} ; \ddot{X}\ddot{Y}\ddot{Z})$ \; 
+                $\tau_{A,i=1,2,3} =torque.A(XYZ ; \dot{X}\dot{Y}\dot{Z} ; \ddot{X}\ddot{Y}\ddot{Z},{\theta}_{i=1,2,3},\dot{\theta}_{i=1,2,3} \ddot{\theta}_{i=1,2,3})$\;
+
+                \tcc{Metodo B}
+                El metodo B tiene exactamente los mismos pasos del metodo A\;
+                $\tau_{B,i=1,2,3} =torque.A(XYZ ; \dot{X}\dot{Y}\dot{Z} ; \ddot{X}\ddot{Y}\ddot{Z},{\theta}_{i=1,2,3},\dot{\theta}_{i=1,2,3} \ddot{\theta}_{i=1,2,3})$\;
+                
+                
+                \KwRet  $\tau_{A,i=1,2,3} $ y $ \tau_{B,i=1,2,3}$\;
+                }
+    \end{algorithm}
 
     \newpage
 
@@ -1341,20 +1388,37 @@
 
 \section{Interfaz de visualización Rviz}
 
-    ANGULOS NO PONERLOS CODIGO ANGULOS SE COPIAN E LA TESIS TANTO
-    
-    MOSTRAR Y EXPLICAR CODIGO XML CON IMAGENES PADRRES E HIJOS 
-    
-    L1 L2 PARAMETROS DE CAP 5
-    
-    DIAGRAMA DE FLUJO COMO EL DE FUNCIONES DE SOFARE ROS 
-    RVIZ TF POSICIONADOR RVIZ
-    
-    CODIFOS:1  ANGULOS INTERIORES 2 POSICIONADOR RVIZ TIEMPO REAL 3 XML URFD 4 CONEXION XML URFD CON TF CON RVIZ NOMBRE ELEMENTOS
-    
+   % ANGULOS NO PONERLOS CODIGO ANGULOS SE COPIAN E LA TESIS TANTO
+   % DIAGRAMA DE FLUJO COMO EL DE FUNCIONES DE SOFARE ROS 
     
 
+    %CODIFOS:
+    %1  ANGULOS INTERIORES 
+    %2 POSICIONADOR RVIZ TIEMPO REAL 
+    %3 XML URFD 
+    %4 CONEXION XML URFD CON TF CON RVIZ NOMBRE ELEMENTOS
+    
+    \newpage
+       
+       
+       
+     \subsection{Conexion ROS-RVIZ}
+         %1  ANGULOS INTERIORES 
+    %RVIZ TF POSICIONADOR RVIZ
+     %2 POSICIONADOR RVIZ TIEMPO REAL 
+    %4 CONEXION XML URFD CON TF CON RVIZ NOMBRE ELEMENTOS
 
+      \newpage
+
+ 
+    \subsection{URDF}
+        %MOSTRAR Y EXPLICAR CODIGO XML CON IMAGENES PADRRES E HIJOS 
+    %L1 L2 PARAMETROS DE CAP 5
+     %3 XML URFD 
+
+      \newpage
+  
+  
 
 
 
