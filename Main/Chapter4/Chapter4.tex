@@ -702,6 +702,115 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
     
     \subsection{Modelación Cinematica de Aceleracion}
 
+    En esta sección se presentan las ecuaciones para determinar la aceleración angular de los actuadores del robot delta. La aceleración se determina derivando matricial mente la ecuación (\ref{eq:cap4_eq_26}) de la sección \ref{ma_cvel} modelacion cinemática de velocidad para el método A.
+
+    \vspace{-2.5em}
+
+    \begin{align}
+    \begin{split}
+          \ddot{ \theta }=J_{ \theta }^{-1}\ast \left[ \dot{J}_{x}v_{p}+J_{x}a_{p}-\dot{J}_{ \theta }\dot{ \theta } \right] 
+    \end{split}
+    \label{eq:cap4_eq_34}
+    \end{align}
+    
+    
+    Las matrices en la ecuacion (\ref{eq:cap4_eq_34}) son: 
+        \vspace{-0.5em}
+    \begin{multline}
+            \left[ \begin{matrix}
+        \ddot{ \theta }_{11}~\\
+        \ddot{ \theta }_{12}\\
+        \ddot{ \theta }_{13}~\\
+        \end{matrix}\right] = \left[ \begin{matrix}
+        J_{1 \theta }~  &  0  &  0\\
+        0  &  J_{2 \theta }~~  &  0\\
+        0  &  0  &  J_{3 \theta }~\\
+        \end{matrix} \right] ^{-1} \\
+    \ast         \left[  \left[ \begin{matrix}
+        \dot{J}_{1x}  &  \dot{J}_{1y}  &  \dot{J}_{1z}\\
+        \dot{J}_{2x}  &  \dot{J}_{2y}  &  \dot{J}_{2z}\\
+        \dot{J}_{3x}  &  \dot{J}_{3y}  &  \dot{J}_{3z}\\
+        \end{matrix}\right]   \left[ \begin{matrix}
+        v_{px}\\
+        v_{py}\\
+        v_{pz}\\
+        \end{matrix}\right]+\left[ \begin{matrix}
+        J_{1x}  &  J_{1y}  &  J_{1z}\\
+        J_{2x}  &  J_{2y}  &  J_{2z}\\
+        J_{3x}  &  J_{3y}  &  J_{3z}\\
+        \end{matrix} \right] \left[ \begin{matrix}
+        a_{px}\\
+        a_{py}\\
+        a_{pz}\\
+        \end{matrix}\right] - \left[ \begin{matrix}
+        \dot{J}_{1 \theta }~  &  0  &  0\\
+        0  &  \dot{J}_{2 \theta }~~  &  0\\
+        0  &  0  &  \dot{J}_{3 \theta }~\\
+        \end{matrix} \right] \left[ \begin{matrix}
+        \dot{ \theta _{11}}~\\
+        \dot{ \theta _{12}}\\
+        \dot{ \theta _{13}}~\\
+        \end{matrix} \right]  \right] ~
+        \label{eq:cap4_eq_35}
+    \end{multline}
+    
+
+    Donde:
+    \vspace{-1.0em}
+    
+    
+        \begin{align}
+        \dot{J}_{ix}={}& A'_{ix}-B'_{ix}
+        \label{eq:cap4_eq_36} \\
+        A'_{ix}={}& cos \phi _{i}\ast \left[  \left[ -\sin  \left(  \theta _{1i}+ \theta _{2i} \right) \ast \left( \dot{ \theta }_{1i}+\dot{ \theta }_{2i} \right) \ast sin  \theta _{3i} \right]  + \left[ \cos  \left(  \theta _{1i}+ \theta _{2i} \right) \ast cos  \theta _{3i}\ast\dot{ \theta }_{3i} \right]  \right]
+        \label{eq:cap4_eq_37} \\
+        B'_{ix}={}& sin \phi _{i}\ast \left[ -sin \theta _{3i}\ast\dot{ \theta }_{3i} \right] 
+        \label{eq:cap4_eq_38} \\
+        \dot{J}_{iy}={}& A'_{iy}+B'_{iy}
+        \label{eq:cap4_eq_39} \\
+        A'_{iy}={}& sin \phi _{i}\ast \left[  \left[ -sin \left(  \theta _{1i}+ \theta _{2i} \right) \ast \left( \dot{ \theta }_{1i}+\dot{ \theta }_{2i} \right) \ast sin~ \theta _{3i} \right] + \left[ \cos  \left(  \theta _{1i}+ \theta _{2i} \right) \ast cos  \theta _{3i}\ast\dot{ \theta }_{3i} \right]  \right]
+        \label{eq:cap4_eq_40} \\
+        B'_{iy}={}& cos \phi _{i}\ast \left[ -sin  \theta _{3i}\ast\dot{ \theta }_{3i} \right]
+        \label{eq:cap4_eq_41} \\
+        \dot{J}_{iz}={}& \left[ \cos  \left(  \theta _{1i}+ \theta _{2i} \right) \ast \left( \dot{ \theta }_{1i}+\dot{ \theta }_{2i} \right) \ast sin  \theta _{3i} \right] + \left[ sin \left(  \theta _{1i}+ \theta _{2i} \right) \ast cos \theta _{3i}\ast sin\dot{ \theta }_{3i} \right]
+        \label{eq:cap4_eq_42} \\
+        \dot{J}_{i \theta }={}&a \left[ ~ \left[ \cos  \theta _{2i}\ast\dot{ \theta }_{2i}\ast \sin  \theta _{3i} \right] + \left[ \sin  \theta _{2i}\ast cos \theta _{3i}\ast\dot{ \theta }_{3i} \right]  \right]
+        \label{eq:cap4_eq_43} \\
+    \end{align}
+        
+\newpage
+
+    \begin{align}
+        \dot{ \theta }_{3i}={}& \left[ \frac{-1}{\sqrt[]{1- \left( \frac{c_{yi}}{b} \right) ^{2}~}} \right] \ast \left[ \frac{c_{yi}^{'}}{b} \right]
+        \label{eq:cap4_eq_44}\\
+        c_{yi}^{'}={}& \left[ -sin \phi _{i}\ast v_{px} + cos \phi _{i}\ast v_{py} \right]
+        \label{eq:cap4_eq_45}\\
+       \dot{ \theta }_{2i}={}& \left[ \frac{-1}{\sqrt[]{1- \left(  K \right) ^{2}~}} \right] \ast \left[ K' \right]
+        \label{eq:cap4_eq_46}\\
+        K={}& \frac{c_{xi}^{2}+c_{yi}^{2}+c_{zi}^{2}- a^{2}-b^{2}~}{\text{2 ab }sin~ \theta _{3i}}
+        \label{eq:cap4_eq_47}\\
+       K^{'}={}& \left[ \frac{1}{2ab} \right] \ast \left[ \frac{A_{11}-A_{12}~}{B_{1}} \right]
+        \label{eq:cap4_eq_48}\\
+        A_{11}={}& \left[ 2c_{xi}c_{xi}^{'}+2c_{yi}c_{yi}^{'}+2c_{zi}c_{zi}^{'} \right] \ast \left[ sin  \theta _{3i} \right]
+        \label{eq:cap4_eq_49}\\
+        A_{12}={}& \left[ c_{xi}^{2}+c_{yi}^{2}+c_{zi}^{2}- a^{2}-b^{2} \right] \ast \left[ cos~ \theta _{3i}\ast\dot{ \theta }_{3i} \right]
+        \label{eq:cap4_eq_50}\\
+        B_{1}={}& \left[ \sin  \theta _{3i} \right] ^{2}
+        \label{eq:cap4_eq_51}\\
+       c_{xi}^{'}={}& cos \phi _{i}\ast v_{px}+~ sin \phi _{i}\ast v_{py}
+        \label{eq:cap4_eq_52}\\
+       c_{zi}^{'}={}& v_{pz}
+        \label{eq:cap4_eq_53}
+    \end{align}
+
+
+         \newpage
+
+
+
+
+
+
     \newpage
 
     
