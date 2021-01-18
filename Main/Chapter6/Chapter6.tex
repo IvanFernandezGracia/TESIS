@@ -1407,7 +1407,7 @@
     %RVIZ TF POSICIONADOR RVIZ
      %2 POSICIONADOR RVIZ TIEMPO REAL 
     %4 CONEXION XML URFD CON TF CON RVIZ NOMBRE ELEMENTOS
-
+        Una vez que se crea la representación 3D de un robot mediante el uso de un archivo URDF, es posible utilizar dicha representación para simular el movimiento del robot. ara ello, el usuario debe publicar las condiciones del robot en TF, utilizando un nodo (o nodos) para publicar la información de transformación 
       \newpage
 
  
@@ -1415,6 +1415,254 @@
         %MOSTRAR Y EXPLICAR CODIGO XML CON IMAGENES PADRRES E HIJOS 
     %L1 L2 PARAMETROS DE CAP 5
      %3 XML URFD 
+
+        Para visualizar un modelo de un robot se usa un archivos de formato de descripción de robot unificado (URDF) basados en XML. En esta sección se presenta la configuración del modelo del robot delta mostrando el código para los enlaces, juntas y la respectiva unión padre-hijo para cada uno de ellos. La nomenclatura utilizada es la del capitulo \ref{CAP5}. El nombre del archivo donde estan contenidos todos estos codigos es robot.urdfm1.adams.urdf.  
+        
+       \subsubsection{Base Fija}
+        La base fija es un enlace que se le nombra \textbf{"base\_link"} y se representa como un cilindro de radio \textbf{$R_a$}.
+
+             \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.6\linewidth]{Main/Chapter6/Images6/cap6_basefija.png}
+                \caption{Fotografía de un paraguas}
+                \label{f:Cap6_urdf_1}
+            \end{figure}  
+
+
+        \lstset{language=XML}
+        \begin{lstlisting}
+<!--BASE SUPERIOR:____________________-->
+<link name="base_link">
+	<visual>
+		<geometry>
+			<cylinder length="0.005" radius="0.210"/> 
+		</geometry>
+		<material name="gris">
+			<color rgba="0.55 0.55 0.55 0.5"/>
+		</material>
+	</visual>
+</link>
+        \end{lstlisting}
+
+      \newpage
+
+       \subsubsection{Brazos}
+        Los brazos son enlaces que se le nombra \textbf{"brazo1 , brazo2 y brazo3"} y se representan como un paralelepípedo tipo box de largo \textbf{$L_a$}. Estos brazos se unen a la base fija a través de una junta tipo revoluta que representan los motores o actuadores del robot delta. Las juntas se les asignan los nombres \textbf{"base\_brazo1 , base\_brazo2 y base\_brazo3"} para cada brazo respectivamente. En el código de las juntas se configura las conexiones padre-hijo.
+        
+        
+             \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.4\linewidth]{Main/Chapter6/Images6/cap6_brazo.png}
+                \caption{Fotografía de un paraguas}
+                \label{f:Cap6_urdf_2}
+            \end{figure}  
+            
+
+        \lstset{language=XML}
+        \begin{lstlisting}
+<!--BRAZOS SUPERIORES:____________________-->
+<!--BRAZO_1-->
+<link name="brazo1">
+	<visual>
+		<origin xyz="0.310 0 0" rpy="0 0 0"/> <!--La/2-->
+		<geometry>
+			<box size="0.620 0.003 0.003"/> <!--La -->
+		</geometry>
+		<material name="blanco">
+			<color rgba="0.9 0.9 0.9 1"/>
+		</material>
+	</visual>
+</link>
+<joint name="base_brazo1" type="revolute">
+	<axis xyz="0 1 0"/>
+	<limit effort="100.0" lower="0.0" upper="1.8" velocity="0.5"/>
+	<parent link="base_link"/>
+	<child link="brazo1"/>
+	<origin xyz="-0.181865335 0.105 0" rpy="0 0 2.61799"/> 
+</joint>
+
+<!--BRAZO_2-->
+<link name="brazo2">
+	<visual>
+		<origin xyz="0.310 0 0" rpy="0 0 0"/> <!--La/2-->
+		<geometry>
+			<box size="0.620 0.003 0.003"/>  <!--La -->
+		</geometry>
+		<material name="blanco"/>
+	</visual>
+</link>
+
+<joint name="base_brazo2" type="revolute">
+	<axis xyz="0 1 0"/>
+	<limit effort="100.0" lower="0.0" upper="1.8" velocity="0.5"/>
+	<parent link="base_link"/>
+	<child link="brazo2"/>
+	<origin xyz="0 -0.210 0" rpy="0 0 -1.57075"/> 
+</joint>
+
+<!--BRAZO_3-->
+<link name="brazo3">
+	<visual>
+		<origin xyz="0.310 0 0" rpy="0 0 0"/><!--La/2-->
+		<geometry>
+			<box size="0.620 0.003 0.003"/> <!--La -->
+		</geometry>
+		<material name="blanco"/>
+	</visual>
+</link>
+<joint name="base_brazo3" type="revolute">
+	<axis xyz="0 1 0"/>
+	<limit effort="100.0" lower="0.0" upper="1.8" velocity="0.5"/>
+	<parent link="base_link"/>
+	<child link="brazo3"/>
+	<origin xyz="0.181865335 0.105 0" rpy="0 0 0.523599"/> 
+</joint>
+        \end{lstlisting}
+        
+        \newpage
+
+       
+       \subsubsection{Antebrazos}
+       
+        Los antebrazos son enlaces que se le nombra \textbf{"barra1\_b , barra2\_b y barra3\_b"} y se representan como un paralelepípedo tipo box de largo \textbf{$L_b$}. Estos antebrazos se unen cada uno a su respectivo brazo través de 2 junta tipo revoluta que representan rotulas. Las juntas se les asignan los nombres \textbf{' codo1\_a , codo1\_b , codo2\_a , codo2\_b , codo3\_a , codo3\_b'} para cada brazo respectivamente. En el código de las juntas se configura las conexiones padre-hijo que determina al fin y al cabo la posición de los antebrazos respecto al brazo.
+        
+        \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.4\linewidth]{Main/Chapter6/Images6/cap6_antebrazo.png}
+                \caption{Fotografía de un paraguas}
+                \label{f:Cap6_urdf_3}
+            \end{figure}
+        
+        \lstset{language=XML}
+        \begin{lstlisting}
+<!--BRAZOS INFERIORES:____________________-->	
+<!--Ante_BRAZO_1-->
+<link name="barra1_a"/>
+<joint name="codo1_a" type="revolute">
+	<axis xyz="0 -1 0"/>
+	<limit effort="100.0" lower="-3.14" upper="3.14" velocity="0.5"/>
+	<parent link="brazo1"/>
+	<child link="barra1_a"/>
+	<origin xyz="0.620 0 0" rpy="0 0 0"/>
+</joint>
+<link name="barra1_b">
+	<visual>
+		<origin xyz="-0.440 0 0" rpy="0 0 0"/> <!--Lb/2-->
+		<geometry>
+			<box size="0.880 0.003 0.003"/> <!--Lb-->
+		</geometry>
+		<material name="blanco"/>
+	</visual>
+</link>
+<jonti name="codo1_b" type="revolute">
+	<axis xyz="0 0 1"/>
+	<limit effort="100.0" lower="-3.14" upper="3.14" velocity="0.5"/>
+	<parent link="barra1_a"/>
+	<child link="barra1_b"/>
+	<origin xyz="0 0 0" rpy="0 0 0"/> 
+</joint>
+
+<!--Ante_BRAZO_2-->
+<link name="barra2_a"/>
+<joint name="codo2_a" type="revolute">
+	<axis xyz="0 -1 0"/>
+	<limit effort="100.0" lower="-3.14" upper="3.14" velocity="0.5"/>
+	<parent link="brazo2"/>
+	<child link="barra2_a"/>
+	<origin xyz="0.620 0 0" rpy="0 0 0"/> <!--la = 150-->
+</joint>
+<link name="barra2_b">
+	<visual>
+		<origin xyz="-0.440 0 0" rpy="0 0 0"/> <!--Lb-/2->
+		<geometry>
+			<box size="0.880 0.003 0.003"/> <!--Lb-->
+		</geometry>
+		<material name="blanco"/>
+	</visual>
+</link>
+<joint name="codo2_b" type="revolute">
+	<axis xyz="0 0 1"/>
+	<limit effort="100.0" lower="-3.14" upper="3.14" velocity="0.5"/>
+	<parent link="barra2_a"/>
+	<child link="barra2_b"/>
+	<origin xyz="0 0 0" rpy="0 0 0"/> <!--O2 = 62.0652 -107.5000 0-->
+</joint>
+
+<!--Ante_BRAZO_3-->
+<link name="barra3_a"/>
+<joint name="codo3_a" type="revolute">
+	<axis xyz="0 -1 0"/>
+	<limit effort="100.0" lower="-3.14" upper="3.14" velocity="0.5"/>
+	<parent link="brazo3"/>
+	<child link="barra3_a"/>
+	<origin xyz="0.620 0 0" rpy="0 0 0"/> <!--O2 = 62.0652 -107.5000 0-->
+</joint>
+<link name="barra3_b">
+	<visual>
+		<origin xyz="-0.440 0 0" rpy="0 0 0"/><!--Lb-/2->
+		<geometry>
+			<box size="0.880 0.003 0.003"/> <!--Lb-->
+		</geometry>
+		<material name="blanco"/>
+	</visual>
+</link>
+<joint name="codo3_b" type="revolute">
+	<axis xyz="0 0 1"/>
+	<limit effort="100.0" lower="-3.14" upper="3.14" velocity="0.5"/>
+	<parent link="barra3_a"/>
+	<child link="barra3_b"/>
+	<origin xyz="0 0 0" rpy="0 0 0"/> <!--O2 = 62.0652 -107.5000 0-->
+</joint>
+
+        \end{lstlisting}
+       
+%               \newpage
+
+       \subsubsection{Base Movil}
+
+        La base movil es un enlace que se le nombra \textbf{'actuador'} y se representa como un cilindro de radio \textbf{$R_b$}. La posición y orientación de este enlace no es respecto a ningún otro link, solo se determina en relación al sistema de referencia global.
+
+        \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.4\linewidth]{Main/Chapter6/Images6/cap6_basemovil.png}
+                \caption{Fotografía de un paraguas}
+                \label{f:Cap6_urdf_4}
+            \end{figure}
+
+        \lstset{language=XML}
+        \begin{lstlisting}
+<link name="actuador">
+	<visual>
+		<origin xyz="0 0 0" rpy="0 -1.57075 0"/>
+		<geometry>
+			<cylinder length="0.001" radius="0.050"/>
+		</geometry>
+		<material name="colorte">
+			<color rgba="0.15 0.55 0.95 0.3"/>
+		</material>
+	</visual>
+</link>
+<link name="aux1"/>
+<link name="aux2"/>
+<joint name="act_x" type="prismatic">
+	<parent link="base_link"/>
+	<child link="aux1"/>
+	<limit effort="100.0" lower="-1" upper="1" velocity="0.5"/>
+	<origin rpy="0 0 0" xyz="0 0 0"/>
+</joint>
+<joint name="act_y" type="prismatic">
+	<parent link="aux1"/>
+	<child link="aux2"/>
+	<limit effort="100.0" lower="-1" upper="1" velocity="0.5"/>
+	<origin rpy="0 0 1.57075" xyz="0 0 0"/>
+</joint>
+<joint name="act_z" type="prismatic">
+	<parent link="aux2"/>
+	<child link="actuador"/>
+	<limit effort="100.0" lower="0" upper="1" velocity="0.5"/>
+	<origin rpy="0 -1.57075 0" xyz="0 0 0"/>
+</joint>
+        \end{lstlisting}
 
       \newpage
   
