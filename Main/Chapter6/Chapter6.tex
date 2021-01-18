@@ -1388,34 +1388,77 @@
 
 \section{Interfaz de visualización Rviz}
 
-   % ANGULOS NO PONERLOS CODIGO ANGULOS SE COPIAN E LA TESIS TANTO
-   % DIAGRAMA DE FLUJO COMO EL DE FUNCIONES DE SOFARE ROS 
-    
+    Rviz da la posibilidad de visualizar los componentes mecánicos de un robot de una forma mas simple. En esta tesis se desea simular una trayectoria lineal de la plataforma móvil de un robot delta. Para cumplir con dicho objetivo se necesitan en cada momento de la trayectoria los ángulos de las juntas que unen los componentes y la posición xyz del centroide de la plataforma móvil. La posición en el espacio de los brazos y antebrazos se determinan a partir de los ángulos de cada junta relativos a otras partes mecánicas y la posición de la plataforma móvil se determina mediante las coordenadas de su centroide xyz relativo al sistema de referencia global. Por lo tanto, como se configura la visualización de las partes mecánicas en 2 grupos por separado, si la cinemática inversa es correcta, entonces la plataforma móvil debe calzar perfectamente entre las rotulas (final de los antebrazos) que unen los antebrazos con la plataforma móvil.
+     
+   \subsection{Conexion ROS - RVIZ}
+   
+           Básicamente se puede obtener la visualización de la trayectoria del robot delta en 3 pasos:
 
-    %CODIFOS:
-    %1  ANGULOS INTERIORES 
-    %2 POSICIONADOR RVIZ TIEMPO REAL 
-    %3 XML URFD 
-    %4 CONEXION XML URFD CON TF CON RVIZ NOMBRE ELEMENTOS
-    
+
+            % Define block styles
+        \tikzstyle{block1} = [rectangle, draw=black!50,fill=blue!20, text width=11em, text centered, minimum height=4em, minimum width=2.5em ]
+        \tikzstyle{block2} = [rectangle, draw=black!50,fill=red!20, text width=11em, text centered, minimum height=4em, minimum width=2.5em ]
+        \tikzstyle{block3} = [rectangle, draw=black!50,fill=yellow!20, text width=10em, text centered, minimum height=4em, minimum width=2.5em ]
+        
+        \tikzstyle{line} = [draw, -latex']
+         \begin{center}
+         \begin{figure}[htb]
+             \begin{tikzpicture}[node distance = 5cm, auto]
+                % Place nodes
+                    \node [block1] (funcion) {\textbf{TF \\ $Nombre$  $Juntas$  $URDF$}};
+                \node [block2, left of=funcion] (input) {\textbf{Trayectoria ROS \\ $\theta_{i=1,2,3}$\\$XYZ$\\ $   s(t)$\\ $\theta_{2i}$ \\ $\theta_{3i}$\\$Nombre$  $Juntas$  $URDF$ }};
+                \node [block3, right of=funcion] (ouput) {\textbf{URDF y Rviz}};
+                % Draw edges
+                \path [line] (funcion) -- node {}(ouput);
+                \path [line] (input) -- node { }(funcion);
+            \end{tikzpicture}
+                \caption{Fotografía de un paraguas}
+                \label{f:cap6_trayectory_1}
+         \end{figure}
+         \end{center}
+         
+        \vspace{-1cm}   
+        
+        \begin{itemize}
+            \item {Paso 1: Exportar de la trayectoria creada en ROS los siguientes datos: las posiciones de los motores $\theta_{i=1,2,3}$ , la posiciones del centroide de la plataforma móvil $XYZ$ y la escala de tiempo utilizada $s(t)$. Luego se determinan los ángulos interiores $\theta_{2i}$ y $\theta_{3i}$ (vistos en la sección \ref{cap4_angulosinteriores}) de las 3 cadenas cinemáticas. Esto es posible creando un nodo llamado $posicionador\_rviz\_realtime\_tm1\_adams$ que espera como datos de entrada los datos de la trayectoria  $\theta_{i=1,2,3}$, $XYZ$ y $s(t)$ y como salida da como resultado un objeto de tipo $JointState()$. Este ultimo objeto contiene los datos de los ángulos interiores en radianes, ángulo de los motores en radianes y la posición xyz de la plataforma móvil en metros. Además, cada ángulo y coordenada se le asigna un nombre único de tipo string, los cuales son usados para relacionar las juntas configuradas para el visualizador con respecto al valor de cada una de ellas a través de la trayectoria.}
+            \item {Paso 2: Pasar a valores TF cada junta y coordenada adquirida del paso 1. Rviz tiene un nodo integrado llamada $estados\_robot\_pub.py$ que tiene como requisito de entrada los valores de cada junta con cada nombre único respectivamente y como salida da como resultado los valores TF con cada nombre unico respectivamente}
+            \item {Paso 3: Anterior a crear una trayectoria en ROS se debe configurar el robot delta en formato URDF. Los nombres de cada juntas en el archivo urdf en formato xml deben ser exactamente los mismo que en los pasos 1 y 2}
+        \end{itemize}
+        
+
+            Los nombres de cada junta se muestran en la siguiente tabla: 
+            
+        \begingroup
+            \renewcommand{\arraystretch}{1.5}
+            \begin{table}[H]
+                \centering
+                \begin{tabular}{|c|m{2.5cm}|m{8cm}|}
+                   \hline
+                   \textbf{Simbología}  &  \textbf{Nombre}  & \textbf{Descipcion}    \\\hline
+                   $\theta_{11}$  & base\_brazo1    & Ángulo del motor en cadena cinemática 1                       \\\hline
+                   $\theta_{12}$  & base\_brazo2    & Ángulo del motor en cadena cinemática 2                            \\\hline
+                   $\theta_{13}$  & base\_brazo3    & Ángulo del motor en cadena cinemática 3                            \\\hline
+                   $\theta_{21}$  & codo1\_a    & Ángulo interior 2 de la rotula que une el brazo con el antebrazo en cadena cinemática 1                       \\\hline
+                   $\theta_{31}$  & codo1\_b    & Ángulo interior 3 de la rotula que une el brazo con el antebrazo en cadena cinemática 1                       \\\hline
+                   $\theta_{22}$  & codo2\_a    & Ángulo interior 2 de la rotula que une el brazo con el antebrazo en cadena cinemática 2                       \\\hline
+                   $\theta_{32}$  & codo2\_b    & Ángulo interior 3 de la rotula que une el brazo con el antebrazo en cadena cinemática 2                       \\\hline
+                   $\theta_{23}$  & codo3\_a    & Ángulo interior 2 de la rotula que une el brazo con el antebrazo en cadena cinemática 3                       \\\hline
+                   $\theta_{33}$  & codo3\_b    & Ángulo interior 2 de la rotula que une el brazo con el antebrazo en cadena cinemática 3                       \\\hline
+                   $X$  & act\_x    & Posición X del centroide de la plataforma móvil                       \\\hline
+                   $Y$  & act\_y    & Posición Y del centroide de la plataforma móvi                       \\\hline
+                   $Z$  & act\_z    & Posición Z del centroide de la plataforma móvi                       \\\hline
+
+                \end{tabular}
+                \caption{Referencias del dibujo}
+                \label{tab:cap6_rviz_1}
+            \end{table}
+        \endgroup
+
     \newpage
        
        
        
-     \subsection{Conexion ROS-RVIZ}
-         %1  ANGULOS INTERIORES 
-    %RVIZ TF POSICIONADOR RVIZ
-     %2 POSICIONADOR RVIZ TIEMPO REAL 
-    %4 CONEXION XML URFD CON TF CON RVIZ NOMBRE ELEMENTOS
-        Una vez que se crea la representación 3D de un robot mediante el uso de un archivo URDF, es posible utilizar dicha representación para simular el movimiento del robot. ara ello, el usuario debe publicar las condiciones del robot en TF, utilizando un nodo (o nodos) para publicar la información de transformación 
-      \newpage
-
- 
-    \subsection{URDF}
-        %MOSTRAR Y EXPLICAR CODIGO XML CON IMAGENES PADRRES E HIJOS 
-    %L1 L2 PARAMETROS DE CAP 5
-     %3 XML URFD 
-
+    \subsection{Modelo URDF}
         Para visualizar un modelo de un robot se usa un archivos de formato de descripción de robot unificado (URDF) basados en XML. En esta sección se presenta la configuración del modelo del robot delta mostrando el código para los enlaces, juntas y la respectiva unión padre-hijo para cada uno de ellos. La nomenclatura utilizada es la del capitulo \ref{CAP5}. El nombre del archivo donde estan contenidos todos estos codigos es robot.urdfm1.adams.urdf.  
         
        \subsubsection{Base Fija}
@@ -1667,8 +1710,6 @@
       \newpage
   
   
-
-
 
 
 
