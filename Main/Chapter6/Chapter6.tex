@@ -595,14 +595,164 @@
 
 
         \newpage
-        \subsubsection{Cinematica de Aceleracion}
+        \subsubsection{Modelacion cinematica de Aceleración}
 
+        \begin{algorithm}[H]
+            \caption{Aceleración Metodología A} 
+            \SetKwInput{KwInput}{Input}                % Set the Input
+            \SetKwInput{KwOutput}{Output}              % set the Output
+            \SetKwInput{KwObjetivo}{Objetivo}                % Set the Input
+            \SetKwInput{Kwfile}{Nombre archivo}                % Set the Input
+            
+              \DontPrintSemicolon
+              \KwObjetivo {Hallar las matrices para calcular la aceleración angular de los actuadores}
+              \Kwfile{$jacobian\_tm1\_adams.py$}
+              \KwInput{$P_x,P_y,P_z,{\theta }_{11},{\theta }_{12},{\theta }_{13},v_{px},v_{py},v_{pz}$}
+              \KwOutput{ $J$}
+               
+                % Set Function Names,
+              \SetKwFunction{FSum}{jacobian\_total\_der}
 
+              \tcc{FUNCION PRINCIPAL}
+              \SetKwProg{Fn}{}{:}{}
+              \Fn{\FSum{$P_x$,$P_y$,$P_z$,${\theta }_{11}$,${\theta }_{12}$,${\theta }_{13}$,$v_{px}$,$ v_{py}$,$ v_{pz}$}}{
+                  \tcc{Utilizar funcion de Jacobiano Metodo A}
+                   $[J_{\theta }, J_{x},\theta _{31},\theta _{32},\theta _{33},\theta _{21},\theta _{22},\theta _{23}, J]=jacobian\_total\_der(P_x,P_y,P_z,{\theta }_{11},{\theta }_{12},{\theta }_{13})$\;
+                \tcc{Matriz $\dot{ \theta _{1i}}$ }
+                   $                \left[ \begin{matrix}
+                \dot{ \theta _{11}}~\\
+                \dot{ \theta _{12}}\\
+                \dot{ \theta _{13}}~\\
+                \end{matrix} \right] =  ({{J}_{\theta }}^{-1}* J_{x}) *\left[  \begin{matrix}
+                v_{px}\\
+                v_{py}\\
+                v_{pz}\\
+                \end{matrix}\right]$\;
+                \tcc{$\dot{\theta}_{3i}$}
+                $\dot{\theta}_{31}= calculo\_theta3i\_der(P_x,P_y, {\phi}_{0 ^{\circ}},v_{px},v_{py})$\;
+                $\dot{\theta}_{32}= calculo\_theta3i\_der(P_x,P_y, {\phi}_{120 ^{\circ}},v_{px},v_{py})$\;
+                $\dot{\theta}_{33}= calculo\_theta3i\_der(P_x,P_y, {\phi}_{240 ^{\circ}},v_{px},v_{py})$\;
+                \tcc{$\dot{\theta}_{2i}$}
+                $\dot{\theta}_{21}= calculo\_theta2i\_der(P_x,P_y,P_z, {\phi}_{0 ^{\circ}},v_{px},v_{py},v_{pz},{\theta}_{31},\dot{\theta}_{31})$\;
+                $\dot{\theta}_{22}= calculo\_theta2i\_der(P_x,P_y,P_z, {\phi}_{120 ^{\circ}},v_{px},v_{py},v_{pz},{\theta}_{32},\dot{\theta}_{32})$\;
+                $\dot{\theta}_{23}= calculo\_theta2i\_der(P_x,P_y,P_z, {\phi}_{240 ^{\circ}},v_{px},v_{py},v_{pz},{\theta}_{33},\dot{\theta}_{33})$\;
+                \tcc{$\dot{J}_{ix}$  para i=1,2,3}
+                $\dot{J}_{ix}=calculo\_jix\_der({\phi}_{i },\theta_{1i},\theta_{2i},\theta_{3i},\dot{ \theta _{1i}},\dot{\theta_{2i}},\dot{\theta_{3i}})$\;
+                \tcc{$\dot{J}_{iy}$  para i=1,2,3}
+                $\dot{J}_{iy}=calculo\_jiy\_der({\phi}_{i },\theta_{1i},\theta_{2i},\theta_{3i},\dot{ \theta _{1i}},\dot{\theta_{2i}},\dot{\theta_{3i}})$\;    
+                \tcc{$\dot{J}_{iz}$  para i=1,2,3}
+                $\dot{J}_{iz}=calculo\_jiz\_der({\phi}_{i },\theta_{1i},\theta_{2i},\theta_{3i},\dot{ \theta _{1i}},\dot{\theta_{2i}},\dot{\theta_{3i}})$\;         
+                \tcc{$\dot{J}_{i \theta }$  para i=1,2,3}
+                $\dot{J}_{i \theta }=calculo\_jthetai\_der({\phi}_{i },\theta_{2i},\theta_{3i},\dot{\theta_{2i}},\dot{\theta_{3i}})$\;
+                \tcc{Cambiar al sistema Referencia Global al operar}
+                  \KwRet $[J_{\theta }, J_{x},\dot{J}_{\theta }, \dot{J}_{x},\theta_{31},\theta_{32},\theta_{33},\theta_{21},\theta_{22},\theta_{23}]$\;}
+        \end{algorithm}
+\newpage
+
+\begin{algorithm}[H]
+          \ContinuedFloat
+          \caption{Aceleración Metodología A (Continuacion...)}
+          \tcc{SUBFUNCIONES}
+          
+          \tcc{Calcular $\dot{\theta }_{3i}$}  
+          \SetKwProg{Fn}{}{:}{}
+          \SetKwFunction{FSub}{calculo\_theta3i\_der}
+          \Fn{\FSub{$P_x$,$P_y$, ${\phi}_{i ^{\circ}}$,$v_{px}$,$v_{py}$}}{
+            $c_{yi}= (-P_x)*(sin({ \phi }_i))+(P_y)*(cos({ \phi }_i))$\;    
+            $c_{yi}^{'}={}& \left[ -sin \phi _{i}\ast v_{px} + cos \phi _{i}\ast v_{py} \right]$\;
+            $A=\left[ \frac{c_{yi}^{'}}{b} \right]$\;
+            $B=\left[-1*{\sqrt[]{1- \left( \frac{c_{yi}}{b} \right) ^{2}~}} \right]$\;
+            $\dot{ \theta }_{3i}={}& \frac{A}{B}$\;
+                \KwRet$\dot{\theta }_{3i}$\;   } 
+        
+          \tcc{Calcular $\dot{\theta }_{2i}$}
+          \SetKwProg{Fn}{}{:}{}
+          \SetKwFunction{FSub}{calculo\_theta2i\_der}
+          \Fn{\FSub{$P_x$,$P_y$,$P_z$, ${\phi}_{i ^{\circ}}$,$v_{px}$,$v_{py}$,$v_{pz}$,${\theta}_{3i}$,$\dot{\theta}_{3i}$}}
+          {
+            $c_{xi}=(P_x)*(cos({ \phi }_i))+(P_y)*(sin({ \phi }_i))+ h-r$\; 
+            $c_{yi}= (-P_x)*(sin({ \phi }_i))+(P_y)*(cos({ \phi }_i))$\; 
+        	$c_{zi}=P_z$\; 
+            $c_{xi}^{'}={}& cos \phi _{i}\ast v_{px}+~ sin \phi _{i}\ast v_{py}$\;
+            $c_{yi}^{'}={}& \left[ -sin \phi _{i}\ast v_{px} + cos \phi _{i}\ast v_{py} \right]$\;       
+            $c_{zi}^{'}={}& v_{pz}$\;      
+            $A_{11}={}& \left[ 2c_{xi}c_{xi}^{'}+2c_{yi}c_{yi}^{'}+2c_{zi}c_{zi}^{'} \right] \ast \left[ sin  \theta _{3i} \right]$\;
+            $A_{12}={}& \left[ c_{xi}^{2}+c_{yi}^{2}+c_{zi}^{2}- a^{2}-b^{2} \right] \ast \left[ cos~ \theta _{3i}\ast\dot{ \theta }_{3i} \right]$\;
+            $B_{1}={}& \left[ \sin  \theta _{3i} \right] ^{2}$\;
+            $K^{'}={}& \left[ \frac{1}{2ab} \right] \ast \left[ \frac{A_{11}-A_{12}~}{B_{1}} \right]$\;
+            $K={}& [c_{xi}^{2}+c_{yi}^{2}+c_{zi}^{2}- a^{2}-b^{2}~]/[[2 ab *sin~ \theta _{3i}]$\;
+            $\dot{ \theta }_{2i}={}& \left[ \frac{ -K'}{\sqrt[]{1- \left(  K \right) ^{2}~}} \right]$\;
+        	\KwRet$ \dot{ \theta }_{2i}$\;  }
+
+          \tcc{Calcular $\dot{J}_{ix}$}
+          \SetKwProg{Fn}{}{:}{}
+          \SetKwFunction{FSub}{calculo\_jix\_der}
+          \Fn{\FSub{${\phi}_{i }$,$\theta_{1i}$,$\theta_{2i}$,$\theta_{3i}$,$\dot{ \theta _{1i}}$,$\dot{\theta_{2i}}$,$\dot{\theta_{3i}}$}}
+          {
+            $A_1=  -\sin  \left(  \theta_{1i}+ \theta_{2i} \right) \ast \left( \dot{ \theta}_{1i}+\dot{\theta }_{2i}\right) \ast sin  \theta_{3i}$\;
+            $A_2= cos(\theta_{1i}+\theta_{2i}) \ast cos(\theta_{3i}) \ast \dot{\theta}_{3i} $\;
+            $A'_{ix}=(cos(\phi_i))*[A_1+A_2]$\;
+            $B'_{ix}=(sin \phi _{i}) \ast \left[ -sin \theta _{3i}\ast\dot{ \theta }_{3i} \right] $\;
+
+            $\dot{J}_{ix}=A'_{ix}-B'_{ix}$\;
+
+        	\KwRet$\dot{J}_{ix}$\; }
+        	
+        	
+\end{algorithm}
 
         \newpage
+        
+ \begin{algorithm}[H]
+          \ContinuedFloat
+          \caption{Aceleración Metodología A (Continuacion...)}
+          \tcc{SUBFUNCIONES}
+
+          \tcc{Calcular $\dot{J}_{iy}$}
+          \SetKwProg{Fn}{}{:}{}
+          \SetKwFunction{FSub}{calculo\_jiy\_der}
+          \Fn{\FSub{${\phi}_{i }$,$ASD$}}
+          {
+
+            $\dot{J}_{iy}=A'_{iy}+B'_{iy}$\;
+
+        	\KwRet$\dot{J}_{iy}$\; }
+        	
+          \tcc{Calcular $\dot{J}_{iz}$}
+          \SetKwProg{Fn}{}{:}{}
+          \SetKwFunction{FSub}{calculo\_jiz\_der}
+          \Fn{\FSub{${\phi}_{i }$,$ASD$}}
+          {
+            $\dot{J}_{iz}=$\;
+        	\KwRet$\dot{J}_{iz}$\; }
+ 
+          \tcc{Calcular $\dot{J}_{i\theta}$}
+          \SetKwProg{Fn}{}{:}{}
+          \SetKwFunction{FSub}{calculo\_jthetai\_der}
+          \Fn{\FSub{${\phi}_{i }$,$ASD$}}
+          {
+            $\dot{J}_{i\theta}=$\;
+        	\KwRet$\dot{J}_{i\theta}$\; } 
+        	
+\end{algorithm}       
+        
+        
+        \newpage
+
         \subsubsection{Dinámica Inversa}
         
-        
+    \begin{align}
+        \dot{J}_{iy}={}& A'_{iy}+B'_{iy}
+        \label{eq:cap4_eq_39} \\
+        A'_{iy}={}& sin \phi _{i}\ast \left[  \left[ -sin \left(  \theta _{1i}+ \theta _{2i} \right) \ast \left( \dot{ \theta }_{1i}+\dot{ \theta }_{2i} \right) \ast sin~ \theta _{3i} \right] + \left[ \cos  \left(  \theta _{1i}+ \theta _{2i} \right) \ast cos  \theta _{3i}\ast\dot{ \theta }_{3i} \right]  \right]
+        \label{eq:cap4_eq_40} \\
+        B'_{iy}={}& cos \phi _{i}\ast \left[ -sin  \theta _{3i}\ast\dot{ \theta }_{3i} \right]
+        \label{eq:cap4_eq_41} \\
+        \dot{J}_{iz}={}& \left[ \cos  \left(  \theta _{1i}+ \theta _{2i} \right) \ast \left( \dot{ \theta }_{1i}+\dot{ \theta }_{2i} \right) \ast sin  \theta _{3i} \right] + \left[ sin \left(  \theta _{1i}+ \theta _{2i} \right) \ast cos \theta _{3i}\ast sin\dot{ \theta }_{3i} \right]
+        \label{eq:cap4_eq_42} \\
+        \dot{J}_{i \theta }={}&a \left[ ~ \left[ \cos  \theta _{2i}\ast\dot{ \theta }_{2i}\ast \sin  \theta _{3i} \right] + \left[ \sin  \theta _{2i}\ast cos \theta _{3i}\ast\dot{ \theta }_{3i} \right]  \right]
+        \label{eq:cap4_eq_43} \\
+    \end{align}
         
         
         
