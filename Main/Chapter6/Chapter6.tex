@@ -132,8 +132,8 @@
               \KwOutput{$Salidas$}
               
                 % Set Function Names
-              \SetKwFunction{FSum}{$nombre.funcion.principal$}
-              \SetKwFunction{FSub}{$nombre.subfunciones$}
+              \SetKwFunction{FSum}{$nombre\_funcion\_principal$}
+              \SetKwFunction{FSub}{$nombre\_subfunciones$}
             
               \tcc{FUNCION PRINCIPAL}
               \SetKwProg{Fn}{}{:}{}
@@ -227,7 +227,7 @@
         
         \DontPrintSemicolon
           \KwObjetivo {Compilar los algoritmos de los Metodos A y B para obtener el torque de los motores del robot delta}
-          \Kwfile{$path.tm1.v2.adams.py$}
+          \Kwfile{$path\_tm1\_v2\_adams.py$}
           \KwInput{Punto inicial$P_i(x,y,z)$, punto final $P_f(x,y,z)$, velocidad maxima $v_{max}$ y aceleración maxima $a_{max}$ (para crear trayectoria)}
           \KwOutput{Torque $\tau_{i=1,2,3}$ de los métodos A y B}
           
@@ -378,7 +378,7 @@
         
         \DontPrintSemicolon
           \KwObjetivo {Hallar la posición del efector final del robot delta dada una configuración articular}
-          \Kwfile{$delta.kinematics.t1m.adams.py$}
+          \Kwfile{$delta\_kinematics\_t1m\_adams.py$}
           \KwInput{$\theta_1,\theta_2,\theta_3$}
           \KwOutput{$E_0(x_0,y_0,z_0)$}
           
@@ -422,13 +422,13 @@
             
             \DontPrintSemicolon
               \KwObjetivo {Hallar la posición de los actuadores en el espacio articular dada la posición del centroide del efector final}
-              \Kwfile{$delta.kinematics.t1m.adams.py$}
+              \Kwfile{$delta\_kinematics\_t1m\_adams.py$}
               \KwInput{$E_0(x_0,y_0,z_0)$}
               \KwOutput{${\theta }_1$,${\theta }_2$,${\theta }_3$}
               
                 % Set Function Names
               \SetKwFunction{FSum}{inverse}
-              \SetKwFunction{FSub}{$angle.yz$}
+              \SetKwFunction{FSub}{$angle\_yz$}
             
               \tcc{FUNCION PRINCIPAL}
               \SetKwProg{Fn}{}{:}{}
@@ -448,9 +448,9 @@
                 
               \tcc{Calcular angulos de los actuadores}
               \tcc{Cambiar orden de ángulos al sistema Referencia Global}
-                 ${\theta }_2=angle.yz({x}_{0 ^{\circ}} , {y}_{0 ^{\circ}} , {z}_{0 ^{\circ}},0 ^{\circ})$\;    
-                 ${\theta }_3=angle.yz({x}_{120 ^{\circ}},{y}_{120 ^{\circ}},{z}_{120 ^{\circ}},120 ^{\circ})$\;
-                 ${\theta }_1=angle.yz({x}_{240 ^{\circ}},{y}_{240 ^{\circ}},{z}_{240 ^{\circ}},240 ^{\circ})$\;
+                 ${\theta }_2=angle\_yz({x}_{0 ^{\circ}} , {y}_{0 ^{\circ}} , {z}_{0 ^{\circ}},0 ^{\circ})$\;    
+                 ${\theta }_3=angle\_yz({x}_{120 ^{\circ}},{y}_{120 ^{\circ}},{z}_{120 ^{\circ}},120 ^{\circ})$\;
+                 ${\theta }_1=angle\_yz({x}_{240 ^{\circ}},{y}_{240 ^{\circ}},{z}_{240 ^{\circ}},240 ^{\circ})$\;
             
                \KwRet $[{\theta }_1,{\theta }_2,{\theta }_3]$\;
               }
@@ -497,13 +497,13 @@
             
               \DontPrintSemicolon
               \KwObjetivo {Hallar la matriz jacobiana}
-              \Kwfile{$jacobian.tm1.adams.py$}
+              \Kwfile{$jacobian\_tm1\_adams.py$}
               \KwInput{$P_x,P_y,P_z,{\theta }_{11},{\theta }_{12},{\theta }_{13}$}
               \KwOutput{ $J_{\theta }, J_{x },\theta _{31},\theta _{32},\theta _{33},\theta _{21},\theta _{22},\theta _{23}, J$}
                
                 % Set Function Names,
-              \SetKwFunction{FSum}{jacobian.total}
-              \SetKwFunction{FSub}{calculo.theta3i}
+              \SetKwFunction{FSum}{jacobian\_total}
+              \SetKwFunction{FSub}{calculo\_theta3i}
             
               \tcc{FUNCION PRINCIPAL}
               \SetKwProg{Fn}{}{:}{}
@@ -511,27 +511,27 @@
                   \tcc{Cambiar ángulos y punto P al sistema Referencia Local}
                    $({\phi}_{0 ^{\circ}},{\phi}_{120 ^{\circ}},{\phi}_{240 ^{\circ}})=(0,120,240)$\;
                   \tcc{Calcular angulo $\theta _{3i}$ y $\theta _{2i}$}
-                  $\theta _{31}=calculo.theta3i(P_x,P_y, {\phi}_{0 ^{\circ}})$\;
-                  $\theta _{32}=calculo.theta3i(P_x,P_y, {\phi}_{120 ^{\circ}})$\;
-                  $\theta _{33}=calculo.theta3i(P_x,P_y, {\phi}_{240 ^{\circ}})$\;
-                  $\theta _{21}=calculo.theta2i(P_x,P_y,P_z,{\theta }_{31}, {\phi}_{0 ^{\circ}})$\;
-                  $\theta _{22}=calculo.theta2i(P_x,P_y,P_z,{\theta }_{32}, {\phi}_{120 ^{\circ}})$\;
-                  $\theta _{23}=calculo.theta2i(P_x,P_y,P_z,{\theta }_{33}, {\phi}_{240 ^{\circ}})$\;
+                  $\theta _{31}=calculo\_theta3i(P_x,P_y, {\phi}_{0 ^{\circ}})$\;
+                  $\theta _{32}=calculo\_theta3i(P_x,P_y, {\phi}_{120 ^{\circ}})$\;
+                  $\theta _{33}=calculo\_theta3i(P_x,P_y, {\phi}_{240 ^{\circ}})$\;
+                  $\theta _{21}=calculo\_theta2i(P_x,P_y,P_z,{\theta }_{31}, {\phi}_{0 ^{\circ}})$\;
+                  $\theta _{22}=calculo\_theta2i(P_x,P_y,P_z,{\theta }_{32}, {\phi}_{120 ^{\circ}})$\;
+                  $\theta _{23}=calculo\_theta2i(P_x,P_y,P_z,{\theta }_{33}, {\phi}_{240 ^{\circ}})$\;
                   \tcc{Calcular Matriz $J_{x}$ }
-                  $ J_{1x}=calculo.jix($\theta _{11},\theta _{21},\theta _{31},${ \phi }_{0 ^{\circ}})$\;
-                  $ J_{2x}=calculo.jix($\theta _{12},\theta _{22},\theta _{32},${ \phi }_{120 ^{\circ}})$\;
-                  $ J_{3x}=calculo.jix($\theta _{13},\theta _{23},\theta _{33},${ \phi }_{240 ^{\circ}})$\;
-                  $ J_{1y}=calculo.jiy($\theta _{11},\theta _{21},\theta _{31},${ \phi }_{0 ^{\circ}})$\;
-                  $ J_{2y}=calculo.jiy($\theta _{12},\theta _{22},\theta _{32},${ \phi }_{120 ^{\circ}})$\;
-                  $ J_{3y}=calculo.jiy($\theta _{13},\theta _{23},\theta _{33},${ \phi }_{240 ^{\circ}})$\; 
-                   $ J_{1z}=calculo.jiz($\theta _{11},\theta _{21},\theta _{31},${ \phi }_{0 ^{\circ}})$\;
-                  $ J_{2z}=calculo.jiz($\theta _{12},\theta _{22},\theta _{32},${ \phi }_{120 ^{\circ}})$\;
-                  $ J_{3z}=calculo.jiz($\theta _{13},\theta _{23},\theta _{33},${ \phi }_{240 ^{\circ}})$\; 
+                  $ J_{1x}=calculo\_jix($\theta _{11},\theta _{21},\theta _{31},${ \phi }_{0 ^{\circ}})$\;
+                  $ J_{2x}=calculo\_jix($\theta _{12},\theta _{22},\theta _{32},${ \phi }_{120 ^{\circ}})$\;
+                  $ J_{3x}=calculo\_jix($\theta _{13},\theta _{23},\theta _{33},${ \phi }_{240 ^{\circ}})$\;
+                  $ J_{1y}=calculo\_jiy($\theta _{11},\theta _{21},\theta _{31},${ \phi }_{0 ^{\circ}})$\;
+                  $ J_{2y}=calculo\_jiy($\theta _{12},\theta _{22},\theta _{32},${ \phi }_{120 ^{\circ}})$\;
+                  $ J_{3y}=calculo\_jiy($\theta _{13},\theta _{23},\theta _{33},${ \phi }_{240 ^{\circ}})$\; 
+                   $ J_{1z}=calculo\_jiz($\theta _{11},\theta _{21},\theta _{31},${ \phi }_{0 ^{\circ}})$\;
+                  $ J_{2z}=calculo\_jiz($\theta _{12},\theta _{22},\theta _{32},${ \phi }_{120 ^{\circ}})$\;
+                  $ J_{3z}=calculo\_jiz($\theta _{13},\theta _{23},\theta _{33},${ \phi }_{240 ^{\circ}})$\; 
                   $ J_{x}=[J_{1x},J_{1y},J_{1z};J_{2x},J_{2y},J_{2z};J_{3x},J_{3y},J_{3z}]$\;
                   \tcc{Calcular Matriz $J_{ \theta }$ }
-                    $J_{1 \theta }=calculo.jthetai(\theta_{21}$,$\theta _{31}$,$\phi_{0 ^{\circ}})$\;
-                    $J_{2 \theta }=calculo.jthetai(\theta_{22}$,$\theta _{32}$,$\phi_{120 ^{\circ}})$\;
-                    $J_{3 \theta }=calculo.jthetai(\theta_{23}$,$\theta _{33}$,$\phi_{240 ^{\circ}})$\;
+                    $J_{1 \theta }=calculo\_jthetai(\theta_{21}$,$\theta _{31}$,$\phi_{0 ^{\circ}})$\;
+                    $J_{2 \theta }=calculo\_jthetai(\theta_{22}$,$\theta _{32}$,$\phi_{120 ^{\circ}})$\;
+                    $J_{3 \theta }=calculo\_jthetai(\theta_{23}$,$\theta _{33}$,$\phi_{240 ^{\circ}})$\;
                     $J_{ \theta }=[J_{1 \theta },0,0;0,J_{2 \theta },0;0,0,J_{3 \theta }]$\;  
                 \tcc{Calcular Matriz $J$ }
                     $J=J_{x}^{-1}J_{ \theta } $\;
@@ -555,7 +555,7 @@
         
           \tcc{Calcular angulo ${\theta }_{2i}$}
           \SetKwProg{Fn}{}{:}{}
-          \SetKwFunction{FSub}{calculo.theta2i}
+          \SetKwFunction{FSub}{calculo\_theta2i}
           \Fn{\FSub{$P_x$,$P_y$,$P_z$,${\theta }_{3i}$,$\phi_i$}}{
                       	$c_{xi}=(P_x)*(cos({ \phi }_i))+(P_y)*(sin({ \phi }_i))+ h-r$\; 
             	$c_{yi}= (-P_x)*(sin({ \phi }_i))+(P_y)*(cos({ \phi }_i))$\; 
@@ -566,28 +566,28 @@
                 
                 
            \tcc{Calcular componentes Matriz $J_x$}
-           \SetKwFunction{FSub}{calculo.jix}
+           \SetKwFunction{FSub}{calculo\_jix}
            \SetKwProg{Fn}{}{:}{}
            \Fn{\FSub{$\theta _{1i}$,$\theta _{2i}$,$\theta _{3i}$, $\phi_i$}}{
             $ J_{ix}=\cos  \left(  \theta _{1i}+ \theta _{2i} \right) sin~ \theta _{3i}\cos  \phi _{i}-cos  \theta _{3i}\sin  \phi _{i}~ $\;    
             \KwRet$J_{ix}$\;  }
                 
                 
-          \SetKwFunction{FSub}{calculo.jiy}
+          \SetKwFunction{FSub}{calculo\_jiy}
            \SetKwProg{Fn}{}{:}{}
           \Fn{\FSub{$\theta _{1i}$,$\theta _{2i}$,$\theta _{3i}$,$\phi_i$}}{
             $J_{iy}=\cos  \left(  \theta _{1i}+ \theta _{2i} \right) sin~ \theta _{3i}\sin  \phi _{i}+ cos  \theta _{3i}\cos  \phi _{i}~$\;    
             \KwRet$J_{iy}$\;  }   
                     
             
-           \SetKwFunction{FSub}{calculo.jiz}
+           \SetKwFunction{FSub}{calculo\_jiz}
            \SetKwProg{Fn}{}{:}{}
           \Fn{\FSub{$\theta _{1i}$,$\theta _{2i}$,$\theta _{3i}$,$\phi_i$}}{
             $ J_{iz}=sin \left(  \theta _{1i}+ \theta _{2i} \right) sin~ \theta _{3i}~ $\;    
             \KwRet$J_{iz}$\;} 
             
           \tcc{Calcular componentes Matriz $J_{\theta }$}
-          \SetKwFunction{FSub}{calculo.jthetai}
+          \SetKwFunction{FSub}{calculo\_jthetai}
           \Fn{\FSub{$\theta_{2i}$,$\theta _{3i}$,$\phi_i$}}{
                 $J_{i \theta }=a~\sin  \theta _{2i}~sin~ \theta _{3i}$\; 
                 \KwRet$J_{i \theta }$\;   }
@@ -724,7 +724,7 @@
           \tcc{Calcular $\dot{J}_{iz}$}
           \SetKwProg{Fn}{}{:}{}
           \SetKwFunction{FSub}{calculo\_jiz\_der}
-          \Fn{\FSub{${\phi}_{i }$,$\theta_{1i}$,$\theta_{2i}$,$\theta_{3i}$,$\dot{ \theta _{1i}}$,$\dot{\theta_{2i}}$,$\dot{\theta_{3i}}$}}
+          \Fn{\FSub{$\theta_{1i}$,$\theta_{2i}$,$\theta_{3i}$,$\dot{ \theta _{1i}}$,$\dot{\theta_{2i}}$,$\dot{\theta_{3i}}$}}
           {
           $A=\left[ \cos  \left(  \theta _{1i}+ \theta _{2i} \right) \ast \left( \dot{ \theta }_{1i}+\dot{ \theta }_{2i} \right) \ast sin  \theta _{3i} \right] $\;
           $B=\left[ sin \left(  \theta _{1i}+ \theta _{2i} \right) \ast cos \theta _{3i}\ast \dot{ \theta }_{3i} \right]$\;
@@ -734,7 +734,7 @@
           \tcc{Calcular $\dot{J}_{i\theta}$}
           \SetKwProg{Fn}{}{:}{}
           \SetKwFunction{FSub}{calculo\_jthetai\_der}
-          \Fn{\FSub{${\phi}_{i }$,$ASD$}}
+          \Fn{\FSub{$\theta_{2i}$,$\theta_{3i}$,$\dot{\theta_{2i}}$,$\dot{\theta_{3i}}$}}
           {
             $A=\cos  \theta _{2i}\ast\dot{ \theta }_{2i}\ast \sin  \theta _{3i}$\;
             $B=\sin  \theta _{2i}\ast cos \theta _{3i}\ast\dot{ \theta }_{3i}$\;
@@ -748,10 +748,7 @@
 
         \subsubsection{Dinámica Inversa}
         
-    \begin{align}
-        \dot{J}_{i \theta }={}&a \left[ ~ \left[ \cos  \theta _{2i}\ast\dot{ \theta }_{2i}\ast \sin  \theta _{3i} \right] + \left[ \sin  \theta _{2i}\ast cos \theta _{3i}\ast\dot{ \theta }_{3i} \right]  \right]
-    \end{align}
-        
+
         
         
         
@@ -886,12 +883,12 @@
     
     \DontPrintSemicolon
       \KwObjetivo {Hallar la posición del efector final del robot delta dada una configuración articular}
-      \Kwfile{$delta.kinematics.Paderborn.tm1.adams$}
+      \Kwfile{$delta\_kinematics\_Paderborn\_tm1\_adams.py$}
       \KwInput{$\theta_1,\theta_2,\theta_3$}
       \KwOutput{$P_0(P_{0x},P_{0y},P_{0z})$}
       
       % Set Function Names{\theta }_1,{\theta }_2,{\theta }_3
-      \SetKwFunction{FSub}{forward.Paderborn}
+      \SetKwFunction{FSub}{forward\_Paderborn}
        \SetKwProg{Fn}{}{:}{}
     
       \tcc{FUNCION PRINCIPAL}
@@ -940,13 +937,13 @@
             
             \DontPrintSemicolon
               \KwObjetivo {Hallar la posición de los actuadores en el espacio articular dada la posición del centroide del efector final}
-              \Kwfile{$delta.kinematics.Paderborn.tm1.adams$}
+              \Kwfile{$delta\_kinematics\_Paderborn\_tm1\_adams.py$}
               \KwInput{$P_0(P_{0x},P_{0y},P_{0z})$}
               \KwOutput{${\theta }_1$,${\theta }_2$,${\theta }_3$}
               
                 % Set Function Names
-              \SetKwFunction{FSum}{inverse.Paderborn}
-              \SetKwFunction{FSub}{$angle.yz.Paderborn$}
+              \SetKwFunction{FSum}{inverse\_Paderborn}
+              \SetKwFunction{FSub}{$angle\_yz\_Paderborn$}
             
               \tcc{FUNCION PRINCIPAL}
               \SetKwProg{Fn}{}{:}{}
@@ -966,9 +963,9 @@
                 
               \tcc{Calcular angulos de los actuadores}
               \tcc{Cambiar orden de ángulos al sistema Referencia Global}
-                 ${\theta }_2=angle.yz.Paderborn({x}_{0 ^{\circ}} , {y}_{0 ^{\circ}} , {z}_{0 ^{\circ}},0 ^{\circ})$\;    
-                 ${\theta }_3=angle.yz.Paderborn({x}_{120 ^{\circ}},{y}_{120 ^{\circ}},{z}_{120 ^{\circ}},120 ^{\circ})$\;
-                 ${\theta }_1=angle.yz.Paderborn({x}_{240 ^{\circ}},{y}_{240 ^{\circ}},{z}_{240 ^{\circ}},240 ^{\circ})$\;
+                 ${\theta }_2=angle\_yz\_Paderborn({x}_{0 ^{\circ}} , {y}_{0 ^{\circ}} , {z}_{0 ^{\circ}},0 ^{\circ})$\;    
+                 ${\theta }_3=angle\_yz\_Paderborn({x}_{120 ^{\circ}},{y}_{120 ^{\circ}},{z}_{120 ^{\circ}},120 ^{\circ})$\;
+                 ${\theta }_1=angle\_yz\_Paderborn({x}_{240 ^{\circ}},{y}_{240 ^{\circ}},{z}_{240 ^{\circ}},240 ^{\circ})$\;
             
                \KwRet $[{\theta }_1,{\theta }_2,{\theta }_3]$\;
               }
@@ -1013,12 +1010,12 @@
             
             \DontPrintSemicolon
               \KwObjetivo {Hallar la matriz jacobiana}
-              \Kwfile{$jacobian.Paderborn.tm1.v2.adams.py$}
+              \Kwfile{$jacobian\_Paderborn\_tm1\_v2\_adams.py$}
               \KwInput{$P_{0x},P_{0y},P_{0z},{\theta }_{1},{\theta }_{2},{\theta }_{3}$}
               \KwOutput{ $-J_{1 }, J_{2}, J$}
                
                 % Set Function Names,
-              \SetKwFunction{FSum}{jacobian.calculo.Paderborn}
+              \SetKwFunction{FSum}{jacobian\_calculo\_Paderborn}
 
               \tcc{FUNCION PRINCIPAL}
               \SetKwProg{Fn}{}{:}{}
@@ -1082,7 +1079,7 @@
             \end{bmatrix}  \right.$\;
                 \tcc{Matriz de rotacion respecto a ángulo 
                $\varphi_i$ }
-            $R_{i}^{R}=matri.rot(\varphi_i)$\;
+            $R_{i}^{R}=matri\_rot(\varphi_i)$\;
             \tcc{Vector posición actuador i respecto a sistema referencia local }
             $R={R}_{A}-{R}_{B}$\;
             $ \overrightarrow{F_{i}}=R_{i}^{R} 
@@ -1110,7 +1107,7 @@
           \Fn{\FSub{${\theta }_{i}$,$\varphi_i$}}{
                 \tcc{Matriz de rotacion respecto a ángulo 
                $\varphi_i$ }
-            $R_{i}^{R}=matri.rot(\varphi_i)$\;
+            $R_{i}^{R}=matri\_rot(\varphi_i)$\;
             \tcc{calculo $\overrightarrow{b_{i}}$ ecuacion (\ref{eq:cap4_MB_15}) }
             $ \overrightarrow{b_{i}} =  R_{i}^{R}      \begin{bmatrix}
                 L_{A} sin(\theta_i) \\
@@ -1121,7 +1118,7 @@
         
           \tcc{Calcular Matriz de rotacion $R_{i}^{R}$ ecuacion (\ref{eq:cap4_MB_13})}
           \SetKwProg{Fn}{}{:}{}
-          \SetKwFunction{FSub}{matri.rot}
+          \SetKwFunction{FSub}{matri\_rot}
           \Fn{\FSub{$\varphi_i$}}{
             $ R_{i}^{R} =
         \begin{bmatrix}
@@ -1271,7 +1268,7 @@
                         \tcc{Cinematica Directa}
                 	     $(P_{x},P_{y},P_{z})=forward(\theta _{12},\theta _{13},\theta _{11})$\;
                         \tcc{Jacobiano}
-                        $[J_{\theta},J_{x},\theta_{31},\theta_{32},\theta_{33},\theta_{21},\theta_{22},\theta_{23},J] = jacobian.total(P_{x},P_{y},P_{z},\theta_{11},\theta_{12},\theta_{13})   $\;
+                        $[J_{\theta},J_{x},\theta_{31},\theta_{32},\theta_{33},\theta_{21},\theta_{22},\theta_{23},J] = jacobian\_total(P_{x},P_{y},P_{z},\theta_{11},\theta_{12},\theta_{13})   $\;
                         \tcc{Determinantes Jacobiano}
                         $\left|J_{\theta}\right|=det(J_{\theta})$\;
                         $\left|J_{x}\right|=det(J_{x})$\;
@@ -1442,13 +1439,13 @@
             
             \DontPrintSemicolon
               \KwObjetivo {Escala de tiempo perfil de velocidad Trapezoidal LSPB e interpolación de camino geometrico lineal }
-              \Kwfile{$linear.speed.f.adams$}
+              \Kwfile{$linear\_speed\_f\_adams.py$}
               \KwInput{$q_0,q_1,v_{max},a_{max},{n}_{\Delta Tramo1},{n}_{\Delta Tramo2}$}
               \KwOutput{$tiempo,{X}_{rot_{\theta_y}},{\dot{X}}_{rot_{\theta_y}},{\ddot{X}}_{rot_{\theta_y}}$}
               
                 % Set Function Names
-              \SetKwFunction{FSum}{$ls.v.a.total$}
-              \SetKwFunction{FSub}{$ls.v.a.puntual$}
+              \SetKwFunction{FSum}{$ls\_v\_a\_total$}
+              \SetKwFunction{FSub}{$ls\_v\_a\_puntual$}
             
               \tcc{FUNCION PRINCIPAL}
               \SetKwProg{Fn}{}{:}{}
@@ -1480,7 +1477,7 @@
                 \For{ $i$ $in$ $range[0, n_{total}]$}    
                 { 
                     $tiempo_i=tiempo_i+\Delta_{tramoi}$ \tcp*{$\Delta_{tramoi}$ depende de $i$}
-            		$X=ls.v.a.puntual(q_0,q_1,v_{max},a_{max},tiempo_i)$ \tcp*{LSPB}
+            		$X=ls\_v\_a\_puntual(q_0,q_1,v_{max},a_{max},tiempo_i)$ \tcp*{LSPB}
             		\tcc{Resultados Posición,Velocidad,Aceleración de LSBP}
             		$ ({X}_{rot_{\theta_y}}[i],{\dot{X}}_{rot_{\theta_y}}[i],{\ddot{X}}_{rot_{\theta_y}}[i])=(X[0],X[1],X[2])$\;
             		$tiempo[i]=tiempo_i$\;
