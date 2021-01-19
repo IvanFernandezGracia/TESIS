@@ -711,19 +711,24 @@
           \tcc{Calcular $\dot{J}_{iy}$}
           \SetKwProg{Fn}{}{:}{}
           \SetKwFunction{FSub}{calculo\_jiy\_der}
-          \Fn{\FSub{${\phi}_{i }$,$ASD$}}
+          \Fn{\FSub{${\phi}_{i }$,$\theta_{1i}$,$\theta_{2i}$,$\theta_{3i}$,$\dot{ \theta _{1i}}$,$\dot{\theta_{2i}}$,$\dot{\theta_{3i}}$}}
           {
-
-            $\dot{J}_{iy}=A'_{iy}+B'_{iy}$\;
-
+          $A_1=\left[ -sin \left(  \theta _{1i}+ \theta _{2i} \right) \ast \left( \dot{ \theta }_{1i}+\dot{ \theta }_{2i} \right) \ast sin~ \theta _{3i} \right]$\;
+          $A_2= + \left[ \cos  \left(  \theta _{1i}+ \theta _{2i} \right) \ast cos  \theta _{3i}\ast\dot{ \theta }_{3i} \right] $\;
+          $A'_{iy}={}& sin \phi _{i}\ast (A_1 + A_2)$\;
+          $B'_{iy}={}& cos \phi _{i}\ast \left[ -sin  \theta _{3i}\ast\dot{ \theta }_{3i} \right]$\;
+          $\dot{J}_{iy}=A'_{iy}+B'_{iy}$\;
+    
         	\KwRet$\dot{J}_{iy}$\; }
         	
           \tcc{Calcular $\dot{J}_{iz}$}
           \SetKwProg{Fn}{}{:}{}
           \SetKwFunction{FSub}{calculo\_jiz\_der}
-          \Fn{\FSub{${\phi}_{i }$,$ASD$}}
+          \Fn{\FSub{${\phi}_{i }$,$\theta_{1i}$,$\theta_{2i}$,$\theta_{3i}$,$\dot{ \theta _{1i}}$,$\dot{\theta_{2i}}$,$\dot{\theta_{3i}}$}}
           {
-            $\dot{J}_{iz}=$\;
+          $A=\left[ \cos  \left(  \theta _{1i}+ \theta _{2i} \right) \ast \left( \dot{ \theta }_{1i}+\dot{ \theta }_{2i} \right) \ast sin  \theta _{3i} \right] $\;
+          $B=\left[ sin \left(  \theta _{1i}+ \theta _{2i} \right) \ast cos \theta _{3i}\ast \dot{ \theta }_{3i} \right]$\;
+          $\dot{J}_{iz}= A + B$\;
         	\KwRet$\dot{J}_{iz}$\; }
  
           \tcc{Calcular $\dot{J}_{i\theta}$}
@@ -731,7 +736,9 @@
           \SetKwFunction{FSub}{calculo\_jthetai\_der}
           \Fn{\FSub{${\phi}_{i }$,$ASD$}}
           {
-            $\dot{J}_{i\theta}=$\;
+            $A=\cos  \theta _{2i}\ast\dot{ \theta }_{2i}\ast \sin  \theta _{3i}$\;
+            $B=\sin  \theta _{2i}\ast cos \theta _{3i}\ast\dot{ \theta }_{3i}$\;
+            $\dot{J}_{i\theta}=a*(A+B)$\;
         	\KwRet$\dot{J}_{i\theta}$\; } 
         	
 \end{algorithm}       
@@ -742,16 +749,7 @@
         \subsubsection{Dinámica Inversa}
         
     \begin{align}
-        \dot{J}_{iy}={}& A'_{iy}+B'_{iy}
-        \label{eq:cap4_eq_39} \\
-        A'_{iy}={}& sin \phi _{i}\ast \left[  \left[ -sin \left(  \theta _{1i}+ \theta _{2i} \right) \ast \left( \dot{ \theta }_{1i}+\dot{ \theta }_{2i} \right) \ast sin~ \theta _{3i} \right] + \left[ \cos  \left(  \theta _{1i}+ \theta _{2i} \right) \ast cos  \theta _{3i}\ast\dot{ \theta }_{3i} \right]  \right]
-        \label{eq:cap4_eq_40} \\
-        B'_{iy}={}& cos \phi _{i}\ast \left[ -sin  \theta _{3i}\ast\dot{ \theta }_{3i} \right]
-        \label{eq:cap4_eq_41} \\
-        \dot{J}_{iz}={}& \left[ \cos  \left(  \theta _{1i}+ \theta _{2i} \right) \ast \left( \dot{ \theta }_{1i}+\dot{ \theta }_{2i} \right) \ast sin  \theta _{3i} \right] + \left[ sin \left(  \theta _{1i}+ \theta _{2i} \right) \ast cos \theta _{3i}\ast sin\dot{ \theta }_{3i} \right]
-        \label{eq:cap4_eq_42} \\
         \dot{J}_{i \theta }={}&a \left[ ~ \left[ \cos  \theta _{2i}\ast\dot{ \theta }_{2i}\ast \sin  \theta _{3i} \right] + \left[ \sin  \theta _{2i}\ast cos \theta _{3i}\ast\dot{ \theta }_{3i} \right]  \right]
-        \label{eq:cap4_eq_43} \\
     \end{align}
         
         
