@@ -775,7 +775,7 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
         \dot{J}_{iz}={}& \left[ \cos  \left(  \theta _{1i}+ \theta _{2i} \right) \ast \left( \dot{ \theta }_{1i}+\dot{ \theta }_{2i} \right) \ast sin  \theta _{3i} \right] + \left[ sin \left(  \theta _{1i}+ \theta _{2i} \right) \ast cos \theta _{3i}\ast \dot{ \theta }_{3i} \right]
         \label{eq:cap4_eq_42} \\
         \dot{J}_{i \theta }={}&a \left[ ~ \left[ \cos  \theta _{2i}\ast\dot{ \theta }_{2i}\ast \sin  \theta _{3i} \right] + \left[ \sin  \theta _{2i}\ast cos \theta _{3i}\ast\dot{ \theta }_{3i} \right]  \right]
-        \label{eq:cap4_eq_43} \\
+        \label{eq:cap4_eq_43}
     \end{align}
         
 \newpage
@@ -1131,6 +1131,74 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
         \newpage
 
     \subsection{Modelación Cinematica de Aceleracion}
+        
+        En esta sección se presentan las ecuaciones para determinar la aceleración angular de los actuadores del robot delta. La aceleración se determina derivando 2 veces matricialmente la ecuación (\ref{eq:cap4_MB_11}) de la sección \ref{mb_cvel} de modelación cinemática de velocidad para el método B.
+        
+        La aceleración angular de los motores del robot delta se calcula con la siguiente formula:
+        
+        
+        \begin{equation}
+                    \overrightarrow{\ddot{ \theta }}=J^{-1} \left[ \overrightarrow{\ddot{P_{0}}}+ \left[ \begin{matrix}
+                \overrightarrow{s_{1}}^{T}\\
+                \overrightarrow{s_{2}}^{T}\\
+                \overrightarrow{s_{3}}^{T}\\
+                \end{matrix}
+                 \right] ^{-1} \ast \left(  \left[ \begin{matrix}
+                \overrightarrow{\dot{s}_{1}}^{T}\\
+                \overrightarrow{\dot{s}_{2}}^{T}\\
+                \overrightarrow{\dot{s}_{3}}^{T}\\
+                \end{matrix}
+                 \right]  J+K \right) \ast\overrightarrow{\dot{ \theta }} \right]
+            \label{eq:cap4_MB_16}
+        \end{equation} 
+
+        Donde: 
+
+        \begin{equation}
+                 K= \left[ \begin{matrix}
+                \overrightarrow{\dot{s}_{1}}^{T}\overrightarrow{b_{1}}+\overrightarrow{s_{1}}^{T}\overrightarrow{\dot{b}_{1}}  &  0  &  0\\
+                0  &  \overrightarrow{\dot{s}_{2}}^{T}\overrightarrow{b_{2}}+\overrightarrow{s_{2}}^{T}\overrightarrow{\dot{b}_{2}}  &  0\\
+                0  &  0  &  \overrightarrow{\dot{s}_{3}}^{T}\overrightarrow{b_{3}}+\overrightarrow{s_{3}}^{T}\overrightarrow{\dot{b}_{3}}\\
+                \end{matrix}
+                 \right]  
+            \label{eq:cap4_MB_17}
+        \end{equation} 
+        
+        \begin{equation}
+                  \overrightarrow{\dot{b}_{i}}= \left[ \begin{matrix}
+                L_{A} cos⁡ \left(  \theta _{i} \right) \\
+                0\\
+                - L_{A}\sin ⁡ \left(  \theta _{i} \right) \\
+                \end{matrix}
+                 \right] \overrightarrow{\dot{ \theta _{i}}}  
+            \label{eq:cap4_MB_18}
+        \end{equation} 
+        
+        \begin{equation}
+                  \overrightarrow{\dot{s}_{i}}= \left[ \begin{matrix}
+                \dot{P}_{0x}\\
+                \dot{P}_{0y}\\
+                \dot{P}_{0z}\\
+                \end{matrix}
+                 \right] +R_{i}^{R}\ast \left[ \begin{matrix}
+                L_{A}\sin  \left(  \theta _{i} \right) \\
+                0\\
+                L_{A}\cos  \left(  \theta _{i} \right) \\
+                \end{matrix}
+                 \right] \dot{ \theta _{i}}=\overrightarrow{\dot{P_{0}}}+\overrightarrow{b_{i}}~\dot{ \theta _{i}} 
+            \label{eq:cap4_MB_19}
+        \end{equation} 
+
+        
+
+
+        
+
+
+
+
+
+
 
 
     \newpage

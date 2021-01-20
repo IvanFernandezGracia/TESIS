@@ -616,6 +616,7 @@
               \tcc{FUNCION PRINCIPAL}
               \SetKwProg{Fn}{}{:}{}
               \Fn{\FSum{$P_x$,$P_y$,$P_z$,${\theta }_{11}$,${\theta }_{12}$,${\theta }_{13}$,$v_{px}$,$ v_{py}$,$ v_{pz}$}}{
+                  \tcc{Cambiar ángulos y punto P al sistema Referencia Local}
                   \tcc{Utilizar funcion de Jacobiano Metodo A}
                    $[J_{\theta }, J_{x},\theta _{31},\theta _{32},\theta _{33},\theta _{21},\theta _{22},\theta _{23}, J]=jacobian\_total\_der(P_x,P_y,P_z,{\theta }_{11},{\theta }_{12},{\theta }_{13})$\;
                 \tcc{Matriz $\dot{ \theta _{1i}}$ }
@@ -1019,7 +1020,7 @@
 
               \tcc{FUNCION PRINCIPAL}
               \SetKwProg{Fn}{}{:}{}
-              \Fn{\FSum{$P_x$,$P_y$,$P_z$,${\theta }_{11}$,${\theta }_{12}$,${\theta }_{13}$}}{
+              \Fn{\FSum{$P_{0x}$,$P_{0y}$,$P_{0z}$,${\theta }_{11}$,${\theta }_{12}$,${\theta }_{13}$}}{
               \tcc{Cambiar ángulos y punto P al sistema Referencia Local}
               \tcc{Posición actuadores $\varphi$ respecto a ejes $YX$ S.ref Local}
               $({\phi}_{0 ^{\circ}},${\phi}_{120 ^{\circ}},${\phi}_{240 ^{\circ}})=(0,120,240)$\;
@@ -1131,10 +1132,119 @@
 
         \newpage
 
-\subsubsection{Cinematica de Aceleracion}
+\subsubsection{Modelacion Cinematica de Aceleracion}
 
-            \newpage
 
+         \begin{algorithm}[H]
+            \caption{Modelacion Cinematica de Aceleracion Metodología B} 
+            \SetKwInput{KwInput}{Input}                % Set the Input
+            \SetKwInput{KwOutput}{Output}              % set the Output
+            \SetKwInput{KwObjetivo}{Objetivo}                % Set the Input
+            \SetKwInput{Kwfile}{Nombre archivo}                % Set the Input
+            
+            \DontPrintSemicolon
+              \KwObjetivo {Hallar la matrices para calcular la aceleración angular de los actuadores}
+              \Kwfile{$jacobian\_Paderborn\_tm1\_v2\_adams.py$}
+              
+              \KwInput{$P_{0x},P_{0y},P_{0z},{\theta }_{1},{\theta }_{2},{\theta }_{3},\dot{\theta }_{1},\dot{\theta }_{2},\dot{\theta }_{3}$}
+              \KwOutput{ $-J_{1},J_{2},J,\overrightarrow{{\dot{s}}_i}^T,K,\overrightarrow{\dot{\theta}},\overrightarrow{{{s}}_i}^T$}
+               
+                % Set Function Names,
+              \SetKwFunction{FSum}{jacobian\_total\_tm1}
+
+              \tcc{FUNCION PRINCIPAL}
+              \SetKwProg{Fn}{}{:}{}
+              \Fn{\FSum{$P_{0x}$,$P_{0y}$,$P_{0z}$,${\theta }_{1}$,${\theta }_{2}$,${\theta }_{3},\dot{\theta }_{1},\dot{\theta }_{2},\dot{\theta }_{3}$}}{
+              \tcc{Cambiar ángulos y punto P al sistema Referencia Local}
+              \tcc{Posición actuadores $\varphi$ respecto a ejes $YX$ S.ref Local}
+              \tcc{Usar función de jacobiano metodo B}
+               $[-J_{1},J_{2},J] =jacobian\_calculo\_Paderborn(P_{0x},P_{0y},P_{0z},{\theta }_{1},{\theta }_{2},{\theta }_{3})$\;
+                \tcc{Calcular matriz $\overrightarrow{\dot{P}_0}$ }
+                   $ \left[  \begin{matrix}
+                \dot{P}_{0x}\\
+                \dot{P}_{0y}\\
+                \dot{P}_{0z}\\
+                \end{matrix}\right] =  J *\left[ \begin{matrix}
+                \dot{ \theta _{1}}~\\
+                \dot{ \theta _{2}}\\
+                \dot{ \theta _{3}}~\\
+                \end{matrix} \right] = J *\overrightarrow{\dot{\theta}} $\;
+
+        
+              \tcc{Calcular Transpose $\overrightarrow{{\dot{s}}_i}$  $para$ $i=1,2,3$ $(1x3)$ }
+               $\overrightarrow{{\dot{s}}_1}^T=[si\_p(\dot{P}_{0x},\dot{P}_{0y},\dot{P}_{0z},\varphi_{0^\circ},{\theta }_{1},\dot{\theta }_{1})]^T$\;
+               $\overrightarrow{{\dot{s}}_2}^T=[si\_p(\dot{P}_{0x},\dot{P}_{0y},\dot{P}_{0z},\varphi_{120^\circ},{\theta }_{2},\dot{\theta }_{2})]^T$\;
+               $\overrightarrow{{\dot{s}}_3}^T=[si\_p(\dot{P}_{0x},\dot{P}_{0y},\dot{P}_{0z},\varphi_{240^\circ},{\theta }_{3},\dot{\theta }_{3})]^T$\;
+
+              \tcc{Calcular Matriz \overrightarrow{{\dot{s}}_i}^T (3x3)}
+
+               $\overrightarrow{{\dot{s}}_i}^T= \left[\begin{matrix}
+                \overrightarrow{{\dot{s}}_1}^T\\
+                \overrightarrow{{\dot{s}}_2}^T\\
+                \overrightarrow{{\dot{s}}_3}^T\\
+                \end{matrix} \right] $\;
+
+              \tcc{Calcular \overrightarrow{{\dot{b}}_i}}
+               $\overrightarrow{{\dot{b}}_1}=bi\_p(\varphi_{0^\circ},{\theta }_{1},\dot{\theta }_{1})$\;
+               $\overrightarrow{{\dot{b}}_2}=bi\_p(\varphi_{120^\circ},{\theta }_{2},\dot{\theta }_{2})$\;
+               $\overrightarrow{{\dot{b}}_3}=bi\_p(\varphi_{240^\circ},{\theta }_{3},\dot{\theta }_{3})$\;
+
+              \tcc{	Calcular Matriz K ecuacion (\ref{eq:cap4_MB_17})}
+               $K= \left[ \begin{matrix}
+                \overrightarrow{\dot{s}_{1}}^{T}\overrightarrow{b_{1}}+\overrightarrow{s_{1}}^{T}\overrightarrow{\dot{b}_{1}}  &  0  &  0\\
+                0  &  \overrightarrow{\dot{s}_{2}}^{T}\overrightarrow{b_{2}}+\overrightarrow{s_{2}}^{T}\overrightarrow{\dot{b}_{2}}  &  0\\
+                0  &  0  &  \overrightarrow{\dot{s}_{3}}^{T}\overrightarrow{b_{3}}+\overrightarrow{s_{3}}^{T}\overrightarrow{\dot{b}_{3}}\\
+                \end{matrix}
+                 \right]  $\;
+
+
+              \KwRet $[-J_{1},J_{2},J,\overrightarrow{{\dot{s}}_i}^T,K,\overrightarrow{\dot{\theta}},\overrightarrow{{{s}}_i}^T]$ }
+        \end{algorithm}
+        \newpage
+
+        \begin{algorithm}
+                  \ContinuedFloat
+                  \caption{Modelacion Cinematica de Aceleracion Metodología B (Continuacion...)}
+                  \tcc{SUBFUNCIONES}
+                  
+                  \tcc{Calcular Transpose $\overrightarrow{{\dot{s}}_i}$  $para$ $i=1,2,3$ $(1x3)$ }
+                  \SetKwProg{Fn}{}{:}{}
+                  \SetKwFunction{FSub}{si\_p}
+                  \Fn{\FSub{$\dot{P}_{0x}$,$\dot{P}_{0y}$,$\dot{P}_{0z}$,$\varphi_{{}^\circ}$,${\theta }_{i}$,$\dot{\theta }_{i}$}}{
+                    \tcc{calculo ecuacion (\ref{eq:cap4_MB_19})}
+                    $\overrightarrow{\dot{s}_{i}}= \left[ \begin{matrix}
+                    \dot{P}_{0x}\\
+                    \dot{P}_{0y}\\
+                    \dot{P}_{0z}\\
+                    \end{matrix}
+                     \right] +R_{i}^{R}\ast \left[ \begin{matrix}
+                    L_{A}\sin  \left(  \theta _{i} \right) \\
+                    0\\
+                    L_{A}\cos  \left(  \theta _{i} \right) \\
+                    \end{matrix}
+                     \right] \dot{ \theta _{i}}=\overrightarrow{\dot{P_{0}}}+\overrightarrow{b_{i}}~\dot{ \theta _{i}} $\;
+                        \KwRet $\overrightarrow{\dot{s}_{i}}$ }
+                    
+              \tcc{Calcular \overrightarrow{{\dot{b}}_i}}
+                  \SetKwProg{Fn}{}{:}{}
+                  \SetKwFunction{FSub}{bi\_p}
+                  \Fn{\FSub{$\varphi_{{}^\circ}$,${\theta }_{i}$,$\dot{\theta }_{i}$}}{
+                    \tcc{calculo ecuacion (\ref{eq:cap4_MB_18})}
+                    $\overrightarrow{\dot{b}_{i}}= \left[ \begin{matrix}
+                L_{A} cos⁡ \left(  \theta _{i} \right) \\
+                0\\
+                - L_{A}\sin ⁡ \left(  \theta _{i} \right) \\
+                \end{matrix}
+                 \right] \overrightarrow{\dot{ \theta _{i}}}  $\; 
+                    \KwRet $\overrightarrow{\dot{b}_{i}}$ }
+
+        \end{algorithm}
+        
+
+        
+        
+        
+                \newpage
 
 \subsubsection{Dinámica Inversa}
         \newpage
