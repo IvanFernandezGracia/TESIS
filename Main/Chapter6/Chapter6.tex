@@ -328,9 +328,9 @@
                 \centering
                  \begin{tikzpicture}[node distance = 5cm, auto]
                     % Place nodes
-                    \node [block1] (funcion) {\textbf{Cinemática Aceleracion\\ Sección (\ref{})}};
-                    \node [block2, left of=funcion] (input) {\textbf{Entradas}};
-                    \node [block2, right of=funcion] (ouput) {\textbf{Salidas}};
+                    \node [block1] (funcion) {\textbf{Cinemática Aceleracion\\ Sección (\ref{ma_acel})}};
+                    \node [block2, left of=funcion] (input) {\textbf{$P_x,P_y,P_z,$\\${\theta }_{11},{\theta }_{12},{\theta }_{13},$\\ $v_{px},v_{py},v_{pz}$}};
+                    \node [block2, right of=funcion] (ouput) {\textbf{$J_{\theta }, J_{x},\dot{J}_{\theta }, \dot{J}_{x},$\\$\theta_{31},\theta_{32},\theta_{33},$\\$\theta_{21},\theta_{22},\theta_{23}$}};
                     % Draw edges
                     \path [line] (funcion) -- node {}(ouput);
                     \path [line] (input) -- node { }(funcion);
@@ -345,9 +345,9 @@
                 \centering
                  \begin{tikzpicture}[node distance = 5cm, auto]
                     % Place nodes
-                    \node [block1] (funcion) {\textbf{Dinamica Inversa\\ Sección (\ref{})}};
-                    \node [block2, left of=funcion] (input) {\textbf{Entradas}};
-                    \node [block2, right of=funcion] (ouput) {\textbf{Salidas}};
+                    \node [block1] (funcion) {\textbf{Dinamica Inversa\\ Sección (\ref{ma_dina})}};
+                    \node [block2, left of=funcion] (input) {\textbf{$\ddot{\theta}_{1},\ddot{\theta}_{2},\ddot{\theta}_{3},$\\$        {\theta}_{1},{\theta}_{2},{\theta}_{3},$\\$X_p,Y_p,Z_p,$\\$\ddot{X}_{p},\ddot{Y}_{p},\ddot{Z}_{p},$\\$F_{px},F_{py},F_{pz},$\\$m_{playload}$}};
+                    \node [block2, right of=funcion] (ouput) {\textbf{$\tau_1,\tau_2,\tau_3$}};
                     % Draw edges
                     \path [line] (funcion) -- node {}(ouput);
                     \path [line] (input) -- node { }(funcion);
@@ -533,7 +533,7 @@
                     $J_{2 \theta }=calculo\_jthetai(\theta_{22}$,$\theta _{32}$,$\phi_{120 ^{\circ}})$\;
                     $J_{3 \theta }=calculo\_jthetai(\theta_{23}$,$\theta _{33}$,$\phi_{240 ^{\circ}})$\;
                     $J_{ \theta }=[J_{1 \theta },0,0;0,J_{2 \theta },0;0,0,J_{3 \theta }]$\;  
-                \tcc{Calcular Matriz $J$ }
+                \tcc{Calcular Matriz $J$  ecuación (\ref{eq:cap4_eq_33})  }
                     $J=J_{x}^{-1}J_{ \theta } $\;
                 \tcc{Cambiar al sistema Referencia Global al operar}
                   \KwRet $[J_{\theta }, J_{x},\theta _{31},\theta _{32},\theta _{33},\theta _{21},\theta _{22},\theta _{23}, J]$\;}
@@ -546,14 +546,14 @@
           \caption{Jacobiano Metodología A (Continuacion...)}
           \tcc{SUBFUNCIONES}
           
-          \tcc{Calcular angulo ${\theta }_{3i}$}  
+          \tcc{Calcular angulo ${\theta }_{3i}$ ecuación (\ref{eq:cap4_eq_23}) }  
           \SetKwProg{Fn}{}{:}{}
           \Fn{\FSub{$P_x$,$P_y$ ,$\phi_i$}}{
             $c_{yi}= (-P_x)*(sin({ \phi }_i))+(P_y)*(cos({ \phi }_i))$\;    
             $\theta _{3i}= \cos ^{-1}\frac{c_{yi}}{b}$\;    
                 \KwRet${\theta }_{3i}$\;   } 
         
-          \tcc{Calcular angulo ${\theta }_{2i}$}
+          \tcc{Calcular angulo ${\theta }_{2i}$ ecuación (\ref{eq:cap4_eq_24}) }
           \SetKwProg{Fn}{}{:}{}
           \SetKwFunction{FSub}{calculo\_theta2i}
           \Fn{\FSub{$P_x$,$P_y$,$P_z$,${\theta }_{3i}$,$\phi_i$}}{
@@ -566,27 +566,28 @@
                 
                 
            \tcc{Calcular componentes Matriz $J_x$}
+          \tcc{Calcular componentes Matriz $J_{ix }$ ecuación (\ref{eq:cap4_eq_28}) }
            \SetKwFunction{FSub}{calculo\_jix}
            \SetKwProg{Fn}{}{:}{}
            \Fn{\FSub{$\theta _{1i}$,$\theta _{2i}$,$\theta _{3i}$, $\phi_i$}}{
             $ J_{ix}=\cos  \left(  \theta _{1i}+ \theta _{2i} \right) sin~ \theta _{3i}\cos  \phi _{i}-cos  \theta _{3i}\sin  \phi _{i}~ $\;    
             \KwRet$J_{ix}$\;  }
                 
-                
+          \tcc{Calcular componentes $J_{iy }$ ecuación (\ref{eq:cap4_eq_29}) }
           \SetKwFunction{FSub}{calculo\_jiy}
            \SetKwProg{Fn}{}{:}{}
           \Fn{\FSub{$\theta _{1i}$,$\theta _{2i}$,$\theta _{3i}$,$\phi_i$}}{
             $J_{iy}=\cos  \left(  \theta _{1i}+ \theta _{2i} \right) sin~ \theta _{3i}\sin  \phi _{i}+ cos  \theta _{3i}\cos  \phi _{i}~$\;    
             \KwRet$J_{iy}$\;  }   
                     
-            
+          \tcc{Calcular componentes $J_{iz }$ ecuación (\ref{eq:cap4_eq_30}) }
            \SetKwFunction{FSub}{calculo\_jiz}
            \SetKwProg{Fn}{}{:}{}
           \Fn{\FSub{$\theta _{1i}$,$\theta _{2i}$,$\theta _{3i}$,$\phi_i$}}{
             $ J_{iz}=sin \left(  \theta _{1i}+ \theta _{2i} \right) sin~ \theta _{3i}~ $\;    
             \KwRet$J_{iz}$\;} 
             
-          \tcc{Calcular componentes Matriz $J_{\theta }$}
+          \tcc{Calcular componentes $J_{\theta }$ ecuación (\ref{eq:cap4_eq_31}) }
           \SetKwFunction{FSub}{calculo\_jthetai}
           \Fn{\FSub{$\theta_{2i}$,$\theta _{3i}$,$\phi_i$}}{
                 $J_{i \theta }=a~\sin  \theta _{2i}~sin~ \theta _{3i}$\; 
@@ -608,7 +609,7 @@
               \KwObjetivo {Hallar las matrices para calcular la aceleración angular de los actuadores}
               \Kwfile{$jacobian\_tm1\_adams.py$}
               \KwInput{$P_x,P_y,P_z,{\theta }_{11},{\theta }_{12},{\theta }_{13},v_{px},v_{py},v_{pz}$}
-              \KwOutput{ $J$}
+              \KwOutput{ $J_{\theta }, J_{x},\dot{J}_{\theta }, \dot{J}_{x},\theta_{31},\theta_{32},\theta_{33},\theta_{21},\theta_{22},\theta_{23}$}
                
                 % Set Function Names,
               \SetKwFunction{FSum}{jacobian\_total\_der}
@@ -655,7 +656,7 @@
           \caption{Aceleración Metodología A (Continuacion...)}
           \tcc{SUBFUNCIONES}
           
-          \tcc{Calcular $\dot{\theta }_{3i}$}  
+          \tcc{Calcular $\dot{\theta }_{3i}$ ecuacion (\ref{eq:cap4_eq_44})}  
           \SetKwProg{Fn}{}{:}{}
           \SetKwFunction{FSub}{calculo\_theta3i\_der}
           \Fn{\FSub{$P_x$,$P_y$, ${\phi}_{i ^{\circ}}$,$v_{px}$,$v_{py}$}}{
@@ -666,7 +667,7 @@
             $\dot{ \theta }_{3i}={}& \frac{A}{B}$\;
                 \KwRet$\dot{\theta }_{3i}$\;   } 
         
-          \tcc{Calcular $\dot{\theta }_{2i}$}
+          \tcc{Calcular $\dot{\theta }_{2i}$ ecuacion (\ref{eq:cap4_eq_46})}
           \SetKwProg{Fn}{}{:}{}
           \SetKwFunction{FSub}{calculo\_theta2i\_der}
           \Fn{\FSub{$P_x$,$P_y$,$P_z$, ${\phi}_{i ^{\circ}}$,$v_{px}$,$v_{py}$,$v_{pz}$,${\theta}_{3i}$,$\dot{\theta}_{3i}$}}
@@ -685,7 +686,7 @@
             $\dot{ \theta }_{2i}={}& \left[ \frac{ -K'}{\sqrt[]{1- \left(  K \right) ^{2}~}} \right]$\;
         	\KwRet$ \dot{ \theta }_{2i}$\;  }
 
-          \tcc{Calcular $\dot{J}_{ix}$}
+          \tcc{Calcular $\dot{J}_{ix}$ ecuacion (\ref{eq:cap4_eq_36})}
           \SetKwProg{Fn}{}{:}{}
           \SetKwFunction{FSub}{calculo\_jix\_der}
           \Fn{\FSub{${\phi}_{i }$,$\theta_{1i}$,$\theta_{2i}$,$\theta_{3i}$,$\dot{ \theta _{1i}}$,$\dot{\theta_{2i}}$,$\dot{\theta_{3i}}$}}
@@ -709,7 +710,7 @@
           \caption{Aceleración Metodología A (Continuacion...)}
           \tcc{SUBFUNCIONES}
 
-          \tcc{Calcular $\dot{J}_{iy}$}
+          \tcc{Calcular $\dot{J}_{iy}$ ecuacion (\ref{eq:cap4_eq_39})}
           \SetKwProg{Fn}{}{:}{}
           \SetKwFunction{FSub}{calculo\_jiy\_der}
           \Fn{\FSub{${\phi}_{i }$,$\theta_{1i}$,$\theta_{2i}$,$\theta_{3i}$,$\dot{ \theta _{1i}}$,$\dot{\theta_{2i}}$,$\dot{\theta_{3i}}$}}
@@ -722,7 +723,7 @@
     
         	\KwRet$\dot{J}_{iy}$\; }
         	
-          \tcc{Calcular $\dot{J}_{iz}$}
+          \tcc{Calcular $\dot{J}_{iz}$ ecuacion (\ref{eq:cap4_eq_42})}
           \SetKwProg{Fn}{}{:}{}
           \SetKwFunction{FSub}{calculo\_jiz\_der}
           \Fn{\FSub{$\theta_{1i}$,$\theta_{2i}$,$\theta_{3i}$,$\dot{ \theta _{1i}}$,$\dot{\theta_{2i}}$,$\dot{\theta_{3i}}$}}
@@ -732,7 +733,7 @@
           $\dot{J}_{iz}= A + B$\;
         	\KwRet$\dot{J}_{iz}$\; }
  
-          \tcc{Calcular $\dot{J}_{i\theta}$}
+          \tcc{Calcular $\dot{J}_{i\theta}$ ecuacion (\ref{eq:cap4_eq_43})}
           \SetKwProg{Fn}{}{:}{}
           \SetKwFunction{FSub}{calculo\_jthetai\_der}
           \Fn{\FSub{$\theta_{2i}$,$\theta_{3i}$,$\dot{\theta_{2i}}$,$\dot{\theta_{3i}}$}}
@@ -760,7 +761,7 @@
               \KwObjetivo {Calcular el torque de los actuadores de un robot delta}
               \Kwfile{$torque\_m1\_adams.py$}
               \KwInput{$\ddot{\theta}_{1},\ddot{\theta}_{2},\ddot{\theta}_{3},        {\theta}_{1},{\theta}_{2},{\theta}_{3},X_p,Y_p,Z_p,\ddot{X}_{p},\ddot{Y}_{p},\ddot{Z}_{p},F_{px},F_{py},F_{pz},m_{playload}$ }
-              \KwOutput{ $J$}
+              \KwOutput{ $\tau_2,\tau_1,\tau_3$}
                
                 % Set Function Names,
               \SetKwFunction{FSum}{ti}
@@ -791,6 +792,7 @@
           \SetKwFunction{FSub}{ ti\_puntual}
           \Fn{\FSub{$\phi_{i^\circ},\ddot{\theta}_{i},\theta_{i},X_p,Y_p,Z_p,\lambda_i$}}
           {
+          \tcc{Resolver ecuacion (\ref{eq:cap4_dina_ma_15})  }
           $A=\left( \frac{1}{3}m_{1}+m_{2} \right) L_{1}^{2}\ddot{ \theta }_{i} $\;
           $B= \left( \frac{1}{2}m_{1}+m_{2} \right) gL_{1}\cos  \theta _{i}$\;
           $C=2 \lambda _{i}L_{1} \left[  \left( X_{P}\cos  \phi _{i}+Y_{P}\sin  \phi _{i}- r \right) \sin  \theta _{i}-Z_{P}\cos  \theta _{i} \right]$\;
@@ -812,23 +814,26 @@
                   \SetKwProg{Fn}{}{:}{}
                   \SetKwFunction{FSub}{system\_tq}
                   \Fn{\FSub{\phi_{0^\circ},\phi_{120^\circ},\phi_{240^\circ},\theta_1,\theta_2,\theta_3,X_p,Y_p,Z_p,F_{px},F_{py},F_{pz},\ddot{X}_p,\ddot{Y}_p,\ddot{Z}_p,m_{playload}}}{
+                    \tcc{Resolver sistema ecuaciones $A\lambda_i=B$ , modelado desde las ecuaciones (\ref{eq:cap4_dina_ma_12}),(\ref{eq:cap4_dina_ma_13}),(\ref{eq:cap4_dina_ma_14})}
+                    \tcc{Matriz A}
+                	$A_{0,0}=2(X_P-rcos\phi_1-L_1cos\theta_1cos\phi_{0^\circ})$\;
+                	$A_{0,1}=2(X_P-rcos\phi_2-L_1cos\theta_2cos\phi_{120^\circ})$\;
+                	$A_{0,2}=2(X_P-rcos\phi_3-L_1cos\theta_3cos\phi_{240^\circ})$\;
+                	$A_{1,0}=2(Y_P-rsin\phi_1-L_1cos\theta_1sin\phi_{0^\circ})$\;
+                	$A_{1,1}=2(Y_P-rsin\phi_2-L_1cos\theta_2sin\phi_{120^\circ})$\;
+                	$A_{1,2}=2(Y_P-rsin\phi_3-L_1cos\theta_3sin\phi_{240^\circ})$\;
+                	$A_{2,0}=2(Z_P-L_1sin\theta_1)$\;
+                	$A_{2,1}=2(Z_P-L_1sin\theta_2)$\;
+                	$A_{2,2}=2(Z_P-L_1sin\theta_3)$\;
+                    \tcc{Matriz B}
+                    \tcc{Al termino $m_p$ se le suma el termino $m_{playload}$ que es la masa del objeto que mueve el robot delta, si es que moviera uno.}
+                	$B_{0,0}=[(m_p+m_{playload})+3m_2]\ddot{X}_p-F_{px}$\;
+                	$B_{1,0}=[(m_p+m_{playload})+3m_2]\ddot{Y}_p-F_{py}$\;     
+                	$B_{2,0}=[(m_p+m_{playload})+3m_2][\ddot{Z}_p-g]-F_{px}$\;  
+                    \tcc{Calculo de $\lambda_i$}
+	                $[\lambda_1,\lambda_2,\lambda_3]^T=A^{-1}B$\;
 
-                  $\dot{J}_{iy}=A'_{iy}+B'_{iy}$\;
-                	$A_{0,0}=maxx(phi[0],theta1i[0],punto[0])$\;
-                	$A_{0,1}=maxx(phi[1],theta1i[1],punto[0])$\;
-                	$A_{0,2}=maxx(phi[2],theta1i[2],punto[0])$\;
-                	$A_{1,0}=mayy(phi[0],theta1i[0],punto[1])$\;
-                	$A_{1,1}=mayy(phi[1],theta1i[1],punto[1])$\;
-                	$A_{1,2}=mayy(phi[2],theta1i[2],punto[1])$\;
-                	$A_{2,0}=mazz(theta1i[0],punto[2])$\;
-                	$A_{2,1}=mazz(theta1i[1],punto[2])$\;
-                	$A_{2,2}=mazz(theta1i[2],punto[2])$\;
-                
-                	$B_{0,0}=((mnt(m_playload)+(3.0*m2))*((1)*(xp_pp)))-(fpx)$\;
-                	$B_{1,0}=((mnt(m_playload)+(3.0*m2))*((1)*(yp_pp)))-(fpy)$\;     
-                	$B_{2,0}=((mnt(m_playload)+(3.0*m2))*((1)*(zp_pp-g)))-(fpz)$\;  
-            
-                  \KwRet$\dot{J}_{iy}$\; }
+                  \KwRet$[\lambda_1,\lambda_2,\lambda_3]^T$\; }
 
         \end{algorithm}  
 
