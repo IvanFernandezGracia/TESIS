@@ -815,10 +815,229 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
 
     
     \subsection{Modelación dinámica}
+            La aplicación directa de las leyes de Newton al movimiento de sistemas de partículas es sustituida por una propuesta más general, un método para encontrar las ecuaciones de movimiento para todos los sistemas dinámicos, desarrollado por el matemático Joseph Louis Lagrange. En el anexo \ref{anexoB} primero se habla de los conceptos básicos hasta llegar a la formulación de Lagrange. Se obtienen las ecuaciones de Lagrange partiendo del principio de D’Alembert.  Toda la información en esta sección es recopilada en la referencia \cite{INTRO_MECANICA_LAGRAGE}. Finalmente se aplican las ecuaciones de Lagrange al robot delta para determinar el torque de cada actuador.
+
         \subsubsection{Ecuaciones de Lagrange}
-            La aplicación directa de las Leyes de Newton al movimiento de sistemas de partículas es sustituida por una propuesta más general, un método para encontrar las ecuaciones de movimiento para todos los sistemas dinámicos, desarrollado por el matemático Joseph Louis Lagrange. En el anexo \ref{anexoB} primero se habla de los conceptos básicos hasta llegar a la formulación de Lagrange. Se obtienen las ecuaciones de Lagrange partiendo del principio de D’Alembert.  Toda la información en esta sección es recopilada de la referencia \cite{INTRO_MECANICA_LAGRAGE}.
+
+        Se dice que las ligaduras holónomas son empleadas en forma explícita cuando no se utilizan para eliminar las coordenadas dependientes, efectuándose la descripción del sistema de partículas dado con la totalidad (dependientes + independientes) de sus coordenadas. Las ecuaciones de Lagrange para sistemas con ligaduras holónomas usadas de forma explícita se representa en la siguiente formula:
+        
+        \begin{equation}
+             \frac{d}{dt} \left( \frac{ \delta L}{ \delta \dot{q}_{j}} \right) -\frac{ \delta L}{ \delta q_{j}}=Q_{j}^{ \left( lig \right) } \left( q_{j} \right) +Q_{j}^{ \left( NU \right) } \left( q_{j} \right)
+             \label{eq:cap4_dina_ma_1}
+        \end{equation}
+        
+        Con  $ j=1,2,3, \ldots , \eta =3N $ 
+
+        Donde:
+        \begin{equation}
+          Q_{j}^{ \left( lig \right) } \left( q_{j} \right) = \sum _{l=1}^{K^{ \left( h \right) }} \lambda _{l}\frac{ \delta f_{l}^{ \left( h \right) }}{ \delta q_{j}}
+             \label{eq:cap4_dina_ma_2}
+        \end{equation}
+
+         \( L \)  representa el lagrangiana o lagrangiano:\par
+        
+        
+        \begin{equation}
+         L \left( q_{j},\dot{q_{j}},t \right) =T \left( q_{j},\dot{q_{j}},t \right) -V \left( q_{j},\dot{q_{j}},t \right) 
+             \label{eq:cap4_dina_ma_3}
+        \end{equation}
+
+
+      Las expresiones (\ref{eq:cap4_dina_ma_1}) son las ecuaciones de Lagrange para ligaduras holónomas  $f_{i}^{(h)}$ $( q_{i},t) =0$  cuando son usadas en forma explícita. Representan un conjunto de  $\eta =3N$  ecuaciones para el conjunto completo de coordenadas (dependientes + independientes)  $q_{1},q_{2},q_{3},...,q_{\eta=3N}$. Estas ecuaciones, en conjunto con las  $K^{ \left( h \right) }$ ecuaciones de ligadura dadas por $f_{i}^{(h)}$ $( q_{i},t) =0$  forman un sistema de   $ 3N+~K^{ \left( h \right) } $  ecuaciones para  $ 3N+~K^{ \left( h \right) } $  incógnitas,  $ 3N $  coordenadas  $ q_{j} $ y  $ K^{ \left( h \right) } $ multiplicadores de Lagrange  $ \lambda _{l}$ , quedando así determinado dicho sistema de ecuaciones. Aquí las ligaduras entran en forma explícita en los  $ Q_{j}^{ \left( lig \right) }$ dados por (\ref{eq:cap4_dina_ma_2}), que son fuerzas adicionales que actúan sobre el sistema. Debido a que estas fuerzas están relacionadas con las ligaduras se les da el nombre de fuerzas generalizadas de ligadura, las cuales no realizan trabajo virtual como lo requiere la validez del Principio de D’Alembert.
+
 
     \newpage
+    
+    
+     $ Q_{j}^{ \left( NU \right) }$ son llamadas comúnmente fuerzas generalizadas, sin embargo, no solo son fuerzas. Estas dependen de la dimensión de las coordenadas generalizadas  $ q_{j}$ que se utiliza en la ecuación de Lagrange :
+    
+    \begin{enumerate}
+    	\item Si $q_{j}$  es una longitud, entonces $Q_{j}^{ \left( NU \right)}$  es una fuerza.
+    	\item Si  $q_{j}$  es un ángulo, entonces  $Q_{j}^{ \left( NU \right) }$  es un torque.
+        \item Si  $q_{j}$  es una superficie, entonces  $Q_{j}^{ \left( NU \right) }$ es una tensión.
+    	\item Si $q_{j}$ es un volumen, entonces es $Q_{j}^{ \left( NU \right) }$ una presión.
+    \end{enumerate}
+
+    \newpage
+
+
+    \subsubsection{Nomenclatura de Parameros Geométricos y Sistema de Referencia Global}
+    
+        \begin{figure}[H]
+    		    \includegraphics[width=3.43in,height=4.39in]{Main/Chapter4/Images4/ma_dina_1.png}
+        \end{figure}
+
+En la ilustración tanto se pueden visualizar 3 cadenas cinemáticas i=1,2,3 las cuales se componen de 4 partes mecánicas: la base fija, brazos, antebrazos y base móvil. La junta que une la base fija con los brazos representan una junta tipo revoluta accionadas por motores. También se muestra la simplificación de masas para resolver la dinámica del robot delta.
+
+En la siguiente tabla muestra la relación entre la numeración en la figura anterior y su descripción:
+
+
+        \begin{table}[h]
+            \centering
+            \begin{tabular}{c c}
+            \hline
+                \textbf{Numero}& \textbf{Descripción} \\ 
+            \hline             \hline
+             1 & Base fija \\
+            \hline
+             2 & Brazo \\
+            \hline
+             3 & Antebazo \\
+            \hline
+             4 & Base Movil\\
+            \hline
+            \end{tabular}
+           \caption{Referencias del dibujo}
+           \label{tab:cap4_tabla_dina_ma_1}
+        \end{table}
+
+    \newpage
+   
+   En la tabla \ref{tab:cap4_tabla_dina_ma_2} se presenta la simbología de los sistema de referencia, magnitudes, puntos y angulos principales para el desarrollo de la dinámica inversa del robot delta:
+   
+           \begin{table}[h]
+            \centering
+                \begin{tabular}{c m{11cm}}
+            \hline
+                \textbf{Simbolo}& \textbf{Descripción} \\ 
+            \hline             \hline
+             $L_{1}$ &  Longitud brazo\\
+            \hline
+             $L_{2}$ & Longitud antebrazo \\
+            \hline
+            $ r_{a}$ &  Radio de circulo inscrito en triangulo de base fija\\
+            \hline
+             $r_{b}$ & Radio de circulo inscrito en triangulo de base móvil \\
+            \hline
+            $m_{1}$ & Masa de un brazo posicionada en su centroide \\
+            \hline
+             $m_{2}$ & Masa de una de las dos barras de los antebrazos, distribuida equitativamente en las extremidades. \\
+            \hline
+             $A_{i}$ & Punto de unión entre base fija y brazo para la cadena cinematica i \\
+            \hline
+             $B_{i}$ & Punto de unión entre brazo y antebrazo para la cadena cinematica i \\
+            \hline
+             $D_{i}$ & Punto de unión entre antebrazo y base móvil para la cadena cinematica i \\
+            \hline
+             $P$ & Centroide base móvil\\
+            \hline
+             $\phi _{i}$ & Angulo que representa la posición angular de los 3 actuadores sobre el plano de la base fija en relación al sistema de referencia  –  para la cadena cinemática i. \\
+            \hline
+             $\theta _{i}$ & Angulo que representa la posición angular de los brazos respecto al eje construido por el punto del origen del sistema de referencia local  y  para la cadena cinemática i.\\
+            \hline
+             $O –- xyz$ & Sistema de referencia local utilizado para resolver la dinámica del robot delta \\
+            \hline
+            $A_{i} –- x_{i}y_{i}z_{i}$ & Sistema de referencia con origen coincidente en la junta revoluta que una la base fija con los brazos para la cadena cinemática i \\
+            \hline
+            \end{tabular}
+           \caption{Referencias del dibujo}
+           \label{tab:cap4_tabla_dina_ma_2}
+        \end{table}
+   
+
+    \newpage
+
+
+    \subsubsection{Dinámica Inversa}
+    
+        Un paso importante en el proceso de diseño de un robot es comprender el comportamiento del dispositivo mientras se mueve por su espacio de trabajo o al realizar una tarea específica. Este comportamiento se determina mediante el estudio de la dinámica del mecanismo, donde se pueden determinar las fuerzas que actúan sobre los elementos y los pares requeridos por los actuadores. En consecuencia, cada componente debe optimizarse en dimensiones y material para ser utilizado en los procesos de fabricación. Por lo tanto, es esencial buscar cuáles son los enfoques comunes utilizados para calcular la dinámica del robot. Hay tres enfoques: en primer lugar, la formulación de Newton-Euler, que es un método tradicional basado en las leyes de Newton, pero necesita una gran cantidad de ecuaciones, ya que requiere establecer un número n de ecuaciones para cada elemento con el fin de resolver el sistema. Como resultado, es el método más lento en cuanto a eficiencia computacional. En segundo lugar, el trabajo virtual de Principio, que es una derivación del método de Euler y Lagrange utilizando el cálculo de variaciones, se ha utilizado para estudiar la mecánica de los cuerpos deformables. Este enfoque establece que el trabajo total realizado por una fuerza a lo largo de la trayectoria sobre una partícula se puede calcular si esas fuerzas actúan cuando la partícula se mueve del punto A al punto B. Finalmente, la formulación lagrangiana, que se basa en variaciones de cálculo, establece que un sistema dinámico puede expresarse en términos de su energía cinética y potencial conduciendo de manera sencilla a la solución del problema. Además, se considera una buena opción para el control en tiempo real de manipuladores paralelos.
+    
+         Newton estableció los fundamentos de la dinámica donde se deben identificar las fuerzas que producen el cambio para resolver la dinámica de un cuerpo. En su enfoque, se utiliza un diagrama de cuerpo libre para representar todas las fuerzas de cada cuerpo para desarrollar el análisis. Por el contrario, Leibniz, un contemporáneo de Newton, pensó que la acción de una fuerza podría medirse analizando los cambios en la energía potencial y cinética. Más tarde, los métodos variacionales aparecieron formalmente gracias a Lagrange y Hamilton. En este enfoque, la energía, que es una cantidad escalar, facilita el análisis del trabajo realizado en comparación con vectores como la velocidad y la aceleración, que pueden volverse engorrosos en algunos sistemas de coordenadas. La ventaja de utilizar un enfoque lagrangiano es que mientras que en la mecánica vectorial es necesario definir un sistema de coordenadas específico para todos los objetos analizados, en los métodos variacionales no importa si un objeto está en coordenadas cilíndricas y el otro en coordenadas esféricas. Los detalles no son importantes siempre que puedan expresarse en términos de coordenadas que tienen tres coordenadas que se refieren al centro de masa del cuerpo y tres coordenadas a la orientación específica del cuerpo en el espacio.
+
+    \newpage
+            
+        Las ecuaciones de Lagrange para el robot delta en este trabajo se definen a partir de 6 coordenadas generalizadas y 3 restricciones holónomas de forma explícita. Por lo tanto, la modelación dinámica se resume en las siguientes ecuaciones:
+            
+        \begin{equation}
+         \frac{d}{dt} \left( \frac{ \delta L}{ \delta \dot{q}_{j}} \right) -\frac{ \delta L}{ \delta q_{j}}=Q_{j}^{ \left( lig \right) } \left( q_{j} \right) +Q_{j}^{ \left( NU \right) } \left( q_{j} \right)
+             \label{eq:cap4_dina_ma_4}
+        \end{equation}
+        
+        \begin{equation}
+         Q_{j}^{ \left( lig \right) } \left( q_{j} \right) = \sum _{l=1}^{K^{ \left( h \right) }} \lambda _{l}\frac{ \delta f_{l}^{ \left( h \right) }}{ \delta q_{j}}
+             \label{eq:cap4_dina_ma_5}
+        \end{equation}
+        
+         \begin{equation}
+          L \left( q_{j},\dot{q_{j}},t \right) =T \left( q_{j},\dot{q_{j}},t \right) -V \left( q_{j},\dot{q_{j}},t \right)
+        \label{eq:cap4_dina_ma_6}
+        \end{equation}
+        
+        \vspace{-0.8cm}
+        \begin{multline}
+         T= \left[ \frac{1}{2}m_{P} \left( \dot{X}_{p}^{2}+\dot{Y}_{p}^{2}+\dot{Z}_{p}^{2} \right)  \right] + \left[  \left( \frac{1}{6}m_{1}L_{1}^{2} \right) \ast \sum _{i=1}^{3} \left( \dot{ \theta }_{i} \right) ^{2} \right] + \\
+          \left( \frac{m_{2}}{2} \right) \ast \left[  \sum _{i=1}^{3} \left( \dot{X}_{p}^{2}+\dot{Y}_{p}^{2}+\dot{Z}_{p}^{2} \right) + \left( L_{1}^{2}\dot{ \theta }_{i}^{2} \right)  \right]
+        \label{eq:cap4_dina_ma_7}
+        \end{multline}
+        \vspace{-0.8cm}
+ 
+        \begin{equation}
+         V=- \left[ m_{p}gZ_{p} \right] - \left[ \frac{1}{2}m_{1}gL_{1} \sum _{i=1}^{3}\sin  \theta _{i} \right] - \left[ m_{2}gL_{1} \sum _{i=1}^{3}\sin  \theta _{i} \right] - \left[ 3m_{2}gZ_{p} \right]
+        \label{eq:cap4_dina_ma_8}
+        \end{equation}
+        
+        \begin{equation}
+         q_{j}= \left[ X_{p},~Y_{p},~Z_{p}, \theta _{1}, \theta _{2}, \theta _{3} \right]
+        \label{eq:cap4_dina_ma_9}
+        \end{equation}
+        
+        \begin{equation}
+         K^{ \left( h \right) }=3
+        \label{eq:cap4_dina_ma_10}
+        \end{equation}
+
+        \vspace{-1cm}
+        \begin{multline}
+             f_{i}^{ \left( h \right) } \left(  \theta _{i}, \phi _{i} \right) = \left( X_{P}-L_{1}\cos  \theta _{i}\cos  \phi _{i}- rcos \phi _{i} \right) ^{2}+ \\ 
+             \left( Y_{P}-L_{1}\cos  \theta _{i}\sin  \phi _{i}- rsin \phi _{i} \right) ^{2}+ \left( Z_{P}-L_{1}\sin  \theta _{i} \right) ^{2}-L_{2}^{2}
+        \label{eq:cap4_dina_ma_11}
+        \end{multline}
+        
+    
+        Donde  $L$  es el lagrangiano, $T$ es la energía cinética total,  $ V$  es la energía potencial,  $ q_{j}$  es la j-ésima coordenada generalizada,  $ \left( X_{p},~Y_{p},~Z_{p} \right)$  representan las coordenadas del centroide de la plataforma móvil, $\left(  \theta _{1}, \theta _{2}, \theta _{3} \right) $  es la posición angular de los motores, $Q_{j}^{ \left( NU \right) } $  son fuerzas externas generalizadas (no potencial), $\lambda _{l}$ es el multiplicador de Lagrange , $ K^{ \left( h \right) }$ cantidad de restricciones holónomas y  $f_{l}^{ \left( h \right) }$  son la ecuación de restricción holónomas de forma explícita. Empleando la fórmula anterior, es posible determinar las fuerzas externas de un cuerpo. Sin embargo, las fuerzas de fricción no son restricciones a pesar de que juegan un papel importante en el análisis de la dinámica, por lo que pueden tratarse por separado. Una vez que se introduce la ecuación de Lagrange para el movimiento y se establecen los parámetros necesarios para su análisis, es posible calcular el torque de un robot delta bajo una trayectoria específica.
+    
+    
+    
+    
+    
+    \newpage
+    
+    
+    Se sabe que, si en el las ecuaciones de Lagrange la coordenada generalizada  $  q_{j} $   es un ángulo, entonces  $  Q_{j}^{ \left( NU \right) } \left( q_{j} \right)  $   representa un torque. Por lo tanto, para determinar el torque necesario en los motores para realizar una determinada trayectoria de la base móvil, se resuelven las ecuaciones de Lagrange con las coordenadas generalizadas  $ q_{j}= \left[  \theta _{1}, \theta _{2}, \theta _{3} \right]  $  . La ecuación que determina los torques de los motores $i=1,2,3$  es:
+    
+    \begin{multline}
+    \tau_{i}= \left( \frac{1}{3}m_{1}+m_{2} \right) L_{1}^{2}\ddot{ \theta }_{i}- \left( \frac{1}{2}m_{1}+m_{2} \right) gL_{1}\cos  \theta _{i}\\
+    -2 \lambda _{i}L_{1} \left[  \left( X_{P}\cos  \phi _{i}+Y_{P}\sin  \phi _{i}- r \right) \sin  \theta _{i}-Z_{P}\cos  \theta _{i} \right] 
+    \label{eq:cap4_dina_ma_15}
+    \end{multline}
+
+    Donde los coeficientes de Lagrange $  \lambda _{i} $ se determinan resolviendo el sistema de ecuaciones a partir de:
+    
+    \begin{equation}
+     \left( m_{p}+3m_{2} \right) \ddot{X}_{p}-2 \sum _{l=i=1}^{3} \lambda _{l} \left( X_{P}- rcos \phi _{i}-L_{1}\cos  \theta _{i}\cos  \phi _{i} \right) =F_{px} 
+        \label{eq:cap4_dina_ma_12}
+    \end{equation}
+    
+    \begin{equation}
+     \left( m_{P}+3m_{2} \right) \ddot{Y}_{p}-2 \sum _{l=i=1}^{3} \lambda _{l} \left( Y_{P}- rsin \phi _{i}-L_{1}\cos  \theta _{i}\sin  \phi _{i} \right) =F_{py} 
+        \label{eq:cap4_dina_ma_13}
+    \end{equation}
+
+    \begin{equation}
+      \left( m_{P}+3m_{2} \right) \ddot{Z}_{p}-2 \sum _{l=i=1}^{3} \lambda _{l} \left( Z_{P}-L_{1}\sin  \theta _{i} \right) - \left( m_{p}+3m_{2} \right) g=F_{pz} 
+        \label{eq:cap4_dina_ma_14}
+    \end{equation}
+
+    El término $ \left( F_{px},F_{py},F_{pz} \right)$ son las fuerzas externas que se aplican a la base móvil y   $r=r_{a}-r_{b} $
+
+
+
+
+
+
+
+    \newpage
+
 
 \section{Metodología B}
 

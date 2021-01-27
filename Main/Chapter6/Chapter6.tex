@@ -749,27 +749,95 @@
 
         \subsubsection{Dinámica Inversa}
         
+        \begin{algorithm}[H]
+            \caption{Dinámica Inversa Metodología A} 
+            \SetKwInput{KwInput}{Input}                % Set the Input
+            \SetKwInput{KwOutput}{Output}              % set the Output
+            \SetKwInput{KwObjetivo}{Objetivo}                % Set the Input
+            \SetKwInput{Kwfile}{Nombre archivo}                % Set the Input
+            
+              \DontPrintSemicolon
+              \KwObjetivo {Calcular el torque de los actuadores de un robot delta}
+              \Kwfile{$torque\_m1\_adams.py$}
+              \KwInput{$\ddot{\theta}_{1},\ddot{\theta}_{2},\ddot{\theta}_{3},        {\theta}_{1},{\theta}_{2},{\theta}_{3},X_p,Y_p,Z_p,\ddot{X}_{p},\ddot{Y}_{p},\ddot{Z}_{p},F_{px},F_{py},F_{pz},m_{playload}$ }
+              \KwOutput{ $J$}
+               
+                % Set Function Names,
+              \SetKwFunction{FSum}{ti}
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+              \tcc{FUNCION PRINCIPAL}
+              \SetKwProg{Fn}{}{:}{}
+              \Fn{\FSum{$\ddot{\theta}_{1}$,$\ddot{\theta}_{2}$,$\ddot{\theta}_{3}$,$        {\theta}_{1}$,${\theta}_{2}$,${\theta}_{3}$,$X_p$,$Y_p$,$Z_p$,$\ddot{X}_{p}$,$\ddot{Y}_{p}$,$\ddot{Z}_{p}$,$F_{px}$,$F_{py}$,$F_{pz}$,$m_{playload}$ }}{
+                \tcc{Cambiar velocidades, aceleraciones, fuerzas y ordenar de ángulos según sistema de referencia local}
+                \tcc{Cambiar unidades a SI}
+                \tcc{Calcular multiplicadores de Lagrange $\lambda_i$ $i=1,2,3$}
+
+               $[\lambda_1,\lambda_2,\lambda_3]^T=system\_tq(\phi_{0^\circ},\phi_{120^\circ},\phi_{240^\circ},\theta_1,\theta_2,\theta_3,X_p,Y_p,Z_p,F_{px},F_{py},F_{pz},$\;
+               $\ddot{X}_p,\ddot{Y}_p,\ddot{Z}_p,m_{playload})$\;
+
+                \tcc{Calcular torques $\tau_{i}$ para i=1,2,3}
+                $\tau_{1}= ti\_puntual(\phi_{0^\circ},\ddot{\theta}_{1},\theta_{1},X_p,Y_p,Z_p,\lambda_1)$\;
+                $\tau_{2}= ti\_puntual(\phi_{120^\circ},\ddot{\theta}_{2},\theta_{2},X_p,Y_p,Z_p,\lambda_2)$\;
+                $\tau_{3}= ti\_puntual(\phi_{240^\circ},\ddot{\theta}_{3},\theta_{3},X_p,Y_p,Z_p,\lambda_3)$\;
+
+                \tcc{Cambiar orden de torques a sistema global}
+                  \KwRet $[\tau_2,\tau_1,\tau_3]$\;}
+                  
+                  
+          \tcc{SUBFUNCIONES}
+
+          \tcc{Calcular torques $\tau_{i}$ para i=1,2,3}
+          \SetKwProg{Fn}{}{:}{}
+          \SetKwFunction{FSub}{ ti\_puntual}
+          \Fn{\FSub{$\phi_{i^\circ},\ddot{\theta}_{i},\theta_{i},X_p,Y_p,Z_p,\lambda_i$}}
+          {
+          $A=\left( \frac{1}{3}m_{1}+m_{2} \right) L_{1}^{2}\ddot{ \theta }_{i} $\;
+          $B= \left( \frac{1}{2}m_{1}+m_{2} \right) gL_{1}\cos  \theta _{i}$\;
+          $C=2 \lambda _{i}L_{1} \left[  \left( X_{P}\cos  \phi _{i}+Y_{P}\sin  \phi _{i}- r \right) \sin  \theta _{i}-Z_{P}\cos  \theta _{i} \right]$\;
+          $\tau_i=A-B-C$\;
+            \KwRet$\tau_i$\; }
+        	
+        \end{algorithm}
+
         
         
         \newpage
 
-        
+         \begin{algorithm}[H]
+                  \ContinuedFloat
+                  \caption{Dinámica Inversa Metodología A (Continuación...)}
+                  \tcc{SUBFUNCIONES}
+      
+                  \tcc{Calcular multiplicadores de Lagrange $\lambda_i$ $i=1,2,3$}
+                  \SetKwProg{Fn}{}{:}{}
+                  \SetKwFunction{FSub}{system\_tq}
+                  \Fn{\FSub{\phi_{0^\circ},\phi_{120^\circ},\phi_{240^\circ},\theta_1,\theta_2,\theta_3,X_p,Y_p,Z_p,F_{px},F_{py},F_{pz},\ddot{X}_p,\ddot{Y}_p,\ddot{Z}_p,m_{playload}}}{
+
+                  $\dot{J}_{iy}=A'_{iy}+B'_{iy}$\;
+                	$A_{0,0}=maxx(phi[0],theta1i[0],punto[0])$\;
+                	$A_{0,1}=maxx(phi[1],theta1i[1],punto[0])$\;
+                	$A_{0,2}=maxx(phi[2],theta1i[2],punto[0])$\;
+                	$A_{1,0}=mayy(phi[0],theta1i[0],punto[1])$\;
+                	$A_{1,1}=mayy(phi[1],theta1i[1],punto[1])$\;
+                	$A_{1,2}=mayy(phi[2],theta1i[2],punto[1])$\;
+                	$A_{2,0}=mazz(theta1i[0],punto[2])$\;
+                	$A_{2,1}=mazz(theta1i[1],punto[2])$\;
+                	$A_{2,2}=mazz(theta1i[2],punto[2])$\;
+                
+                	$B_{0,0}=((mnt(m_playload)+(3.0*m2))*((1)*(xp_pp)))-(fpx)$\;
+                	$B_{1,0}=((mnt(m_playload)+(3.0*m2))*((1)*(yp_pp)))-(fpy)$\;     
+                	$B_{2,0}=((mnt(m_playload)+(3.0*m2))*((1)*(zp_pp-g)))-(fpz)$\;  
+            
+                  \KwRet$\dot{J}_{iy}$\; }
+
+        \end{algorithm}  
+
+
+        \newpage
+
+  
+  
+      
     \subsection{Metodología B}
     
        Al igual que la sección anterior, se presentan en las ilustraciones \ref{f:Cap6_funtion_7} a la \ref{f:Cap6_funtion_11} las tareas con respecto a la  metodología B del capitulo \ref{CAP4}. 
@@ -1247,6 +1315,9 @@
                 \newpage
 
 \subsubsection{Dinámica Inversa}
+
+
+
         \newpage
 
         
