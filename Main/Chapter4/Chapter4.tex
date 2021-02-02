@@ -65,7 +65,7 @@
             \begin{tabular}{c m{12cm}}
                \hline
                \textbf{Simbología}  & \multicolumn{1}{c|}{\textbf{Descripción}}  \\\hline\hline
-               $r_{f}$  & Longitud del brazo                                    \\\hline
+                $r_{f}$  & Longitud del brazo                                    \\\hline
                $r_{e}$  & Longitud del antebrazo                                \\\hline               
                $f$  & Lado de base fija                                         \\\hline
                $e$  & Lado del efector                                          \\\hline
@@ -356,8 +356,8 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
       
     \newpage
 
-      En la tabla \ref{tab:cap4_tabla_6} se presenta la simbologia de las principales longitudes para el desarrollo de la solución cinematica propuesta en este capitulo:
-
+      En la tabla \ref{tab:cap4_tabla_6} se presenta la simbología de las principales longitudes, puntos, ángulos y sistemas de referencia   para el desarrollo de la solución cinemática propuesta en este capitulo:
+ 
         \begingroup
             \renewcommand{\arraystretch}{1.5}
             \begin{table}[H]
@@ -374,22 +374,6 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
             \hline
              $h$ & Longitud del centro de la plataforma móvil a una junta universal unida a él.\\
             \hline
-            \end{tabular}
-            \caption{Referencias del dibujo}
-           \label{tab:cap4_tabla_6}
-        \end{table}
-        \endgroup        
-
-    En la tabla \ref{tab:cap4_tabla_7} se presenta la simbologia de los principales puntos para el desarrollo de la solucion cinematica propuesta en este capitulo: 
-    
-        \begingroup
-            \renewcommand{\arraystretch}{1.5}
-            \begin{table}[H]
-            \centering
-            \begin{tabular}{c m{12cm}}
-               \hline
-               \textbf{Simbología}  & \multicolumn{1}{c}{\textbf{Descripción}}  \\\hline
-            \hline            
              $A_{i}$ & Punto que representa la posición de actuador i \\
             \hline
              $ B_{i}$ & Punto que representa la posición de las juntas universales que unen los brazos accionados y las barras seguidoras \\
@@ -398,51 +382,17 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
             \hline
              $P$ & Punto que representa el centro de la plataforma móvil.\\
             \hline
-            \end{tabular}
-            \caption{Referencias del dibujo}
-           \label{tab:cap4_tabla_7}
-        \end{table}
-        \endgroup
-    
-    En la tabla \ref{tab:cap4_tabla_8} se presenta la simbologia de los principales angulos para el desarrollo de la solucion cinematica propuesta en este capitulo: 
-    
-        \begingroup
-            \renewcommand{\arraystretch}{1.5}
-            \begin{table}[H]
-            \centering
-            \begin{tabular}{c m{12cm}}
-               \hline
-               \textbf{Simbología}  & \multicolumn{1}{c}{\textbf{Descripción}}  \\\hline
-            \hline            
              $\phi _{i}$ & Ángulo que representa la posición angular de los 3 actuadores sobre el plano de la base fija $ \{ $ 0$ ^{\circ} $ , 120$ ^{\circ} $ , 240$ ^{\circ} $ $ \} $ \\
             \hline
              $ \theta _{1i}$ & Angulo que representa la posición angular de las barras accionadas respecto al eje que contiene los puntos del origen del sistema de referencia local y A_{i}  \\
             \hline
-            \end{tabular}
-            \caption{Referencias del dibujo}
-           \label{tab:cap4_tabla_8}
-        \end{table}
-        \endgroup    
-    
-        \newpage
-    
-        En la tabla \ref{tab:cap4_tabla_9} se presenta la simbologia de los principales sistemas de referencia para el desarrollo de la solucion cinematica propuesta en este capitulo: 
-        
-        \begingroup
-            \renewcommand{\arraystretch}{1.5}
-            \begin{table}[H]
-            \centering
-            \begin{tabular}{c m{12cm}}
-               \hline
-               \textbf{Simbología}  & \multicolumn{1}{c}{\textbf{Descripción}}  \\\hline
-            \hline            
              $O$ – $xyz$ & Ángulo que representa la posición angular de los 3 actuadores sobre el plano de la base fija $ \{ $ 0$ ^{\circ} $ , 120$ ^{\circ} $ , 240$ ^{\circ} $ $ \} $ \\
             \hline
              $  A_{i}$ – $x_{i}y_{i}z_{i}$ & Angulo que representa la posición angular de las barras accionadas respecto al eje que contiene los puntos del origen del sistema de referencia local y A_{i}  \\
             \hline
             \end{tabular}
             \caption{Referencias del dibujo}
-           \label{tab:cap4_tabla_9}
+           \label{tab:cap4_tabla_6}
         \end{table}
         \endgroup        
         
@@ -454,13 +404,13 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
         
         \begin{figure}[htb]
              \centering
-             \includegraphics[width=0.8\linewidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_8.png}
+             \includegraphics[width=1.0\linewidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_8.png}
               \caption{Fotografía de un paraguas}
               \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_8}
         \end{figure}
         
         
-        En la tabla \ref{tab:cap4_tabla_10} se presenta las descripciones de los vectores mostrados \colorbox{Yellow}{en la ilustración de arriba:}
+        En la tabla \ref{tab:cap4_tabla_6} se presenta las descripciones de los vectores mostrados en la ilustracion  \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_8}
         
         \begingroup
             \renewcommand{\arraystretch}{1.5}
@@ -486,6 +436,7 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
         \end{table}
         \endgroup      
         
+\newpage
 
       Se puede escribir una ecuación de cierre de bucle para cada extremidad vectorialmente:  
         
@@ -493,9 +444,6 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
     \overrightarrow{A_{i}B_{i}}+ \overrightarrow{B_{i}C_{i}}~~ =\overrightarrow{OP}~ +\overrightarrow{~PC_{i}} -\overrightarrow{OA_{i}~} 
     \label{eq:cap4_eq_21}
     \end{equation}
-    
-            \newpage
-
     
     Reescribiendo la ecuacion (\ref{eq:cap4_eq_21}) en el marco de coordenadas $A_{i} – x_{i} y_{i} z_{i}$  conduce a la siguiente representación matricial:   
 
@@ -897,6 +845,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
    
            \begin{table}[h]
             \centering
+            \renewcommand{\arraystretch}{1.5}
                 \begin{tabular}{c m{11cm}}
             \hline
                 \textbf{Simbolo}& \textbf{Descripción} \\ 
@@ -1424,84 +1373,188 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
 
     \subsection{Modelación Dinámica}
     
-        resumen del cap
-        
-        en esta seccion 
-    
-        referencias
-        
-        paderborn  
-        
-INSPIRACIONB MODELO TESIS    
-        \cite{Path_Planning_and_Trajectory_Optimization}  
-        
-        Dynamic modeling and control of the OMEGA-3 parallel manipulator
-        \cite{dynamic_omega3}
-
-MODELOS DINAMICOS        
-        [140]
-        J. F. Kleinfinger, Modélisation dynamique des robots à chaîne simple, 
-        \cite{kleinfinger1986modelisation}
-        [141] 
-        T. Kokkinis and R. Stoughton, “Dynamics and control of closed-chain robot
-        arms with application to a new direct-driven robot arm,” International
-        Journal of Robotics and Automation, vol. 6, no. 1, pp. 25–34, 1991.
-        \cite{kokkinis1991dynamics}
-        [142] 
-        Y. Nakamura, Advanced Robotics: Redundancy and Optimization. Boston,
-        MA, USA: Addison-Wesley Longman Publishing Co., Inc., 1st ed., 1990.
-        \cite{NakamuraYoshihiko1991Ar}
-        [143] 
-        L.-C. Wang and C. C. Chen, “On the dynamic analysis of general parallel
-        robotic manipulators,” International Journal of Robotics and Automation,
-        vol. 9, no. 2, pp. 81–87, 1994.
-        \cite{wang1994dynamic}
-
-TRABAJO VIRTUAL
+        resumen del cap,en esta seccion ,referencias, paderborn  
+        INSPIRACIONB MODELO TESIS    
+                \cite{Path_Planning_and_Trajectory_Optimization}  
+                Dynamic modeling and control of the OMEGA-3 parallel manipulator
+                \cite{dynamic_omega3}
+        MODELOS DINAMICOS        
+        TRABAJO VIRTUAL
         [3]         
         \cite{Codourey_decoupling} 
-        [129]
-        A. Codourey, Contribution á la commande des robots rapides et précis.
-        Application au robot DELTA à centraînement direct. 
-        \cite{Codourey:31400} 
-        [144]
-        A. Codourey and E. Burdet, “A body-oriented method for finding a linear
-        form of the dynamic equation of fully parallel robots,”
-        \cite{bodyoriente} 
-        [145]
-        C.-D. Zhang and S.-M. Song, “An efficient method for inverse dynamics
-        of manipulators based on the virtual work principle,”
-        \cite{zhang1993efficient} 
-        [146]
-        Z. Ji, “Study of the effect of leg inertia in stewart platforms
-        \cite{StudyinertiaStewart} 
-
-            \newpage
-    
-    \subsubsection{Tipos de Modelos}
-    
-        introduccion tipos de dinamica
-
-        \subsubsection{Trabajo Virtual}
-    
-        trabajo virtual utilizado
         
+        En el Apéndice A.1, la derivación para el modelo dinámico del robot paralelo Delta se presenta utilizando el enfoque del principio de trabajo virtual presentado por [3 trabajo dvirtuiar de cododot decir las 3 referenciuas
+        
+        \subsubsection{Introducción a modelos dinámicos}
+    
+        El modelo dinámico de manipuladores robóticos juega un papel importante en la optimización de la trayectoria. La principal dificultad para calcular el modelo dinámico es que debe ser realizable y se puede calcular en tiempo real. Una forma sencilla de resolver el modelo dinámico de manipuladores paralelos es la cadena cerrada en uniones pasivas. Esta simplificación proporciona relajación en las condiciones de cierre. El modelo dinámico final será la suma de todos los robots individuales así creados. Kleinfinger \cite{kleinfinger1986modelisation} utiliza esta técnica y aplicó los multiplicadores de Lagrange para calcular el modelo dinámico. Otra forma de derivar el modelo dinámico es utilizar el principio de trabajo virtual de Lagrange-d’Alembert. Kokkinis y Stoughton \cite{kokkinis1991dynamics}, Nakamura \cite{NakamuraYoshihiko1991Ar} y Wang y Chen \cite{wang1994dynamic} han obtenido con éxito un modelo dinámico que utiliza el principio de trabajo virtual de Lagrange-d’Alembert.
+        
+        Otro método muy útil para derivar el modelo dinámico de robótica se basa en el principio de trabajo virtual. Según este principio, la contribución de todas las fuerzas inerciales debe ser igual a la contribución de todas las fuerzas no inerciales. Este método simplifica el problema y es igualmente eficiente tanto para robots en serie como en paralelo \cite{Codourey:31400}, \cite{bodyoriente}, \cite{zhang1993efficient}. Al incorporar todas las masas, la inercia y las no linealidades, el modelo dinámico se vuelve muy complicado y computacionalmente costoso y como consecuencia no puede usarse para aplicaciones en tiempo real. Se puede derivar un modelo dinámico practicable para aplicaciones en tiempo real despreciando las masas y la inercia de los antebrazos, propuesto por Ji \cite{StudyinertiaStewart}. En esta tesis, se deriva el modelo dinámico utilizando el principio de trabajo virtual presentado por Codourey \cite{Codourey_decoupling}.      
         \newpage
 
 
-    \subsubsection{Dinámica Inversa}
+        \subsubsection{Principio de Trabajo Virtual}
 
-        ecuaciones
+        Para obtener el torque de los actuadores se emplea el principio del trabajo virtual. El principio establece que, en el equilibrio, el trabajo virtual,  $\delta W$  , realizado por todas las fuerzas externas, $F$ , que actúan sobre un cuerpo durante cualquier desplazamiento virtual,  $\delta r $  , consistente con las restricciones estructurales impuestas al cuerpo, es igual a cero. Este principio se ilustra matemáticamente a continuación:
+        
+        \begin{equation}
+            \delta W= \sum _{i=1}^{N}F_{i} \ast \delta r_{i}=0\\
+            \label{eq:cap4_MB_20}
+        \end{equation}
 
-        \paragraph{Simplificaciones e Hipotesis}
-        \paragraph{Parametros dinamicos}
-        \paragraph{Modelo Dinamico basado en principio de trabajo virtual}
-        \paragraph{paragraph}
+        
+        En (\ref{eq:cap4_MB_20}), solo se consideran las fuerzas externas, todas las fuerzas internas, es decir, las fuerzas de restricción y reacción se ignoran porque estas fuerzas no realizan ningún trabajo virtual. El principio de trabajo virtual se utiliza tradicionalmente para resolver problemas estáticos. Sin embargo, para un sistema que no está en reposo, la fuerza (fuerza de inercia) como resultado de la masa del cuerpo,  \( m \) , que acelera a una tasa,  \( a \) , se incluye en (\ref{eq:cap4_MB_20}). Esta extensión del principio de trabajo virtual para casos dinámicos se conoce como principio de D'Alembert \cite{}. La ecuación (\ref{eq:cap4_MB_21}) es una extensión de  (\ref{eq:cap4_MB_20}) con la fuerza de inercia incluida:
+        
+        \begin{equation}
+          \delta W= \sum _{i=1}^{N} \left( F_{i}-m_{i}a_{i} \right) \ast \delta r_{i}=0 \\
+         \label{eq:cap4_MB_21}
+        \end{equation}
+
+        
+        Para un cuerpo rígido que es capaz de realizar movimientos tanto de traslación como de rotación, (\ref{eq:cap4_MB_21}) generalmente se escribe como:
+        
+        \begin{equation}
+          \delta W= \sum _{i=1}^{N} \left[  \left( F_{i}-m_{i}a_{i} \right) \ast \delta r_{i}+ \left(  \tau-I\ddot{ \theta } \right) \ast \delta  \theta  \right] =0 \\
+         \label{eq:cap4_MB_22}
+        \end{equation}
+        
+        donde,  $\tau $  es el par externo que actúa sobre el cuerpo,  $ I $  es el momento de inercia,  $\ddot{ \theta }$   la aceleración angular y  $ \delta  \theta  $  es el desplazamiento angular virtual.
+        
+        \newpage
+
+        \subsubsection{Simplificaciones e Hipótesis}
+        Antes de proceder a derivar el modelo dinámico, existen unas pocas hipótesis para hacer que el modelo sea factible y computacionalmente eficiente. Las hipótesis simplificadoras son:
+        
+        \begin{itemize}
+            \item Debido a que los antebrazos se construyen con materiales ligeros, es posible simplificar el problema dinámico ignorando la inercia rotacional de las varillas paralelas, es decir, se desprecia la inercia rotacional del antebrazo.
+            \item Se ignoran los efectos de fricción y la elasticidad.
+            \item Para fines analíticos, las masas del antebrazo se dividen equitativamente y se colocan en las extremidades. Por lo tanto, la mitad de la masa de la barra está centrada en la extremidad superior (es decir, la junta que una el brazo con el antebrazo), mientras que la otra mitad está centrada en la extremidad inferior (es decir, la junta que une los antebrazos con el efector final).
+        \end{itemize}
+
+        Debido a estas hipótesis, el robot paralelo Delta se reduce a 2 partes del cuerpo: los tres brazos y el efector final.
+     
+        \begin{figure}[H]
+              \centering
+	          \includegraphics[width=0.6\linewidth]{Main/Chapter4/Images4/cap4_dina_b_1.png}
+              \caption{Fotografía de un paraguas}
+              \label{f:Cap4_Metodo_B_Modelacion_Dinamica_1}
+        \end{figure}
+        
+                \newpage
+
+        \subsubsection{Nomenclatura de Parámetros Geométricos, Simplificación de Masas y Sistema de Referencia Global }
+
+        En siguiente tabla e ilustración representa la nomenclatura de los parámetros principales para resolver el problema dinámico del robot delta y la simplificación de masas:
+        
+        \begin{figure}[H]
+              \centering
+	          \includegraphics[width=0.4\linewidth]{Main/Chapter4/Images4/cap4_dina_b_1.png}
+              \caption{Fotografía de un paraguas}
+              \label{f:Cap4_Metodo_B_Modelacion_Dinamica_2}
+        \end{figure}
+
+
+
+        \begingroup
+            \renewcommand{\arraystretch}{1.5}
+            \begin{table}[H]
+            \centering
+            \begin{tabular}{c m{12cm}}
+               \hline
+               \textbf{Parametro}  & \multicolumn{1}{c}{\textbf{Descripción}}  \\
+               \hline           \hline            
+             $L_A$ & Largo del brazo \\
+            \hline
+             $L_B$ & Largo del antebrazo \\
+            \hline
+             $R_A$ & Distancia entre el centro de la base fija y la junta revoluta o actuador \\
+            \hline
+             $R_B$ & Distancia entre el centro del efector a la junta que lo une con el antebrazo\\
+            \hline
+            $m_{a}$ & Masa del brazo\\
+            \hline
+            $m_{b}$ & Masa del antebrazo solo una varilla\\
+            \hline
+            $m_{c}$ & Masa de la plataforma movil\\
+            \hline
+            $m_{payload}$ & Masa de objeto adherida a la plataforma móvil que se desea desplazar en una tarea particular\\
+            \hline
+            $m_{codo}$ & Masa de la junta esférica que unen los brazos con los antebrazos\\
+            \hline
+            $I_{m}$ & Inercia de los motores\\
+            \hline
+            $r$ & Relación de división de masas de los antebrazos para simplificación dinámica\\
+            \hline
+            ${O} - xyz$ & Sistema de referencia local para resolver el problema dinámico\\
+            \hline
+            \end{tabular}
+            \caption{Referencias del dibujo}
+           \label{tab:cap4_tabla_13}
+        \end{table}
+        \endgroup     
+
+\newpage
+
+
+        \subsubsection{Dinámica Inversa}
+
+        Aplicando el principio de trabajo virtual a la simplificación del robot delta, se determinan los torques de los actuadores  $ \overrightarrow{ \tau}= \left[  \tau_{1}, \tau_{2}, \tau_{3} \right] ^{T} $  con la siguiente expresión:
+        
+        \begin{equation}
+             \overrightarrow{ \tau}=I_{b}~\overrightarrow{\ddot{ \theta }}+J^{T}m_{nt}~\overrightarrow{\ddot{P_{0}}}- J^{T}\overrightarrow{F_{g}}-\overrightarrow{ \tau_{Gb}} 
+            \label{eq:cap4_MB_23}
+        \end{equation}
+        
+        Sustituyendo  $ \overrightarrow{\ddot{P_{0}}}=J\overrightarrow{\ddot{ \theta }}+\dot{J}~\overrightarrow{\dot{ \theta }} $
+        
+        \begin{equation}
+              \overrightarrow{ \tau}= \left( I_{b}+J^{T}~m_{nt}~J \right) ~\overrightarrow{\ddot{ \theta }}+ \left( J^{T}~m_{nt}\dot{J} \right) ~\overrightarrow{\dot{ \theta }}+ \left( - J^{T}\overrightarrow{F_{g}}-\overrightarrow{ \tau_{Gb}} \right)  
+              \label{eq:cap4_MB_24}
+        \end{equation}
+        
+        
+        A partir de (\ref{eq:cap4_MB_24}), se identificar fácilmente la matriz de masa  $ M \left(  \theta  \right)$, la matriz  $ C \left(  \theta ,\dot{ \theta } \right)  $  de coeficiente de Coriolis y centrífuga, y el vector de términos de gravedad  $ \overrightarrow{G} \left(  \theta  \right)  $  comparándolo con la dinámica estándar:
+        
+        \begin{equation}
+              \overrightarrow{ \tau}=M \left(  \theta  \right) \overrightarrow{\ddot{ \theta }}+C \left(  \theta ,\dot{ \theta } \right) \overrightarrow{\dot{ \theta }}+ \overrightarrow{G} \left(  \theta  \right) 
+                \label{eq:cap4_MB_25}
+        \end{equation}
+        
+        
+        Dónde
+        \begin{gather}
+                 M \left(  \theta  \right) =I_{b}+J^{T}~m_{nt}~J 
+                \label{eq:cap4_MB_26}\\
+                 C \left(  \theta ,\dot{ \theta } \right) =J^{T}~m_{nt}\dot{J} 
+                 \label{eq:cap4_MB_27}\\
+                 \overrightarrow{G} \left(  \theta  \right) =- J^{T}\overrightarrow{F_{g}}-\overrightarrow{ \tau_{Gb}}
+                 \label{eq:cap4_MB_28}\\
+                I_{b}= \left[ \begin{matrix}
+                    I_{b1}  &  0  &  0\\
+                    0  &  I_{b2}  &  0\\
+                    0  &  0  &  I_{b3}\\
+                \end{matrix}\right]  
+                \label{eq:cap4_MB_29}\\
+                I_{bi}=I_{m}+ L_{A}^{2} \left( \frac{m_{a}}{3}+m_{codo}+2\ast r \ast m_{b} \right) \\
+                \overrightarrow{\ddot{ \theta }}= \left[ \ddot{ \theta }_{1}~\ddot{ \theta }_{2}~\ddot{ \theta }_{3}\right] ^{T} 
+                \label{eq:cap4_MB_30}\\
+                m_{nt}=m_{c}+m_{payload}+3\ast 2 \ast \left( 1-r \right) m_{b} 
+                \label{eq:cap4_MB_31}\\
+                \overrightarrow{\ddot{P_{0}}}= \left[ \ddot{P}_{0x}~\ddot{P}_{0y}~\ddot{P}_{0z} \right] ^{T} 
+                \label{eq:cap4_MB_32}\\
+                \overrightarrow{F_{g}}=m_{nt}~ \left[ 0  0  -g \right] ^{T} 
+                \label{eq:cap4_MB_33}\\
+                \overrightarrow{ \tau_{Gb}}=g \ast CoM\ast \left( m_{a}+m_{codo}+2 \ast r \ast m_{b} \right)  \left[ \cos\left(\theta _{1} \right) ~\cos  \left(  \theta _{2} \right) ~\cos  \left(  \theta _{3} \right)  \right] ^{T} 
+                \label{eq:cap4_MB_34}\\
+                CoM=L_{A}~\frac{\frac{1}{2} m_{a}+m_{codo}+2 \ast r \ast m_{b}}{m_{a}+m_{codo}+2 \ast r \ast m_{b}}
+                \label{eq:cap4_MB_35}
+        \end{gather}
+        
+        El detalle de esta sección se encuentra en el anexo \ref{anexoB}
 
 
 
     \newpage
-
 
 \section{Espacio de trabajo}
 
