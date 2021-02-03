@@ -1319,9 +1319,94 @@
         
                 \newpage
 
-\subsubsection{Dinámica Inversa}
+\subsubsection{Dinámica Inversa}\label{metodoB_dinamica_inv}
+
+        \begin{algorithm}[H]
+            \caption{Dinámica Inversa Metodología B} 
+            \SetKwInput{KwInput}{Input}                % Set the Input
+            \SetKwInput{KwOutput}{Output}              % set the Output
+            \SetKwInput{KwObjetivo}{Objetivo}                % Set the Input
+            \SetKwInput{Kwfile}{Nombre archivo}                % Set the Input
+            
+              \DontPrintSemicolon
+              \KwObjetivo {Calcular el torque de los actuadores de un robot delta}
+              \Kwfile{$torque\_m1\_Paderborn\_v2\_adams.py$}
+              \KwInput{$\ddot{\theta}_{1},\ddot{\theta}_{2},\ddot{\theta}_{3},        {\theta}_{1},{\theta}_{2},{\theta}_{3},F_{px},F_{py},F_{pz},J,m_{playload},\dot{J},\dot{\theta}_{1},\dot{\theta}_{2},\dot{\theta}_{3}$ }
+              \KwOutput{ $\tau_1,\tau_2,\tau_3$}
+               
+                % Set Function Names,
+              \SetKwFunction{FSum}{ti}
+
+              \tcc{FUNCION PRINCIPAL}
+              \SetKwProg{Fn}{}{:}{}
+              \Fn{\FSum{$\ddot{\theta}_{1}$,$\ddot{\theta}_{2}$,$\ddot{\theta}_{3}$,$        {\theta}_{1}$,${\theta}_{2}$,${\theta}_{3}$,$F_{px}$,$F_{py}$,$F_{pz}$,$J$,$m_{playload}$,$\dot{J}$,$\dot{\theta}_{1}$,$\dot{\theta}_{2}$,$\dot{\theta}_{3}$ }}{
+                \tcc{Cambiar velocidades, aceleraciones, fuerzas y ordenar de ángulos según sistema de referencia local}
+                \tcc{Cambiar unidades a SI}
+                \tcc{Calcular torque de los actuadores \tau_1,\tau_2,\tau_3 }
+               $\tau= ti\_puntual({\theta}_{1},{\theta}_{2},{\theta}_{3},\ddot{\theta}_{1},\ddot{\theta}_{2},\ddot{\theta}_{3},J,F_{px},F_{py},F_{pz},m_{playload},\dot{J},\dot{\theta}_{1},\dot{\theta}_{2},\dot{\theta}_{3})$\;
+               $[\tau_1,\tau_2,\tau_3]=\tau$\;
+                \tcc{Cambiar orden de torques a sistema global}
+                  \KwRet $[\tau_1,\tau_2,\tau_3]$\;}
+                  
+                  
+          \tcc{SUBFUNCIONES}
+
+          \tcc{Calcular torque $\tau=[\tau_1,\tau_2,\tau_3]$ }
+          \SetKwProg{Fn}{}{:}{}
+          \SetKwFunction{FSub}{ ti\_puntual}
+          \Fn{\FSub{${\theta}_{1},{\theta}_{2},{\theta}_{3},\ddot{\theta}_{1},\ddot{\theta}_{2},\ddot{\theta}_{3},J,F_{px},F_{py},F_{pz},m_{playload},\dot{J},\dot{\theta}_{1},\dot{\theta}_{2},\dot{\theta}_{3}$}}
+          {
+          $\overrightarrow{{ \theta }}=[{\theta}_{1},{\theta}_{2},{\theta}_{3}]^T$\;
+          $\overrightarrow{\ddot{ \theta }}=[\ddot{\theta}_{1},\ddot{\theta}_{2},\ddot{\theta}_{3}]^T$\;
+          $\overrightarrow{\dot{\theta}}=[\dot{\theta}_{1},\dot{\theta}_{2},\dot{\theta}_{3}]^T$\;  
+          $\overrightarrow{F_{g}}=[F_{px},F_{py},F_{pz}]^T$\;          
+          $m_{nt}=mnt(m_{playload})$\;
+          $I_b=inercia\_b()$\;
+          \tcc{Resolver ecuación (\ref{eq:cap4_MB_25})  }
+          $M_1(\theta)= I_b\overrightarrow{\ddot{ \theta }} $\;
+          $M_2(\theta)=J^Tm_{mt}J\overrightarrow{\ddot{ \theta }}$\;
+          $C(\theta,\dot{\theta})=J^Tm_{mt}\dot{J}\overrightarrow{\dot{\theta}}$\;
+          $\overrightarrow{G_1}(\theta)=- J^T\overrightarrow{F_{g}}$\;
+          $\overrightarrow{G_2}(\theta)=\overrightarrow{\tau_{Gb}}=-g*CoM*(m_a+m_{codo}+2rm_b)$\;
+          $\overrightarrow{ \tau}= M_1(\theta) ~\overrightarrow{\ddot{ \theta }}+M_2(\theta)~\overrightarrow{\ddot{ \theta }}+ C(\theta,\dot{\theta}) ~\overrightarrow{\dot{ \theta }}+\overrightarrow{G_1}(\theta)+\overrightarrow{G_2}(\theta)$\;
+            \KwRet$[\tau_1,\tau_2,\tau_3]$\; }
+        	
+        \end{algorithm}
+        
+      
 
 
+        \newpage
+
+         \begin{algorithm}[H]
+                  \ContinuedFloat
+                  \caption{Dinámica Inversa Metodología B (Continuación...)}
+                  \tcc{SUBFUNCIONES}
+      
+                  \tcc{Calcular masa total del efector final}
+                  \SetKwProg{Fn}{}{:}{}
+                  \SetKwFunction{FSub}{mnt}
+                  \Fn{\FSub{$m_{playload}$}}{
+                    $m_{nt}=m_c + m_{playload} + 3*2*(1-r)*m_b$\;
+                  \KwRet$m_{nt}$\; }
+                  
+                  \tcc{Calcular matriz de Inercia}
+                  \SetKwProg{Fn}{}{:}{}
+                  \SetKwFunction{FSub}{inercia\_b}
+                  \Fn{\FSub{}}{
+                    $I_{bi}=I_{m}+ L_{A}^{2} \left( \frac{m_{a}}{3}+m_{codo}+2\ast r \ast m_{b} \right)$\;
+                    $I_{b}=\begin{bmatrix}
+                            I_{bi}&0&0\\
+                            0&I_{bi}&0\\
+                            0&0&I_{bi}\\
+                    \end{bmatrix}$\;
+                  \KwRet$m_{nt}$\; }
+                  
+
+        \end{algorithm}  
+
+
+        \newpage
 
         \newpage
 
