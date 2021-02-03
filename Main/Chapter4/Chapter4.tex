@@ -1,6 +1,39 @@
 \chapter{Modelación física y matemática}\label{CAP4}
     
 \section{Desarrollo de modelación y metodologías}
+    En primero lugar, con el objetivo de modelar la cinemática y la dinámica de un robot delta de manera veraz, se presentan 2 metodologías que son programadas y comparadas en este texto. Estas dos metodologías deben dar los mismos resultados. Se les llama metodología A y metodología B. Las etapas de las 2 metodologías tienen el mismo objetivo, sin embargo, el planteamiento del problema cinemático y dinámico es tratado de forma diferente. Para comparar las dos metodologías se crea un marco de referencia global en el robot delta. Por ende, en los códigos de los algoritmos es necesario que las salidas o resultados estén en correlación a este sistema de referencia. En la siguiente imagen, se muestra un diagrama de flujo de las 2 metodologías, con el objetivo de cada etapa y el titulo-autor de donde se recopila información.
+    
+        
+        \begin{figure}[htb]
+             \centering
+             \includegraphics[width=0.5\linewidth]{Main/Chapter4/Images4/Metodologia.png}
+              \caption{Fotografía de un paraguas}
+              \label{f:Cap4_metodologia}
+        \end{figure}
+    
+         \newpage
+
+
+    En segundo lugar, se explica que es un espacio de trabajo para un robot delta y los parámetros que influyen en su volumen, forma, densidad espacial, etc. Para ello, se utiliza la modelación cinemateca y se privilegia la metodología A sobre la B por razones con relación a el cálculo del jacobiano que se explican en dicha sección.
+    
+        \begin{figure}[htb]
+             \centering
+             \includegraphics[width=0.7\linewidth]{Main/Chapter4/Images4/Metodologia_ws.png}
+              \caption{Fotografía de un paraguas}
+              \label{f:Cap4_metodologia_ws}
+        \end{figure}
+    
+    Por último, se presentan las trayectorias más comunes implementadas en el desarrollo de los robots. De todas las trayectorias presentadas se profundizan 2, las que en esta tesis se utilizan para simular el mecanismo del robot delta y comparar los resultados de la modelación cinemateca y dinámica.
+    
+        \begin{figure}[htb]
+             \centering
+             \includegraphics[width=0.7\linewidth]{Main/Chapter4/Images4/Metodologia_tray.png}
+              \caption{Fotografía de un paraguas}
+              \label{f:Cap4_metodologia_tray}
+        \end{figure}  
+    
+     \newpage
+
 
 \section{Nomenclatura y sistemas de referencia global}
      \newpage
@@ -1373,17 +1406,9 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
 
     \subsection{Modelación Dinámica}
     
-        resumen del cap,en esta seccion ,referencias, paderborn  
-        INSPIRACIONB MODELO TESIS    
-                \cite{Path_Planning_and_Trajectory_Optimization}  
-                Dynamic modeling and control of the OMEGA-3 parallel manipulator
-                \cite{dynamic_omega3}
-        MODELOS DINAMICOS        
-        TRABAJO VIRTUAL
-        [3]         
-        \cite{Codourey_decoupling} 
-        
-        En el Apéndice A.1, la derivación para el modelo dinámico del robot paralelo Delta se presenta utilizando el enfoque del principio de trabajo virtual presentado por [3 trabajo dvirtuiar de cododot decir las 3 referenciuas
+        En esta sección se presenta un método para resolver la dinámica inversa de un robot delta inspirado en los trabajos de Zeeshan Shareef \cite{Path_Planning_and_Trajectory_Optimization}, Collins F. Adetu, Carl A. Moore, Jr. y Rodney G. Roberts \cite{dynamic_omega3}. La modelacion dinámica utiliza como base el principio de trabajo virtual desarrollado por Codourey \cite{Codourey_decoupling}.
+
+ 
         
         \subsubsection{Introducción a modelos dinámicos}
     
