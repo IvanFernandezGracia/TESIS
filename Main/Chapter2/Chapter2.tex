@@ -36,7 +36,7 @@
         
     \end{itemize}
     
-    A parir de las tres definiciones anteriores podemos concluir que un robot es un mecanismo programable o re-programable, capaz de interactuar con acciones independientes e inteligentes en un entorno especifico para realizar una variedad de tareas previstas.
+    A partir de las tres definiciones anteriores podemos concluir que un robot es un mecanismo programable o re-programable, capaz de interactuar con acciones independientes e inteligentes en un entorno especifico para realizar una variedad de tareas previstas.
     
     En este trabajo de título se estudia un robot de tipo delta. Esta compuesto por tres brazos conectados a una base fija y a otra móvil llamada efector. Al estar los tres brazos conectados a la misma base, la cinemática del robot es cerrada. Los brazos se accionan por medio de actuadores que generalmente son motores. En el efector final se encuentra generalmente herramientas para realizar tareas especificas.
     
@@ -59,7 +59,7 @@
      \endfoot
     
      \hline
-     \textbf{Simbología}  & \multicolumn{1}{c}{\textbf{Descripción}}  \\\hline\hline
+     \textbf{Año}  & \multicolumn{1}{c}{\textbf{Hito}}  \\\hline\hline
      \textbf{400 A.C} & El matemático y filósofo italiano Arquitas de Tarento hizo una paloma de madera que volaba. \\ \hline
      \textbf{10-70 D.C} & El matemático y científico griego Herón de Alejandría construyó diversos autómatas con forma de ave. Se le atribuye la invención de la primera máquina de vapor, conocida como “aeolipile” y la fuente de Herón. \\ \hline
      \textbf{1452 - 1519} & Leonardo Da Vinci diseño 2 autómatas, el primero consiste en un mecanismo que emulaba el movimiento humano vestido de armadura y el segundo un león mecánico \\ \hline
@@ -116,37 +116,16 @@
 \section{Clasificaciones de robots}
     
     \subsection{Clasificación por generación}
-
-        
         \subsubsection{Primera generación}
             Robots manipuladores. Se caracterizan por programas de control fijos relativamente sencillo de lazo abierto (sin retroalimentación), son capaces de repetir operaciones previamente programadas en ellos, no pueden adaptarse al entorno, por lo que no deben existir perturbaciones externas. Estos robots son los más adecuados en entornos industriales que realizan operaciones repetitivas.
         
         \subsubsection{Segunda generación}
             Robots de aprendizaje. Son adaptativos, pueden operar en entornos variables o parcialmente desconocidos. Estos robots ejecutan una serie de operaciones predefinidas, pero también pueden tener en cuenta los cambios en el entorno y modificar su rutina para realizar sus tareas. Imitan la secuencia de movimientos que ha sido ejecutada previamente por un operador humano. El operador realiza los movimientos requeridos mientras el robot le sigue y los memoriza con ayuda de sensores que recopilan datos.
-            
-    
-        \begin{figure}[htb]
-            \centering
-            \includegraphics[width=0.9\linewidth]{Main/Chapter2/Images2/Clasificacion-de-los-robots-por-generacion_b.png}
-            \caption{Clasificación de los robots por generación}
-            \label{f:Cap2_general_5b}
-        \end{figure}
-        
-        \newpage
-        
         \subsubsection{Tercera generación}
             Robots con control sensorizado. Los robots cuentan con controladores (computadoras) que, usando los datos o la información recopilada de sus sensores, obtienen la habilidad de ejecutar las ordenes de un programa escrito en alguno de los lenguajes de programación que surgen a raíz de la necesidad de introducir las instrucciones deseadas en dichas máquinas. 
         \subsubsection{Cuarta generación}
             Robots inteligentes. Esta etapa se caracteriza por tener sensores mucho más perfeccionados que mandan información al controlador y la analizan mediante estrategias complejas de control. Incorpora inteligencia artificial totalmente. Esto permite una toma inteligente de decisiones y el control del proceso en tiempo real.
-    
-    
-            \begin{figure}[htb]
-            \centering
-            \includegraphics[width=1\linewidth]{Main/Chapter2/Images2/Clasificacion-de-los-robots-por-generacion_a.png}
-            \caption{Clasificación de los robots por generación}
-            \label{f:Cap2_general_5a}
-        \end{figure}
-        
+
         \newpage
         
     \subsection{Clasificación por arquitectura o estructura}
@@ -277,25 +256,48 @@
 \section{Robots en serie vs paralelos}
 
     Seccion en BETA
-    
+                    \newpage
+
+
 \section{Estadísticas y aplicaciones}
 
-    Muchos tipos de actividades en los sectores industriales tienen el potencial técnico para ser automatizados. Según el reporte ``El potencial técnico para la automatización en los EE. UU'' de McKinsey Company en enero del 2017, el 50\% de los trabajos realizados por humanos hoy son vulnerables al reemplazo por robots. Eso podría equivaler a una pérdida de \$15 billones dólares en salarios en todo el mundo y \$2.7 billones de dólares en el EE. UU. Esto puede ocurrir por completo entre los años 2035 -2055 aproximadamente. \\
+    Muchos tipos de actividades en los sectores industriales tienen el potencial técnico para ser automatizados. Según el reporte ``El potencial técnico para la automatización en los EE. UU'' de McKinsey Company en enero del 2017, el 50\% de los trabajos realizados por humanos hoy son vulnerables al reemplazo por robots. Eso podría equivaler a una pérdida de \$15 billones dólares en salarios en todo el mundo y \$2.7 billones de dólares en el EE. UU. Esto puede ocurrir por completo entre los años 2035 -2055 aproximadamente. 
+    
     En la práctica, la implementación de la automatización en nuestro mundo dependerá de más que solo la viabilidad técnica. Existen cinco factores:
+
+        \begin{enumerate}
+           \item {Viabilidad técnica.}
+            \item {Costos para automatizar.}
+            \item {La relativa escasez, las habilidades y el costo de los trabajadores de que otro modo podrían realizar la actividad.}
+           \item {Beneficios de la automatización más allá de la sustitución del costo laboral.}
+            \item {Consideraciones regulatorias y de aceptación social.}
+    \end{enumerate}
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.20\linewidth]{Main/Chapter2/Images2/LOGOMCKINSEY.png}
+        \caption{Logo de McKinsey Company)}
+        \label{f:Cap2_general_potencial_automatizacion_11}
+    \end{figure}
+    
+    Las actividades más automatizables son las que gran parte del tiempo implican realizar actividades físicas u operar maquinaria en un entorno predecible. Los trabajadores llevan a cabo acciones específicas en entornos conocidos donde los cambios son relativamente fáciles de anticipar. Dado que las actividades físicas predecibles ocupan un lugar destacado en sectores como la fabricación, el servicio de alimentos y el alojamiento, y la venta minorista, estas son las más susceptibles a la automatización basadas solo en consideraciones técnicas.
+    
+    
     \begin{enumerate}
         \item \textbf{El sector de servicios}: El alojamiento y servicio de alimentos, donde casi la mitad de todo el tiempo de trabajo implica actividades físicas predecibles y la operación de maquinaria, incluida la preparación, la cocina o el servicio de alimentos; limpieza de áreas de preparación de alimentos; preparar bebidas frías y calientes; y la recolecta platos sucios. 
         \item \textbf{En la manufactura o producción}: Las actividades van desde el envasado de productos hasta la carga de materiales en equipos de producción, desde soldadura hasta mantenimiento de equipos.
         \item \textbf{El comercio minorista}: Los minoristas pueden aprovechar, por ejemplo, la gestión de existencias y la logística eficiente, impulsada por la tecnología. Los objetos de embalaje para el envío y almacenamiento de mercancías se encuentran entre las actividades físicas más frecuentes en el comercio minorista y tienen un alto potencial técnico para la automatización.
     \end{enumerate}
-    
-    
-    \begin{figure}[htb]
+
+    \begin{figure}[h]
         \centering
-        \includegraphics[width=1\linewidth]{Main/Chapter2/Images2/potencial-automatisacion.png}
+        \includegraphics[width=0.9\linewidth]{Main/Chapter2/Images2/potencial-automatisacion.png}
         \caption{El potencial técnico para la automatización en los EE. UU. (McKinsey’s Company 2017)}
         \label{f:Cap2_general_potencial_automatizacion}
     \end{figure}
-    
+  
+      \newpage
+  
     Carl Benedikt Frey y Michael A. Osborne en el año 2013 publicaron su paper 00X0 ``El futuro del empleo: ¿Cuán susceptibles son los trabajos para la computarización?”. El efecto en la población que ha leído esta publicación fue de dudas e incertidumbres, sin embargo, el reporte de la empresa McKinsey Company del 2017 mostrado anteriormente refuerza el trabajo realizado por el economista y por el profesor de machine learning. En la figura \ref{f:Cap2_general_distribucion_empleo} se visualiza la probabilidad de computarización del trabajo por categorías. Se aprecia que el 47\% de los trabajos corren un alto riesgo de ser computarizados (probabilidad mayor a 70\%).
     
     \begin{figure}[htb]
@@ -305,27 +307,34 @@
         \label{f:Cap2_general_distribucion_empleo}
     \end{figure}
     
+        \newpage
+
+
     Acerca del tamaño y crecimiento del mercado de robots industriales, se puede decir que pocos han mostrado un crecimiento tan fuerte y sostenido en la última década, en la figura \ref{f:Cap2_general_envios_anuales} se puede observar este crecimiento. En los últimos años, las instalaciones anuales aumentaron en un 19\% CAGR, lo que resultó en 422,271 nuevas instalaciones globales en 2018, por un valor de USD 16,5 mil millones. Esto fue solo para el hardware robótico, mientras que el software / servicios y el hardware periférico ascendieron aproximadamente al mismo valor cada uno. A finales de 2018, el stock operativo global total de robots fue de 2.439.543. Asia es el motor de crecimiento detrás de estos números (dos de cada tres nuevas instalaciones robóticas ocurren en Asia), con China a la cabeza (aumentando el stock operativo de robots en casi un 30\% interanuales los años pasados). Europa y América se están quedando un poco atrás. 
-    
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.9\linewidth]{Main/Chapter2/Images2/envios-anuales-robots.png}
+        \includegraphics[width=0.67\linewidth]{Main/Chapter2/Images2/envios-anuales-robots.png}
         \caption{Envíos anuales (en miles) de robots industriales en todo el mundo. Fuente: IFR , McK.}
         \label{f:Cap2_general_envios_anuales}
     \end{figure}
-    
     Además del rápido crecimiento, lo más emocionante de la robótica es el impacto fundamental que tendrá en nuestras vidas futuras, librándonos potencialmente de la mayor parte del trabajo manual. A pesar de una percepción comúnmente diferente, incluso en industrias “altamente automatizadas” como la automotriz, el grado promedio de automatización (número de tareas automatizadas / número de tareas totales) en el ensamblaje final es solo alrededor del 8-10\%. Y la mayoría de las otras industrias están muy por debajo de eso. Por otro lado, generalmente se estima que hasta el 85\% de todas las tareas son "automatizables. Escalar esta curva de automatización ofrece una gran oportunidad para aumentar la productividad y el bienestar global, si nosotros, como sociedad, podemos compartir sus beneficios por igual.
     
-    Los robots siguen siendo esencialmente demasiado caros y demasiado "estúpidos", lo que permite muy pocas áreas de aplicación rentables. Pero nos enfrentamos a una tormenta perfecta de inventos innovadores que pronto desbloquearán un punto de inflexión, donde la robótica será significativamente más barata y más versátil que la mayoría del trabajo manual. A pesar de no incluir datos de los últimos años, la figura \ref{f:Cap2_general_solicitud_patentes} muestra las solicitudes anuales de patentes de la UE y los EE. UU. para tecnologías de fabricación avanzadas (incluida la robótica) solo han comenzado a despegar en la última década. A medida que estos esfuerzos exponenciales de I + D alcancen la madurez comercial, se desbloqueará una ola sin precedentes de nuevos (y rentables) casos de uso de robótica. 
+            \newpage
+    
+    Los robots siguen siendo esencialmente demasiado caros y demasiado 'estúpidos', lo que permite muy pocas áreas de aplicación rentables. Pero nos enfrentamos a una tormenta perfecta de inventos innovadores que pronto desbloquearán un punto de inflexión, donde la robótica será significativamente más barata y más versátil que la mayoría del trabajo manual.
     
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.9\linewidth]{Main/Chapter2/Images2/solicitud-patentes.png}
+        \includegraphics[width=1\linewidth]{Main/Chapter2/Images2/solicitud-patentes.png}
         \caption{Solicitudes de patentes anuales para tecnologías de fabricación avanzadas específicas. Fuente: OCDE}
         \label{f:Cap2_general_solicitud_patentes}
     \end{figure}
 
+     A pesar de no incluir datos de los últimos años, la figura \ref{f:Cap2_general_solicitud_patentes} muestra las solicitudes anuales de patentes de la UE y los EE. UU. para tecnologías de fabricación avanzadas (incluida la robótica) solo han comenzado a despegar en la última década. A medida que estos esfuerzos exponenciales de I + D alcancen la madurez comercial, se desbloqueará una ola sin precedentes de nuevos (y rentables) casos de uso de robótica. 
+ 
     Las empresas que están innovando en el área de robótica buscan solucionar problemáticas para que sea más accesible a la mayor cantidad de personas, para este propósito desarrollan nuevas tecnologías para minorar los costos o hacer más flexible la robótica. Se pueden dividir en categorías las principales áreas de innovación en robótica, tales como se presentan en la figura \ref{f:Cap2_general_empresas_robotica}
+
+    \newpage
     
     \begin{figure}[H]
         \centering
@@ -334,14 +343,14 @@
         \label{f:Cap2_general_empresas_robotica}
     \end{figure}
     
-    \begin{enumerate}
-        \item Hardware asequible y versátil: en la última década, los costos promedio de una instalación robótica se han reducido aproximadamente en un 40\%, mientras que su productividad ha aumentado aproximadamente un 5\% por año. Se necesitarán nuevos modelos de negocio para ayudar a fomentar la adopción del mercado (por ejemplo, ``robot como servicio'' o modelos de alquiler). Al mismo tiempo, las capacidades mecánicas y las propiedades físicas deben mejorar (menos peso, mayor alcance, mayor velocidad, mejor modularidad, mejores sistemas de seguridad, etc.).
+    \begin{item}
+        \item \textbf{Hardware asequible y versátil}: en la última década, los costos promedio de una instalación robótica se han reducido aproximadamente en un 40\%, mientras que su productividad ha aumentado aproximadamente un 5\% por año. Se necesitarán nuevos modelos de negocio para ayudar a fomentar la adopción del mercado (por ejemplo, ``robot como servicio'' o modelos de alquiler). Al mismo tiempo, las capacidades mecánicas y las propiedades físicas deben mejorar (menos peso, mayor alcance, mayor velocidad, mejor modularidad, mejores sistemas de seguridad, etc.).
         
-        \item Facilidad de configuración y enseñanza: hoy en día, alrededor del 70\% de los costos totales de vida útil de una celda robótica son generados por servicios relacionados con la configuración, la programación y la enseñanza. Por lo general, esto lo realizan una gran cantidad de integradores de sistemas de tamaño pequeño a mediano, y demoran semanas o meses en configurar, programar y certificar una nueva aplicación de robótica. Por lo tanto, aquí no solo enfrentamos un problema de costos y tiempo, sino también un desafío de inflexibilidad. 
+        \item \textbf{Facilidad de configuración y enseñanza}: hoy en día, alrededor del 70\% de los costos totales de vida útil de una celda robótica son generados por servicios relacionados con la configuración, la programación y la enseñanza. Por lo general, esto lo realizan una gran cantidad de integradores de sistemas de tamaño pequeño a mediano, y demoran semanas o meses en configurar, programar y certificar una nueva aplicación de robótica. Por lo tanto, aquí no solo enfrentamos un problema de costos y tiempo, sino también un desafío de inflexibilidad. 
         
-        \item Inteligencia y habilidades: después de codificar dolorosamente una aplicación robótica, sigue siendo en gran medida rígida e inflexible. Si, por ejemplo, la forma o la posición de las piezas que va a recoger un robot cambian con el tiempo, en la mayoría de los casos esto significaría ``fin del juego'' para un robot industrial.  
+        \item \textbf{Inteligencia y habilidades}: después de codificar dolorosamente una aplicación robótica, sigue siendo en gran medida rígida e inflexible. Si, por ejemplo, la forma o la posición de las piezas que va a recoger un robot cambian con el tiempo, en la mayoría de los casos esto significaría ``fin del juego'' para un robot industrial.  
         
-        \item Periferia e integraciones: Una celda robótica siempre comprende elementos de hardware adicionales como pinzas y herramientas, sistemas de transporte, sistemas de seguridad, cámaras 2D y 3D, etc. La mayoría de estos sistemas periféricos provienen de diferentes proveedores, no tienen interfaces estándar y no se comunican fácilmente entre ellos. La creación de estándares y la modularización es clave para permitir una experiencia plug \& play ``consumida'' en diferentes proveedores de sistemas.
+        \item \textbf{Periferia e integraciones}: Una celda robótica siempre comprende elementos de hardware adicionales como pinzas y herramientas, sistemas de transporte, sistemas de seguridad, cámaras 2D y 3D, etc. La mayoría de estos sistemas periféricos provienen de diferentes proveedores, no tienen interfaces estándar y no se comunican fácilmente entre ellos. La creación de estándares y la modularización es clave para permitir una experiencia plug \& play ``consumida'' en diferentes proveedores de sistemas.
         
-        \item Sistema operativo y certificación: Hoy en día, no existe un ``MS Windows'' para la robótica industrial, que permitiría que todas las partes individuales que arman un robot se comuniquen entre sí. A pesar de algunos esfuerzos de código abierto, como ROS2 (Robotics Operating System 2), todavía no se ha encontrado ningún estándar de software real de la industria.
-    \end{enumerate}
+        \item \textbf{Sistema operativo y certificación}: Hoy en día, no existe un ``MS Windows'' para la robótica industrial, que permitiría que todas las partes individuales que arman un robot se comuniquen entre sí. A pesar de algunos esfuerzos de código abierto, como ROS2 (Robotics Operating System 2), todavía no se ha encontrado ningún estándar de software real de la industria.
+    \end{item}
