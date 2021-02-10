@@ -143,7 +143,7 @@
               }
           \tcc{SUBFUNCIONES}
           \SetKwProg{Fn}{}{:}{}
-          \Fn{\FSub{$Input$, {\phi}_i}}{
+          \Fn{\FSub{$Input$}}{
               \tcc{Algoritmo de subfunciones*}
                 \KwRet$Output$\;
           }
@@ -211,7 +211,7 @@
    
     \newpage
     
-    \subsection{Nodo Principal}
+    \subsection{Nodo Principal}\label{nodoprincipal_tray}
     Los algoritmos de los métodos A y B son utilizados finalmente para obtener el toque de los motores de un robot delta a partir de una trayectoria lineal especifica del efector final. Estos algoritmos son compilados en un nodo llamado: nodo principal. 
     
     % Define block styles
@@ -276,8 +276,35 @@
     \end{algorithm}
 
     \newpage
+            
+            
+      
+    Las trayectorias que se crean para comprobar los algoritmos de cinemática y dinámica son:
+        \begingroup
+        \renewcommand{\arraystretch}{2.0}
+        \begin{table}[H]
+        \centering
+        \begin{tabular}{c c c c c}
+           \hline
+           \textbf{Trayectoria}  & \multicolumn{1}{c}{\textbf{$P_i(x,y,z)[mm]$}} &  $P_f(x,y,z)[mm]$ & $v_{max}[\frac{mm}{s}]$ &  $a_{max}[\frac{mm}{s^2}]$ \\\hline\hline
+            $1$  & (-300,0,-450)            & (300,150,-750)            & 2000     & 40000         \\\hline
+            $2$  & (-300,-150,-450)            & (300,150,-750)            & 2000     & 40000         \\\hline
+            $3$  & (300,-150,-450)            & (-300,150,-750)            & 2000     & 40000         \\\hline
+            $4$  & (400,150,-450)            & (-400,150,-450)            & 2000     & 40000         \\\hline
+            $5$  & (-300,0,-450)            & (300,150,-750)       & 200     & 10000         \\\hline
+            $6$ & (-300,-150,-450)            & (300,150,-750)         & 200     & 10000         \\\hline
+            $7$ & (300,-150,-450)            & (-300,150,-750)          & 200     & 10000         \\\hline
+            $8$    & (400,150,-450)            & (-400,150,-450)      & 200     & 10000         \\\hline
 
-
+        \end{tabular}
+        \caption{Referencias del dibujo}
+        \label{tab:cap5_tabla_1}
+    \end{table}
+    \endgroup
+    
+     Los puntos iniciales y finales son en base al sistema de referencia global presentado en la ilustración \ref{f:ref1}. Los valores de las velocidades y aceleraciones máximas son en dirección tangencial a las trayectorias lineales creadas.
+    
+    \newpage
     \subsection{Metodología A}
     
     Las siguientes ilustraciones (\ref{f:Cap6_funtion_2} a la \ref{f:Cap6_funtion_6}) representan de forma visual los algoritmos, tareas o funciones planteadas en esta sección con respecto a la  metodología A del capitulo \ref{CAP4}, de igual forma que en la ilustración \ref{f:Cap6_funtion_1}. Las entradas y las salidas de cada función son escritas con las misma nomenclatura de cada sección con que fue inspirado el algoritmo respectivamente. Es notorio recalcar que cada algoritmo es obtenido de diferentes referencias bibliográficas, por lo que los sistemas de referencia y el orden numérico de los ángulos de los actuadores son diferentes. Por ende, las entradas y las salidas en cada algoritmo son transformadas del sistema global al sistema de referencia local y viceversa.     
