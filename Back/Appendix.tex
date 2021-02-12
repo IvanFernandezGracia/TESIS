@@ -559,6 +559,167 @@ Paso 2:
      
      \newpage
         
+        
+    \subsection{Modelación cinemática de velocidad}
+            \subsubsection{Vectorización y ángulos de juntas}
+            
+        La figura \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_8} define los ángulos de articulación asociados con la extremidad  $i$, donde  $\overrightarrow{p}$  es el vector de posición del centroide de la plataforma móvil, $\theta _{1i}$  se mide desde el eje $x_{i}$  hasta $\overrightarrow{A_{i}B_{i}}$ ,$\theta _{2i}$  se define desde la línea extendida de $\overrightarrow{A_{i}B_{i}}$  hasta la línea definida por la intersección del plano del paralelogramo y el plano $x_{i}-z_{i}$ y $\theta _{3i}$  se mide desde la dirección $y_{i}$ hasta $\overrightarrow{B_{i}C_{i}}$ . En general, hay 9 ángulos articulares, $\theta _{1i}$, $\theta _{2i}$ y $\theta _{3i}$ para $i= \{  1, 2, 3 \}$, asociados con el manipulador. Los ángulos de los actuadores son $\theta _{11}$ ,$\theta _{21}$ y $\theta _{31}$ .
+        
+        Se puede escribir una ecuación de cierre de bucle para cada extremidad vectorialmente:
+        
+        \begin{equation}
+             \overrightarrow{A_{i}B_{i}}+ \overrightarrow{B_{i}C_{i}}~~ =\overrightarrow{OP}~ +\overrightarrow{~PC_{i}} -\overrightarrow{OA_{i}~}
+             \label{eq:modelacion_cine_vel_metodoa_anexo_1}
+        \end{equation}
+        
+        Reescribiendo \ref{eq:modelacion_cine_vel_metodoa_anexo_1} en el marco de coordenadas  $A_{i}$ –    $x_{i}y_{i}z_{i}$ conduce a la siguiente representación matricial:
+        
+        \begin{equation}
+                 a \left[ \begin{matrix}
+                cos~ \theta _{1i}\\
+                0\\
+                sin~ \theta _{1i}\\
+                \end{matrix}
+                 \right] +b \left[ \begin{matrix}
+                sin~ \theta _{3i}cos⁡ \left(  \theta _{1i}+ \theta _{2i} \right) \\
+                cos~ \theta _{3i}\\
+                sin~ \theta _{3i}sin \left(  \theta _{1i}+ \theta _{2i} \right) \\
+                \end{matrix}
+                 \right] = \left[ \begin{matrix}
+                c_{xi}\\
+                c_{yi}\\
+                c_{zi}\\
+                \end{matrix} \right] 
+                \label{eq:modelacion_cine_vel_metodoa_anexo_2}
+        \end{equation}
+        
+        \begin{equation}
+                    \left[ \begin{matrix}
+                    c_{xi}\\
+                    c_{yi}\\
+                    c_{zi}\\
+                    \end{matrix}
+                     \right] = \left[ \begin{matrix}
+                    \cos  \phi _{i}  &  \sin  \phi _{i}  &  0\\
+                    -sin \phi _{i}  &  \cos  \phi _{i}  &  0\\
+                    0  &  0  &  1\\
+                    \end{matrix}
+                     \right]  \left[ \begin{matrix}
+                    p_{x}\\
+                    p_{y}\\
+                    p_{z}\\
+                    \end{matrix}
+                     \right] +  \left[ \begin{matrix}
+                    h\\
+                    0\\
+                    0\\
+                    \end{matrix}
+                     \right] - \left[ \begin{matrix}
+                    r\\
+                    0\\
+                    0\\
+                    \end{matrix}
+                     \right] 
+                \label{eq:modelacion_cine_vel_metodoa_anexo_3}
+        \end{equation}
+
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=0.9\linewidth]{Main/Chapter4/Images4/DIBUJO22.jpg}
+            \caption{Caption}
+            \label{fig:ANEXO_MA_C_vel_1}
+        \end{figure}
+     
+        \newpage
+
+
+        La figura \ref{fig:ANEXO_MA_C_vel_1} denota la posición del punto  $C_{i}$  en relación con el marco de coordenadas  $A_{i}$ – $x_{i}y_{i}z_{i}$ ,$a$  y  $b$ son las longitudes de los enlaces $\overrightarrow{A_{i}B_{i}}$ , y  $\overrightarrow{B_{i}C_{i}}$  respectivamente y $\overrightarrow{p}= \left[ p_{x},p_{y},p_{z} \right] ^{T}$  es el vector de posición del punto $P$   relativo al sistema de coordenadas $O$ – $xyz$.
+        
+        El ángulo $\theta _{3i}$  se calcula resolviendo la segunda fila de la ecuación \ref{eq:modelacion_cine_vel_metodoa_anexo_2}:
+
+        \begin{equation}
+            \theta _{3i}= \cos ^{-1}\frac{c_{yi}}{b} 
+            \label{eq:modelacion_cine_vel_metodoa_anexo_3}
+        \end{equation}
+        
+        Con  $\theta _{3i}$  determinado, se genera una ecuación con $\theta _{2i}$ como la única incógnita, sumando los cuadrados de  $c_{xi}$ ,  $c_{yi}$  y  $c_{zi}$ en la ecuación \ref{eq:modelacion_cine_vel_metodoa_anexo_2} aplicando la norma a los vectores:
+        \vspace{-1em}
+     \begin{align*}
+            &\left \Vert a
+            \left[ \begin{matrix}
+            cos~ \theta _{1i}\\
+            0\\
+            sin~ \theta _{1i}\\
+            \end{matrix}\right] +b \left[ \begin{matrix}
+            sin~ \theta _{3i} cos⁡ \left(  \theta _{1i}+ \theta _{2i} \right) \\
+            cos~ \theta _{3i}\\
+            sin~ \theta _{3i}sin \left(  \theta _{1i}+ \theta _{2i} \right) \\
+            \end{matrix}
+             \right] ~~ \right \Vert =~~ \left \Vert ~~~ \left[ \begin{matrix}
+            c_{xi}\\
+            c_{yi}\\
+            c_{zi}\\
+            \end{matrix}
+             \right] ~~~ \right \Vert \\
+             \Longrightarrow & \left( a cos~ \theta _{1i}+b sin~ \theta _{3i}~cos⁡ \left(  \theta _{1i}+ \theta _{2i} \right)  \right) ^{2}+\\
+              &\left( b cos~ \theta _{3i} \right) ^{2}+ \left( a sin~ \theta _{1i}+b sin~ \theta _{3i}sin \left(  \theta _{1i}+ \theta _{2i} \right)  \right) ^{2} = c_{xi}^{2}+c_{yi}^{2}+c_{zi}^{2}\\
+             \Longrightarrow &  \left[ a^{2}cos^{2}\theta _{1i}+\2ab cos~ \theta _{1i}sin~ \theta _{3i}\cos  \left(  \theta _{1i}+ \theta _{2i} \right) +b^{2}sin ^{2}~ \theta _{3i} cos ^{2}⁡ \left(  \theta _{1i}+ \theta _{2i} \right) \right] +\\
+             &\left[ b^{2}~cos^{2} \theta _{3i} \right] + \left[ a^{2}~sin^{2} \theta _{1i}+2ab~sin~ \theta _{1i}sin~ \theta _{3i}sin \left(  \theta _{1i}+ \theta _{2i} \right) +b^{2}sin^{2}  \theta _{3i} sin^{2}  \left(  \theta _{1i}+ \theta _{2i} \right) \right]=\\
+             &c_{xi}^{2}+c_{yi}^{2}+c_{zi}^{2}\\
+             \Longrightarrow & a^{2} \left( cos^{2} \theta _{1i}+~sin^{2} \theta _{1i} \right) +b^{2}sin^{2} ~ \theta _{3i} \left( \cos^{2}   \left(  \theta _{1i}+ \theta _{2i} \right)+\sin^{2}   \left(  \theta _{1i}+ \theta _{2i} \right)\right) +\\
+             &2 ab sin~ \theta _{3i} \left( ~cos~ \theta _{1i}\cos  \left(  \theta _{1i}+ \theta _{2i} \right) +sin~ \theta _{1i}\sin  \left(  \theta _{1i}+ \theta _{2i} \right)  \right) +b^{2}~cos^{2} \theta _{3i}= c_{xi}^{2}+c_{yi}^{2}+c_{zi}^{2}
+        \end{align*}
+        
+        Utilizando las siguientes propiedades trigonométricas:
+        \begin{gather*}
+            \cos^{2}~ \theta _{1i}+~sin^{2}~ \theta _{1i}=1\\
+            \cos^{2}  \left(  \theta _{1i}+ \theta _{2i} \right)+\sin ^{2} \left(  \theta _{1i}+ \theta _{2i} \right) =1 \\
+            \cos \theta _{1i}\cos  \left(  \theta _{1i}+ \theta _{2i} \right) +sin~ \theta _{1i}sin \left(  \theta _{1i}+ \theta _{2i} \right) =cos⁡  \left(  \theta _{1i}- \left(  \theta _{1i}+ \theta _{2i} \right)  \right) = cos⁡  \left(  \theta _{2i} \right)
+        \end{gather*}
+
+        Reemplazando:
+        \begin{equation*}
+         \Longrightarrow a^{2}+b^{2}sin^{2} ~ \theta _{3i}+ 2 ab sin~ \theta _{3i}\cos  \theta _{2i}+b^{2}~cos^{2} ~ \theta _{3i}= c_{xi}^{2}+c_{yi}^{2}+c_{zi}^{2} 
+        \end{equation*}
+        
+        Donde se sabe que:
+        \begin{equation*}
+            \left( sin^{2}~ \theta _{3i}+~cos^{2} \theta _{3i} \right) =1
+        \end{equation*}
+        
+        Entonces:
+        \begin{equation*}
+            a^{2}+b^{2}+ 2 ab sin~ \theta _{3i}\cos  \theta _{2i}+b^{2}= c_{xi}^{2}+c_{yi}^{2}+c_{zi}^{2}
+        \end{equation*}
+        
+        Despejando   $\cos \theta _{2i}$
+        
+        \begin{equation}
+          \theta _{2i}=\cos ^{-1} \left( \frac{c_{xi}^{2}+c_{yi}^{2}+c_{zi}^{2}- a^{2}-b^{2}~}{2 ab sin~ \theta _{3i}} \right) 
+        \end{equation}
+        
+        Con  $\theta _{3i}$  y  $\theta _{2i}$  determinados, solo queda un par de ecuaciones con $\theta _{1i}$  como la única incógnita que desde la ecuación \ref{eq:modelacion_cine_vel_metodoa_anexo_2}. Por lo tanto, es posible resolver el valor de $ \theta _{1i}$.
+        
+        {\fontsize{9pt}{10.8pt}\selectfont  
+
+ %%%%%%%%%%%%  Starting New Page here %%%%%%%%%%%%%%
+
+\newpage
+\par}\par
+
+            
+            
+            
+            
+            
+            
+        \subsubsection{Jacobiano}
+
+        
+        
+    \newpage
+
+        
     \section{Metodología B}
         \subsection{Modelación Cinemática de posición}
         \subsubsection{Modelación Cinemática de velocidad}

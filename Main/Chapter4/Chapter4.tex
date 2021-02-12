@@ -373,26 +373,25 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
     \subsection{Modelación cinemática de la velocidad}\label{ma_cvel}
         En esta sección, se da a conocer un método para calcular la matriz jacobiana y su estrecha relación con las singularidades de un robot paralelo tipo delta. Se implementan las ideas extraídas del paper \cite{Hsu_modelling_ai}
     
-        \subsubsection{Nomenclatura de Parámetros Geométricos y Sistema deReferencia Loca}
+        \subsubsection{Nomenclatura de parámetros geométricos y sistema de referencia loca}
         
-        En la ilustración \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_7} se pueden visualizar 3 cadenas cinemáticas las cuales se componen de 4 partes mecánicas: la base fija, los brazos accionados, las barras seguidoras y la plataforma móvil.
+        La figura \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_7} se visualizan 3 cadenas cinemáticas las cuales se componen de 4 partes mecánicas: la base fija, los brazos accionados, las barras seguidoras y la plataforma móvil.
         
         \begin{figure}[htb]
              \centering
              %\includegraphics[width=0.45\linewidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_7.png}
-             \includegraphics[width=0.45\linewidth]{Main/Chapter4/Images4/ma_jacobian.jpg}
+             \includegraphics[width=0.62\linewidth]{Main/Chapter4/Images4/DIBUJO18.jpg}
               \caption{Fotografía de un paraguas}
               \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_7}
         \end{figure}
-        
-        
-        En la tabla \ref{tab:cap4_tabla_5} muestra la relación entre la numeración en la figura anterior y su descripción:
+ 
+          La tabla \ref{tab:cap4_tabla_5} muestra la relación entre la numeración en la figura \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_7}  y su nombre:
         
         \begin{table}[h]
             \centering
             \begin{tabular}{c c}
             \hline
-                \textbf{Numero}& \textbf{Descripción} \\ 
+                \textbf{Numero}& \textbf{nombre} \\ 
             \hline             \hline
              1 & plataforma móvil \\
             \hline
@@ -408,13 +407,35 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
            \caption{Referencias del dibujo}
            \label{tab:cap4_tabla_5}
         \end{table}
-      
-    \newpage
+        
+        \newpage
+        
+     Cada cadena contiene una junta giratoria activada por actuadores en la base fija en la posición donde se conectan los brazos accionados. Cada brazo accionado está conectado a 2 barras seguidoras a través de juntas de 3 grados de libertad. Las juntas son una combinación de junta universal y cojinete.  Las barras seguidoras están conectadas a la plataforma móvil a través del mismo tipo de juntas de tres grados de libertad, es decir, una combinación de junta universal y cojinete.
 
-      En la tabla \ref{tab:cap4_tabla_6} se presenta la simbología de las principales longitudes, puntos, ángulos y sistemas de referencia   para el desarrollo de la solución cinemática propuesta en este capitulo:
+      
+
+        Como se muestra en la figura \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_71}, un sistema de coordenadas de referencia $O-xyz$ se adjunta al centro $O$ de la plataforma fija donde los ejes $x$ e $y$ se encuentran en el plano fijo y el eje $z$ apunta hacia arriba verticalmente.
+        Otro sistema de coordenadas $A_i$ -  $x_iy_iz_i$  se adjunta a la base fija en el punto $A_i$, de modo que el eje $x_i$ está en línea con la línea extendida $OA_i$, el eje $y_i$ se dirige a lo largo del eje de la articulación giratoria en $A_i$ y el eje $z_i$ es paralelo al eje $Z$. 
+        El ángulo $\phi_i$ se mide desde el eje x al eje $x_i$, y es un parámetro constante del diseño del manipulador $\phi_i ∈{1,2,3}$ .  
+    
+    
+
+
+        \begin{figure}[htb]
+             \centering
+             %\includegraphics[width=0.45\linewidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_7.png}
+             \includegraphics[width=0.8\linewidth]{Main/Chapter4/Images4/DIBUJO19.jpg}
+              \caption{Fotografía de un paraguas}
+              \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_71}
+        \end{figure}
+        
+            \newpage
+
+
+      La tabla \ref{tab:cap4_tabla_6} se presenta la simbología de las principales longitudes, puntos, ángulos y sistemas de referencia   para el desarrollo de la solución cinemática de velocidad:
  
         \begingroup
-            \renewcommand{\arraystretch}{1.5}
+            \renewcommand{\arraystretch}{2.0}
             \begin{table}[H]
             \centering
             \begin{tabular}{c m{12cm}}
@@ -455,11 +476,11 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
 
         \subsubsection{Vectorización y ángulos de las articulaciones} \label{cap4_angulosinteriores}
         
-        La ilustracion \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_8} define los ángulos de articulación asociados con la extremidad  \( i \) .  \(  \theta _{2i} \)  se define desde la línea extendida de  \( \overrightarrow{A_{i}B_{i}} \)  hasta la línea definida por la intersección del plano del paralelogramo y el plano  \( x_{i}-z_{i} \)  y  \(  \theta _{3i} \)  se mide desde la dirección  \( y_{i} \)  hasta  \( \overrightarrow{B_{i}C_{i}} \) .
+        La figura \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_8} define los ángulos de articulación asociados con la extremidad  \( i \) . El ángulo \(  \theta _{2i} \)  se define desde la línea extendida de  \( \overrightarrow{A_{i}B_{i}} \)  hasta la línea definida por la intersección del plano del paralelogramo y el plano  \( x_{i}-z_{i} \)  y  \(  \theta _{3i} \)  se mide desde la dirección  \( y_{i} \)  hasta  \( \overrightarrow{B_{i}C_{i}} \) .
         
         \begin{figure}[htb]
              \centering
-             \includegraphics[width=1.0\linewidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_8.png}
+             \includegraphics[width=1.0\linewidth]{Main/Chapter4/Images4/DIBUJO21.jpg}
               \caption{Fotografía de un paraguas}
               \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_8}
         \end{figure}
@@ -565,14 +586,7 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
         \subsubsection{Jacobiano}\label{ma_jac}
         
         La matriz jacobiana tradicional proporciona una transformación de la velocidad del efector final en el espacio cartesiano a las velocidades articulares accionadas.
-        
-        \begin{figure}[htb]
-             \centering
-             \includegraphics[width=0.5\linewidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_10.png}
-              \caption{Fotografía de un paraguas}
-              \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_10}
-        \end{figure}
-        
+
         Con referencia a la ilustracion \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_10}, una ecuación de cierre de bucle para una extremidad i en marco de coordenadas  \( A_{i} \) – \( x_{i}y_{i}z_{i} \) se puede escribir como:
         
         \begin{equation}
@@ -615,7 +629,8 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
         \end{equation}
         
     Donde: 
-    
+             \vspace{-1em}
+
     \begin{equation}
         J_{ix}=\cos  \left(  \theta _{1i}+ \theta _{2i} \right) sin~ \theta _{3i}\cos  \phi _{i}-cos  \theta _{3i}\sin  \phi _{i}~
         \label{eq:cap4_eq_28}
@@ -638,10 +653,8 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
          J_{i \theta }=a~\sin  \theta _{2i}~sin~ \theta _{3i}
          \label{eq:cap4_eq_31}
     \end{equation}
-         \vspace{-3.5em}
+         \vspace{-1em}
    
-            \newpage
-    
     Manipulando algebraicamente la ecuación (\ref{eq:cap4_eq_26}):
     
      \begin{equation}
@@ -649,26 +662,21 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
         \label{eq:cap4_eq_32}
     \end{equation}   
     
+         Donde: 
+
+        \begin{itemize}
+            \item {$J=J_{x}^{-1}J_{ \theta }$  es el jacobiano del robot delta
+}
+            \item {$v_{p}= \left[ v_{px},v_{py},v_{pz} \right] ^{T}$ es la velocidad del del punto  $p$ en la plataforma móvil
+}
+            \item {$\dot{ \theta }= \left[ \dot{ \theta _{11}},\dot{ \theta _{12}},\dot{ \theta _{13}}  \right] ^{T}$  es la velocidad angular de los actuadores
+}
+        \end{itemize}
+
     Finalmente, el jacobiano es $J$ y representa el cambio de las posiciones en el espacio cartesiano de la plataforma móvil respecto al cambio de los ángulos en el espacio articular de los actuadores:
         
-    \begin{equation}
-          ~~J= \left[ \begin{matrix}
-            \frac{ \partial x}{ \partial  \theta _{1}}  &  \frac{ \partial x}{ \partial  \theta _{2}}  &  \frac{ \partial x}{ \partial  \theta _{3}}\\
-            \frac{ \partial y}{ \partial  \theta _{1}}  &  \frac{ \partial y}{ \partial  \theta _{2}}  &  \frac{ \partial y}{ \partial  \theta _{3}}\\
-            \frac{ \partial z}{ \partial  \theta _{1}}  &  \frac{ \partial z}{ \partial  \theta _{2}}  &  \frac{ \partial z}{ \partial  \theta _{3}}\\
-        \end{matrix}
-        \right]   
-         \label{eq:cap4_eq_33}
-    \end{equation}\    
-        
-        
-     Donde: \par
 
-       $J=J_{x}^{-1}J_{ \theta }$  es el jacobiano del robot delta
 
-        $v_{p}= \left[ v_{px},v_{py},v_{pz} \right] ^{T}$ es la velocidad del del punto  $p$ en la plataforma móvil
-
-        $\dot{ \theta }= \left[ \dot{ \theta _{11}},\dot{ \theta _{12}},\dot{ \theta _{13}}  \right] ^{T}$  es la velocidad angular de los actuadores
         
         \newpage
 
