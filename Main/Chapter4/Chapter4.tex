@@ -1,75 +1,86 @@
 \chapter{Modelación física y matemática}\label{CAP4}
     
-\section{Desarrollo de modelación y metodologías}
-    En primero lugar, con el objetivo de modelar la cinemática y la dinámica de un robot delta de manera veraz, se presentan 2 metodologías que son programadas y comparadas en este texto. Estas dos metodologías deben dar los mismos resultados. Se les llama metodología A y metodología B. Las etapas de las 2 metodologías tienen el mismo objetivo, sin embargo, el planteamiento del problema cinemático y dinámico es tratado de forma diferente. Para comparar las dos metodologías se crea un marco de referencia global en el robot delta. Por ende, en los códigos de los algoritmos es necesario que las salidas o resultados estén en correlación a este sistema de referencia. En la siguiente imagen, se muestra un diagrama de flujo de las 2 metodologías, con el objetivo de cada etapa y el titulo-autor de donde se recopila información.
+\section{Desarrollo de modulación y métodos}
+    En primero lugar, con el objetivo de modelar la cinemática y la dinámica de un robot delta de manera veraz, se presentan 2 métodos que son programados y comparados en este texto. Estos dos métodos deben dar los mismos resultados si es que son programados correctamente. Se les llama método A y método B. Cada etapas de los dos métodos tienen el mismo objetivo, sin embargo, el planteamiento del problema cinemático y dinámico es tratado de forma diferente. Para comparar los dos métodos se crea un marco de referencia global en el robot delta. Por ende, en los códigos de los algoritmos es necesario que las salidas o resultados estén en correlación a este sistema de referencia. En la figura \ref{f:Cap4_metodologia}, se muestra un diagrama de flujo de los dos métodos con el objetivo de cada etapa.
     
-        
-        \begin{figure}[htb]
-             \centering
-             \includegraphics[width=0.5\linewidth]{Main/Chapter4/Images4/Metodologia.png}
-              \caption{Fotografía de un paraguas}
-              \label{f:Cap4_metodologia}
-        \end{figure}
+    
+\begin{figure}[htb]
+    \centering
+    \smartdiagramset{back arrow disabled=true,text width=2.0cm, font=\fontsize{9pt}{10pt}\selectfont}
+    \smartdiagram[flow diagram:horizontal]{% 
+    Nomenclatura\\ y \\sistema de referencia \\local,
+    Cinematica inversa \\ Cinematica directa,
+    Jacobiano,
+    Cinematica \\de\\ aceleracion,
+    Dinamica \\inversa
+    }  
+    \caption{Fotografía de un paraguas}
+    \label{f:Cap4_metodologia}
+\end{figure}
+
+    En segundo lugar, se explica que es un espacio de trabajo para un robot delta y los parámetros que influyen en su volumen, forma, densidad espacial, etc. Para ello, se utiliza la modelación cinemática y se privilegia el método A sobre la B por razones en relación a el cálculo del jacobiano que se explican en dicha sección.
+    
+    Por último, se presentan las trayectorias más comunes implementadas en el desarrollo de los robots. De todas las trayectorias presentadas se profundizan 2, las cuales se utilizan para simular el mecanismo del robot delta y comparar los resultados tanto de la modelación cinemática como de la modelación dinámica.
     
          \newpage
 
 
-    En segundo lugar, se explica que es un espacio de trabajo para un robot delta y los parámetros que influyen en su volumen, forma, densidad espacial, etc. Para ello, se utiliza la modelación cinemateca y se privilegia la metodología A sobre la B por razones con relación a el cálculo del jacobiano que se explican en dicha sección.
+\section{Nomenclatura y sistema de referencia global}
+    En la figura \ref{f:ref1} se muestra el sistema de referencia global $XYZ$ y el orden de numeración de los ángulos $\theta_i , i=1,2,3$ , los cuales son utilizados para representar todos los resultados obtenidos en esta tesis. 
     
         \begin{figure}[htb]
              \centering
-             \includegraphics[width=0.7\linewidth]{Main/Chapter4/Images4/Metodologia_ws.png}
-              \caption{Fotografía de un paraguas}
-              \label{f:Cap4_metodologia_ws}
-        \end{figure}
-    
-    Por último, se presentan las trayectorias más comunes implementadas en el desarrollo de los robots. De todas las trayectorias presentadas se profundizan 2, las que en esta tesis se utilizan para simular el mecanismo del robot delta y comparar los resultados de la modelación cinemateca y dinámica.
-    
-        \begin{figure}[htb]
-             \centering
-             \includegraphics[width=0.7\linewidth]{Main/Chapter4/Images4/Metodologia_tray.png}
-              \caption{Fotografía de un paraguas}
-              \label{f:Cap4_metodologia_tray}
-        \end{figure}  
-    
-     \newpage
-
-
-\section{Nomenclatura y sistemas de referencia global}
-
-        \begin{figure}[htb]
-             \centering
-             \includegraphics[width=0.7\linewidth]{Main/Chapter4/Images4/ref1.jpg}
-              \caption{Fotografía de un paraguas}
+             \includegraphics[width=0.75\linewidth]{Main/Chapter4/Images4/DIBUJO1.jpg}
+              \caption{Sistema de referencia global $XYZ$ y numeracion de angulos $\theta_i , i=1,2,3$ }
               \label{f:ref1}
         \end{figure}
 
+La tabla \ref{tab:cap4_tabla_00} relaciona el nombre dado a las piezas mecánicas básicas del robot delta con su numeración de la figura \ref{f:ref1}.
+        \begin{table}[h]
+            \centering
+            \begin{tabular}{c c}
+            \hline
+                \textbf{Numero}& \textbf{Pieza Mecánica} \\ 
+            \hline             \hline
+             1 & Base fija \\
+            \hline
+             2 & Brazo \\
+            \hline
+             3 & Antebrazo \\
+            \hline
+             4 & Base Móvil\\
+            \hline
+            \end{tabular}
+           \caption{Referencias del dibujo}
+           \label{tab:cap4_tabla_00}
+        \end{table}
+        
      \newpage
+     
 
 \section{Metodología A}
 
-    \subsection{Modelacion Cinemática de Posición}
+    \subsection{Modelación Cinemática de Posición}
     
-        En esta sección, se da a conocer una solución para calcular la cinemática inversa y cinemática directa de un robot paralelo tipo delta. Con el fin de solucionar el problema cinemático, se emplean las ideas y modelación del robot delta propuestas por la referencia bibliográfica \cite{Diseno_e_implementacion_de_un_sistema_de_control_para_la_representacion_grafica_a_partir_de_imagenes}.
+        En esta sección, se da a conocer una solución para calcular la cinemática inversa y cinemática directa de un robot paralelo tipo delta. Con el fin de solucionar el problema cinemático, se emplean las ideas y modelación del robot delta propuestas por Lois Rilo Antelo \cite{Diseno_e_implementacion_de_un_sistema_de_control_para_la_representacion_grafica_a_partir_de_imagenes}.
         
-        \subsubsection{Nomenclatura de Parámetros Geométricos y Sistema de Referencia Local}
-
+        \subsubsection{Nomenclatura de parámetros geométricos y sistema de referencia local}
+        En la figura  \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_1}  presenta el robot delta simplificado con el respectivo el sistema de referencia local $XYZ$ y el orden de numeración de los ángulos $\theta_i , i=1,2,3$ para la solución de la cinemática de posición del método A.
+        
         \begin{figure}[htb]
              \centering
-             \includegraphics[width=0.5\linewidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_1.png}
-              \caption{Fotografía de un paraguas}
+             \includegraphics[width=0.45\linewidth]{Main/Chapter4/Images4/DIBUJO2.jpg}
+              \caption{Sistema de referencia local para cinemática de posición método A}
               \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_1}
         \end{figure}
 
- 
-
-        En la figura \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_1} se aprecia las piezas mecánicas básicas de un robot delta, tales como la  base fija, un efector móvil , brazos y antebrazos. En la siguiente tabla muestra la relación entre la numeración en la figura \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_1} y su descripción:
+         En la siguiente tabla muestra la relación entre la numeración en la figura \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_1} y su nombre:
         
         \begin{table}[h]
             \centering
             \begin{tabular}{c c}
             \hline
-                \textbf{Numero}& \textbf{Descripción} \\ 
+                \textbf{Numero}& \textbf{Nombre} \\ 
             \hline             \hline
              1 & Base fija \\
             \hline
@@ -84,22 +95,25 @@
              6 & Actuador  \\
              \hline
             \end{tabular}
-           \caption{Referencias del dibujo}
+           \caption{Relación entre la numeración y piezas mecánicas de la figura  \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_1}}
            \label{tab:cap4_tabla_1}
         \end{table}
 
         \newpage
+ 
+         En la figura \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_1}  se aprecia las piezas mecánicas básicas de un robot delta, tales como la  base fija, el efector móvil y 3 cadenas cinemáticas similares a un brazo robótico. Cada cadena esta compuestas por un actuador, que funciona como una junta revoluta, un brazo, una junta esférica que une el brazo con el antebrazo, un antebrazo y otra junta esférica que une al antebrazo con el efector final. Los 3 actuadores están situados en los puntos medios de los lados del triangulo de la base fija.
+         
+        La figura \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_2} y en la tabla \ref{tab:cap4_tabla_2} presentan la nomenclatura de los principales parámetros geométricos y puntos utilizados para el desarrollo de la solución cinemática de posición:
         
         \begin{figure}[htb]
              \centering
-             \includegraphics[width=0.6\linewidth]{Main/Chapter4/Images4/ma_direct.jpg}
+             \includegraphics[width=0.45\linewidth]{Main/Chapter4/Images4/DIBUJO3.jpg}
              %\includegraphics[width=0.6\linewidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_2.png}
               \caption{Fotografía de un paraguas}
               \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_2}
         \end{figure}
         
-        En la siguiente tabla se presenta la simbología de los principales parámetros para el desarrollo de la solución cinemática propuesta en este capitulo: 
-        
+
         \begingroup
             \renewcommand{\arraystretch}{1.5}
             \begin{table}[H]
@@ -111,8 +125,8 @@
                $r_{e}$  & Longitud del antebrazo                                \\\hline               
                $f$  & Lado de base fija                                         \\\hline
                $e$  & Lado del efector                                          \\\hline
-               $\theta_{i}$  & Ángulo del actuador i    \\\hline
                $F_{i}$  & Coordenadas de la posición del actuador i=1,2,3.    \\\hline
+               $J_{i}$  & Coordenadas de las juntas esféricas que une el brazo i=1,2,3 con su antebrazo respectivo   \\\hline
                $E_{i}$  & Coordenadas de las juntas esféricas que unen el antebrazo con el efector (punto medio del lado
                del triangulo que forma el efector) i=1,2,3.    \\\hline
                $E_{0}(x_{0},y_{0},z_{0})$  & Coordenadas del centroide del efector   \\\hline               
@@ -150,7 +164,7 @@
 
         \newpage
         
-        Los 3 centros y radios de las nuevas esferas que se intersecan en el centroide del efector $E_0(x_0,y_0,z_0)$ son:
+        Los 3 centros de las nuevas esferas de radio $r_e$ que se intersectan en el centroide del efector $E_0(x_0,y_0,z_0)$ son:
         
     \vspace{-1em}
 
@@ -161,15 +175,14 @@
             \centering
             \begin{tabular}{p{1.4cm} c c } 
                  \hline
-                 \textbf{Centros}  &  \textbf{Centros esferas}  & \textbf{Radio} \\ [0.1ex] 
+                 \textbf{Centros}  &  \textbf{Centros esferas} \\ [0.1ex] 
                  \hline\hline
                          $\left(x_1,y_1,z_1\right)$ &
-                         ${J^'}_1\left(0,\left[-\frac{f-e}{2\sqrt{3}}-r_f{\mathrm{cos} \left({\theta }_1\right)\ }\right],-r_f{\mathrm{sin}\mathrm{n} \left({\theta }_1\right)\ }\right)$ & 
-                                                 $r_e$ \\ 
+                         ${J^'}_1\left(0,\left[-\frac{f-e}{2\sqrt{3}}-r_f{\mathrm{cos} \left({\theta }_1\right)\ }\right],-r_f{\mathrm{sin} \left({\theta }_1\right)\ }\right)$ \\ 
                 \hline
-                          $\left(x_2,y_2,z_2\right)$ & ${J^'}_2(\left[\frac{f-e}{2\sqrt{3}}+r_f{\mathrm{cos} \left({\theta }_2\right)\ }\right]\mathrm{cos}\mathrm{}(30{}^\circ ),\left[\frac{f-e}{2\sqrt{3}}+r_f{\mathrm{cos} \left({\theta }_2\right)\ }\right]\mathrm{sin}\mathrm{}(30{}^\circ ),-r_f{\mathrm{sin} \left({\theta }_2\right)\ })$ & $r_e$ \\
+                          $\left(x_2,y_2,z_2\right)$ & ${J^'}_2\left(\left[\frac{f-e}{2\sqrt{3}}+r_f{\mathrm{cos} \left({\theta }_2\right)\ }\right]\mathrm{cos}\mathrm{}(30{}^\circ ),\left[\frac{f-e}{2\sqrt{3}}+r_f{\mathrm{cos} \left({\theta }_2\right)\ }\right]\mathrm{sin}\mathrm{}(30{}^\circ ),-r_f{\mathrm{sin} \left({\theta }_2\right)\ }\right)$\\
                 \hline
-                           $\left(x_3,y_3,z_3\right)$ & ${J^'}_3(-\left[\frac{f-e}{2\sqrt{3}}+r_f{\mathrm{cos} \left({\theta }_3\right)\ }\right]\mathrm{cos}\mathrm{}(30{}^\circ ),\left[\frac{f-e}{2\sqrt{3}}+r_f{\mathrm{cos} \left({\theta }_3\right)\ }\right]\mathrm{sin}\mathrm{}(30{}^\circ ),-r_f{\mathrm{sin} \left({\theta }_3\right)\ })$ & $r_e$ \\ [1ex] 
+                           $\left(x_3,y_3,z_3\right)$ & ${J^'}_3\left(-\left[\frac{f-e}{2\sqrt{3}}+r_f{\mathrm{cos} \left({\theta }_3\right)\ }\right]\mathrm{cos}\mathrm{}(30{}^\circ ),\left[\frac{f-e}{2\sqrt{3}}+r_f{\mathrm{cos} \left({\theta }_3\right)\ }\right]\mathrm{sin}\mathrm{}(30{}^\circ ),-r_f{\mathrm{sin} \left({\theta }_3\right)\ }\right)$\\
                  \hline
             \end{tabular}
             \caption{Referencias del dibujo}
@@ -247,7 +260,7 @@
         
         \begin{figure}[htb]
              \centering
-             \includegraphics[width=0.35\linewidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_4.png}
+             \includegraphics[width=0.43\linewidth]{Main/Chapter4/Images4/DIBUJO6.jpg}
               \caption{Fotografía de un paraguas}
               \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_4}
         \end{figure}
@@ -258,11 +271,10 @@
     
         Acerca de los brazos solo se tiene conocimiento de los puntos $F_i$, que son la posici\'{o}n de cada actuador. Los actuadores son juntas revolutas y restringen le movimiento de cada brazo en planos. La configuraci\'{o}n espacial de estos planos para cada cadena cinem\'{a}tica es determinada por los puntos $F_i$ ,$O$ (origen) y el plano de la que contiene la base fija. El plano que contiene la base fija es perpendicular a los planos que restringen el movimiento de los brazos. En consecuencia, la posici\'{o}n de los puntos extremos de cada brazo, es decir, los puntos $J_i$ (junta esf\'{e}rica), est\'{a}n restringidos por circunferencias como se muestra en la ilustracion \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_3} .
 
-        Para finalizar, se calcula la intersecci\'{o}n entre las circunferencias para cada cadena cinem\'{a}tica, en otras palabras, los puntos  $J_i$ . Una vez obtenida la posici\'{o}n de las 3 juntas $J_i$, con algebra simple se calculan $\left({\theta }_1,{\theta }_2,{\theta }_3\right)$.
-        
                 \newpage
 
-
+        Para finalizar, se calcula la intersecci\'{o}n entre las circunferencias para cada cadena cinem\'{a}tica, en otras palabras, los puntos  $J_i$ . Una vez obtenida la posici\'{o}n de las 3 juntas $J_i$, con algebra simple se calculan $\left({\theta }_1,{\theta }_2,{\theta }_3\right)$.
+        
         En el caso del actuador  $i=1$ , los centros de las circunferencias que intersección la junta esf\'{e}rica $J_1$ son:
         
         \begin{center}
@@ -339,7 +351,7 @@ En último lugar, se determina el ángulo \( ~ \theta _{1} \)  por medio del tri
     
         \begin{figure}[htb]
              \centering
-             \includegraphics[width=0.25\linewidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_5.png}
+             \includegraphics[width=0.4\linewidth]{Main/Chapter4/Images4/DIBUJO4.png}
               \caption{Fotografía de un paraguas}
               \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_5}
         \end{figure}
@@ -351,7 +363,7 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
 
         \begin{figure}[htb]
              \centering
-             \includegraphics[width=0.8\linewidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_6.png}
+             \includegraphics[width=0.5\linewidth]{Main/Chapter4/Images4/DIBUJO5.jpg}
               \caption{Fotografía de un paraguas}
               \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_6}
         \end{figure}
