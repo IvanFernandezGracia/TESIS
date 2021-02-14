@@ -370,18 +370,18 @@ Los pasos del diagrama de flujo son los siguientes:
         
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/3-7/representacion-de-eslabon-en-urdf.png}
+            \includegraphics[width=0.5\linewidth]{Main/Chapter3/Images3/3-7/representacion-de-eslabon-en-urdf.png}
             \caption{Representación de un eslabón en URDF}
             \label{f:Cap3-7_eslabon_urdf}
         \end{figure} 
         
         \subsubsection{Links}
         
-        El eslabones o enlaces (conjunto link) describen la parte física rígida del robot y permite especificar sus propiedades, como tamaño, forma, color o una malla 3D compleja importada. Consta de tres elementos:
+        Los eslabones o enlaces (conjunto link) describen la parte física rígida del robot y permite especificar sus propiedades, como tamaño, forma, color o una malla 3D compleja importada. Consta de tres elementos:
     
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/3-7/eslabon2.png}
+            \includegraphics[width=0.5\linewidth]{Main/Chapter3/Images3/3-7/eslabon2.png}
             \caption{nose}
             \label{f:Cap3-7_noseee_urdf}
         \end{figure} 
@@ -394,14 +394,74 @@ Los pasos del diagrama de flujo son los siguientes:
         
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/3-7/representacion-de-eslabon-en-urdf.png}
-            \caption{Representación de un eslabón en URDF}
-            \label{f:Cap3-7_eslabon_urdf}
+            \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/3-7/codigo.png}
+            \caption{nose}
+            \label{f:Cap3-7_nose_nose}
         \end{figure} 
         
+        \subsubsection{Joints}
         
+        Las articulaciones o uniones (conjunto joint) indican la relación entre los distintos eslabones del robot. Describen además la cinemática y dinámica de cada articulación, además de especificar los límites de colisión del robot. Una articulación queda fefinida cuando se especifican los eslabones que une: el primero es llamado el padre (parent) y el segundo el hijo (child).
+        
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=0.65\linewidth]{Main/Chapter3/Images3/3-8/representacion-de-una-articulacion-en-URDF.png}
+            \caption{nose}
+            \label{f:Cap3-8_nose_nose}
+        \end{figure} 
+        
+        Tipos de articulaciones:
+        
+        \begin{enumerate}
+           \item \textbf{Revolute:} Permite que dos sólidos giren alrededor de un eje común y tiene un giro limitado especificado por un límite superior y uno inferior.
+            \item \textbf{Continuous:} Se trata de una articulación de Revolute pero sin límites..
+            \item \textbf{Prismatic:} Una junta que se deslizarse a lo largo de un eje. Tiene un alcance acotado por un límite inferior y uno superior.
+            \item \textbf{Fixed:} No es realmente una articulación porque impide el movimiento. La unión no tiene ningún grado de libertad. Este tipo de articulación no requiere de ninguno de los elementos que describe la articulación..
+            \item \textbf{Floating:} Esta unión mantiene libres todos los grados de libertad..
+            \item \textbf{Planar:} Articulación que permite el movimiento en un plano.
+        \end{enumerate}
+        
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/3-8/codigo-joint.png}
+            \caption{nose}
+            \label{f:Cap3-8_nose_nose}
+        \end{figure} 
+        
+        Cada conjunto de uniones (joint) está compuesto por hasta nueve elementos:
+        
+         \begin{enumerate}      
+            \item \textbf{Origin:} es la posición donde se encuentra la unión entre el sólido padre (Parent) y el sólido hijo (child), en referencia al primero.
+            \item \textbf{Parent:} el objeto padre en una unión
+            \item \textbf{Child:} en objeto hijo en una unión
+            \item \textbf{Axis:} eje del articulacion en la referencia global.
+            \item \textbf{Calibration:} es un elemento opcional. Sirve para determinar la posición absoluta de la articulación
+            \item \textbf{Dynamics:} es un elemento opcional. Define la amortiguación y la fricción de la articulación.
+            \item \textbf{Límite:} sólo obligatoria en las articulaciones de revolución y en las prismáticas. Define el límite inferior y superior de la articulación, el esfuerzo máximo que puede aplicar y la velocidad máxima de esta.
+            \item \textbf{Mimic:} es un elemento opcional. Se usa para especificar que una articulación imita a otra articulación ya existente. 
+            \item \textbf{Safety controller:} es un elemento opcional. Específica para qué valores debe empezar a limitar la posición o la velocidad de una articulación en función de los límites establecidos en el tag <límit>.
+        \end{enumerate}
+        
+        
+    \subsection{Herramientas complementarias}
     
-    
+        Algunos paquetes y herramientas utiles para la interaccion con modelos URDF son los siguientes:
+      
+        \begin{itemize}
+            \item \textbf{Joint\_state\_Publisher:} Este paquete contiene un nodo del mismo nombre que lee la descripción del modelo del robot, encuentra todas las articulaciones (joints) y publica los valore articulares para todas las articulaciones movibles usando sliders.
+            \item \textbf{robot\_state\_Publisher:} Este paquete lee el estado de las articulaciones del robot y publica las posiciones y orientaciones 3D de cada eslabón usando la cinemática obtenida a partir del URDF. La posición 3D del robot se publica como una transformación (tf) que define las relaciones entre los sistemas de coordenadas.
+            \item \textbf{xacro:} Significa Xml mACROs y es un formato que permite utilizar variables y otros add-ons para la generación de modelos complejos en formato URDF. De esta forma los modelos pueden ser más fáciles de entender y más mantenibles.
+        \end{itemize}      
+        
+        La herramienta urdf\_to\_graphiz sirve para para obtener un diagrama graphviz de su archivo urdf, tal como se aprecia en la siguiente ilustración:
+        
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=0.35\linewidth]{Main/Chapter3/Images3/3-9/Esquema-de-los-componentes-de-un-fichero-urdf.png}
+            \caption{nose}
+            \label{f:Cap3-9_nose_nose}
+        \end{figure} 
+        
     \newpage
 
 \section{Software Algorithm Development and mining (ADAMS)}

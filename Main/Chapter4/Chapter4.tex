@@ -874,9 +874,12 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
 
     \subsubsection{Nomenclatura de Parameros Geométricos y Sistema de Referencia Global}
     
-        \begin{figure}[H]
-    		    \includegraphics[width=3.43in,height=4.39in]{Main/Chapter4/Images4/ma_dina_1.png}
-        \end{figure}
+            \begin{figure}[htb]
+                 \centering
+                 \includegraphics[width=0.8\linewidth]{Main/Chapter4/Images4/DIBUJO23.jpg}
+                  \caption{Fotografía de un paraguas}
+                  \label{f:Cap4_Metodo_A_dina_1}
+            \end{figure}    
 
 En la ilustración tanto se pueden visualizar 3 cadenas cinemáticas i=1,2,3 las cuales se componen de 4 partes mecánicas: la base fija, brazos, antebrazos y base móvil. La junta que une la base fija con los brazos representan una junta tipo revoluta accionadas por motores. También se muestra la simplificación de masas para resolver la dinámica del robot delta.
 
@@ -908,7 +911,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
    
            \begin{table}[h]
             \centering
-            \renewcommand{\arraystretch}{1.5}
+            \renewcommand{\arraystretch}{1.3}
                 \begin{tabular}{c m{11cm}}
             \hline
                 \textbf{Simbolo}& \textbf{Descripción} \\ 
@@ -925,6 +928,8 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
             \hline
              $m_{2}$ & Masa de una de las dos barras de los antebrazos, distribuida equitativamente en las extremidades. \\
             \hline
+             $m_{P}$ & Masa de la base móvil. \\
+            \hline
              $A_{i}$ & Punto de unión entre base fija y brazo para la cadena cinematica i \\
             \hline
              $B_{i}$ & Punto de unión entre brazo y antebrazo para la cadena cinematica i \\
@@ -937,9 +942,9 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
             \hline
              $\theta _{i}$ & Angulo que representa la posición angular de los brazos respecto al eje construido por el punto del origen del sistema de referencia local  y  para la cadena cinemática i.\\
             \hline
-             $O –- xyz$ & Sistema de referencia local utilizado para resolver la dinámica del robot delta \\
+             $O$ – $xyz$ & Sistema de referencia local utilizado para resolver la dinámica del robot delta \\
             \hline
-            $A_{i} –- x_{i}y_{i}z_{i}$ & Sistema de referencia con origen coincidente en la junta revoluta que una la base fija con los brazos para la cadena cinemática i \\
+            $A_{i}$ – $x_{i}y_{i}z_{i}$ & Sistema de referencia con origen coincidente en la junta revoluta que una la base fija con los brazos para la cadena cinemática i \\
             \hline
              $F_{x},F_{y},F_{z}$ & Fuerzas externas sobre la base movil\\
             \hline
