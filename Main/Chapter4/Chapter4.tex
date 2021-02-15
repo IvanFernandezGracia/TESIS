@@ -996,7 +996,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
         \end{equation}
         
         \begin{equation}
-         q_{j}= \left[ X_{p},~Y_{p},~Z_{p}, \theta _{1}, \theta _{2}, \theta _{3} \right]
+         q_{j} \in \{X_{p},Y_{p},Z_{p}, \theta _{1}, \theta _{2}, \theta _{3} \}
         \label{eq:cap4_dina_ma_9}
         \end{equation}
         
@@ -1066,24 +1066,22 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
     
         \subsubsection{Nomenclatura de Parámetros Geométricos y Sistema de Referencia Local}
 
-            En la ilustracion \ref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_1}, se presenta las partes mecánicas y la nomenclatura de los parámetros del robot delta simplificado para resolver el problema de cinemática con su respectivo sistema de referencia local:
+            En la figura \ref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_1}, se presenta las partes mecánicas y la nomenclatura de los parámetros del robot delta simplificado para resolver el problema de cinemática con su respectivo sistema de referencia local:
 
             \begin{figure}[htb]
                  \centering
-                 \includegraphics[width=0.5\linewidth]{Main/Chapter4/Images4/Metodo_B_Modelacion_Cinematica_Posicion_1.png}
+                 \includegraphics[width=0.55\linewidth]{Main/Chapter4/Images4/DIBUJO24.jpg}
                   \caption{Fotografía de un paraguas}
                   \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_1}
             \end{figure}        
         
         
-        En la tabla \ref{tab:cap4_tabla_11} muestra la relación entre la numeración en la figura anterior y su descripción:
-        
-        
+        La tabla \ref{tab:cap4_tabla_11} muestra la relación entre la numeración en la figura \ref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_1} y su nombre:
         \begin{table}[h]
             \centering
             \begin{tabular}{c c}
             \hline
-                \textbf{Numero}& \textbf{Descripción} \\ 
+                \textbf{Numero}& \textbf{Nombre} \\ 
             \hline             \hline
              1 & Base Fija \\
             \hline
@@ -1107,24 +1105,20 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
 
         Antes de empezar los cálculos de cinemática, es mejor explicar algunos términos que se utilizará ampliamente en la formulación cinemática.
         
-        
-         \begin{figure}[htb]
-             \centering
-              \subfloat[Gatito]{
-             \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_2a}
-                \includegraphics[width=0.5\textwidth]{Main/Chapter4/Images4/Metodo_B_Modelacion_Cinematica_Posicion_2a.png}}
-              \subfloat[Tigre]{
-             \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_2b}
-                \includegraphics[width=0.4\textwidth]{Main/Chapter4/Images4/Metodo_B_Modelacion_Cinematica_Posicion_2b.png}}
-             \caption{Múltiples imágenes}
-             \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_2}
-        \end{figure}
+
+            \begin{figure}[htb]
+                 \centering
+                 \includegraphics[width=0.6\linewidth]{Main/Chapter4/Images4/DIBUJO25.jpg}
+                  \caption{Fotografía de un paraguas}
+                  \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_2}
+            \end{figure}        
         
         
-        Los parámetros necesarios para resolver la cinemática del robot delta se presentan en la ilustración \ref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_2} y la  tabla \ref{tab:cap4_tabla_12}:
+        
+        Los parámetros necesarios para resolver la cinemática del robot delta se presentan en las figuras  \ref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_1} , \ref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_2} y la  tabla \ref{tab:cap4_tabla_12}:
         
         \begingroup
-            \renewcommand{\arraystretch}{1.5}
+            \renewcommand{\arraystretch}{1.3}
             \begin{table}[H]
             \centering
             \begin{tabular}{c m{12cm}}
@@ -1159,6 +1153,44 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
         
         
         \newpage
+    
+        La definición de los vectores utilizados para la formulación de la solución de cinemática del robot paralelo delta se muestra en la siguiente figura: 
+    
+            \begin{figure}[htb]
+                 \centering
+                 \includegraphics[width=0.55\linewidth]{Main/Chapter4/Images4/DIBUJO26.png}
+                  \caption{Fotografía de un paraguas}
+                  \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_33}
+            \end{figure} 
+    
+            \begingroup
+            \renewcommand{\arraystretch}{1.5}
+            \begin{table}[H]
+            \centering
+            \begin{tabular}{c m{12cm}}
+               \hline
+               \textbf{Parametro}  & \multicolumn{1}{c}{\textbf{Descripción}}  \\
+               \hline           \hline            
+             $\overrightarrow{{P}_{0}}$ & Vector con punto inicial en el centro de la base fija y con extremo en el centro del efector final \\
+            \hline
+             $\overrightarrow{{P}_{i}}$ & Vector que inicia en el centro de la base fija y su extremo se encuentra en la junta esférica que conecta el efector con el antebrazo $i\in\{1,2,3\}$. \\
+            \hline
+             $\overrightarrow{{J}_{i}}$ & Vector que inicia en el centro de la base fija y su extremo se encuentra en la junta esférica que conecta el brazo con el antebrazo $i\in\{1,2,3\}$. \\
+            \hline
+             $\overrightarrow{{F}_{i}}$ & Vector que inicia en el centro de la base fija y su extremo se encuentra en la posición de los motores o actuadores $i\in\{1,2,3\}$ \\
+            \hline
+             $\overrightarrow{{\xi}_{F_iJ_i}}$ & Vector que inicia en la junta esférica que conecta el brazo con el antebrazo y su extremo se encuentra en la junta esférica que conecta el efector con el antebrazo $i\in\{1,2,3\}$.Este vector es una representación de los antebrazos.
+ \\
+            \hline
+            \hline            
+            \end{tabular}
+            \caption{Referencias del dibujo}
+           \label{tab:cap4_tabla_1332}
+        \end{table}
+        \endgroup     
+        
+        \newpage
+
 
 \subsubsection{Cinemática Directa}\label{mb_cd}
         
@@ -1172,6 +1204,8 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
 
         El método de solución de la cinemática directa en esta sección es el mismo que el empleado para la metodología A de este capitulo. Lo único que cambia es la nomenclatura de los parámetros y la orientación del sistema de referencia local.
         
+        Como los ángulos   $\theta_1,\theta_2,\theta_3$  se conocen en el problema de cinemática directa, las coordenadas de los puntos $J_1,J_2,J_3$   se pueden encontrar fácilmente. Los antebrazos   $\overline{J_1P_1},\overline{J_2P_2},\overline{J_3P_3}$   pueden girar libremente alrededor de los puntos $J_1,J_2,J_3$   respectivamente. A fin de que calcular la cinemática directa, los puntos  $J_1,J_2,J_3$   se trasladan a  $J'_1,J'_2,J'_3$ , utilizando los vectores de traslación $\overrightarrow{\xi_{P_1 P_0}},\overrightarrow{\xi_{P_2P_0}},\overrightarrow{\xi_{P_3 P_0}}$    respectivamente, como se muestra en la figura \ref{}.
+        
             \begin{figure}[htb]
                  \centering
                %\includegraphics[width=0.7\linewidth]{Main/Chapter4/Images4/Metodo_B_Modelacion_Cinematica_Posicion_3.png}
@@ -1180,18 +1214,57 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
                   \caption{Fotografía de un paraguas}
                   \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_3}
             \end{figure}        
-        
-    Al igual que metodo A, el resultado de las traslaciones de las 3 esferas con centros en las juntas esféricas  \( J_{1},~J_{2},J_{3} \)  producen tres nuevas esferas con radio  \( L_{B} \)  y centro en los puntos  \( J'_{1},~J'_{2},J'_{3} \)   que se cruzan en el punto  \( P_{0} \) . Las coordenadas del vector  \( \overrightarrow{P_{0}}=  \left[ P_{0x},P_{0y},P_{0z} \right] ^{T} \)  se pueden obtener resolviendo las tres ecuaciones que representan las nuevas esferas en el espacio cartesiano simultáneamente. Las ecuaciones son        
-        \begin{equation}
-            \left( P_{0x}-J'_{ix} \right) ^{2}+ \left( P_{0y}-J'_{iy} \right) ^{2}+ \left( P_{0z}-J'_{iz} \right) ^{2}=L_{B}^{2}~
-        \label{eq:cap4_MB_2}
-        \end{equation}        
-  
-    Por lo tanto, se dispone de un sistema de ecuaciones con 3 ecuaciones (\ref{eq:cap4_MB_2}) para $i=1,2,3$ y con 3 incógnitas \( P_{0x},P_{0y},P_{0z} \) .  
-    
+
+        Como resultado de esta traslación se producen tres esferas con radio $L_B$ y centro en los puntos $J'_1,J'_2,J'_3$  se cruzan en el punto $P_0$.
+
+
+
+
     \newpage
 
-    Las coordenadas de los puntos  \( J'_{1},~J'_{2},J'_{3} \)  encuentra en los siguientes vectores  (\ref{eq:cap4_MB_3}), (\ref{eq:cap4_MB_4}) y (\ref{eq:cap4_MB_5}) respectivamente:  
+
+        
+    Resumiendo, al igual que metodo A, el resultado de las traslaciones de las 3 esferas con centros en las juntas esféricas  \( J_{1},~J_{2},J_{3} \)  producen tres nuevas esferas con radio  \( L_{B} \)  y centro en los puntos  \( J'_{1},~J'_{2},J'_{3} \)   que se cruzan en el punto  \( P_{0} \) . Las coordenadas del vector  \( \overrightarrow{P_{0}}=  \left[ P_{0x},P_{0y},P_{0z} \right] ^{T} \)  se pueden obtener resolviendo las tres ecuaciones que representan las nuevas esferas en el espacio cartesiano simultáneamente. Las ecuaciones son:
+    
+        \begin{equation}
+            \left( P_{0x}-J'_{1x} \right) ^{2}+ \left( P_{0y}-J'_{1y} \right) ^{2}+ \left( P_{0z}-J'_{1z} \right) ^{2}=L_{B}^{2}
+        \label{eq:cap4_MB_21}
+        \end{equation}
+        \begin{equation}
+            \left( P_{0x}-J'_{2x} \right) ^{2}+ \left( P_{0y}-J'_{2y} \right) ^{2}+ \left( P_{0z}-J'_{2z} \right) ^{2}=L_{B}^{2}
+        \label{eq:cap4_MB_22}
+        \end{equation}    
+        \begin{equation}
+            \left( P_{0x}-J'_{3x} \right) ^{2}+ \left( P_{0y}-J'_{3y} \right) ^{2}+ \left( P_{0z}-J'_{3z} \right) ^{2}=L_{B}^{2}
+        \label{eq:cap4_MB_23}
+        \end{equation}            
+    Por lo tanto, se dispone de un sistema de ecuaciones con 3 ecuaciones y con 3 incógnitas \( P_{0x},P_{0y},P_{0z} \) .  
+    
+    Para la calcular los centros \( J'_{1},~J'_{2},J'_{3} \) ,primero se miden las magnitudes de otros vectores que son fundamentales para identificar de mejor forma estos puntos en el espacio y facilitar su cálculo. En la figura \ref{}, se muestra la vista superior del robot paralelo delta. Desde esta vista, se puede calcular la magnitud de la traslación de  $J_i$ a  $J'_i$  gracias a que la geometría de la base fija y el efector son triángulos equiláteros con lados definidos, f y e respectivamente. Esta geometría básica también permite encontrar la distancia desde el centro de la base fija y los actuadores.
+    
+            \begin{figure}[htb]
+                 \centering
+               %\includegraphics[width=0.7\linewidth]{Main/Chapter4/Images4/Metodo_B_Modelacion_Cinematica_Posicion_3.png}
+               \includegraphics[width=0.2\linewidth]{Main/Chapter4/Images4/mb_direct.jpg}
+               \caption{eadaed}
+            \end{figure}
+            
+    \begin{equation}
+        \Vert \overrightarrow{\xi_{OF_i}} \Vert=\frac{f}{2}tan(30)=\frac{f}{2\sqrt{3}} , i \in \{1,2,3\}
+    \end{equation}
+    \begin{equation}
+        \Vert \overrightarrow{\xi_{J_iJ'_i}} \Vert=\frac{e}{2}tan(30)=\frac{e}{2\sqrt{3}} , i \in \{1,2,3\}
+    \end{equation}
+    
+    El movimiento de los brazos está restringido por una junta tipo revoluta, por ende, como se visualiza en la siguiente ilustración, es fácil calcular la distancia entre el punto $F_i$ y la proyección del punto $J_i$ en el plano que contiene a la base fija:
+    \begin{equation}
+        \Vert \overrightarrow{\xi_{F_iJ_i}} \Vert=L_a cos(\theta_i) , i \in \{1,2,3\}
+    \end{equation}
+    
+    \newpage
+    
+    Según la ecuación \ref{}, se dibujan tres esferas desde los puntos \( J'_{1},~J'_{2},J'_{3} \). Las coordenadas de los centros de las esferas se pueden calcular utilizando los vectores de traslación antes mencionados. Las coordenadas de los puntos \( J'_{1},~J'_{2},J'_{3} \) se dan en las ecuaciones \ref{eq:cap4_MB_3}, \ref{eq:cap4_MB_4} y \ref{eq:cap4_MB_5} respectivamente:
+
   
           \begin{equation}
                 \overrightarrow{J'_{1}}= \left [\left( \frac{(f-e)}{2\sqrt{3}}+{L}_{A}cos(\theta_1)\right) cos(30^\circ), \left(\frac{(f-e)}{2\sqrt{3}} + {L}_{A}cos(\theta_1)\right) sin(30^\circ), -L_{A}sin(\theta_1)\right]
@@ -1208,7 +1281,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
         \label{eq:cap4_MB_5}
         \end{equation}    
   
-      El método algebraico para resolver el sistema de ecuaciones (\ref{eq:cap4_MB_2}), en otras palabras, la intersección de las 3 esferas trasladadas, es el mismo que en el metodo A, especificamente desde la ecuación (\ref{eq:cap4_eq_2}).
+      Después de calcular todos los vectores de traslación y las coordenadas de los centros de las esferas, la ecuación \ref{} se puede resolver simultáneamente para obtener la posición del efector final en tres dimensiones.El método algebraico para resolver el sistema de ecuaciones, en otras palabras, la intersección de las 3 esferas trasladadas, es el mismo que en el metodo A, específicamente desde la ecuación \ref{eq:cap4_eq_2}.
   
  \newpage
         
@@ -1240,32 +1313,37 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
              \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_4}
         \end{figure}
   
-      Primero se empieza por calcular en ángulo del actuador 2. Se trabaja sobre el marco de referencia $YZ$ ya que el brazo  \overline{\( F_{2}J_{2}  \)} solo puede moverse en ese plano como se muestra en la ilustracion \ref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_4a}. Sobre el mismo plano $ YZ $ se proyecta el antebrazo para obtener una segunda restricción geométrica en la junta  \( J_{2} \) . Por lo explicado anteriormente, la posición de la junta esférica  \( J_{2} \)  está restringida por 2 circunferencias. Se dibuja el primer círculo con centro  \( F_{2} \)  y radio  \( L_{A} \) . El segundo círculo se dibuja con el centro en el punto  \( P'_{2} \) ( proyección de $P_{2}$ sobre plano $YZ$)  y radio  \( \sqrt[]{L_{B}^{2}-P_{0x}^{2}} \) .
+      Primero se empieza por calcular en ángulo $\theta_2$. Se trabaja sobre el marco de referencia $YZ$ ya que el brazo  \overline{\( F_{2}J_{2}  \)} solo puede moverse en ese plano como se muestra en la figura \ref{f:ap4_Metodo_B_Modelacion_Cinematica_Posicion_4a}. De la figura \ref{} se desprenden las coordenadas de punto $F_2=\left[0,\frac{-f}{(2\sqrt{3})},0\right]$ .Sobre el plano $ YZ $ se proyecta el antebrazo para obtener una segunda restricción geométrica relacionada con la junta  \( J_{2} \) . En consecuencia, la posición de la junta esférica  \( J_{2} \)  está restringida por 2 circunferencias en el plano $YZ$. Se dibuja el primer círculo con centro  \( F_{2} \)  y radio  \( L_{A} \) . El segundo círculo se dibuja con el centro en el punto  \( P'_{2} \)  y radio  \( \sqrt[]{L_{B}^{2}-P_{0x}^{2}} \), donde el punto $P'_{2}=\left[0,P_{0y}-\frac{e}{2\sqrt{3}},P_{0z}\right]^T$ es la proyección del punto $P_{2}=\left[P_{0x},P_{0y}-\frac{e}{2\sqrt{3}},P_{0z}\right]^T$ sobre plano $YZ$ y el radio de la circunferencia es calculado de la expresión  $\Vert \overrightarrow{\xi}_{P'_2J_2} \Vert = \sqrt{\Vert \overrightarrow{\xi}_{P_2J_2}\Vert^2-\Vert \overrightarrow{\xi}_{P'_2P_2}\Vert^2 }=\sqrt[]{L_{B}^{2}-P_{0x}^{2}}$       como se aprecia en la figura \ref{}.
       
      \newpage
 
-      La ecuación \ref{eq:cap4_MB_7} y\ref{eq:cap4_MB_8} representan los círculos con radio  \( L_{A} \)  y  \( \sqrt[]{L_{B}^{2}-P_{0x}^{2}} \)  respectivamente, como se muestra en la figura \ref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_4b}.
+
+      La ecuación general de la circunferencia \ref{eq:cap4_MB_7} y \ref{eq:cap4_MB_8} representan los círculos con radio  \( L_{A} \)  y  \( \sqrt[]{L_{B}^{2}-P_{0x}^{2}} \)  respectivamente, como se muestra en la figura \ref{f:ap4_Metodo_B_Modelacion_Cinematica_Posicion_4b}.
   
   
+        \begin{equation*}
+              (J_{2y}-F_{2y})^2 + (J_{2z}-F_{2z})^2=  L_{A}^{2}
+        \end{equation*}
         \begin{equation}
-              (J_{2y}-F_{2y})^2 + (J_{2z}-F_{2z})^2=  L_{A}^{2}  \Rightarrow  \left (J_{2y} + \frac{f}{2\sqrt{3}}\right)^2 + J_{2z}^{2}= L_{A}^{2}
+              \Rightarrow  \left (J_{2y} + \frac{f}{2\sqrt{3}}\right)^2 + J_{2z}^{2}= L_{A}^{2}
         \label{eq:cap4_MB_7}
-        \end{equation}
-        
-        
-        \begin{equation} 
-              (J_{2y}-{P'}_{2y})^2 + (J_{2z}-{P'}_{2z})^2= L_{B}^{2} -P_{0z}^2  \Rightarrow   \left (J_{2y} - P_{0y}+ \frac{e}{2\sqrt{3}}\right)^2 + ({J}_{2z}-{P}_{0z}) = L_{B}^{2} -P_{0z}^2
+        \end{equation}     
+
+        \begin{equation*}
+              (J_{2y}-{P'}_{2y})^2 + (J_{2z}-{P'}_{2z})^2= L_{B}^{2} -P_{0z}^2 
+        \end{equation*}          
+        \begin{equation}
+             \Rightarrow   \left (J_{2y} - P_{0y}+ \frac{e}{2\sqrt{3}}\right)^2 + ({J}_{2z}-{P}_{0z}) = L_{B}^{2} -P_{0z}^2
         \label{eq:cap4_MB_8}
         \end{equation}  
     
     
-        El valor de  \( J_{2y} \)  y  \( J_{2z} \)  se puede calcular resolviendo simultáneamente la ecuación \ref{eq:cap4_MB_7} y \ref{eq:cap4_MB_8} al igual que en el metodo A. Todas las demás variables en este sistema de ecuaciones se asumen como conocidas o se miden a partir de la estructura geométrica del robot paralelo delta. Una vez que se conocen estos valores, se puede usar trigonometría simple para calcular el  \(  \theta _{2} \)  como se indica en la siguiente ecuacion \ref{}:
+        El valor de  \( J_{2y} \)  y  \( J_{2z} \)  se puede calcular resolviendo simultáneamente la ecuación \ref{eq:cap4_MB_7} y \ref{eq:cap4_MB_8} al igual que en el metodo A. Todas las demás variables en este sistema de ecuaciones se asumen como conocidas o se miden a partir de la estructura geométrica del robot paralelo delta. Una vez que se conocen estos valores, se puede usar trigonometría simple para calcular el  \(  \theta _{2} \)  como se indica en la ecuación \ref{}:
         
         \begin{equation} 
-            \theta_2=arctan \left(\frac{J_{2z}}{{F}_{2y}-{J}_{2y}}\right)
+            \theta_2=tan^{-1} \left(\frac{J_{2z}}{{F}_{2y}-{J}_{2y}}\right)
         \label{eq:cap4_MB_9}
         \end{equation}  
-   
    
         La estructura simétrica del robot paralelo delta da la ventaja de calcular los ángulos  \(  \theta _{1} \)  y  \(  \theta _{3} \)  faltantes aplicando el mismo procedimiento para  \(  \theta _{2} \) . Para ello, se rotar el marco de referencia local en un ángulo de 120º en sentido antihorario y horario, respectivamente.   
            

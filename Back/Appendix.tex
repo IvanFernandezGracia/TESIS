@@ -1038,17 +1038,15 @@ Paso 2:
               J_{iy}&=\cos  \left(  \theta _{1i}+ \theta _{2i} \right) sin~ \theta _{3i}\sin  \phi _{i}+ cos  \theta _{3i}\cos  \phi _{i}~  \\
               J_{iz}&=sin \left(  \theta _{1i}+ \theta _{2i} \right) sin~ \theta _{3i}~  
             \end{align*}\
-            
             Derivando $J_{ix}$ respecto al tiempo:
-
             \begin{equation*}
                  \dot{J}_{ix}= \left[ \cos  \left(  \theta _{1i}+ \theta _{2i} \right) sin~ \theta _{3i}\cos  \phi _{i} \right] ^{'}- \left[ cos  \theta _{3i}\sin  \phi _{i} \right] ' 
             \end{equation*}
             
             Simplificando la ecuación:
-            \begin{equation*}
+            \begin{equation}
                 \dot{J}_{ix}=A'_{ix}-B'_{ix}
-            \end{equation*}
+            \end{equation}
             
                         \newpage
 
@@ -1077,9 +1075,9 @@ Paso 2:
             \end{equation*}
             
             Simplificando la ecuación:
-            \begin{equation*}
+            \begin{equation}
                 \dot{J}_{iy}=A'_{iy}+B'_{iy}  
-            \end{equation*}
+            \end{equation}
             
             Donde $A'_{iy}$:
             \begin{align*}
@@ -1087,7 +1085,7 @@ Paso 2:
                  A'_{iy}&=sin \phi _{i}\ast \left[ \cos  \left(  \theta _{1i}+ \theta _{2i} \right) sin~ \theta _{3i} \right] ' \\
                  A'_{iy}&=sin \phi _{i}\ast \left[  \left[ cos' \left(  \theta _{1i}+ \theta _{2i} \right) sin~ \theta _{3i} \right] + \left[ \cos  \left(  \theta _{1i}+ \theta _{2i} \right) sin'~ \theta _{3i} \right]  \right]  \\
                  A'_{iy}&=sin \phi _{i}\ast \left[  \left[ -sin \left(  \theta _{1i}+ \theta _{2i} \right) \ast \left(  \theta _{1i}+ \theta _{2i} \right) '\ast sin~ \theta _{3i} \right] + \left[ \cos  \left(  \theta _{1i}+ \theta _{2i} \right) \ast cos  \theta _{3i}\ast\dot{ \theta }_{3i} \right]  \right] \\
-                 A'_{iy}&=sin \phi _{i}\ast \left[  \left[ -sin \left(  \theta _{1i}+ \theta _{2i} \right) \ast \left( \dot{ \theta }_{1i}+\dot{ \theta }_{2i} \right) \ast sin~ \theta _{3i} \right] + \left[ \cos  \left(  \theta _{1i}+ \theta _{2i} \right) \ast cos  \theta _{3i}\ast\dot{ \theta }_{3i} \right]  \right]  \\                               
+                 A'_{iy}&=sin \phi _{i}\ast \left[  \left[ -sin \left(  \theta _{1i}+ \theta _{2i} \right) \ast \left( \dot{ \theta }_{1i}+\dot{ \theta }_{2i} \right) \ast sin~ \theta _{3i} \right] + \left[ \cos  \left(  \theta _{1i}+ \theta _{2i} \right) \ast cos  \theta _{3i}\ast\dot{ \theta }_{3i} \right]  \right]                              
             \end{align*}
             
             Donde  $B'_{iy}$:
@@ -1097,12 +1095,14 @@ Paso 2:
                  B'_{iy}&=cos \phi _{i}\ast \left[ -sin  \theta _{3i}\ast\dot{ \theta }_{3i} \right]
             \end{align*}
 
-            Derivando   $J_{iz}$ respecto al tiempo:
+        Derivando   $J_{iz}$ respecto al tiempo:
             \begin{align*}
                  \dot{J}_{iz}&= \left[ sin \left(  \theta _{1i}+ \theta _{2i} \right) sin~ \theta _{3i} \right] '  \\
-                 \dot{J}_{iz}&= \left[ sin' \left(  \theta _{1i}+ \theta _{2i} \right) sin~ \theta _{3i} \right] + \left[ sin \left(  \theta _{1i}+ \theta _{2i} \right) sin' \theta _{3i} \right]   \\
-                 \dot{J}_{iz}&= \left[ \cos  \left(  \theta _{1i}+ \theta _{2i} \right) \ast \left( \dot{ \theta }_{1i}+\dot{ \theta }_{2i} \right) \ast sin  \theta _{3i} \right] + \left[ sin \left(  \theta _{1i}+ \theta _{2i} \right) \ast cos \theta _{3i}\ast\dot{ \theta }_{3i} \right]  
+                 \dot{J}_{iz}&= \left[ sin' \left(  \theta _{1i}+ \theta _{2i} \right) sin~ \theta _{3i} \right] + \left[ sin \left(  \theta _{1i}+ \theta _{2i} \right) sin' \theta _{3i} \right]  
             \end{align*}
+            \begin{equation}
+                 \dot{J}_{iz}&= \left[ \cos  \left(  \theta _{1i}+ \theta _{2i} \right) \ast \left( \dot{ \theta }_{1i}+\dot{ \theta }_{2i} \right) \ast sin  \theta _{3i} \right] + \left[ sin \left(  \theta _{1i}+ \theta _{2i} \right) \ast cos \theta _{3i}\ast\dot{ \theta }_{3i} \right] 
+            \end{equation}
             
                                     \newpage
 
@@ -1116,9 +1116,11 @@ Paso 2:
             \begin{align*}
                  \dot{J}_{i \theta }=& \left[ a~\sin  \theta _{2i}~sin~ \theta _{3i} \right] ' \\
                  \dot{J}_{i \theta }=&a \left[ \sin  \theta _{2i}~sin~ \theta _{3i} \right] ' \\
-                 \dot{J}_{i \theta }=&a \left[  \left[ sin' \theta _{2i}~sin⁡ \theta _{3i} \right] + \left[ \sin  \theta _{2i}~sin^{'} \theta _{3i} \right]  \right]  \\
-                 \dot{J}_{i \theta }=&a \left[  \left[ \cos  \theta _{2i}\ast\dot{ \theta }_{2i}\ast \sin  \theta _{3i} \right] + \left[ \sin  \theta _{2i}\ast cos \theta _{3i}\ast\dot{ \theta }_{3i} \right]  \right]
+                 \dot{J}_{i \theta }=&a \left[  \left[ sin' \theta _{2i}~sin⁡ \theta _{3i} \right] + \left[ \sin  \theta _{2i}~sin^{'} \theta _{3i} \right]  \right]
             \end{align*}
+            \begin{equation}
+                 \dot{J}_{i \theta }=&a \left[  \left[ \cos  \theta _{2i}\ast\dot{ \theta }_{2i}\ast \sin  \theta _{3i} \right] + \left[ \sin  \theta _{2i}\ast cos \theta _{3i}\ast\dot{ \theta }_{3i} \right]  \right]
+            \end{equation}
 
             Las derivadas de los ángulos interiores  $\theta _{2i}$ y  $\theta _{3i}$ se determinar derivando las ecuaciones:
         
@@ -1141,10 +1143,11 @@ Paso 2:
 
             \begin{align*}
                  \dot{ \theta }_{3i}&= \left[ \cos ^{-1}\frac{c_{yi}}{b} \right] ^{'} \\
-                 \dot{ \theta }_{3i}&= \left[ \frac{-1}{\sqrt[]{1- \left( \frac{c_{yi}}{b} \right) ^{2}~}} \right] \ast \left[ \frac{c_{yi}}{b} \right] ^{'} \\
-                 \dot{ \theta }_{3i}&= \left[ \frac{-1}{\sqrt[]{1- \left( \frac{c_{yi}}{b} \right) ^{2}~}} \right] \ast \left[ \frac{c_{yi}^{'}}{b} \right]  
+                 \dot{ \theta }_{3i}&= \left[ \frac{-1}{\sqrt[]{1- \left( \frac{c_{yi}}{b} \right) ^{2}~}} \right] \ast \left[ \frac{c_{yi}}{b} \right] ^{'}
             \end{align*}
-
+            \begin{equation}
+                 \dot{ \theta }_{3i}&= \left[ \frac{-1}{\sqrt[]{1- \left( \frac{c_{yi}}{b} \right) ^{2}~}} \right] \ast \left[ \frac{c_{yi}^{'}}{b} \right]  
+            \end{equation}
             La derivada de $c_{yi}$ es:
             \begin{align*}
                  c_{yi}^{'}&= \left[ -sin \phi _{i}\ast p_{x} + cos \phi _{i}\ast p_{y} \right] ' \\
@@ -1166,9 +1169,9 @@ Paso 2:
             \end{equation*}
             
             Reemplazando:
-            \begin{equation*}
+            \begin{equation}
                 \dot{ \theta }_{2i}= \left[ \frac{-1}{\sqrt[]{1- \left( K \right) ^{2}~}} \right] \ast \left[ K' \right]
-            \end{equation*}
+            \end{equation}
             
             Calculando   $K'$:
             \begin{align*}
@@ -1272,7 +1275,7 @@ Paso 2:
                 
                 Donde  \( r=r_{a}-r_{b} \)
                 
-                Entonces \overrightarrow{s} es:  
+                Entonces $\overrightarrow{s}$ es:  
 
                  \[ \overrightarrow{s}= \left[ \begin{matrix}
                 X_{P}\\
@@ -1311,16 +1314,22 @@ Paso 2:
             \subsubsection{Lagrangiano, energía cinética y energía potencial}
 
                 Se sabe que la energía cinética de un cuerpo solido queda expresada por la siguiente ecuación: 
-                 \[ E=E_{lineal}+E_{rotacional}=\frac{1}{2}mv_{cm}^{2}+\frac{1}{2}I_{cm}~ \omega ^{2} \] 
-    
+                \begin{equation}
+                    E=E_{lineal}+E_{rotacional}=\frac{1}{2}mv_{cm}^{2}+\frac{1}{2}I_{cm}~ \omega ^{2} 
+                    \label{eq:energia_cine_anexoi_ma_1}
+                \end{equation}
+                 
                 Donde  \( v_{cm} \)  es la velocidad centro de masa,  \( m \)  es la masa del cuerpo,  \( I_{cm} \)  es la inercia rotacional respecto al centro de masa y  \(  \omega  \)  es la velocidad angular.
                 
                 Se sabe que la energía potencial de una partícula queda expresada por:
-                 \[ E_{potencial}=m\ast g \ast h \] 
-                
+                \begin{equation}
+                    E_{potencial}=m\ast g \ast h
+                    \label{eq:energia_cine_anexoi_ma_2}
+                \end{equation}
+
                 Donde  \( m \)  es la masa del cuerpo,  \( g \)  es la aceleración de gravedad y  \( h \)  es altura respecto al sistema de referencia.
                 
-                A partir de lo anterior, la energía Cinética del robot delta a partir de la simplificación de masas en partículas  \( m_{p} \) , \( ~m_{1} \) , \( ~m_{2} \)  es:
+                A partir de las ecuaciones \ref{eq:energia_cine_anexoi_ma_1} y \ref{eq:energia_cine_anexoi_ma_2}, la energía cinética del robot delta a partir de la simplificación de masas en partículas  \( m_{p} \) , \( ~m_{1} \) , \( ~m_{2} \)  es:
 \begin{align*}
                  T&= \left[ E_{lineal,~  \left( m_{p} \right) } \right] ~ + \left[  \sum _{i=1}^{3}E_{rotacional,m_{1} } \right] +2 \left[  \sum _{i=1}^{3}E_{lineal, \frac{m_{2}}{2}}+E_{rotacional,\frac{m_{2}}{2}} \right] \\
                  T&= \left[ \frac{1}{2}m_{P}\parallel \dot{p} \parallel^{2} \right] ~ + \left[  \sum _{i=1}^{3} \left( \frac{1}{2} \right)  \left( \frac{1}{3}m_{1} \left( L_{1} \right)  ^{2} \right)  \left( \dot{ \theta }_{i} \right) ^{2} \right]+ \\
@@ -1330,7 +1339,9 @@ Paso 2:
 \end{align*}
 
                 Reemplazando $\parallel\dot{p}\parallel^{2}=\dot{X}_{p}^{2}+\dot{Y}_{p}^{2}+\dot{Z}_{p}^{2}$
-                 \[ T= \left[ \frac{1}{2}m_{P} \left( \dot{X}_{p}^{2}+\dot{Y}_{p}^{2}+\dot{Z}_{p}^{2} \right)  \right] + \left[  \left( \frac{1}{6}m_{1}L_{1}^{2} \right)  \sum _{i=1}^{3} \left( \dot{ \theta }_{i} \right) ^{2} \right] + \left( \frac{m_{2}}{2} \right)  \left[  \sum _{i=1}^{3} \left( \dot{X}_{p}^{2}+\dot{Y}_{p}^{2}+\dot{Z}_{p}^{2} \right) + \left( L_{1}^{2}\dot{ \theta }_{i}^{2} \right)  \right]  \] 
+                \begin{equation}
+                     T= \left[ \frac{1}{2}m_{P} \left( \dot{X}_{p}^{2}+\dot{Y}_{p}^{2}+\dot{Z}_{p}^{2} \right)  \right] + \left[  \left( \frac{1}{6}m_{1}L_{1}^{2} \right)  \sum _{i=1}^{3} \dot{ \theta }_{i}^{2} \right] + \frac{m_{2}}{2} \left[  \sum _{i=1}^{3} \left( \dot{X}_{p}^{2}+\dot{Y}_{p}^{2}+\dot{Z}_{p}^{2} \right) + \left( L_{1}^{2}\dot{ \theta }_{i}^{2} \right)  \right]
+                \end{equation}
                 
                 La energía potencial del robot delta se puede calcular en relación a la base fija y con la simplificación de masas de la siguiente manera:
                 \begin{align*}
@@ -1339,20 +1350,27 @@ Paso 2:
                 \end{align*}
 
                 Simplificando la ecuación para los siguientes cálculos: 
-                 \[ V=- \left[ m_{p}gZ_{p} \right] - \left[ \frac{1}{2}m_{1}gL_{1} \sum _{i=1}^{3}\sin  \theta _{i} \right] - \left[ m_{2}gL_{1} \sum _{i=1}^{3}\sin  \theta _{i} \right] - \left[ 3m_{2}gZ_{p} \right]  \] 
+                \begin{equation}
+                     V=- \left[ m_{p}gZ_{p} \right] - \left[ \frac{1}{2}m_{1}gL_{1} \sum _{i=1}^{3}\sin  \theta _{i} \right] - \left[ m_{2}gL_{1} \sum _{i=1}^{3}\sin  \theta _{i} \right] - \left[ 3m_{2}gZ_{p} \right]
+                \end{equation}
                 
          \newpage
 
             \subsubsection{Multiplicadores de Lagrange}
             
-            Para obtener los 3 valores de los multiplicadores de Lagrange  \(  \lambda _{l} \)  es necesario establecer 3 ecuaciones de la forma de la ecuación (referencia qliao 0X00), más 3 ecuaciones de restricciones de la forma (referencia lqia 0X00)  \( f_{l} \)  . Además, se tiene en cuenta que el término  \( Q_{j}^{ \left( NU \right) } \left( F_{px},F_{py},F_{pz} \right)  \)  son las fuerzas externas que se aplican al efector final. Por lo tanto, derivando respecto a las coordenadas generalizadas  \( q_{j}= \left[ X_{p},Y_{p},Z_{p} \right]  \)  se obtienen las 3 ecuaciones dinamicas:
-             \[ \frac{d}{dt} \left( \frac{ \delta L}{ \delta \dot{X}_{p}} \right) -\frac{ \delta L}{ \delta X_{p}}= \sum _{l=1}^{K^{ \left( h \right) }} \lambda _{l}\frac{ \delta f_{l}^{ \left( h \right) }}{ \delta X_{p}}+F_{px}= \lambda _{1}\frac{ \delta f_{1}^{ \left( h \right) }}{ \delta X_{p}}+ \lambda _{2}\frac{ \delta f_{2}^{ \left( h \right) }}{ \delta X_{p}}+ \lambda _{3}\frac{ \delta f_{3}^{ \left( h \right) }}{ \delta X_{p}}+F_{px} \] 
-             \[ \frac{d}{dt} \left( \frac{ \delta L}{ \delta \dot{Y}_{p}} \right) -\frac{ \delta L}{ \delta Y_{p}}= \sum _{l=1}^{K^{ \left( h \right) }} \lambda _{l}\frac{ \delta f_{l}^{ \left( h \right) }}{ \delta Y_{p}}+F_{py}= \lambda _{1}\frac{ \delta f_{1}^{ \left( h \right) }}{ \delta Y_{p}}+ \lambda _{2}\frac{ \delta f_{2}^{ \left( h \right) }}{ \delta Y_{p}}+ \lambda _{3}\frac{ \delta f_{3}^{ \left( h \right) }}{ \delta Y_{p}}+F_{py} \] 
-             \[ \frac{d}{dt} \left( \frac{ \delta L}{ \delta \dot{Z}_{p}} \right) -\frac{ \delta L}{ \delta Z_{p}}= \sum _{l=1}^{K^{ \left( h \right) }} \lambda _{l}\frac{ \delta f_{l}^{ \left( h \right) }}{ \delta Z_{p}}+F_{pz}= \lambda _{1}\frac{ \delta f_{1}^{ \left( h \right) }}{ \delta Z_{p}}+ \lambda _{2}\frac{ \delta f_{2}^{ \left( h \right) }}{ \delta Z_{p}}+ \lambda _{3}\frac{ \delta f_{3}^{ \left( h \right) }}{ \delta Z_{p}}+F_{pz} \] 
+            Para obtener los 3 valores de los multiplicadores de Lagrange  \(  \lambda _{l} \)  es necesario establecer 3 ecuaciones de la forma de la ecuación \ref{eq:cap4_dina_ma_4}, más 3 ecuaciones de restricciones de la forma \ref{eq:cap4_dina_ma_11}. Además, se tiene en cuenta que el término  \( Q_{j}^{ \left( NU \right) } \left( F_{px},F_{py},F_{pz} \right)  \)  son las fuerzas externas que se aplican al efector final. Por lo tanto, derivando respecto a las coordenadas generalizadas  $q_{j} \in \{ X_{p},Y_{p},Z_{p} \}$  se obtienen las 3 ecuaciones dinamicas:
+            \begin{align}
+            \label{eq:multi_lamda_1}
+             \frac{d}{dt} \left( \frac{ \delta L}{ \delta \dot{X}_{p}} \right) -\frac{ \delta L}{ \delta X_{p}}= \sum _{l=1}^{K^{ \left( h \right) }} \lambda _{l}\frac{ \delta f_{l}^{ \left( h \right) }}{ \delta X_{p}}+F_{px}&= \lambda _{1}\frac{ \delta f_{1}^{ \left( h \right) }}{ \delta X_{p}}+ \lambda _{2}\frac{ \delta f_{2}^{ \left( h \right) }}{ \delta X_{p}}+ \lambda _{3}\frac{ \delta f_{3}^{ \left( h \right) }}{ \delta X_{p}}+F_{px} \\
+            \label{eq:multi_lamda_2}
+             \frac{d}{dt} \left( \frac{ \delta L}{ \delta \dot{Y}_{p}} \right) -\frac{ \delta L}{ \delta Y_{p}}= \sum _{l=1}^{K^{ \left( h \right) }} \lambda _{l}\frac{ \delta f_{l}^{ \left( h \right) }}{ \delta Y_{p}}+F_{py}&= \lambda _{1}\frac{ \delta f_{1}^{ \left( h \right) }}{ \delta Y_{p}}+ \lambda _{2}\frac{ \delta f_{2}^{ \left( h \right) }}{ \delta Y_{p}}+ \lambda _{3}\frac{ \delta f_{3}^{ \left( h \right) }}{ \delta Y_{p}}+F_{py} \\ 
+            \label{eq:multi_lamda_3}
+             \frac{d}{dt} \left( \frac{ \delta L}{ \delta \dot{Z}_{p}} \right) -\frac{ \delta L}{ \delta Z_{p}}= \sum _{l=1}^{K^{ \left( h \right) }} \lambda _{l}\frac{ \delta f_{l}^{ \left( h \right) }}{ \delta Z_{p}}+F_{pz}&= \lambda _{1}\frac{ \delta f_{1}^{ \left( h \right) }}{ \delta Z_{p}}+ \lambda _{2}\frac{ \delta f_{2}^{ \left( h \right) }}{ \delta Z_{p}}+ \lambda _{3}\frac{ \delta f_{3}^{ \left( h \right) }}{ \delta Z_{p}}+F_{pz}
+            \end{align}
             
-            Se resuelve el siguiente sistema matricial para determinar los multiplicadores a partir de las ecuaciones anteriores:
-            
-             \[  \left( \begin{matrix}
+            Reordenando matricialmente para determinar los multiplicadores:
+            \begin{equation}
+             \left( \begin{matrix}
             \frac{d}{dt} \left( \frac{ \delta L}{ \delta \dot{X}_{p}} \right) -\frac{ \delta L}{ \delta X_{p}}-F_{px}\\
             \frac{d}{dt} \left( \frac{ \delta L}{ \delta \dot{Y}_{p}} \right) -\frac{ \delta L}{ \delta Y_{p}}-F_{py}\\
             \frac{d}{dt} \left( \frac{ \delta L}{ \delta \dot{Z}_{p}} \right) -\frac{ \delta L}{ \delta Z_{p}}-F_{pz}\\
@@ -1367,10 +1385,10 @@ Paso 2:
              \lambda _{2}\\
              \lambda _{3}\\
             \end{matrix}
-             \right) \] 
-            
-            Para la coordenada generalizada  \( q_{j}=X_{p} \) 
-            
+             \right)
+             \label{eq:matriz_lagra}
+            \end{equation}
+            Calculando los valores relacionados con la coordenada generalizada  \( q_{j}=X_{p} \): 
         \begin{align*}
              &\frac{ \delta L}{ \delta \dot{X}_{p}}=\frac{ \delta T}{ \delta \dot{X}_{p}}-\frac{ \delta V}{ \delta \dot{X}_{p}}=\frac{ \delta T}{ \delta \dot{X}_{p}}- \left[ 0 \right] =\frac{ \delta T}{ \delta \dot{X}_{p}} \\
              &\frac{ \delta L}{ \delta \dot{X}_{p}}= \left[ 2\ast\frac{1}{2}\ast    m_{p}\ast\dot{X}_{p} \right] + \left[ 0 \right] + \left[ \frac{1}{2}\ast    m_{2}\ast \sum _{i=1}^{3}2\ast\dot{X}_{p} \right] ~ \\
@@ -1384,16 +1402,18 @@ Paso 2:
              \[  \sum _{l=1}^{3} \lambda _{l}\frac{ \delta f_{l}^{ \left( h \right) }}{ \delta X_{p}}= \sum _{l=i=1}^{3} \lambda _{l}\ast 2 \left( X_{P}-L_{1}\cos  \theta _{i}\cos  \phi _{i}- rcos \phi _{i} \right)  \] 
                      \newpage
 
-           Reemplazando en la ecuación general
+           Reemplazando en la ecuación \ref{eq:multi_lamda_1}
         \begin{align*}
               &\ddot{X}_{p} \left[ 3m_{2}+m_{p} \right] -0=F_{px}+ \sum _{l=i=1}^{3} \lambda _{l}\ast 2 \left( X_{P}-L_{1}\cos  \theta _{i}\cos  \phi _{i}- rcos \phi _{i} \right)  \\ 
-               &\left[ 3m_{2}+m_{p} \right] \ddot{X}_{p}=F_{px}+ \sum _{l=i=1}^{3} \lambda _{l}\ast 2 \left( X_{P}-L_{1}\cos  \theta _{i}\cos  \phi _{i}- rcos \phi _{i} \right)  \\
+               &\left[ 3m_{2}+m_{p} \right] \ddot{X}_{p}=F_{px}+ \sum _{l=i=1}^{3} \lambda _{l}\ast 2 \left( X_{P}-L_{1}\cos  \theta _{i}\cos  \phi _{i}- rcos \phi _{i} \right) 
+        \end{align*}
+        \begin{equation}
              &\left( m_{p}+3m_{2} \right) \ddot{X}_{p}-2 \sum _{l=i=1}^{3} \lambda _{l} \left( X_{P}- rcos \phi _{i}-L_{1}\cos  \theta _{i}\cos  \phi _{i} \right) =F_{px} 
-            \end{align*}    
-
-            Donde  \( F_{x} \)  representa la fuerza externa en dirección x sobre la plataforma móvil.\par
+        \end{equation}
+        
+            La fuerza \( F_{x} \)  representa la fuerza externa en dirección x sobre la plataforma móvil.
             
-            Para la coordenada generalizada  \( q_{j}=Y_{p} \) \par
+            Calculando los valores relacionados con coordenada generalizada  \( q_{j}=Y_{p} \):
         \begin{align*}
              &\frac{ \delta L}{ \delta \dot{Y}_{p}}=\frac{ \delta T}{ \delta \dot{Y}_{p}}-\frac{ \delta V}{ \delta \dot{Y}_{p}}=\frac{ \delta T}{ \delta \dot{Y}_{p}}- \left[ 0 \right] =\frac{ \delta T}{ \delta \dot{Y}_{p}} \\
              &\frac{ \delta L}{ \delta \dot{Y}_{p}}= \left[ \frac{1}{2}\ast 2 \ast   m_{P}\ast\dot{Y}_{p} \right] + \left( \frac{m_{2}}{2} \right) \ast \left[  \sum _{i=1}^{3}2\ast\dot{Y}_{p} \right]  \\
@@ -1404,24 +1424,21 @@ Paso 2:
              &\frac{ \delta L}{ \delta Y_{p}}=0 
             \end{align*} 
             
-             \[  \sum _{l=1}^{3} \lambda _{l}\frac{ \delta f_{l}^{ \left( h \right) }}{ \delta Y_{p}}= \sum _{l=i=1}^{3} \lambda _{l}\ast 2 \left( Y_{P}-L_{1}\cos  \theta _{i}\sin  \phi _{i}- rsin \phi _{i} \right)  \] \par
+             \[  \sum _{l=1}^{3} \lambda _{l}\frac{ \delta f_{l}^{ \left( h \right) }}{ \delta Y_{p}}= \sum _{l=i=1}^{3} \lambda _{l}\ast 2 \left( Y_{P}-L_{1}\cos  \theta _{i}\sin  \phi _{i}- rsin \phi _{i} \right)  \] 
             
-            \begin{FlushLeft}
-            Reemplazando en la ecuación general
-            \end{FlushLeft}\par
-            
-            \begin{FlushLeft}
+            Reemplazando en la ecuación \ref{eq:multi_lamda_2}:
+
              \[  \left[ ~m_{P}+3m_{2} \right] \ddot{Y}_{p}-0=F_{py}+ \sum _{l=i=1}^{3} \lambda _{l}\ast 2 \left( Y_{P}-L_{1}\cos  \theta _{i}\sin  \phi _{i}- rsin \phi _{i} \right)  \] 
-            \end{FlushLeft}\par
-            
-            \begin{FlushLeft}
+
              \[  \left[ ~m_{P}+3m_{2} \right] \ddot{Y}_{p}=F_{py}+ \sum _{l=i=1}^{3} \lambda _{l}\ast 2 \left( Y_{P}-L_{1}\cos  \theta _{i}\sin  \phi _{i}- rsin \phi _{i} \right)  \] 
-            \end{FlushLeft}\par
+
+            \begin{equation}
+                 \left( m_{P}+3m_{2} \right) \ddot{Y}_{p}-2 \sum _{l=i=1}^{3} \lambda _{l} \left( Y_{P}- rsin \phi _{i}-L_{1}\cos  \theta _{i}\sin  \phi _{i} \right) =F_{py}
+            \end{equation}
+
             
-             \[  \left( m_{P}+3m_{2} \right) \ddot{Y}_{p}-2 \sum _{l=i=1}^{3} \lambda _{l} \left( Y_{P}- rsin \phi _{i}-L_{1}\cos  \theta _{i}\sin  \phi _{i} \right) =F_{py} \] \par
-            
-            
-\newpage            Para la coordenada generalizada  \( q_{j}=Z_{p} \) \par
+\newpage            
+Calculando los valores relacionados con la coordenada generalizada  \( q_{j}=Z_{p} \) 
             
         \begin{align*}
              &\frac{ \delta L}{ \delta \dot{Z}_{p}}=\frac{ \delta T}{ \delta \dot{Z}_{p}}-\frac{ \delta V}{ \delta \dot{Z}_{p}}=\frac{ \delta T}{ \delta \dot{Z}_{p}}- \left[ 0 \right] =\frac{ \delta T}{ \delta \dot{Z}_{p}}\\
@@ -1436,21 +1453,19 @@ Paso 2:
              \[  \sum _{l=1}^{3} \lambda _{l}\frac{ \delta f_{l}^{ \left( h \right) }}{ \delta Z_{p}}= \sum _{l=i=1}^{3} \lambda _{l}\ast \left( 2\ast \left( Z_{P}-L_{1}\sin  \theta _{i} \right)  \right)  \] \par
             
             \begin{FlushLeft}
-            Reemplazando en la ecuación general
+            Reemplazando en la ecuación \ref{eq:multi_lamda_3}
             \end{FlushLeft}\par
             
-             \[  \left[  \left[ m_{P}+3m_{2} \right] \ddot{Z}_{p} \right] - \left[ g \left[ m_{p}+3m_{2} \right]  \right] = \sum _{l=i=1}^{3} \lambda _{l}\ast \left( 2\ast \left( Z_{P}-L_{1}\sin  \theta _{i} \right)  \right) +F_{pz} \] \par
+             \[  \left[  \left[ m_{P}+3m_{2} \right] \ddot{Z}_{p} \right] - \left[ g \left[ m_{p}+3m_{2} \right]  \right] = \sum _{l=i=1}^{3} \lambda _{l}\ast \left( 2\ast \left( Z_{P}-L_{1}\sin  \theta _{i} \right)  \right) +F_{pz} \] 
             
-             \[  \left[  \left[ m_{P}+3m_{2} \right] \ddot{Z}_{p} \right] - \sum _{l=i=1}^{3} \lambda _{l}\ast \left( 2\ast \left( Z_{P}-L_{1}\sin  \theta _{i} \right)  \right) - \left[ g \left[ m_{p}+3m_{2} \right]  \right] =F_{pz} \] \par
+             \[  \left[  \left[ m_{P}+3m_{2} \right] \ddot{Z}_{p} \right] - \sum _{l=i=1}^{3} \lambda _{l}\ast \left( 2\ast \left( Z_{P}-L_{1}\sin  \theta _{i} \right)  \right) - \left[ g \left[ m_{p}+3m_{2} \right]  \right] =F_{pz} \] 
             
-             \[  \left[ m_{P}+3m_{2} \right] \ddot{Z}_{p}-2 \sum _{l=i=1}^{3} \lambda _{l} \left( Z_{P}-L_{1}\sin  \theta _{i} \right) - \left[ m_{p}+3m_{2} \right] g=F_{pz} \] \par
+            \begin{equation}
+             \left[ m_{P}+3m_{2} \right] \ddot{Z}_{p}-2 \sum _{l=i=1}^{3} \lambda _{l} \left( Z_{P}-L_{1}\sin  \theta _{i} \right) - \left[ m_{p}+3m_{2} \right] g=F_{pz} 
+            \end{equation}
             
-            
-            \vspace{\baselineskip}
-            \begin{FlushLeft}
-            Finalmente reemplazando en el sistema de ecuaciones: 
-            \end{FlushLeft}\par
-            
+            Finalmente, se calcula con álgebras de matrices los multiplicadores $\lambda_l, l=1,2,3$ reemplazando las ecuaciones calculadas anteriormente en el sistema de ecuaciones matricial \ref{eq:matriz_lagra}: 
+
             \begin{FlushLeft}
              \[ \frac{d}{dt} \left( \frac{ \delta L}{ \delta \dot{X}_{p}} \right) -\frac{ \delta L}{ \delta X_{p}}-F_{px}= \left( m_{p}+3m_{2} \right) \ddot{X}_{p}-F_{px} \] 
             \end{FlushLeft}\par
@@ -1496,15 +1511,17 @@ Paso 2:
       \newpage
 
             \subsubsection{Torque}
-       %%%%%%%%%%%%  Starting New Page here %%%%%%%%%%%%%%            Desde: torque1 torque2 torque3\par
-            
+            Para determinar el torque de los actuadores $\tau_i, i=1,2,3$ se utilizan 3 ecuaciones de la forma de la ecuación de Lagrange \ref{eq:cap4_dina_ma_4} con respecto las coordenadas generalizadas $q_j \in \{\theta_1,\theta_2,\theta_3\}$. Entonces:
+
              \[ \frac{d}{dt} \left( \frac{ \delta L}{ \delta \dot{ \theta }_{i}} \right) -\frac{ \delta L}{ \delta  \theta _{i}}= \sum _{l=1}^{K^{ \left( h \right) }} \lambda _{l}\frac{ \delta f_{l}^{ \left( h \right) }}{ \delta  \theta _{i}}+ \tau_{i} \] 
             
-            Reordenando\par
+            Reordenando y despejando $\tau_i$
+            \begin{equation}
+                 \tau_{i}=\frac{d}{dt} \left( \frac{ \delta L}{ \delta \dot{ \theta }_{i}} \right) -\frac{ \delta L}{ \delta  \theta _{i}}- \sum _{l=1}^{K^{ \left( h \right) }} \lambda _{l}\frac{ \delta f_{l}^{ \left( h \right) }}{ \delta  \theta _{i}}
+                 \label{eq:dinami_ma_eanexo_11}
+            \end{equation}
             
-             \[  \tau_{i}=\frac{d}{dt} \left( \frac{ \delta L}{ \delta \dot{ \theta }_{i}} \right) -\frac{ \delta L}{ \delta  \theta _{i}}- \sum _{l=1}^{K^{ \left( h \right) }} \lambda _{l}\frac{ \delta f_{l}^{ \left( h \right) }}{ \delta  \theta _{i}} \] 
-            
-            Calculando el termino:
+            Calculando el primer termino de la ecuación \ref{eq:dinami_ma_eanexo_11}:
             \begin{align*}
               \frac{d}{dt} \left( \frac{ \delta L}{ \delta \dot{ \theta }_{i}} \right) &=\frac{d}{dt} \left( \frac{ \delta T}{ \delta \dot{ \theta }_{i}}-\frac{ \delta V}{ \delta \dot{ \theta }_{i}} \right)   \\
               \frac{d}{dt} \left( \frac{ \delta L}{ \delta \dot{ \theta }_{i}} \right) &=\frac{d}{dt} \left( \frac{ \delta T}{ \delta \dot{ \theta }_{i}}-0 \right)   \\
@@ -1514,7 +1531,7 @@ Paso 2:
               \frac{d}{dt} \left( \frac{ \delta L}{ \delta \dot{ \theta }_{i}} \right) &= \left( \frac{1}{3}m_{1}+m_{2} \right) L_{1}^{2}\ddot{ \theta }_{i}
             \end{align*}
             
-            Calculando el termino:
+            Calculando el segundo termino de la ecuación \ref{eq:dinami_ma_eanexo_11}:
             \begin{align*}
              \frac{ \delta L}{ \delta  \theta _{i}}&=\frac{ \delta T}{ \delta  \theta _{i}}-\frac{ \delta V}{ \delta  \theta _{i}} \\
              \frac{ \delta L}{ \delta  \theta _{i}}&=0-\frac{ \delta V}{ \delta  \theta _{i}} \\
@@ -1523,7 +1540,9 @@ Paso 2:
               \frac{ \delta L}{ \delta  \theta _{i}}&= \left( \frac{1}{2}m_{1}+m_{2} \right) gL_{1}\cos  \theta _{i}
              \end{align*}
  
-            Calculando el termino:
+         \newpage
+
+            Calculando el tercer termino de la ecuación \ref{eq:dinami_ma_eanexo_11}:
             
              \[  \sum _{l=1}^{K^{ \left( h \right) }} \lambda _{l}\frac{ \delta f_{l}^{ \left( h \right) }}{ \delta  \theta _{i}}= \lambda _{1}\frac{ \delta f_{1}^{ \left( h \right) }}{ \delta  \theta _{i}}+ \lambda _{2}\frac{ \delta f_{2}^{ \left( h \right) }}{ \delta  \theta _{i}}+ \lambda _{3}\frac{ \delta f_{3}^{ \left( h \right) }}{ \delta  \theta _{i}} \] 
             
@@ -1531,7 +1550,6 @@ Paso 2:
             
              \[ \frac{ \delta f_{l}^{ \left( h \right) }}{ \delta  \theta _{i}}=0 \] 
         
-        \newpage
             Si  \( l=i \) 
             \begin{align*}
               \frac{ \delta f_{l}^{ \left( h \right) }}{ \delta  \theta _{i}}=&2 \left( X_{P}-L_{1}\cos  \theta _{i}\cos  \phi _{i}- rcos \phi _{i} \right)  \left( X_{P}-L_{1}\cos  \theta _{i}\cos  \phi _{i}- rcos \phi _{i} \right) ^{'}+\\
@@ -1556,11 +1574,12 @@ Paso 2:
              \frac{ \delta f_{l}^{ \left( h \right) }}{ \delta  \theta _{i}}&=2L_{1} \left[  \left( X_{P}\cos  \phi _{i}- r+Y_{P}\sin  \phi _{i} \right) \sin  \theta _{i}+ \left( -Z_{P}\cos  \theta _{i} \right)  \right]  \\
              \frac{ \delta f_{l}^{ \left( h \right) }}{ \delta  \theta _{i}}&=2L_{1} \left[  \left( X_{P}\cos  \phi _{i}+Y_{P}\sin  \phi _{i}- r \right) \sin  \theta _{i}-Z_{P}\cos  \theta _{i} \right]
             \end{align*}
-
+            
+         \newpage
             Finalmente, el toque para los motores $i=1,2,3$ se calcula con la siguiente formula:
-            \begin{multline*}
+            \begin{multline}
              \tau_{i}= \left( \frac{1}{3}m_{1}+m_{2} \right) L_{1}^{2}\ddot{ \theta }_{i}- \left( \frac{1}{2}m_{1}+m_{2} \right) gL_{1}\cos  \theta _{i}-\\2 \lambda _{i}L_{1} \left[  \left( X_{P}\cos  \phi _{i}+Y_{P}\sin  \phi _{i}- r \right) \sin  \theta _{i}-Z_{P}\cos  \theta _{i} \right]
-            \end{multline*}
+            \end{multline}
 
          \newpage
 
