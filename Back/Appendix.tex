@@ -1214,7 +1214,7 @@ Paso 2:
             
                 Se requiere una función de restricción  \( f_{l}^{ \left( h \right) } \)  para resolver los valores de torque. Se utilizará la restricción formada por la junta de paralelogramos, ya que su longitud  \( L_{2} \)  será igual en cualquier momento.
                 
-                Entonces, las estricciones para el eslabón  \( \overrightarrow{s}=\overrightarrow{L_{2}} \)  se formula de la siguiente manera:
+                Entonces, las restricciones para el eslabón  \( \overrightarrow{s}=\overrightarrow{L_{2}} \)  se formula de la siguiente manera:
                 
                 \setlength{\parskip}{0.0pt}
                  \[ \overrightarrow{P}=~ \overrightarrow{r_{a}}+\overrightarrow{L_{1}}+\overrightarrow{s}+\overrightarrow{r_{B}} \] 
@@ -1590,10 +1590,313 @@ Calculando los valores relacionados con la coordenada generalizada  \( q_{j}=Z_{
         
         
     \section{Metodología B}
-        \subsection{Modelación Cinemática de posición}
-        \subsubsection{Modelación Cinemática de velocidad}
-            \paragraph{asd} 
-                \subparagraph{asd}
+        \subsection{Modelación cinemática de aceleración}
+        Desde la modelación cinemática de velocidad se tiene que:
+
+        \begin{Center}
+             \[  \left[ \begin{matrix}
+            \overrightarrow{s_{1}}^{T}\\
+            \overrightarrow{s_{2}}^{T}\\
+            \overrightarrow{s_{3}}^{T}\\
+            \end{matrix}
+             \right] ~\overrightarrow{\dot{P_{0}}}+ \left[ \begin{matrix}
+            \overrightarrow{s_{1}}^{T}\overrightarrow{b_{1}}  &  0  &  0\\
+            0  &  \overrightarrow{s_{2}}^{T}\overrightarrow{b_{2}}  &  0\\
+            0  &  0  &  \overrightarrow{s_{3}}^{T}\overrightarrow{b_{3}}\\
+            \end{matrix}
+             \right] \overrightarrow{\dot{ \theta }}= \left[ \begin{matrix}
+            0\\
+            0\\
+            0\\
+            \end{matrix}
+             \right] ~ \] 
+        \end{Center}
+        
+        Reordenando:
+        
+        \begin{Center}
+             \[  \left[ \begin{matrix}
+            \overrightarrow{s_{1}}^{T}\\
+            \overrightarrow{s_{2}}^{T}\\
+            \overrightarrow{s_{3}}^{T}\\
+            \end{matrix}
+             \right] ~\overrightarrow{\dot{P_{0}}}=- \left[ \begin{matrix}
+            \overrightarrow{s_{1}}^{T}\overrightarrow{b_{1}}  &  0  &  0\\
+            0  &  \overrightarrow{s_{2}}^{T}\overrightarrow{b_{1}}  &  0\\
+            0  &  0  &  \overrightarrow{s_{3}}^{T}\overrightarrow{b_{1}}\\
+            \end{matrix}
+             \right] \overrightarrow{\dot{ \theta }} \] 
+        \end{Center}
+        
+        Derivando matricialmente la expresión anterior:
+
+        \begin{Center}
+             \[  \left[ \begin{matrix}
+            \overrightarrow{s_{1}}^{T}\\
+            \overrightarrow{s_{2}}^{T}\\
+            \overrightarrow{s_{3}}^{T}\\
+            \end{matrix}
+             \right] ^{'}~\overrightarrow{\dot{P_{0}}}+ \left[ \begin{matrix}
+            \overrightarrow{s_{1}}^{T}\\
+            \overrightarrow{s_{2}}^{T}\\
+            \overrightarrow{s_{3}}^{T}\\
+            \end{matrix}
+             \right] ~\overrightarrow{\ddot{P_{0}}}=- \left[ \begin{matrix}
+            \overrightarrow{s_{1}}^{T}\overrightarrow{b_{1}}  &  0  &  0\\
+            0  &  \overrightarrow{s_{2}}^{T}\overrightarrow{b_{2}}  &  0\\
+            0  &  0  &  \overrightarrow{s_{3}}^{T}\overrightarrow{b_{3}}\\
+            \end{matrix}
+             \right] ^{'}\overrightarrow{\dot{ \theta }}- \left[ \begin{matrix}
+            \overrightarrow{s_{1}}^{T}\overrightarrow{b_{1}}  &  0  &  0\\
+            0  &  \overrightarrow{s_{2}}^{T}\overrightarrow{b_{2}}  &  0\\
+            0  &  0  &  \overrightarrow{s_{3}}^{T}\overrightarrow{b_{3}}\\
+            \end{matrix}
+             \right] \overrightarrow{\ddot{ \theta }} \] 
+        \end{Center}
+        
+        Despejando el termino de aceleración   \( \overrightarrow{\ddot{P_{0}}} \):
+        
+         \[ \overrightarrow{\ddot{P_{0}}}= \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\\
+        \overrightarrow{s_{2}}^{T}\\
+        \overrightarrow{s_{3}}^{T}\\
+        \end{matrix}
+         \right] ^{-1} \left[ - \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\\
+        \overrightarrow{s_{2}}^{T}\\
+        \overrightarrow{s_{3}}^{T}\\
+        \end{matrix}
+         \right] ^{'}~\overrightarrow{\dot{P_{0}}}- \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\overrightarrow{b_{1}}  &  0  &  0\\
+        0  &  \overrightarrow{s_{2}}^{T}\overrightarrow{b_{2}}  &  0\\
+        0  &  0  &  \overrightarrow{s_{3}}^{T}\overrightarrow{b_{3}}\\
+        \end{matrix}
+         \right] ^{'}\overrightarrow{\dot{ \theta }}- \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\overrightarrow{b_{1}}  &  0  &  0\\
+        0  &  \overrightarrow{s_{2}}^{T}\overrightarrow{b_{2}}  &  0\\
+        0  &  0  &  \overrightarrow{s_{3}}^{T}\overrightarrow{b_{3}}\\
+        \end{matrix}
+         \right] \overrightarrow{\ddot{ \theta }} \right] ~ \] 
+        
+        Reordenando:
+        \begin{multline*}
+         \overrightarrow{\ddot{P_{0}}}=- \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\\
+        \overrightarrow{s_{2}}^{T}\\
+        \overrightarrow{s_{3}}^{T}\\
+        \end{matrix}
+         \right] ^{-1} \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\\
+        \overrightarrow{s_{2}}^{T}\\
+        \overrightarrow{s_{3}}^{T}\\
+        \end{matrix}
+         \right] ^{'}~\overrightarrow{\dot{P_{0}}}\\- \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\\
+        \overrightarrow{s_{2}}^{T}\\
+        \overrightarrow{s_{3}}^{T}\\
+        \end{matrix}
+         \right] ^{-1} \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\overrightarrow{b_{1}}  &  0  &  0\\
+        0  &  \overrightarrow{s_{2}}^{T}\overrightarrow{b_{2}}  &  0\\
+        0  &  0  &  \overrightarrow{s_{3}}^{T}\overrightarrow{b_{3}}\\
+        \end{matrix}
+         \right] ^{'}\overrightarrow{\dot{ \theta }}\\- \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\\
+        \overrightarrow{s_{2}}^{T}\\
+        \overrightarrow{s_{3}}^{T}\\
+        \end{matrix}
+         \right] ^{-1} \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\overrightarrow{b_{1}}  &  0  &  0\\
+        0  &  \overrightarrow{s_{2}}^{T}\overrightarrow{b_{2}}  &  0\\
+        0  &  0  &  \overrightarrow{s_{3}}^{T}\overrightarrow{b_{3}}\\
+        \end{matrix}
+         \right] \overrightarrow{\ddot{ \theta }}~ 
+        \end{multline*}
+
+
+\newpage
+        Se sabe que el jacobiano se calcula con la siguiente expresión: 
+        
+         \[ J=- \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\\
+        \overrightarrow{s_{2}}^{T}\\
+        \overrightarrow{s_{3}}^{T}\\
+        \end{matrix}
+         \right] ^{-1} \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\overrightarrow{b_{1}}  &  0  &  0\\
+        0  &  \overrightarrow{s_{2}}^{T}\overrightarrow{b_{2}}  &  0\\
+        0  &  0  &  \overrightarrow{s_{3}}^{T}\overrightarrow{b_{3}}\\
+        \end{matrix}
+         \right]  \] 
+        
+        Reemplazando y factorizando:
+        
+         \[ \overrightarrow{\ddot{P_{0}}}=- \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\\
+        \overrightarrow{s_{2}}^{T}\\
+        \overrightarrow{s_{3}}^{T}\\
+        \end{matrix}
+         \right] ^{-1} \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\\
+        \overrightarrow{s_{2}}^{T}\\
+        \overrightarrow{s_{3}}^{T}\\
+        \end{matrix}
+         \right] ^{'}~\overrightarrow{\dot{P_{0}}}- \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\\
+        \overrightarrow{s_{2}}^{T}\\
+        \overrightarrow{s_{3}}^{T}\\
+        \end{matrix}
+         \right] ^{-1} \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\overrightarrow{b_{1}}  &  0  &  0\\
+        0  &  \overrightarrow{s_{2}}^{T}\overrightarrow{b_{2}}  &  0\\
+        0  &  0  &  \overrightarrow{s_{3}}^{T}\overrightarrow{b_{3}}\\
+        \end{matrix}
+         \right] ^{'}\overrightarrow{\dot{ \theta }}+J\overrightarrow{\ddot{ \theta }}~ \]
+        
+        Reordenando:
+        
+         \[ \overrightarrow{\ddot{P_{0}}}=- \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\\
+        \overrightarrow{s_{2}}^{T}\\
+        \overrightarrow{s_{3}}^{T}\\
+        \end{matrix}
+         \right] ^{-1}\ast \left[  \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\\
+        \overrightarrow{s_{2}}^{T}\\
+        \overrightarrow{s_{3}}^{T}\\
+        \end{matrix}
+         \right] ^{'}~\overrightarrow{\dot{P_{0}}}+ \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\overrightarrow{b_{1}}  &  0  &  0\\
+        0  &  \overrightarrow{s_{2}}^{T}\overrightarrow{b_{2}}  &  0\\
+        0  &  0  &  \overrightarrow{s_{3}}^{T}\overrightarrow{b_{3}}\\
+        \end{matrix}
+         \right] ^{'}\overrightarrow{\dot{ \theta }} \right] +J\overrightarrow{\ddot{ \theta }}~ \] \par
+        
+        Se sabe que:
+        
+         \[ \overrightarrow{\dot{P_{0}}}=J\overrightarrow{\dot{ \theta }} \] \par
+        
+        Reemplazando: 
+        
+         \[ \overrightarrow{\ddot{P_{0}}}=- \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\\
+        \overrightarrow{s_{2}}^{T}\\
+        \overrightarrow{s_{3}}^{T}\\
+        \end{matrix}
+         \right] ^{-1}\ast \left[  \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\\
+        \overrightarrow{s_{2}}^{T}\\
+        \overrightarrow{s_{3}}^{T}\\
+        \end{matrix}
+         \right] ^{'}~J\overrightarrow{\dot{ \theta }}+ \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\overrightarrow{b_{1}}  &  0  &  0\\
+        0  &  \overrightarrow{s_{2}}^{T}\overrightarrow{b_{2}}  &  0\\
+        0  &  0  &  \overrightarrow{s_{3}}^{T}\overrightarrow{b_{3}}\\
+        \end{matrix}
+         \right] ^{'}\overrightarrow{\dot{ \theta }} \right] +J\overrightarrow{\ddot{ \theta }}~ \] \par
+        
+        Factorizando:
+        
+         \[ \overrightarrow{\ddot{P_{0}}}=- \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\\
+        \overrightarrow{s_{2}}^{T}\\
+        \overrightarrow{s_{3}}^{T}\\
+        \end{matrix}
+         \right] ^{-1}\ast \left[  \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\\
+        \overrightarrow{s_{2}}^{T}\\
+        \overrightarrow{s_{3}}^{T}\\
+        \end{matrix}
+         \right] ^{'} J+ \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\overrightarrow{b_{1}}  &  0  &  0\\
+        0  &  \overrightarrow{s_{2}}^{T}\overrightarrow{b_{2}}  &  0\\
+        0  &  0  &  \overrightarrow{s_{3}}^{T}\overrightarrow{b_{3}}\\
+        \end{matrix}
+         \right] ^{'} \right] \ast\overrightarrow{\dot{ \theta }}+J\overrightarrow{\ddot{ \theta }}~ \] 
+        
+        Agrupando términos para facilitar la codificaciones:
+        \begin{equation}
+         \overrightarrow{\ddot{P_{0}}}=- \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\\
+        \overrightarrow{s_{2}}^{T}\\
+        \overrightarrow{s_{3}}^{T}\\
+        \end{matrix}
+         \right] ^{-1}\ast \left(  \left[ \begin{matrix}
+        \overrightarrow{\dot{s}_{1}}^{T}\\
+        \overrightarrow{\dot{s}_{2}}^{T}\\
+        \overrightarrow{\dot{s}_{3}}^{T}\\
+        \end{matrix}
+         \right]  J+K \right) \ast\overrightarrow{\dot{ \theta }}+J\overrightarrow{\ddot{ \theta }}~ 
+        \label{eq:acelanexobmetodo}
+        \end{equation}
+
+        Donde:
+        
+         \[ K= \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\overrightarrow{b_{1}}  &  0  &  0\\
+        0  &  \overrightarrow{s_{2}}^{T}\overrightarrow{b_{2}}  &  0\\
+        0  &  0  &  \overrightarrow{s_{3}}^{T}\overrightarrow{b_{3}}\\
+        \end{matrix}
+         \right] ^{'}= \left[ \begin{matrix}
+        \overrightarrow{\dot{s}_{1}}^{T}\overrightarrow{b_{1}}+\overrightarrow{s_{1}}^{T}\overrightarrow{\dot{b}_{1}}  &  0  &  0\\
+        0  &  \overrightarrow{\dot{s}_{2}}^{T}\overrightarrow{b_{2}}+\overrightarrow{s_{2}}^{T}\overrightarrow{\dot{b}_{2}}  &  0\\
+        0  &  0  &  \overrightarrow{\dot{s}_{3}}^{T}\overrightarrow{b_{3}}+\overrightarrow{s_{3}}^{T}\overrightarrow{\dot{b}_{3}}\\
+        \end{matrix}
+         \right]  \]
+        
+        \begin{equation*}
+          \overrightarrow{\dot{b}_{i}}= \left[ \begin{matrix}
+        L_{A}~cos\left(  \theta _{i} \right) \\
+        0\\
+        - L_{A}\sin \left(  \theta _{i} \right) \\
+        \end{matrix}
+         \right] \overrightarrow{\dot{ \theta _{i}}}~  
+        \end{equation*}
+        
+         \[ \overrightarrow{\dot{s}_{i}}= \left[ \begin{matrix}
+        \dot{P}_{0x}\\
+        \dot{P}_{0y}\\
+        \dot{P}_{0z}\\
+        \end{matrix}
+         \right] +R_{i}^{R}\ast \left[ \begin{matrix}
+        L_{A}\sin  \left(  \theta _{i} \right) \\
+        0\\
+        L_{A}\cos  \left(  \theta _{i} \right) \\
+        \end{matrix}
+         \right] \dot{ \theta _{i}}=\overrightarrow{\dot{P_{0}}}+\overrightarrow{b_{i}}~\dot{ \theta _{i}} \]
+        
+        Para calcular la aceleración angular de los actuadores  \( \overrightarrow{\ddot{ \theta }} \) , se despeja desde la ecuación \ref{eq:acelanexobmetodo} resultando:
+        
+         \[ \overrightarrow{\ddot{ \theta }}=J^{-1} \left[ \overrightarrow{\ddot{P_{0}}}+ \left[ \begin{matrix}
+        \overrightarrow{s_{1}}^{T}\\
+        \overrightarrow{s_{2}}^{T}\\
+        \overrightarrow{s_{3}}^{T}\\
+        \end{matrix}
+         \right] ^{-1}\ast \left(  \left[ \begin{matrix}
+        \overrightarrow{\dot{s}_{1}}^{T}\\
+        \overrightarrow{\dot{s}_{2}}^{T}\\
+        \overrightarrow{\dot{s}_{3}}^{T}\\
+        \end{matrix}
+         \right]  J+K \right) \ast\overrightarrow{\dot{ \theta }} \right] ~ \] 
+        
+        
+
+
+
+         \newpage
+
+
+
+        \subsection{Modelación dinámica}
+        
+            \subsubsection{Modelación dinámica}
+
+         \newpage
+
+
+
+
+
 
         
 \chapter{Planos}\label{anexoC}
