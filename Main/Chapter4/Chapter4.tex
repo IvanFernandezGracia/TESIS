@@ -269,7 +269,7 @@ La tabla \ref{tab:cap4_tabla_00} relaciona el nombre dado a las piezas mecánica
 
         En relaci\'{o}n con los antebrazos, solo se conoce el punto $E_i$ , que coincide con las posiciones de cada junta esf\'{e}rica unida al efector. Esto trae como consecuencia que cada antebrazo esta restringido por esferas con centros en las juntas esf\'{e}ricas $E_i$ con radio equivalente al largo del antebrazo $r_e$.
     
-        Acerca de los brazos solo se tiene conocimiento de los puntos $F_i$, que son la posici\'{o}n de cada actuador. Los actuadores son juntas revolutas y restringen le movimiento de cada brazo en planos. La configuraci\'{o}n espacial de estos planos para cada cadena cinem\'{a}tica es determinada por los puntos $F_i$ ,$O$ (origen) y el plano de la que contiene la base fija. El plano que contiene la base fija es perpendicular a los planos que restringen el movimiento de los brazos. En consecuencia, la posici\'{o}n de los puntos extremos de cada brazo, es decir, los puntos $J_i$ (junta esf\'{e}rica), est\'{a}n restringidos por circunferencias como se muestra en la ilustracion \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_3} .
+        Acerca de los brazos solo se tiene conocimiento de los puntos $F_i$, que son la posici\'{o}n de cada actuador. Los actuadores son juntas revolutas y restringen le movimiento de cada brazo en planos. La configuraci\'{o}n espacial de estos planos para cada cadena cinem\'{a}tica es determinada por los puntos $F_i$ ,$O$ (origen) y el plano de la que contiene la base fija. El plano que contiene la base fija es perpendicular a los planos que restringen el movimiento de los brazos. En consecuencia, la posici\'{o}n de los puntos extremos de cada brazo, es decir, los puntos $J_i$ (junta esf\'{e}rica), est\'{a}n restringidos por circunferencias como se muestra en la figura \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_3} .
 
                 \newpage
 
@@ -486,7 +486,7 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
         \end{figure}
         
         
-        En la tabla \ref{tab:cap4_tabla_6} se presenta las descripciones de los vectores mostrados en la ilustracion  \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_8}
+        En la tabla \ref{tab:cap4_tabla_6} se presenta las descripciones de los vectores mostrados en la figura  \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_8}
         
         \begingroup
             \renewcommand{\arraystretch}{1.5}
@@ -587,7 +587,7 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
         
         La matriz jacobiana tradicional proporciona una transformación de la velocidad del efector final en el espacio cartesiano a las velocidades articulares accionadas.
 
-        Con referencia a la ilustracion \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_10}, una ecuación de cierre de bucle para una extremidad i en marco de coordenadas  \( A_{i} \) – \( x_{i}y_{i}z_{i} \) se puede escribir como:
+        Con referencia a la figura \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_10}, una ecuación de cierre de bucle para una extremidad i en marco de coordenadas  \( A_{i} \) – \( x_{i}y_{i}z_{i} \) se puede escribir como:
         
         \begin{equation}
              \overrightarrow{OP}+\overrightarrow{~PC_{i}} =\overrightarrow{OA_{i}}+\overrightarrow{A_{i}B_{i}}+\overrightarrow{B_{i}C_{i}}  
@@ -701,11 +701,11 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
         \end{figure}
         
         \begin{itemize}
-	        \item {\fontsize{10pt}{12.0pt}\selectfont Cuando  $\det  \left( J_{ \theta } \right) =0$ . Esto significa que  $\theta _{2i}=0$  o  $\pi$ , o \   $\theta _{3i}=0$ o  $\pi$  , para  \( i = \{ 1,2 ,3 \}  \) . En esta situación los tres pares de barras seguidoras son paralelos. Por tanto, la plataforma móvil tiene tres grados de libertad y se mueve a lo largo de una superficie esférica y gira sobre el eje perpendicular a la plataforma móvil (ilustracion \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_9a}) .Al mismo tiempo esta configuración representa el límite del espacio de trabajo, es decir, los puntos más lejanos que puede alcanzar el robot. }
+	        \item {\fontsize{10pt}{12.0pt}\selectfont Cuando  $\det  \left( J_{ \theta } \right) =0$ . Esto significa que  $\theta _{2i}=0$  o  $\pi$ , o \   $\theta _{3i}=0$ o  $\pi$  , para  \( i = \{ 1,2 ,3 \}  \) . En esta situación los tres pares de barras seguidoras son paralelos. Por tanto, la plataforma móvil tiene tres grados de libertad y se mueve a lo largo de una superficie esférica y gira sobre el eje perpendicular a la plataforma móvil (figura \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_9a}) .Al mismo tiempo esta configuración representa el límite del espacio de trabajo, es decir, los puntos más lejanos que puede alcanzar el robot. }
 
-	        \item {\fontsize{10pt}{12.0pt}\selectfont Cuando  $\det  \left( J_{x} \right) =0 $ . Esto significa que    $ \theta _{1i}+  \theta _{2i}=0$  o  $\pi$ , o $\theta _{3i}=0$  o  $ \pi $   , para  \( i = \{ 1,2 ,3 \}  \) . En esta situación dos pares de barras seguidoras son paralelas. Los la plataforma móvil tiene un grado de libertad; es decir, la plataforma móvil se mueve en una sola dirección (ilustracion \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_9b}).}
+	        \item {\fontsize{10pt}{12.0pt}\selectfont Cuando  $\det  \left( J_{x} \right) =0 $ . Esto significa que    $ \theta _{1i}+  \theta _{2i}=0$  o  $\pi$ , o $\theta _{3i}=0$  o  $ \pi $   , para  \( i = \{ 1,2 ,3 \}  \) . En esta situación dos pares de barras seguidoras son paralelas. Los la plataforma móvil tiene un grado de libertad; es decir, la plataforma móvil se mueve en una sola dirección (figura \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_9b}).}
 
-	        \item {\fontsize{10pt}{12.0pt}\selectfont Cuando $ \det  \left( J_{ \theta } \right) =0 $  y $ \det  \left( J_{x} \right) =0 $. Esta situación ocurre cuando  $  \theta _{3i}=0$ o  $ \pi  $  , para  \( i = \{ 1,2 ,3 \}  \) . En esta situación dos pares de barras seguidoras están en el mismo plano o dos planos paralelos. La plataforma móvil tiene un grado de libertad; es decir, la plataforma móvil gira sobre el eje horizontal solamente (ilustracion \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_9c})}
+	        \item {\fontsize{10pt}{12.0pt}\selectfont Cuando $ \det  \left( J_{ \theta } \right) =0 $  y $ \det  \left( J_{x} \right) =0 $. Esta situación ocurre cuando  $  \theta _{3i}=0$ o  $ \pi  $  , para  \( i = \{ 1,2 ,3 \}  \) . En esta situación dos pares de barras seguidoras están en el mismo plano o dos planos paralelos. La plataforma móvil tiene un grado de libertad; es decir, la plataforma móvil gira sobre el eje horizontal solamente (figura \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_9c})}
 \end{itemize}
 
     
@@ -1422,7 +1422,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
     \end{align}
 
 
-    En (\ref{eq:cap4_MB_12}), $[P_{0x},P_{0y},P_{0z}]$ es la posición del efector final $\overrightarrow{P_{0}}$ , y el superíndice $R$ es el marco de referencia local $O-xyz$ como se muestra en la ilustracion \ref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_5}. $R$ es la diferencia entre ${R}_{A}$ y ${R}_{B}$.
+    En (\ref{eq:cap4_MB_12}), $[P_{0x},P_{0y},P_{0z}]$ es la posición del efector final $\overrightarrow{P_{0}}$ , y el superíndice $R$ es el marco de referencia local $O-xyz$ como se muestra en la figura \ref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_5}. $R$ es la diferencia entre ${R}_{A}$ y ${R}_{B}$.
     Debido a la simetría en la estructura del robot paralelo delta, cada brazo se puede tratar por separado. Cada brazo está separado por un ángulo de 120° grados y la posición del sistema de referencia correspondiente para cada brazo $O_i - x_i y_i z_i$  es el mismo que el superindice $R$ pero girado en un ángulo para cada brazo $i={1,2 ,3}$, respectivamente. 
     La matriz de transformación  o  la  matriz de rotación se indica en (\ref{eq:cap4_MB_13}).
     
@@ -1520,7 +1520,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
     En el caso de los robots en serie, la matriz jacobiana es solo una función de $\overrightarrow{\theta}$   , pero para los robots paralelos, la matriz jacobiana depende de la información del espacio articular $\overrightarrow{\theta}$   así como de la posición del efector final $\overrightarrow{P_0}$   .
         \newpage
 
-    \subsection{Modelación cinemática de aceleración}
+    \subsection{Modelación cinemática de aceleración}\label{cap4_mb_subsection_acel}
         
         En esta sección se presentan las ecuaciones para determinar la aceleración angular de los actuadores del robot delta. La aceleración se determina derivando 2 veces matricialmente la ecuación \ref{eq:cap4_MB_11} de la sección \ref{mb_cvel} de modelación cinemática de velocidad para el método B.
         
@@ -1593,7 +1593,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
 
     \newpage
 
-    \subsection{Modelación Dinámica}
+    \subsection{Modelación Dinámica}\label{cap4_mb_subsection_dina}
     
         En esta sección se presenta un método para resolver la dinámica inversa de un robot delta inspirado en los trabajos de Zeeshan Shareef \cite{Path_Planning_and_Trajectory_Optimization}, Collins F. Adetu, Carl A. Moore, Jr. y Rodney G. Roberts \cite{dynamic_omega3}. La modelacion dinámica utiliza como base el principio de trabajo virtual desarrollado por Codourey \cite{Codourey_decoupling}.
 
@@ -1676,7 +1676,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
             \centering
             \begin{tabular}{c m{12cm}}
                \hline
-               \textbf{Parametro}  & \multicolumn{1}{c}{\textbf{Descripción}}  \\
+               \textbf{Parámetro}  & \multicolumn{1}{c}{\textbf{Descripción}}  \\
                \hline           \hline            
              $L_A$ & Largo del brazo \\
             \hline
@@ -1849,12 +1849,12 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
     \end{itemize}
     
     
-    En la ilustracion \ref{f:Cap4_ws_2} se visualizan de mejor manera las restricciones a considerar:
+    En la figura \ref{f:Cap4_ws_2} se visualizan de mejor manera las restricciones a considerar:
     
     
     \begin{figure}[htb]
         \centering
-        \includegraphics[width=0.6\linewidth]{Main/Chapter4/Images4/cap4_ws_2.png}
+        \includegraphics[width=1\linewidth]{Main/Chapter4/Images4/DIBUJO51.jpg}
         \caption{Fotografía de un paraguas}
         \label{f:Cap4_ws_2}
     \end{figure}   
@@ -1954,7 +1954,7 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
     
     Para ello es necesario tomar en cuenta las restricciones físicas de los accionamientos y criterios de calidad tales como sensibilidad, precisión, repetitividad, etc.
     
-    Un procedimiento típico para la generación de trayectorias en robots es el que se aprecia en la ilustracion \ref{f:Cap4_tray_3}:
+    Un procedimiento típico para la generación de trayectorias en robots es el que se aprecia en la figura \ref{f:Cap4_tray_3}:
     
     \begin{figure}[htb]
         \centering
@@ -2211,7 +2211,7 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
              
         \paragraph{Perfiles de movimiento trapezoidal}\label{Perfiles_de_movimiento_trapezoidal}
         
-        Las escalas de tiempo trapezoidales son bastante comunes en el control motor, particularmente para el movimiento de una sola articulación. El movimiento punto a punto consta de una fase de aceleración constante $\ddot{s}=a$ de tiempo $t_a$, seguida de una fase de velocidad constante $\dot{s}=v$ de tiempo $t = T-2t_a$, seguida de una fase de desaceleración constante $\ddot{s}=-a$ de tiempo $t_a$. El resultado del perfil $\dot{s}$ es un trapezoide y el perfil $s$ es la concatenación de una parábola, un segmento lineal y una parábola en función del tiempo (ilustracion \ref{f:Cap4_tray_9}).
+        Las escalas de tiempo trapezoidales son bastante comunes en el control motor, particularmente para el movimiento de una sola articulación. El movimiento punto a punto consta de una fase de aceleración constante $\ddot{s}=a$ de tiempo $t_a$, seguida de una fase de velocidad constante $\dot{s}=v$ de tiempo $t = T-2t_a$, seguida de una fase de desaceleración constante $\ddot{s}=-a$ de tiempo $t_a$. El resultado del perfil $\dot{s}$ es un trapezoide y el perfil $s$ es la concatenación de una parábola, un segmento lineal y una parábola en función del tiempo (figura \ref{f:Cap4_tray_9}).
 
             \begin{figure}[htb]
                 \centering
@@ -2232,7 +2232,7 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
             \label{eq:cap4_tray_29}
         \end{equation}
         
-        Si ${v^2}/a > 1$, el robot nunca alcanza la velocidad $v$  durante el movimiento. El movimiento trifásico de aceleración-velocidad constante-desaceleración se convierte en un movimiento bifásico de aceleración-desaceleración llamado “bang-bang” y el perfil trapezoidal $\dot{s}̇(t)$ de la ilustracion \ref{f:Cap4_tray_9} se convierte en un triángulo.
+        Si ${v^2}/a > 1$, el robot nunca alcanza la velocidad $v$  durante el movimiento. El movimiento trifásico de aceleración-velocidad constante-desaceleración se convierte en un movimiento bifásico de aceleración-desaceleración llamado “bang-bang” y el perfil trapezoidal $\dot{s}̇(t)$ de la figura \ref{f:Cap4_tray_9} se convierte en un triángulo.
         
         \begin{figure}[htb]
                 \centering

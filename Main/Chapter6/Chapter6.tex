@@ -12,7 +12,6 @@
 
     Se sigue una serie de pasos para validad la cinemática y dinamica del robot delta:
     
-    \begin{enumerate}
         \item ROS y RVIZ
             \begin{itemize}
                 \item {Trayectoria: Se crear trayectoria lineal (trapezoidal) en el espacio cartesiano $XYZ$ , velocidad $\dot{X}\dot{Y}\dot{Z}$ y aceleración $\ddot{X}\ddot{Y}\ddot{Z}$ del centroide del efector a partir de un punto inicial $P_i(x,y,z)$, un punto final $P_f(x,y,z)$, velocidad maxima $v_{max}$ y aceleración maxima $a_{max}$ deseada}
@@ -36,7 +35,6 @@
         \begin{itemize}
             \item {Se comparan los resultados de torque de ROS y ADAMS. Si estos tienen errores relativamente bajos se asume que los algoritmos de cinemática y dinámica creados y compilados en ROS y la configuración del robot delta en ADAMS son correctas.}
         \end{itemize}  
-    \end{enumerate}
 
         \newpage
         
@@ -95,7 +93,7 @@
 
 \section{Software ROS}
 
-    Robot Operating Processing es una herramienta que sirve para ordenar y dividir en tareas especificas un robot complejo simplificando a los ingenieros la creación de estos. Estas tareas se representan en nodos, funciones y subfunciones que son escritos en lenguaje de programación python. En esta sección, estos algoritmos son explicados brevemente como una función con entradas y salidas definidas como se muestra en la ilustración \ref{f:Cap6_funtion_1} y explicados detalladamente en pseudocódigos como se puede visualizar en el algoritmo \ref{algo:cap6_1}. Los algoritmos se dividen en una función principal y en sus subfunciones.
+    Robot Operating Processing es una herramienta que sirve para ordenar y dividir en tareas especificas un robot complejo simplificando a los ingenieros la creación de estos. Estas tareas se representan en nodos, funciones y subfunciones que son escritos en lenguaje de programación python. En esta sección, estos algoritmos son explicados brevemente como una función con entradas y salidas definidas como se muestra en la figura \ref{f:Cap6_funtion_1} y explicados detalladamente en pseudocódigos como se puede visualizar en el algoritmo \ref{algo:cap6_1}. Los algoritmos se dividen en una función principal y en sus subfunciones.
     
         % Define block styles
         \tikzstyle{block1} = [rectangle, draw=blue,fill=blue!20, text width=10em, text centered, minimum height=7em, minimum width=2.5em , text=black]
@@ -281,7 +279,7 @@
       
     Las trayectorias que se crean para comprobar los algoritmos de cinemática y dinámica son:
         \begingroup
-        \renewcommand{\arraystretch}{2.0}
+        \renewcommand{\arraystretch}{3.0}
         \begin{table}[H]
         \centering
         \begin{tabular}{c c c c c}
@@ -302,12 +300,12 @@
     \end{table}
     \endgroup
     
-     Los puntos iniciales y finales son en base al sistema de referencia global presentado en la ilustración \ref{f:ref1}. Los valores de las velocidades y aceleraciones máximas son en dirección tangencial a las trayectorias lineales creadas.
+     Los puntos iniciales y finales son en base al sistema de referencia global presentado en la figura \ref{f:ref1}. Los valores de las velocidades y aceleraciones máximas son en dirección tangencial a las trayectorias lineales creadas.
     
     \newpage
     \subsection{Metodología A}
     
-    Las siguientes ilustraciones (\ref{f:Cap6_funtion_2} a la \ref{f:Cap6_funtion_6}) representan de forma visual los algoritmos, tareas o funciones planteadas en esta sección con respecto a la  metodología A del capitulo \ref{CAP4}, de igual forma que en la ilustración \ref{f:Cap6_funtion_1}. Las entradas y las salidas de cada función son escritas con las misma nomenclatura de cada sección con que fue inspirado el algoritmo respectivamente. Es notorio recalcar que cada algoritmo es obtenido de diferentes referencias bibliográficas, por lo que los sistemas de referencia y el orden numérico de los ángulos de los actuadores son diferentes. Por ende, las entradas y las salidas en cada algoritmo son transformadas del sistema global al sistema de referencia local y viceversa.     
+    Las figuras (\ref{f:Cap6_funtion_2} a la \ref{f:Cap6_funtion_6}) representan de forma visual los algoritmos, tareas o funciones planteadas en esta sección con respecto a la  metodología A del capitulo \ref{CAP4}, de igual forma que en la figura \ref{f:Cap6_funtion_1}. Las entradas y las salidas de cada función son escritas con las misma nomenclatura de cada sección con que fue inspirado el algoritmo respectivamente. Es notorio recalcar que cada algoritmo es obtenido de diferentes referencias bibliográficas, por lo que los sistemas de referencia y el orden numérico de los ángulos de los actuadores son diferentes. Por ende, las entradas y las salidas en cada algoritmo son transformadas del sistema global al sistema de referencia local y viceversa.     
     
 
             \hspace{1cm}
@@ -893,7 +891,7 @@
       
     \subsection{Metodología B}
     
-       Al igual que la sección anterior, se presentan en las ilustraciones \ref{f:Cap6_funtion_7} a la \ref{f:Cap6_funtion_11} las tareas con respecto a la  metodología B del capitulo \ref{CAP4}. 
+       Al igual que la sección anterior, se presentan en las figuras \ref{f:Cap6_funtion_7} a la \ref{f:Cap6_funtion_11} las tareas con respecto a la  metodología B del capitulo \ref{CAP4}. 
     
             \hspace{1cm}
 
@@ -909,7 +907,7 @@
                 \centering
                  \begin{tikzpicture}[node distance = 5cm, auto]
                     % Place nodes
-                    \node [block1] (funcion) {\textbf{Cinemática Directa\\ Sección (\ref{mb_cd})}};
+                    \node [block1] (funcion) {\textbf{Cinemática\\ Directa\\ Sección (\ref{mb_cd})}};
                     \node [block2, left of=funcion] (input) {\textbf{$\theta_1,\theta_2,\theta_3$}};
                     \node [block2, right of=funcion] (ouput) {\textbf{$P_0(P_{0x},P_{0y},P_{0z})$}};
                     % Draw edges
@@ -926,7 +924,7 @@
                 \centering
                  \begin{tikzpicture}[node distance = 5cm, auto]
                     % Place nodes
-                    \node [block1] (funcion) {\textbf{Cinemática Inversa\\ Sección (\ref{mb_ci})}};
+                    \node [block1] (funcion) {\textbf{Cinemática \\Inversa\\ Sección (\ref{mb_ci})}};
                     \node [block2, left of=funcion] (input) {\textbf{$P_0(P_{0x},P_{0y},P_{0z})$}};
                     \node [block2, right of=funcion] (ouput) {\textbf{$\theta_1,\theta_2,\theta_3$}};
                     % Draw edges
@@ -944,7 +942,7 @@
                  \begin{tikzpicture}[node distance = 5cm, auto]
                     % Place nodes
                     \node [block1] (funcion) {\textbf{Jacobiano\\ Sección (\ref{mb_cvel})}};
-                    \node [block2, left of=funcion] (input) {\textbf{$P_{0x},P_{0y},P_{0z},{\theta }_{1},{\theta }_{2},{\theta }_{3}$}};
+                    \node [block2, left of=funcion] (input) {\textbf{$P_{0x},P_{0y},P_{0z},$\\${\theta }_{1},{\theta }_{2},{\theta }_{3}$}};
                     \node [block2, right of=funcion] (ouput) {\textbf{$-J_{1 }, J_{2}, J$}};
                     % Draw edges
                     \path [line] (funcion) -- node {}(ouput);
@@ -961,9 +959,9 @@
                 \centering
                  \begin{tikzpicture}[node distance = 5cm, auto]
                     % Place nodes
-                    \node [block1] (funcion) {\textbf{Cinemática Aceleracion\\ Sección (\ref{})}};
-                    \node [block2, left of=funcion] (input) {\textbf{Entradas}};
-                    \node [block2, right of=funcion] (ouput) {\textbf{Salidas}};
+                    \node [block1] (funcion) {\textbf{Cinemática Aceleracion\\ Sección (\ref{cap4_mb_subsection_acel})}};
+                    \node [block2, left of=funcion] (input) {\textbf{$P_{0x},P_{0y},P_{0z},$\\${\theta }_{1},{\theta }_{2},{\theta }_{3},$\\$\dot{\theta }_{1},\dot{\theta }_{2},\dot{\theta }_{3}$}};
+                    \node [block2, right of=funcion] (ouput) {\textbf{$-J_{1},J_{2},J,$\\$\overrightarrow{{\dot{s}}_i}^T,K,\overrightarrow{\dot{\theta}},\overrightarrow{{{s}}_i}^T$}};
                     % Draw edges
                     \path [line] (funcion) -- node {}(ouput);
                     \path [line] (input) -- node { }(funcion);
@@ -978,9 +976,9 @@
                 \centering
                  \begin{tikzpicture}[node distance = 5cm, auto]
                     % Place nodes
-                    \node [block1] (funcion) {\textbf{Dinamica Inversa\\ Sección (\ref{})}};
-                    \node [block2, left of=funcion] (input) {\textbf{Entradas}};
-                    \node [block2, right of=funcion] (ouput) {\textbf{Salidas}};
+                    \node [block1] (funcion) {\textbf{Dinamica \\Inversa\\ Sección (\ref{cap4_mb_subsection_dina})}};
+                    \node [block2, left of=funcion] (input) {\textbf{$\ddot{\theta}_{1},\ddot{\theta}_{2},\ddot{\theta}_{3},$\\$        {\theta}_{1},{\theta}_{2},{\theta}_{3},$\\$F_{px},F_{py},F_{pz},$\\$J,m_{playload},\dot{J},$\\$\dot{\theta}_{1},\dot{\theta}_{2},\dot{\theta}_{3}$}};
+                    \node [block2, right of=funcion] (ouput) {\textbf{$\tau_1,\tau_2,\tau_3$}};
                     % Draw edges
                     \path [line] (funcion) -- node {}(ouput);
                     \path [line] (input) -- node { }(funcion);
@@ -1460,44 +1458,113 @@
 
         
     \subsection{Espacio de Trabajo}
-     Encontrar el espacio de trabajo de un robot delta significa calcular todas las posiciones posibles y viables del efector final. El siguiente diagrama de flujo representa una de las muchas soluciones que existen, donde las dimensiones del robot y los parámetros de las restricciones son valores preestablecidos. Es importante recalcar que la nomenclatura en esta sección es la misma que se implementa para determinar el jacobiano del robot delta de la sección \ref{ma_jac}.  
+     Encontrar el espacio de trabajo de un robot delta significa calcular todas las posiciones posibles y viables del efector final. El siguiente diagrama de flujo representa una de las muchas soluciones que existen, donde las dimensiones del robot y los parámetros de las restricciones son valores preestablecidos. Es importante recalcar que la nomenclatura en esta sección es la misma que se implementa para determinar el jacobiano del robot delta de la sección \ref{ma_jac}. 
+     % Define block styles
+\tikzstyle{decision} = [diamond, draw=black!50, fill=black!99,text=white, 
+    text width=6.5em, text badly centered, node distance=4cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw=blue!99, fill=blue!10, 
+    text width=10em, text centered,   minimum height=4em,node distance=2.5cm]
+\tikzstyle{block1} = [rectangle, draw=black!20, fill=black!20, 
+    text width=10em, text centered,   minimum height=4em,node distance=3.5cm]
+\tikzstyle{block2} = [rectangle, draw=yellow!99, fill=yellow!20, 
+    text width=20em, text centered,   minimum height=4em,node distance=2.5cm]
+\tikzstyle{everynode}=[trapezium, draw=green!99, minimum width=1cm,trapezium left angle=120, trapezium right angle=60,fill=green!20,text centered, text width=30em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm, minimum height=2em]
+\tikzstyle{block112} = [rectangle, draw, fill=white!20, 
+    text width=0em, text centered,   minimum height=0em,node distance=3.5cm]
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[node distance = 2cm, auto]
+        % Place nodes
+        \node [everynode] (input) {Dimensiones del robot y parámetros de restricciones modelo};
+        \node [block, below of=input,node distance=1.5cm] (theta11) {Variar $\theta_{11}$ \\ $[\theta_{11min}$ - $\theta_{11max}  ]$};
+        \node [block, below of=theta11,node distance=2.5cm] (theta12) {Variar $\theta_{12}$ \\ $[\theta_{12min}$ - $\theta_{12max}  ]$};
+        \node [block, below of=theta12,node distance=2.5cm] (theta13) {Variar $\theta_{13}$ \\ $[\theta_{13min}$ - $\theta_{13max}  ]$};
+        \node [block2, below of=theta13,node distance=3cm] (restri) {Posición efector$[P_XP_YP_Z]$ a través de cinemática directa\\$[P_XP_YP_Z]=f(\theta_{11},\theta_{12},\theta_{13})$\\Ángulos interiores $\theta_{2i}$ y $\theta_{3i}$
+           \\Jacobiano y sus Determinantes};
+        \node [decision, below of=restri] (cumple) {¿Cumple con todas las restricciones?};
+        \node [block1, left of=cumple,node distance=5cm] (guardar) {El punto $[P_XP_YP_Z]$ \\ SI pertenece al \\ espacio de trabajo.\\Guardar punto};
+        \node [block1, right of=cumple, node distance=5cm] (noguardar) {El punto $[P_XP_YP_Z]$ \\ NO pertenece al \\ espacio de trabajo};
+        % Draw edges
+        \path [line] (guardar) |-  (theta11);
+        \path [line] (guardar) |-  (theta12);
+        \path [line] (guardar) |-  (theta13);
+        \path [line] (noguardar) |-  (theta11);
+        \path [line] (noguardar) |-  (theta12);
+        \path [line] (noguardar) |-  (theta13);
+        \path [line] (theta11) --  (theta12);
+        \path [line] (theta12) --  (theta13);
+        \path [line] (theta13) --  (restri);
+        \path [line] (restri) --  (cumple);
+        \path [line] (cumple) --  node {\Large Si}(guardar);
+        \path [line] (cumple) --  node {\Large No}(noguardar);
+        \path [line] (input) --  (theta11);
+\end{tikzpicture} 
+    \caption{Caption}
+    \label{fig:my_label_ws_cap6_1}
+\end{figure}    
+
+          \newpage     
     
-             \begin{figure}[htb]
-                \centering
-                \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/cap6_ws_2.png}
-                \caption{Fotografía de un paraguas}
-                \label{f:Cap6_ws_2}
-            \end{figure}  
-
-    CAMBIARDIAGRAMA La idea principal de la solución propuesta es calcular un grupo significativo de configuraciones $(P_x,P_y,P_z)$ posibles del efector final en base a sus dimensiones y evaluar si cumplen con restricciones impuestas. Se obtienen las configuraciones cartesianas del efector $(P_x,P_y,P_z)$  utilizando la cinemática directa y variando los angulos $\theta_{11}$,$\theta_{12}$,$\theta_{13}$ en los rangos $[\theta_{11min}-\theta_{11max}]$, $[\theta_{12min}-\theta_{12max}]$, $[\theta_{13min}-\theta_{13max}]$ respectivamente. Todos estos rangos se discretizan con un paso impuesto \(  \Delta  \theta _{1i} \). Si el punto  $(P_x,P_y,P_z)$ cumple con todas las restricciones, el punto pertenece al espacio de trabajo. Al contrario, si el punto no cumple con una o mas restricciones, este no pertenece al espacio de trabajo.
-
-        \newpage
+     La idea principal de la solución propuesta es calcular un grupo significativo de configuraciones $(P_x,P_y,P_z)$ posibles del efector final en base a sus dimensiones y evaluar si cumplen con restricciones impuestas. Se obtienen las configuraciones cartesianas del efector $(P_x,P_y,P_z)$  utilizando la cinemática directa y variando los angulos $\theta_{11}$,$\theta_{12}$,$\theta_{13}$ en los rangos $[\theta_{11min}-\theta_{11max}]$, $[\theta_{12min}-\theta_{12max}]$, $[\theta_{13min}-\theta_{13max}]$ respectivamente. Todos estos rangos se discretizan con un paso impuesto \(  \Delta  \theta _{1i} \). Si el punto  $(P_x,P_y,P_z)$ cumple con todas las restricciones, el punto pertenece al espacio de trabajo. Al contrario, si el punto no cumple con una o mas restricciones, este no pertenece al espacio de trabajo.
 
     Las restricciones son las mismas que las expuestas en la sección \ref{restriccionesWS}. El orden en que se verifican las restricciones se muestran en el siguiente diagrama de flujo:
 
-             \begin{figure}[htb]
-                \centering
-                \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/cap6_ws_3.png}
-                \caption{Fotografía de un paraguas}
-                \label{f:Cap6_ws_3}
-            \end{figure}  
+     % Define block styles
+\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+    text width=5em, text badly centered, node distance=4.0cm, inner sep=0pt]
+\tikzstyle{block1} = [rectangle, draw, fill=black!20, 
+    text width=10em, text centered,   minimum height=4em,node distance=3.5cm]
+\tikzstyle{block11} = [rectangle, draw, fill=black!20, 
+    text width=35em, text centered,   minimum height=3em,node distance=3.5cm]
+    
+%\tikzstyle{block1} = [rectangle, draw=blue,fill=blue!20, text width=10em, text centered, minimum height=7em, minimum width=2.5em , text=black]
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[node distance = 2cm, auto]
+        % Place nodes
+        \node [decision] (theta2i) {¿Cumple restricción de $\theta_{2i}$?};
+        \node [decision, below of=theta2i] (theta3i) {¿Cumple restricción de $\theta_{3i}$?};
+        \node [decision, below of=theta3i] (J) {¿Cumple restricción de $\Vert J \Vert$?};
+        \node [decision, below of=J] (limxyz) {¿Cumple restricción de limites XYZ?};
+        \node [block1, left of=limxyz,node distance=5cm] (guardar) {El punto $[P_XP_YP_Z]$ \\SI pertenece al\\ espacio de trabajo.\\ Guardar punto};
+        \node [block1, right of=theta2i,node distance=5cm] (noguardar) {El punto $[P_XP_YP_Z]$ \\ NO pertenece al \\ espacio de trabajo};
+        % Draw edges
+        \path [line] (theta2i) -- node {\Large Si} (theta3i);
+        \path [line] (theta3i) -- node {\Large Si} (J);
+        \path [line] (J) -- node {\Large Si} (limxyz);
+        \path [line] (theta2i) --   node {\Large No}(noguardar);
+        \path [line] (theta3i) -| node[pos=0.1, below] {\Large No} (noguardar);
+        \path [line] (J) -| node[pos=0.1, below] {\Large No} (noguardar);
+        \path [line] (limxyz) -| node[pos=0.1, below] {\Large No} (noguardar);
+        \path [line] (limxyz) -- node {\Large Si} (guardar);
+\end{tikzpicture} 
+    \caption{Caption}
+    \label{fig:my_label_ws_cap6_1}
+\end{figure}  
+
+
+        \newpage
 
 
     Para calcular el espacio de trabajo se crea un nodo en ROS. La tarea especifica de este nodo es calcular, guardar y graficar los puntos $(P_x,P_y,P_z)$ del efector final que cumplen con las restricciones impuestas. 
-    La representación gráfica del nodo se presenta en la ilustración \ref{f:Cap6_ws_1}: 
+    La representación gráfica del nodo se presenta en la figura \ref{f:Cap6_ws_1}: 
     
     
         % Define block styles
-        \tikzstyle{block1} = [rectangle, draw=blue,fill=blue!20, text width=10em, text centered, minimum height=7em, minimum width=2.5em , text=black]
+        \tikzstyle{block1} = [rectangle, draw=blue,fill=blue!20, text width=6em, text centered, minimum height=2em, minimum width=2.0em , text=black]
         \tikzstyle{block2} = [rectangle, draw=black!50,fill=black!20, text width=10em, text centered, minimum height=4em, minimum width=2.5em ]
+        \tikzstyle{block3} = [rectangle, draw=black!50,fill=black!20, text width=15em, text centered, minimum height=4em, minimum width=2.5em ]
         \tikzstyle{line} = [draw, -latex']
          \begin{center}
          \begin{figure}[htb]
              \begin{tikzpicture}[node distance = 5cm, auto]
                 % Place nodes
-                    \node [block1] (funcion) {\textbf{Espacio\\de\\Trabajo}};
-                \node [block2, left of=funcion] (input) {\textbf{ $\Delta\theta _{1i}$\\$(Discretizacion$ $Espacio$ $Articular$$)$}};
-                \node [block2, right of=funcion] (ouput) {\textbf{$\mathcal{W}_{(J_{x},J_{\theta})},\mathcal{W}_{J_{x}},\\\mathcal{W}_{J_{\theta}},\mathcal{W}_{(J_{x},J_{\theta},Limites)}$\\($Espacios$ $de$ $Trabajo$ $en$ $coordenadas$ $cartesianas$ $y$ $articular$)}};
+                \node [block1] (funcion) {\textbf{Espacio de\\Trabajo}};
+                \node [block2, left of=funcion] (input) {\textbf{ $\Delta\theta _{1i}$\\(Discretizacion Espacio   Articular)}};
+                \node [block3, right of=funcion] (ouput) {\textbf{$\mathcal{W}_{(J_{x},J_{\theta})},\mathcal{W}_{J_{x}},\mathcal{W}_{J_{\theta}},\mathcal{W}_{(J_{x},J_{\theta},Limites)}$\\(Espacios de trabajo en coordenadas $XYZ$ y $\theta_i$)}};
                 % Draw edges
                 \path [line] (funcion) -- node {}(ouput);
                 \path [line] (input) -- node { }(funcion);
@@ -1509,25 +1576,23 @@
          
         \vspace{-1cm}         
     
-    En este nodo, las dimensiones del robot y las restricciones son establecidas antes de calcular el espacio de trabajo. La única entrada es el paso de la discretizacion de los rangos \(  \Delta  \theta _{1i} \). La cinematica directa y el jacobiano se calculan a partir del método A, específicamente los desarrollados en las secciones \ref{ma_cd} y \ref{ma_jac} respectivamente. Se emplea este método por la razón de que el jacobiano $J$ se puede bipartir en dos matrices $(J_{x}$  y  $J_{ \theta })$, donde cada una de ellas representa una singularidad especifica . Ademas, el metodo A tiene la ventaja que tiene las ecuaciones para determinar los ángulos interiores $\theta_{2i}$ y $\theta_{3i}$.
+    En este nodo, las dimensiones del robot y las restricciones son establecidas antes de calcular el espacio de trabajo. La única entrada es el paso de la discretizacion de los rangos \(  \Delta  \theta _{1i} \). La cinematica directa y el jacobiano se calculan a partir del método A, específicamente los desarrollados en las secciones \ref{ma_cd} y \ref{ma_jac} respectivamente. Se emplea este método por la razón de que el jacobiano $J$ se puede bipartir en dos matrices $(J_{x}$  y  $J_{ \theta })$, donde cada una de ellas representa una singularidad especifica . Ademas, el metodo A tiene la ventaja de tener las ecuaciones de los ángulos interiores $\theta_{2i}$ y $\theta_{3i}$.
     
-    \newpage
-    
-    El valor de los parámetros de las restricciones impuestas en este trabajo de grado se presentan y se explican en la tabla \ref{t:cap6_ws_1}: 
+    El valor de las restricciones en este trabajo de grado se encuentran en la tabla \ref{t:cap6_ws_1}: 
     
             \begingroup
-            \renewcommand{\arraystretch}{1.5}
+            \renewcommand{\arraystretch}{1.3}
             \begin{table}[H]
             \centering
             \begin{tabular}{c m{7.5cm} c c}
                \hline
-               \textbf{Restriccion}  & \textbf{Explicacion} & \textbf{Min}& \textbf{Max}\\
+               \textbf{Restricción}  & \textbf{Explicación} & \textbf{Min}& \textbf{Max}\\
                \hline           \hline            
              $\theta_{1i}$ & Colisión entre los brazos y la base fija & $-90^{\circ}$ & $90^{\circ}$\\
             \hline
              $\Delta\theta _{1i}$ & Pasos de discretizacion de rangos $\theta_{1i}$ muy bajos implica costo computacional alto& $5^{\circ}$ & $ $ \\
             \hline
-             $\theta _{2i}$ & Angulo debe ser menor a $180^{\circ}$ ya que en esa situación el brazo y antebrazo podrían ser colineales y producir singularidades. Ademas esta restriccion asegura que el calculo de la cinemática de posición sea la correcto ya que descarta una de las soluciones & $5^{\circ}$ & $175^{\circ}$ \\
+             $\theta _{2i}$ & Angulo debe ser menor a $180^{\circ}$ ya que en esa situación el brazo y antebrazo podrían ser colineales y producir singularidades.& $5^{\circ}$ & $175^{\circ}$ \\
             \hline
              $\theta _{3i}$ & Angulo respecto a la inclinación máxima de las rotulas por catalogo, generalmente son de $13^{\circ}$ & $45^{\circ}$ & $135^{\circ}$ \\
             \hline
@@ -1547,13 +1612,6 @@
         \end{table}
         \endgroup     
         
-         \begin{figure}[htb]
-                \centering
-                \includegraphics[width=0.1\linewidth]{Main/Chapter6/Images6/cap6_ws_4.png}
-                \caption{Fotografía de un paraguas}
-                \label{f:Cap6_ws_4}
-            \end{figure}    
-    
         \newpage
 
     El siguiente algoritmo presenta el pseudocódigo de la función dentro del nodo que determinar el espacio de trabajo:
@@ -1728,7 +1786,7 @@
         
     \newpage
         
-    El diagrama de flujo para el desarrollo de la trayectoria se presenta en la ilustración \ref{f:cap6_trayectory_4}:
+    El diagrama de flujo para el desarrollo de la trayectoria se presenta en la figura \ref{f:cap6_trayectory_4}:
     
      \begin{figure}[htb]
             \centering
