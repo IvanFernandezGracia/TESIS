@@ -1636,6 +1636,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
         
         \newpage
 
+
         \subsubsection{Simplificaciones e Hipótesis}
         Antes de proceder a derivar el modelo dinámico, existen unas pocas hipótesis para hacer que el modelo sea factible y computacionalmente eficiente. Las hipótesis simplificadoras son:
         
@@ -1644,17 +1645,17 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
             \item Se ignoran los efectos de fricción y la elasticidad.
             \item Para fines analíticos, las masas del antebrazo se dividen equitativamente y se colocan en las extremidades. Por lo tanto, la mitad de la masa de la barra está centrada en la extremidad superior (es decir, la junta que una el brazo con el antebrazo), mientras que la otra mitad está centrada en la extremidad inferior (es decir, la junta que une los antebrazos con el efector final).
         \end{itemize}
-
-        Debido a estas hipótesis, el robot paralelo Delta se reduce a 2 partes del cuerpo: los tres brazos y el efector final.
+        Debido a estas hipótesis, el robot paralelo Delta se reduce a: los tres brazos y el efector final.
      
         \begin{figure}[H]
               \centering
-	          \includegraphics[width=0.6\linewidth]{Main/Chapter4/Images4/cap4_dina_b_1.png}
+	          \includegraphics[width=0.5\linewidth]{Main/Chapter4/Images4/DIBUJO39.jpg}
               \caption{Fotografía de un paraguas}
               \label{f:Cap4_Metodo_B_Modelacion_Dinamica_1}
         \end{figure}
         
                 \newpage
+
 
         \subsubsection{Nomenclatura de Parámetros Geométricos, Simplificación de Masas y Sistema de Referencia Global }
 
@@ -1662,7 +1663,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
         
         \begin{figure}[H]
               \centering
-	          \includegraphics[width=0.3\linewidth]{Main/Chapter4/Images4/cap4_dina_b_1.png}
+	          \includegraphics[width=0.55\linewidth]{Main/Chapter4/Images4/DIBUJO36.jpg}
               \caption{Fotografía de un paraguas}
               \label{f:Cap4_Metodo_B_Modelacion_Dinamica_2}
         \end{figure}
@@ -1685,6 +1686,36 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
             \hline
              $R_B$ & Distancia entre el centro del efector a la junta que lo une con el antebrazo\\
             \hline
+            ${O} - xyz$ & Sistema de referencia local para resolver el problema dinámico\\
+            \hline
+             $F_{x},F_{y},F_{z}$ & Fuerzas externas sobre efector final\\
+            \hline
+            $\theta_i$ & asfasfl\\
+            \hline
+            $P_0$ & asfasfl\\
+            \hline \hline
+            \end{tabular}
+            \caption{Referencias del dibujo}
+           \label{tab:cap4_tabla_13}
+        \end{table}
+        \endgroup     
+\newpage
+
+        \begin{figure}[H]
+              \centering
+	          \includegraphics[width=0.65\linewidth]{Main/Chapter4/Images4/DIBUJO37.jpg}
+              \caption{Fotografía de un paraguas}
+              \label{f:Cap4_Metodo_B_Modelacion_Dinamica_2}
+        \end{figure}
+
+        \begingroup
+            \renewcommand{\arraystretch}{1.5}
+            \begin{table}[H]
+            \centering
+            \begin{tabular}{c m{12cm}}
+               \hline
+               \textbf{Parametro}  & \multicolumn{1}{c}{\textbf{Descripción}}  \\
+               \hline           \hline            
             $m_{a}$ & Masa del brazo\\
             \hline
             $m_{b}$ & Masa del antebrazo solo una varilla\\
@@ -1695,20 +1726,15 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
             \hline
             $m_{codo}$ & Masa de la junta esférica que unen los brazos con los antebrazos\\
             \hline
-            $I_{m}$ & Inercia de los motores\\
-            \hline
             $r$ & Relación de división de masas de los antebrazos para simplificación dinámica\\
             \hline
-            ${O} - xyz$ & Sistema de referencia local para resolver el problema dinámico\\
-            \hline
-             $F_{x},F_{y},F_{z}$ & Fuerzas externas sobre efector final\\
+            $I_{m}$ & Inercia de los motores\\
             \hline
             \end{tabular}
             \caption{Referencias del dibujo}
-           \label{tab:cap4_tabla_13}
+           \label{tab:cap4_tabla_13333}
         \end{table}
-        \endgroup     
-
+        \endgroup 
 \newpage
 
 

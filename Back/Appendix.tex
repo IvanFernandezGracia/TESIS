@@ -1889,12 +1889,116 @@ Calculando los valores relacionados con la coordenada generalizada  \( q_{j}=Z_{
 
         \subsection{Modelación dinámica}
         
-            \subsubsection{Modelación dinámica}
+            \subsubsection{Parámetros dinámicos}
+                El modelo dinámico del robot consta de varios parámetros dinámicos. Los términos intermedios se definen para simplificar la representación del modelo dinámico.
+                
+                 Primero, la posición del centro de la masa del brazo viene dada por:
+                
+                \begin{equation}
+                 CoM=L_{A}~\frac{\frac{1}{2}~m_{a}+m_{codo}+2\ast r\ast m_{b}}{m_{a}+m_{codo}+2\ast r\ast m_{b}}
+                \label{par_dina_anex_1}                    
+                \end{equation}
 
+                En \ref{par_dina_anex_1}, se elige que $r=1/2$ para una distribución equitativa de la masa de los antebrazos como se explica en la hipótesis.
+                
+                
+            \begin{figure}[H]
+              \centering
+	          \includegraphics[width=0.7\linewidth]{Main/Chapter4/Images4/DIBUJO41.jpg}
+              \caption{Fotografía de un paraguas}
+              \label{f:Cap4_Metodo_B_Modelacion_Dinamica_2}
+        \end{figure}
+                
+                
+                
+                
+                
+                El segundo parámetro dinámico importante es la matriz de inercia en el espacio articular, dado en \ref{par_dina_anex_2}:
+                \begin{equation}
+                 I_{b}= \left[ \begin{matrix}
+                I_{b1}  &  0  &  0\\
+                0  &  I_{b2}  &  0\\
+                0  &  0  &  I_{b3}\\
+                \end{matrix}
+                 \right]
+                \label{par_dina_anex_2}                    
+                \end{equation}
+
+                En \ref{par_dina_anex_2},  \( I_{bi} \)  es la inercia de cada brazo que es la suma de la inercia del motor  \( I_{m}\)  y la del brazo, como se expresa a continuación:
+                \begin{equation}
+                 I_{bi}=I_{m}+ L_{A}^{2} \left( \frac{m_{a}}{3}+m_{codo}+2\ast r\ast m_{b} \right) 
+                \end{equation}
+                
+                Estos parámetros dinámicos se utilizan para derivar el modelo dinámico del robot paralelo delta. 
+\newpage
+
+            \subsubsection{Dinámica inversa}
+                La parte del efector final consta de la base móvil, la carga útil y las masas concentradas en las extremidades de los antebrazos. La masa de esta porción,  \( m_{nt} \) , se expresa como:
+                
+                 \[ m_{nt}=m_{c}+m_{payload}+3\ast 2 \ast \left( 1-r \right) m_{b} \] 
+                
+                donde,  \( m_{payload} \)  es la masa de la carga útil,  \( m_{c} \)  es la masa de la base móvil y  \( m_{b} \)  es la masa de un par de barras paralelas y  \( r \)  es la relación de división de masas del antebrazo.
+                
+                En el robot paralelo Delta, los únicos dos tipos de fuerzas que actúan sobre el efector final son; la fuerza de gravedad  \( \overrightarrow{F_{g}} \)  y la fuerza de inercia  \( \overrightarrow{F_{in}} \) \  debida a la aceleración:
+                
+                 \[ \overrightarrow{F_{g}}=m_{nt}~ \left[ 0 0-g \right] ^{T} \] 
+                
+                 \[ \overrightarrow{F_{in}}=m_{nt}~\overrightarrow{\ddot{P_{0}}} \] 
+                
+                Debido a la arquitectura del robot delta, la orientación del marco del efector final es siempre paralela al marco de referencia $ \{O$ - $xyz\} $ . Por lo tanto, se ignoran los términos de movimiento rotacional para el efector final.
+                
+                Como se explicó anteriormente, el principio del trabajo virtual se basa en el supuesto de que la contribución de todas las fuerzas inerciales debe ser igual a la contribución de todas las fuerzas no inerciales. El principio de la ecuación de trabajo virtual para el efector final se puede escribir en su forma vectorial como:
+                \begin{equation}
+                    \left( \overrightarrow{F_{g}}-m_{nt}~\overrightarrow{\ddot{P_{0}}} \right) \ast \delta r_{E}=0 
+                \label{anex_dina_inver_mb_1}
+                \end{equation}
+                
+                donde,  \( g \)  es la aceleración debida a la gravedad,  \( \overrightarrow{\ddot{P_{0}}} \)  es el vector de aceleración del efector final y  \(  \delta r_{E} \) \  es el desplazamiento virtual del efector final.
+                
+                Para resolver la dinámica del robot, el brazo es formado por un enlace de masa  \( m_{a} \)  y en sus extremidades se agrega las masas puntuales concentradas de las barras paralelas  \(  \left( \frac{m_{b}}{2}+\frac{m_{b}}{2} \right)  \)  . Tres pares actúan sobre los brazos en cualquier momento: el par  \( \overrightarrow{ \tau_{Gb}} \) \  debido a la gravedad que actúa sobre el centro de masa, el par  \( \overrightarrow{ \tau}= \left[  \tau_{1}, \tau_{2}, \tau_{3} \right] ^{T} \)  debido al actuador y el par  \( I_{b}~\overrightarrow{\ddot{ \theta }} \)  debido al momento de inercia  \( I_{b} \)  sobre el eje de rotación. La vector de aceleración angular de los actuadores se representa matricialmente  \( \overrightarrow{\ddot{ \theta }}= \left[ \ddot{ \theta }_{1},\ddot{ \theta }_{2},\ddot{ \theta }_{3} \right] ^{T} \) . La ecuación de trabajo virtual del brazo se expresa de la siguiente manera:
+                
+                 \[  \left( \overrightarrow{ \tau}-I_{b}~\overrightarrow{\ddot{ \theta }}+\overrightarrow{ \tau_{Gb}} \right) \ast \delta  \theta =0 \] 
+                
+                Para obtener el para debido a la gravedad, primero se debe calcular el centro de masa  \( CoM \)  del brazo, que incluye las masas puntuales concentradas de las barras paralelas. Una vez determinado el centro se masa, se calcula el torque debido a las fuerzas de gravedad en el brazo con la siguiente expresión:
+                \begin{equation}
+                 \overrightarrow{ \tau_{Gb}}=g\ast CoM\ast \left( m_{a}+m_{codo}+2\ast r\ast m_{b} \right)  \left[ \cos  \left(  \theta _{1} \right) ~\cos  \left(  \theta _{2} \right) ~\cos  \left(  \theta _{3} \right)  \right] ^{T} 
+                \label{anex_dina_inver_mb_2}
+                \end{equation}
+                                \newpage
+
+                
+                Con los parámetros dinámicos para los componentes individuales del manipulador calculados, se puede desarrollar la dinámica completa del robot. Recordando que la suma de todo el trabajo virtual realizado en el sistema por todas las fuerzas y pares externos debe ser igual a cero, se suman las ecuaciones \ref{anex_dina_inver_mb_1} y \ref{anex_dina_inver_mb_2} para determinar el torque en los actuadores  \( \overrightarrow{ \tau} \)  :
+                
+                 \[  \left( \overrightarrow{F_{g}}-m_{nt}~\overrightarrow{\ddot{P_{0}}} \right) \ast \delta r_{E}+  \left( \overrightarrow{ \tau}-I_{b}~\overrightarrow{\ddot{ \theta }}+\overrightarrow{ \tau_{Gb}} \right) \ast \delta  \theta =0 \] 
+                
+                Reemplazando la contribución del desplazamiento  \(  \delta r_{E}=J^{T} \delta  \theta  \) \  en los actuadores:
+                
+                 \[  \left( \overrightarrow{F_{g}}-m_{nt}~\overrightarrow{\ddot{P_{0}}} \right) \astJ~ \delta  \theta +  \left( \overrightarrow{ \tau}-I_{b}~\overrightarrow{\ddot{ \theta }}+\overrightarrow{ \tau_{Gb}} \right) \ast \delta  \theta =0 \] 
+                
+                Reordenando matricialmente para simplificar la ecuación anterior se llega a que: 
+                
+                 \[ J^{T}\overrightarrow{F_{g}}-J^{T}m_{nt}~\overrightarrow{\ddot{P_{0}}}+\overrightarrow{ \tau}+-I_{b}~\overrightarrow{\ddot{ \theta }}+\overrightarrow{ \tau_{Gb}}=0 \] 
+                
+                 \[ \overrightarrow{ \tau}=I_{b}~\overrightarrow{\ddot{ \theta }}+J^{T}m_{nt}~\overrightarrow{\ddot{P_{0}}}- J^{T}\overrightarrow{F_{g}}-\overrightarrow{ \tau_{Gb}} \] 
+                
+                Sustituyendo  \( \overrightarrow{\ddot{P_{0}}}=J\overrightarrow{\ddot{ \theta }}+\dot{J}~\overrightarrow{\dot{ \theta }} \) 
+                
+                 \[ \overrightarrow{ \tau}=I_{b}~\overrightarrow{\ddot{ \theta }}+J^{T}~m_{nt}  \left( J\overrightarrow{\ddot{ \theta }}+\dot{J}~\overrightarrow{\dot{ \theta }} \right) - J^{T}\overrightarrow{F_{g}}-\overrightarrow{ \tau_{Gb}} \] 
+                
+                 \[ \overrightarrow{ \tau}= \left( I_{b}+J^{T}~m_{nt}~J \right) ~\overrightarrow{\ddot{ \theta }}+ \left( J^{T}~m_{nt}\dot{J} \right) ~\overrightarrow{\dot{ \theta }}+ \left( - J^{T}\overrightarrow{F_{g}}-\overrightarrow{ \tau_{Gb}} \right)  \] 
+                
+                A partir de (), podemos identificar fácilmente la matriz de masa  \( M \left(  \theta  \right)  \) , la matriz  \( C \left(  \theta ,\dot{ \theta } \right)  \)  de coeficiente de Coriolis y centrífuga, y el vector de términos de gravedad  \( \overrightarrow{G} \left(  \theta  \right)  \)  comparándolo con la dinámica estándar:
+                
+                 \[ \overrightarrow{ \tau}=M \left(  \theta  \right) \overrightarrow{\ddot{ \theta }}+C \left(  \theta ,\dot{ \theta } \right) \overrightarrow{\dot{ \theta }}+ \overrightarrow{G} \left(  \theta  \right)  \] 
+                
+                Dónde
+                
+                 \[ M \left(  \theta  \right) =I_{b}+J^{T}~m_{nt}~J \] 
+                
+                 \[ C \left(  \theta ,\dot{ \theta } \right) =J^{T}~m_{nt}\dot{J} \] 
+                
+                 \[ \overrightarrow{G} \left(  \theta  \right) =- J^{T}\overrightarrow{F_{g}}-\overrightarrow{ \tau_{Gb}} \] 
          \newpage
-
-
-
 
 
 
