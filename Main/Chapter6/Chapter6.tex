@@ -12,7 +12,7 @@
 
     Se sigue una serie de pasos para validad la cinemática y dinamica del robot delta:
     
-        \item ROS y RVIZ
+        \item 1. ROS y RVIZ
             \begin{itemize}
                 \item {Trayectoria: Se crear trayectoria lineal (trapezoidal) en el espacio cartesiano $XYZ$ , velocidad $\dot{X}\dot{Y}\dot{Z}$ y aceleración $\ddot{X}\ddot{Y}\ddot{Z}$ del centroide del efector a partir de un punto inicial $P_i(x,y,z)$, un punto final $P_f(x,y,z)$, velocidad maxima $v_{max}$ y aceleración maxima $a_{max}$ deseada}
                 \item {Cinemática inversa: Se calcular la trayectoria en el espacio articular $\theta_{i=1,2,3}$ de los motores del robot delta.}
@@ -24,49 +24,48 @@
                 \item {Guardar torque: Se guarda en un archivo .txt el torque calculado por los motores (actuadores) con los algoritmos compilados en ROS.
                 }
             \end{itemize}
-        \item ADAMS
+        \item 2. ADAMS
         \begin{itemize}
             \item {Importación de la trayectoria: Se importan los datos de la trayectoria en el espacio articular $\theta_{i=1,2,3}$ , espacio cartesiano $XYZ$ y la escala de tiempo desde ROS}
             \item {Dibujar trayectoria: Se dibuja la trayectoria cartesiana $XYZ$ importada desde ROS en el espacio de simulación de ADAMS para comprobar a simple vista que la trayectoria articular (impuesta a los motores) sea la correcta al momento de la simulación. El efector debe seguir dicha trayectoria cartesiana lineal si es que el robot delta esta bien configurado en ADAMS}
             \item {Trayectoria articular y escala de tiempo: Se simula la trayectoria creada en ROS en el robot delta configurado en ADAMS, imponiendo a los motores (o sensores tipo junta) la trayectoria articular $\theta_{i=1,2,3}$ y su respectiva escala de tiempo exportada desde ROS.}
             \item {Guardar torque: Se guarda en un archivo .txt el torque producido por los motores en simulación en ADAMS.  }
         \end{itemize}
-        \item Validación Cinemática y Dinámica
+        \item 3. Validación Cinemática y Dinámica
         \begin{itemize}
             \item {Se comparan los resultados de torque de ROS y ADAMS. Si estos tienen errores relativamente bajos se asume que los algoritmos de cinemática y dinámica creados y compilados en ROS y la configuración del robot delta en ADAMS son correctas.}
         \end{itemize}  
 
         \newpage
         
-        %00X0 ERROR REORDENAR FLUJO https://lucid.app/lucidchart/invitations/accept/d9fb2a50-514b-4dbb-a955-3f29460f113e
-        
-    \tikzstyle{process} = [rectangle, minimum width=3em, minimum height=2em, text centered, draw=blue, fill=gray!10]
-    \tikzstyle{startend} = [ellipse, minimum width=2em, minimum height=1em, text centered, draw=red, fill=gray!10]
-    \tikzstyle{line} = [draw, -latex']
-    \tikzstyle{process_final} = [rectangle, minimum width=3em, minimum height=2em, text centered, draw=green, fill=gray!10]
+    \tikzstyle{process} = [rectangle, minimum width=2em, minimum height=1em,text width=25em,text height=1em, text centered, draw=blue, fill=gray!10]
+    \tikzstyle{startend} = [ellipse, minimum width=2em, minimum height=1em,text width=15em,text height=0.5em, text centered, draw=red, fill=red!20]
+    \tikzstyle{process_final} = [rectangle,minimum width=2em, minimum height=1em,text width=12em,text height=1em, text centered, draw=cyan, fill=cyan!30]
+    \tikzstyle{startend1} = [ellipse, minimum width=2em, minimum height=1em,text width=7em,text height=0.5em, text centered, draw=red, fill=red!20]
+
     \tikzstyle{everynode}=[trapezium, draw=green!99, minimum width=1cm,trapezium left angle=120, trapezium right angle=60,fill=green!20,text centered, text width=30em]
+    \tikzstyle{line} = [draw, -latex']
     \begin{center}
     \begin{figure}[h!]
     \centering
     \hfill\\
     \begin{tikzpicture}[node distance=2em]
-        \node (S) [startend] {ROS y RVIZ};
-        \node (S1) [process, below of=S, yshift= -2em]{\textbf{Crear trayectoria lineal espacio cartesiano $XYZ$ , $\dot{X}\dot{Y}\dot{Z}$ y $\ddot{X}\ddot{Y}\ddot{Z}$ }};
-        \node (S2) [process, below of=S1, yshift=-2em]{\textbf{Calcular trayectoria en espacio articular $\theta_{i=1,2,3}$ (cinematica inversa)}};
-        \node (S3) [process, below of=S2, yshift=-2em]{\textbf{Vizualizacion de Trayectoria  a partir de $XYZ$ y $\theta_{i=1,2,3}$ configurando el robot delta en Rviz }};
-        \node (S4) [process, below of=S3, yshift=-2em]{\textbf{Guardar Trayectoria  $XYZ$, $\theta_{i=1,2,3}$ y la escala de tiempos $s(t)$ en archivo .txt}};
-        \node (S5) [process, below of=S4, yshift=-2em]{\textbf{Calcular la velocidad angular  $\dot{\theta}_{i=1,2,3}$ y aceleración angular  $\ddot{\theta}_{i=1,2,3}$ de los actuadores}};
-        \node (S6) [process, below of=S5, yshift=-2em,]{\textbf{Calcular torque de los motores  $\tau_{i=1,2,3}$ a partir de los datos adquiridos en los pasos anteriores.}};
-        \node (S7) [process, below of=S6, yshift=-2em,]{\textbf{Guardar Torque $\tau_{i=1,2,3}$ en archivo .txt}};
+        \node [startend1] (S) {ROS y RVIZ};
+        \node [process, below of=S, yshift= -1.9em](S1){Crear trayectoria lineal espacio cartesiano \\ $XYZ$ , $\dot{X}\dot{Y}\dot{Z}$ y $\ddot{X}\ddot{Y}\ddot{Z}$};
+        \node [process, below of=S1, yshift=-1.9em](S2){Calcular trayectoria en espacio articular \\ $\theta_{i=1,2,3}$ (cinematica inversa)};
+        \node [process, below of=S2, yshift=-1.9em](S3){Visualización de trayectoria  a partir de $XYZ$ y \\ $\theta_{i=1,2,3}$ configurando el robot delta en Rviz };
         
-        \node (S8) [startend, below of=S7, yshift=-2em]{ADAMS};
-        \node (S9) [process, below of=S8, yshift=-2em]{\textbf{Importación de la trayectoria $\theta_{i=1,2,3}$, $XYZ$ y la escala de tiempo $s(t)$ desde ROS}};
-        \node (S10) [process, below of=S9, yshift=-2em,]{\textbf{Dibujar $XYZ$ en el espacio de simulacion de ADAMS}};
-        \node (S11) [process, below of=S10, yshift=-2em,]{\textbf{Insertar trayectoria $\theta_{i=1,2,3}$ y escala de tiempo $s(t)$ a los motores o juntas creadas en ADAMS}};    
-        \node (S12) [process, below of=S11, yshift=-2em,]{\textbf{Guardar Torque $\tau_{i=1,2,3}$ en archivo .txt}};
-        \node (S13) [startend, below of=S12, yshift=-2em]{\textbf{Validacion Cinematica y Dinamica}};
-        \node (S14) [process_final, right of=S13, xshift=20em,]{\textbf{Comparar Torques $\tau_{i=1,2,3}$}};
-        
+        \node (S4) [process, below of=S3, yshift=-1.9em]{Guardar trayectoria  $XYZ$, $\theta_{i=1,2,3}$ \\ y la escala de tiempos $s(t)$ en archivo .txt};
+        \node (S5) [process, below of=S4, yshift=-1.9em]{Calcular la velocidad angular  $\dot{\theta}_{i=1,2,3}$ y aceleración angular  $\ddot{\theta}_{i=1,2,3}$ de los actuadores};
+        \node (S6) [process, below of=S5, yshift=-1.9em,]{Calcular torque de los motores  $\tau_{i=1,2,3}$ a partir de los datos adquiridos en los pasos anteriores.};
+        \node (S7) [process, below of=S6, yshift=-1.9em,]{Guardar torque $\tau_{i=1,2,3}$ en archivo .txt};
+        \node (S8) [startend1, below of=S7, yshift=-1.9em]{ADAMS};
+        \node (S9) [process, below of=S8, yshift=-1.9em]{Importación de la trayectoria $\theta_{i=1,2,3}$, $XYZ$ y la escala de tiempo $s(t)$ desde ROS};
+        \node (S10) [process, below of=S9, yshift=-1.9em,]{Dibujar $XYZ$ en el espacio de simulacion de ADAMS};
+        \node (S11) [process, below of=S10, yshift=-1.9em,]{Insertar trayectoria $\theta_{i=1,2,3}$ y escala de tiempo $s(t)$ a los motores o juntas creadas en ADAMS};    
+        \node (S12) [process, below of=S11, yshift=-1.9em,]{Guardar Torque $\tau_{i=1,2,3}$ en archivo .txt};
+        \node [startend, below of=S12, yshift=-1.9em](S13){Validación \\ Cinemática y Dinámica};
+        \node (S14) [process_final, right of=S13, xshift=18em,]{Comparar Torques $\tau_{i=1,2,3}$\\Metodo A\\Metodo B\\ADAMS};
         \draw [line] (S) -- (S1);
         \draw [line] (S1) -- (S2);
         \draw [line] (S2) -- (S3);
@@ -81,8 +80,8 @@
         \draw [line] (S11) -- (S12);
         \draw [line] (S12) -- (S13);
         \draw [line] (S13) -- (S14);
-        \draw [line] (S7) -| (S14);
-        \draw [line] (S12) -| (S14);
+        \draw [line,dotted] (S7) -| (S14);
+        \draw [line,dotted] (S12) -| (S14);
         \end{tikzpicture}
     \caption{Caption}
     \label{fig:cap6_intro_2}
