@@ -71,7 +71,7 @@ Los pasos del diagrama de flujo son los siguientes:
 
     
 \section{Partes mecánicas}
-    Con el fin de describir el robot delta, en esta sección se presenta un resumen del capítulo 2 de la tesis doctoral del ingeniero mecánico Reymond Clavel, el creador de este mecanismo, realizada en École Polytechnique Fédérale de Lausanne [referencia tanto]. 
+    Con el fin de describir el robot delta, en esta sección se presenta un resumen del capítulo 2 de la tesis doctoral del ingeniero mecánico Reymond Clavel, el creador de este mecanismo, realizada en École Polytechnique Fédérale de Lausanne \cite{Clavel:31403}. 
 
     
     \subsection{Investigación}
@@ -91,7 +91,7 @@ Los pasos del diagrama de flujo son los siguientes:
     \newpage
     
     \subsection{Elección del concepto ``Delta``}
-    El catálogo de soluciones del anexo A2.2 de la tesis doctoral [tanto] presenta 18 tipos de soluciones principales que permiten mantener constantes 2 orientaciones de un sólido. La figura 2.3 muestra las soluciones más interesantes para el objetivo previsto. Entre estas 18 soluciones, Reymond conserva aquellas que tienen las siguientes particularidades:
+    El catálogo de soluciones del anexo A2.2 de la tesis doctoral \cite{Clavel:31403} presenta 18 tipos de soluciones principales que permiten mantener constantes 2 orientaciones de un sólido. La figura \ref{f:Cap3-3_soluciones_interesantes_catalogo} muestra las soluciones más interesantes para el objetivo previsto. Entre estas 18 soluciones, Reymond conserva aquellas que tienen las siguientes particularidades:
 
      \begin{figure}[htb]
         \centering
@@ -116,7 +116,7 @@ Los pasos del diagrama de flujo son los siguientes:
         \newpage
     
     \subsection{Descripción del concepto ``Delta'' y sus componentes}
-    La figura \ref{f:Cap3-3_esquema_principal_robot_delta} sirve de apoyo para la descripción del robot DELTA y su funcionamiento. Este es un robot con cuatro grados de libertad. Se compone principalmente de una ``base fija'' (1) integrada a un marco de soporte de la instalación y una placa móvil (5); el nombre que se le da a esta última pieza es ``góndola'' (nacelle en frances). La conexión entre la base fija (1) y la góndola (5) se realiza mediante tres cadenas cinemáticas, cada una de ellas está formado por un ``brazo'' (2) montado en una articulación pivotante sobre la base fija y 2 ``barras paralelas'' (3) provistas cada una de una articulación (4) en cada extremo. El conjunto anterior que forma 2 barras paralelas y 2 elementos de conexión al brazo y a la góndola, se denomina ``paralelogramo''. Cada brazo (2) es impulsado por un ``motor de brazo'' (7) que, con mayor frecuencia, adopta la forma de un conjunto de motor reductor de sensor. La ``Pinza'' (10) del motor (6), a través del ``eje telescópico'' (8) provisto de una articulación tipo cardan (9) tiene oculto uno de sus extremos.
+    La figura \ref{f:Cap3-3_esquema_principal_robot_delta} sirve de apoyo para la descripción del robot Delta y su funcionamiento. Este es un robot con cuatro grados de libertad. Se compone principalmente de una ``base fija'' (1) integrada a un marco de soporte de la instalación y una placa móvil (5); el nombre que se le da a esta última pieza es ``góndola'' (nacelle en frances). La conexión entre la base fija (1) y la góndola (5) se realiza mediante tres cadenas cinemáticas, cada una de ellas está formado por un ``brazo'' (2) montado en una articulación pivotante sobre la base fija y 2 ``barras paralelas'' (3) provistas cada una de una articulación (4) en cada extremo. El conjunto anterior que forma 2 barras paralelas y 2 elementos de conexión al brazo y a la góndola, se denomina ``paralelogramo''. Cada brazo (2) es impulsado por un ``motor de brazo'' (7) que, con mayor frecuencia, adopta la forma de un conjunto de motor reductor de sensor. La ``Pinza'' (10) del motor (6), a través del ``eje telescópico'' (8) provisto de una articulación tipo cardan (9) tiene oculto uno de sus extremos.
 
     \vspace{-1em}
 
@@ -317,7 +317,7 @@ Los pasos del diagrama de flujo son los siguientes:
     
         \subsubsection{Metricas de la comunidad ROS}
     
-    Miden aspectos de la comunidad ROS para comprender y rastrear el impacto de su trabajo e identificar áreas de mejora. Se inspiran en las métricas del Proyecto MeeGo .
+    Ros Metrics miden aspectos de la comunidad ROS para comprender y rastrear el impacto de su trabajo e identificar áreas de mejora. Se inspiran en las métricas del Proyecto MeeGo .
     
         \begin{figure}[htb]
             \centering
@@ -326,7 +326,7 @@ Los pasos del diagrama de flujo son los siguientes:
             \label{f:Cap3-5_estadisticas_3}
         \end{figure}  
         
-        Se presentan a continuación ilustraciones con estadísticas recolectadas de la pagina https://metrics.ros.org/ para el año 2020:
+        Las figuras \ref{f:Cap3-5_estadisticas_4}, \ref{f:Cap3-5_estadisticas_5}, \ref{f:Cap3-5_estadisticas_6} y \ref{f:Cap3-5_estadisticas_7}  presentan estadísticas recolectadas de la pagina oficial de ROS Metrics para el año 2020. Según el reporte de agosto del 2020, los países que más han visitado ROS según Google Analytics son: China, EEUU, Japón y Alemania.
         
         \begin{figure}[htb]
             \centering
@@ -334,8 +334,6 @@ Los pasos del diagrama de flujo son los siguientes:
             \caption{}
             \label{f:Cap3-5_estadisticas_4}
         \end{figure}  
-        
-        Según el reporte de agosto del 2020 los países que más han visitado ROS según Google Analytics son: China, EEUU, Japón y Alemania:
         
         \begin{figure}[htb]
             \centering
@@ -349,7 +347,7 @@ Los pasos del diagrama de flujo son los siguientes:
 
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=0.5\linewidth]{Main/Chapter3/Images3/cap3_estadisticas_5.png}
+            \includegraphics[width=0.95\linewidth]{Main/Chapter3/Images3/cap3_estadisticas_5.png}
             \caption{}
             \label{f:Cap3-5_estadisticas_6}
         \end{figure}  
@@ -357,7 +355,7 @@ Los pasos del diagrama de flujo son los siguientes:
 
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=0.5\linewidth]{Main/Chapter3/Images3/cap3_estadisticas_6.png}
+            \includegraphics[width=0.92\linewidth]{Main/Chapter3/Images3/cap3_estadisticas_6.png}
             \caption{}
             \label{f:Cap3-5_estadisticas_7}
         \end{figure}  
@@ -370,16 +368,16 @@ Los pasos del diagrama de flujo son los siguientes:
     
             \begin{figure}[htb]
             \centering
-            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/}
+            \includegraphics[width=0.2\linewidth]{Main/Chapter3/Images3/repo_git_1.png}
             \caption{}
             \label{f:Cap3-5_estadisticas_8}
             \end{figure} 
         
-            Dirk Thomas trabajo en ROS durante casi 9 años y envio 15 distribuciones de ROS. Uno del repositorio que subió a GitHub registra el total de autores, commits y repositorios en Github con relación a ROS hasta octubre del 2020. (https://github.com/dirk-thomas/rosworld2020_ros-contributions)
+            Dirk Thomas trabajo en ROS durante casi 9 años y envio 15 distribuciones de ROS. Uno del repositorio que subió a GitHub registra el total de autores, commits y repositorios en Github con relación a ROS hasta octubre del 2020. (https:\/\/github.com\/dirk-thomas\/rosworld2020\_ros-contributions)
         
             \begin{figure}[htb]
             \centering
-            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/}
+            \includegraphics[width=0.93\linewidth]{Main/Chapter3/Images3/repo_git_2.png}
             \caption{}
             \label{f:Cap3-5_estadisticas_9}
             \end{figure} 
@@ -387,31 +385,318 @@ Los pasos del diagrama de flujo son los siguientes:
         \newpage
 
     \subsection{Versiones}
-            En 2007, Willow Garage logró la investigación del marco de software de robot que comenzó con Switchyard en el laboratorio de inteligencia artificial de la Universidad de Stanford y continuó el desarrollo bajo el nombre de Robot Operating System (ROS). Con la sexta versión de lanzamiento oficial "ROS Groovy Galápagos", Willow Garage intentó penetrar en el mercado de robots de servicios comerciales en 2013, pero terminó dividiéndose en varias empresas emergentes y finalmente se entregó a la Open Source Robotics Foundation (OSRF). Desde entonces, se lanzaron cuatro versiones más y, a partir de mayo de 2017, OSRF cambió su nombre a Open Robotics y ha estado desarrollando, operando y administrando ROS. Más recientemente, la undécima versión de ROS, ROS Lunar Loggerhead, fue lanzada el 23 de mayo de 2017. ROS etiqueta la primera letra de cada nombre de lanzamiento en orden alfabético y usa una tortuga como su símbolo (ver Figura 2-7).
+            En 2007, Willow Garage logró la investigación del marco de software de robot que comenzó con Switchyard en el laboratorio de inteligencia artificial de la Universidad de Stanford y continuó el desarrollo bajo el nombre de Robot Operating System (ROS). Con la sexta versión de lanzamiento oficial "ROS Groovy Galápagos", Willow Garage intentó penetrar en el mercado de robots de servicios comerciales en 2013, pero terminó dividiéndose en varias empresas emergentes y finalmente se entregó a la Open Source Robotics Foundation (OSRF). Desde entonces, se lanzaron cuatro versiones más y, a partir de mayo de 2017, OSRF cambió su nombre a Open Robotics y ha estado desarrollando, operando y administrando ROS. Más recientemente, la undécima versión de ROS, ROS Lunar Loggerhead, fue lanzada el 23 de mayo de 2017. ROS etiqueta la primera letra de cada nombre de lanzamiento en orden alfabético y usa una tortuga como su símbolo (ver figura \ref{f:Cap3-5_estadisticas_10}).
             
             \begin{figure}[htb]
             \centering
-            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/}
+            \includegraphics[width=0.94\linewidth]{Main/Chapter3/Images3/ver_ros_1.png}
             \caption{}
             \label{f:Cap3-5_estadisticas_10}
             \end{figure} 
     
             \begin{figure}[htb]
             \centering
-            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/}
+            \includegraphics[width=0.94\linewidth]{Main/Chapter3/Images3/ver_ros_2.png}
             \caption{}
             \label{f:Cap3-5_estadisticas_11}
             \end{figure} 
     
     \newpage
     
-    \subsection{Conceptos Principales}
+    \subsection{Conceptos principales}
+            
+            Hay tres niveles de conceptos en ROS. El primero se refiere a cómo diferentes archivos están organizados en la computadora, herramientas ROS para administrar código fuente, instrucciones de compilación y definiciones de mensajes (nivel de sistema de archivos). El segundo son los componentes de la red peer to peer de nodos ROS, es decir, los procesos. (nivel de gráfico computacional). Por último, el nivel 3 es en relación a cómo los usuarios comparten software para permitir que todos lo utilicen (nivel de comunidad).
+            
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=0.5\linewidth]{Main/Chapter3/Images3/nivel_s_a_1.png}
+                \caption{}
+                \label{f:Cap3_conceptos_1}
+            \end{figure} 
+            
+            \subsubsection{Nivel de sistemas de archivos}
+                Similar a un sistema operativo, los archivos de ROS también se organizan en el disco duro de una manera particular. En este nivel, podemos ver cómo se organizan estos archivos en el disco. La figura \ref{f:Cap3_conceptos_2} muestra cómo se organizan los archivos y carpetas ROS en el disco:
+                
+                
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=0.6\linewidth]{Main/Chapter3/Images3/n_s_a_2.png}
+                \caption{}
+                \label{f:Cap3_conceptos_2}
+            \end{figure} 
+                
+                
+               \newpage
 
+            Aquí están las explicaciones de cada bloque en el sistema de archivos:
+            \begin{itemize}
+                \item {\textbf{Meta packages:} Es un único paquete lógico compuesto por muchos paquetes en su interior. Además, los meta paquetes contienen un archivo package.xml que describe la carpeta y sus dependencias.}
+                \item {\textbf{Packages:} Son las unidades más bajas y la principal para organizar el software en ROS. Un paquete puede contener procesos en tiempo de ejecución ROS (nodos), un Biblioteca dependiente de ROS, conjuntos de datos, archivos de configuración o achivos de lanzamiento. Cada directorio de paquete debe incluir un archivo CMakeList.txt y package.xml que describa el contenido del paquete y cómo catkin debe interactuar con él.}
+                \item {\textbf{Stacks:} Son grupos de paquetes que se combinan para realizar funcionalidades de alto nivel.}
+                \item {\textbf{Manifests:} Los manifiestos proporcionan metadatos sobre un paquete. Pueden pertenecer a un packages o una Stacks y describen información general sobre un paquete o Stacks específico, como una breve descripción de lo que hace, el nombre del autor, su tipo de licencia y las dependencias.con otros paquetes. Estas dependencias son importantes porque generalmente los paquetes dependen de otros paquetes y deben estar instalados para que funcionen perfectamente.}
+                \item {\textbf{Message (msg) types:} Las descripciones de los mensajes definen los datos estructuras para mensajes enviados en ROS}
+                \item {\textbf{Service (srv) types:} Las descripciones de servicio definen la solicitud y estructuras de datos de respuesta para servicios en ROS.}
+            \end{itemize}
+            
+            ROS está basado en CMake y puede ser utilizado por muchos sistemas operativos como Ubuntu o Windows. Catkin es el sistema de compilación de ROS que genera programas ejecutables, bibliotecas e interfaces y proporciona el concepto de espacio de trabajo en la construcción de cada proyecto. Este espacio de trabajo está compuesto por:
+            
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=0.75\linewidth]{Main/Chapter3/Images3/n_s_a_3.png}
+                \caption{}
+                \label{f:Cap3_conceptos_3}
+            \end{figure} 
+            
+               \newpage
+
+            \begin{itemize}
+                \item {\textbf{Espacio fuente (src):} Contiene el código fuente donde el usuario puede extraer, verificar o clonar el código fuente de los paquetes que quiere construir.}
+                \item {\textbf{Espacio de construcción (build):} Este es el espacio donde CMake apela para construir los paquetes en el espacio de trabajo de catkin. CMake y Catkin mantienen su información de caché y otros intermedios archivos.}
+                \item {\textbf{Espacio de desarrollo (devel):} Se encuentran archivos de objetos generados (incluidos archivos de encabezado, bibliotecas de vínculos dinámicos, bibliotecas de vínculos estáticos, archivos ejecutables, etc.), variables de entorno}
+            \end{itemize}
+
+            Cuando se crea un paquete, normalmente es común encontrar las carpetas de la figura \ref{f:Cap3_conceptos_4} dentro de el:
+            
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/n_s_a_4.png}
+                \caption{}
+                \label{f:Cap3_conceptos_4}
+            \end{figure} 
+
+            \begin{itemize}
+                \item {\textbf{/include/:} Esta carpeta contiene los encabezados (*.h) y las bibliotecas (*.lib, *.so).}
+                \item {\textbf{/config/:} Todas las configuraciones se almacenan en esta carpeta incluidos los parámetros definidos, como controlador de robot con una extensión (*.yaml).}
+                \item {\textbf{/launch/:} Contiene los archivos (*.launch) para ejecutar los nodos seleccionados del paquete o de otros paquetes usando el comando <incluir/>.}
+                \item {\textbf{/msg/:} Contiene el tipo de datos del mensaje para nuestra aplicación (*.msg).}
+                \item {\textbf{/srv/:} Esta carpeta contiene el tipo de mensaje para los servicios (*.srv).}
+                \item {\textbf{/actions/:} Contiene el tipo de datos del mensaje utilizado en las acciones (*.action). }
+                \item {\textbf{/src/:} Todo el código que se va a computar en el paquete debe estar dentro de esta carpeta con extensión (*.cpp).}
+                \item {\textbf{package.xml:} Descripción del paquete y lista de dependencias utilizadas por el.}
+                \item {\textbf{CmakeLists.txt:} Lista de requisitos y dependencias que debe compilar el ejecutador del paquete.}
+            \end{itemize}
+
+
+            \subsubsection{Nivel gráfico computacional}
+            
+            El nivel gráfico computacional describe la infraestructura que utilizan los componentes ROS para comunicarse. Se basa en una red de procesos peer-to-peer (nodos) y se compone de varias unidades tales como las de la figura \ref{f:Cap3_conceptos_5}:
+            
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=0.5\linewidth]{Main/Chapter3/Images3/n_s_a_5.png}
+                \caption{}
+                \label{f:Cap3_conceptos_5}
+            \end{figure} 
+            
+            \paragraph{Nodes (Nodos)}
+                   Son ejecutables en el sistema ROS y realizan la parte computacional. Se pueden conectar a otros nodos mediante 2 tipos de comunicación: Publisher/Subscriber o Services. Cada nodo tiene su propio nombre para ser reconocido y distinguido de los demás nodos. En ROS existen muchos lenguajes para programar un nodo como C ++, Python o Java. 
+                   
+            \paragraph{Ros Master}
+                    Ros Master habilita el funcionamiento de la red ROS y es el primer proceso que debe ejecutarse cuando estamos usando ROS. Su función es registrar todos los nodos que se ejecutan y los temas y servicios existentes. Esto es esencial para interconectar nodos y monitorear todas las unidades en el sistema
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=0.5\linewidth]{Main/Chapter3/Images3/n_s_a_6.png}
+                \caption{}
+                \label{f:Cap3_conceptos_6}
+            \end{figure} 
+            
+            
+               \newpage
+
+
+            \paragraph{Topics (Temas)}
+                Los nodos comparten información pasando y recibiendo mensajes. Estos mensajes se publican con un nombre especial llamado tema. Por lo tanto, los nodos pueden publicar o suscribirse a un tema específico para obtener los mensajes deseados. Muchos nodos se pueden suscribir al mismo tema para recibir los mensajes que necesitan. Las comunicaciones entre nodos se realizan de forma unidireccional, por lo que cualquier nodo que envíe la información sobre un tema no puede recibir respuesta en el mismo canal, ni saber si el nodo receptor ha recibido el mensaje.
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=0.7\linewidth]{Main/Chapter3/Images3/n_s_a_7.png}
+                \caption{}
+                \label{f:Cap3_conceptos_7}
+            \end{figure} 
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=0.75\linewidth]{Main/Chapter3/Images3/n_s_a_8.png}
+                \caption{}
+                \label{f:Cap3_conceptos_8}
+            \end{figure} 
+
+
+               \newpage
+
+
+            \paragraph{Services (Servicios)}
+                 Aunque el principal método de comunicación entre nodos es a través de temas, ya que explicado anteriormente, existe otra metodología en ROS llamada llamadas de servicio. Las llamadas de servicio ROS son diferentes de mensajes debido a las siguientes características: son bidireccionales y uno a uno. 
+                Este proceso síncrono de comunicación se basa en un sistema cliente / servidor o solicitud / respuesta., donde un nodo cliente envía algunos datos llamados solicitud a un nodo servidor y espera hasta que el servidor pueda responder. Los servidor, habiendo recibido esta solicitud, toma alguna acción  y enviar algunos datos llamados respuesta al nodo cliente
+                La descripción del servicio se almacena en un archivo de definición de servicio * .msg, guardado en un subdirectorio / srv. 
+
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/n_s_a_9.png}
+                \caption{}
+                \label{f:Cap3_conceptos_9}
+            \end{figure} 
+            
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/n_s_a_10.png}
+                \caption{}
+                \label{f:Cap3_conceptos_10}
+            \end{figure}             
+
+               \newpage
+
+            \paragraph{ Actions (Acciones)}
+                    Una acción es una comunicación bidireccional asíncrona entre los nodos activos basados en el cliente de la acción y el sistema del servidor de la acción que se muestra en la figura 2.13. El sistema de acción, como los servicios explicados anteriormente, envía algo del cliente de acción de datos al servidor de acción llamado objetivo y el servidor de acción responde un resultado. Las acciones se diferencian de los servicios porque el servidor puede proporcionar retroalimentación y estado al cliente en cualquier momento sobre el proceso que se está realizando y el nodo cliente puede cancelar el objetivo anterior requerido para el servidor en cualquier momento también.
+                    Al igual que en las llamadas de servicio ROS, las acciones deben definir pocos mensajes para comunicar al cliente con el servidor. Esto es posible gracias a las especificaciones de acciones, que definen estos mensajes en un archivo de acción con extensión *.action. Estos archivos generalmente se almacenan en una subcarpeta /action/ en el directorio del paquete.
+                    El archivo * .action se divide en 3 secciones. Cada parte está separada por 3 guiones (---). En la primera parte se define el objetivo, en la segunda se establece la retroalimentación y en la última se especifica la definición del resultado
+
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/n_s_a_11.png}
+                \caption{}
+                \label{f:Cap3_conceptos_11}
+            \end{figure}             
+
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/n_s_a_12.png}
+                \caption{}
+                \label{f:Cap3_conceptos_12}
+            \end{figure}   
+
+               \newpage
+
+            \paragraph{Messages (Mensajes)}
+                Un mensaje es simplemente una estructura de datos, que comprende campos escritos. Tipos primitivos estándar (entero, punto flotante, booleano, etc.) son compatibles (figura \ref{f:Cap3_conceptos_13}). En muchos paquetes utilizados en ROS se incluyen mensajes especiales llamados 'encabezado', que son básicamente mensajes creados por otros. Hay tres campos definidos en un mensaje de encabezado: 
+                
+                \begin{itemize}
+                    \item {\textbf{uint32 seq:} Corresponde al número del mensaje enviado por un editor determinado}
+                    \item {\textbf{time stamp: } La hora exacta a la que se envió el mensaje}
+                    \item {\textbf{string frame\_id:} Muestra el sistema de referencia utilizado}
+                \end{itemize}
+
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/n_s_a_13.png}
+                \caption{}
+                \label{f:Cap3_conceptos_13}
+            \end{figure}   
+
+            \paragraph{ Parameter Server (Servidor de parámetros)}
+                 El servidor de parámetros permite que los datos se almacenen por clave en una ubicación. Actualmente forma parte del Máster.Básicamente es un almacén de constantes.
+
+               
+            \paragraph{Bags (Bolsas)}
+            Las bolsas son un formato para guardar y reproducir datos de mensajes ROS. Las bolsas son un mecanismo importante para almacenar datos, como los datos de los sensores, que pueden ser difíciles de recopilar, pero son necesarios para desarrollar y probar algoritmos
+               \newpage
+               
+            \paragraph{Esquema resumen de nivel gráfico}
+                El sistema ROS permite que diferentes nodos se comuniquen entre sí, intercambiando información y datos. Sin embargo, todo el sistema necesita un ROS Master en ejecución para notar la existencia de otros nodos y comenzar a comunicarse entre sí. El ROS Master permite que los nodos ROS individuales se ubiquen entre sí en el sistema y rastrea a los editores y suscriptores a temas y servicios. Un nodo es generalmente un pequeño programa escrito en Python o C ++ que ejecuta alguna tarea o proceso relativamente simple. Los nodos se pueden iniciar y detener de forma independiente entre sí y se comunican pasando mensajes. Un nodo puede publicar mensajes sobre determinados temas, proporcionar servicios o acciones entre otros nodos. 
+                
+                
+                
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/n_s_a_14.png}
+                \caption{}
+                \label{f:Cap3_conceptos_14}
+            \end{figure}   
+
+               \newpage
+               
+            \subsubsection{Nivel de comunidad}
+            
+            El ecosistema ROS ahora consta de decenas de miles de usuarios en todo el mundo, que trabajan en dominios que van desde proyectos de pasatiempos de mesa hasta grandes sistemas de automatización industrial. 
+            Una característica importante de ROS es la comunidad que comparte software y código, lo que convierte a ROS en una de las comunidades de robots más grandes. Hay diferentes formas de obtener recursos ROS:
+
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=0.9\linewidth]{Main/Chapter3/Images3/n_s_a_15.png}
+                \caption{}
+                \label{f:Cap3_conceptos_15}
+            \end{figure}        
+            
+            \begin{itemize}
+                \item {\textbf{Distribuciones:} las distribuciones ROS son colecciones de stacks versionadas que puede instalar. Las distribuciones juegan un papel similar a las distribuciones de Linux: facilitan la instalación de una colección de software y también mantienen versiones consistentes en un conjunto de software. (http://wiki.ros.org/Distributions)}
+                \item {\textbf{Repositorios:} ROS se basa en una red federada de repositorios de código, donde diferentes instituciones pueden desarrollar y lanzar sus propios componentes de software de robot. }
+                \item {\textbf{El ROS Wiki:} La Wiki de la comunidad de ROS es el foro principal para documentar información sobre ROS. Cualquiera puede registrarse para obtener una cuenta y contribuir con su propia documentación, proporcionar correcciones o actualizaciones, escribir tutoriales y más. (http://wiki.ros.org/) }
+                \item {\textbf{Mailing Lists:} : Listas de correo de usuarios ROS}
+                \item {\textbf{Answers:} Página web donde los usuarios comparten preguntas, respuestas y comentarios. (https://answers.ros.org/) }
+                \item {\textbf{Blog ROS:} Noticias de la comunidad ROS. (www.ros.org/news/)  }
+                \item {\textbf{ROS Discourse:} es el foro de discusión de la comunidad (https://discourse.ros.org/). No es para cuestiones técnicas específicas, sino para temas, anuncios y noticias más amplio.}
+            \end{itemize}
+            
+            
+            
+            
+               \newpage
+               
     \newpage
 
     \subsection{Herramientas}
-
+    
+        Existen varias herramientas que pueden ayudarnos a la hora de usar ROS. Debemos tener en cuenta estas herramientas GUI como complementarias a las herramientas de línea de comandos. Hay una gran cantidad de herramientas ROS, incluidas las herramientas que los usuarios de ROS también han lanzado personalmente. Entre estas herramientas, las que discutiremos en este capítulo no procesan directamente una función en el ROS, pero son herramientas complementarias muy útiles para programar con ROS.
+            
+        \subsubsection{Launch Files}
+            En un proyecto ROS, es posible que desee ejecutar varios nodos ROS al mismo tiempo para realizar sistemas más complejos. ROS tiene una herramienta llamada roslaunch que permite a los usuarios ejecutar numerosos nodos, establecer parámetros de configuración de cada nodo, renombrar los nombres de temas predeterminados e incluso cambiar el nombre del nodo. El propósito de esto es configurar fácilmente el sistema global.
+            
+        \subsubsection{RQT Graph}
+            Proporciona visualización de un sistema ROS, mostrando los nodos y las conexiones entre ellos que permite depurar y comprender el sistema en ejecución y cómo está estructurado. La herramienta rqt también permite controlar los valores de las articulaciones del robot. 
+            
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/herramientas_1.png}
+                \caption{}
+                \label{f:Cap3_herramientas_1}
+            \end{figure}       
+            
+            
     \newpage    
+    
+            \subsubsection{RQT Rosbag}
+                Rosbag es un conjunto de herramientas para grabar y reproducir datos de temas ROS. Los datos se almacenan en archivos de bag y hay disponibles herramientas de línea de comandos para trabajar con bag. Rosbag evita la deserialización y reserialización de mensajes y sus principales herramientas son:
+                
+                    \begin{itemize}
+                        \item{\textbf{rosbag info:} Muestra el contenido de los archivos de la bolsa, como temas grabados, hora de inicio y finalización, número de mensajes, frecuencia y estadísticas de compresión} 
+                        \item{\textbf{rosbag record:} Escribe el contenido de todos los mensajes publicados sobre esos temas que queremos registrar y la información se almacena en un archivo .bag.} 
+                        \item{\textbf{rosbag play: } Lee un archivo de bolsa y publica la información sobre temas ROS de forma sincronizada en el tiempo. El sistema ROS puede utilizar esta información como si fuera en tiempo real.} 
+                    \end{itemize}
+
+            \subsubsection{RQT reconfigure}
+Adaptación del paquete “Dynamic reconfigure” que permite modificar en tiempo real todos los parámetros de los nodos, para realizar modificaciones rapidas. La configuración de los parámetros se puede exportar para utilizar en el futuro.
+
+            \subsubsection{MoveIt }
+ Software basado en la planificación del movimiento, que considera prospección 3D, cinemática, control y navegación. Proporciona una plataforma para el desarrollo de aplicaciones robóticas, evalúa nuevos diseños de robots y productos para la construcción robótica integrado para aplicaciones industriales, I + D, etc.
+ 
+             \begin{figure}[htb]
+                \centering
+                \includegraphics[width=0.7\linewidth]{Main/Chapter3/Images3/herramientas_2.png}
+                \caption{}
+                \label{f:Cap3_herramientas_2}
+            \end{figure}     
+            
+        \newpage    
+
+            \subsubsection{Gazebo}
+     Es un simulador virtual que brinda la posibilidad de realizar simulaciones de algoritmos, diseños de robots y ejecutar pruebas dentro de escenarios reales con precisión y eficiencia. Proporciona un motor de física robusto, gráficos de alta calidad e interfaces gráficas. 
+        
+        \begin{figure}[htb]
+                \centering
+                \includegraphics[width=0.35\linewidth]{Main/Chapter3/Images3/herramientas_4.png}
+                \caption{}
+                \label{f:Cap3_herramientas_4}
+        \end{figure} 
+    
+        
+        \begin{figure}[htb]
+                \centering
+                \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/herramientas_3.png}
+                \caption{}
+                \label{f:Cap3_herramientas_3}
+        \end{figure}  
+
+    
+        \newpage    
+
 
 
 \section{Visualización}
@@ -431,10 +716,12 @@ Los pasos del diagrama de flujo son los siguientes:
         
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/3-6/interfaz-rviz.png}
+            \includegraphics[width=0.7\linewidth]{Main/Chapter3/Images3/3-6/interfaz-rviz.png}
             \caption{Interfaz principal de Rviz}
             \label{f:Cap3-6_interfaz_rviz}
         \end{figure}
+        
+        \newpage
     
     \subsection{Interfaz de visualización gráfica ROS visualization (Rviz)}
     
@@ -444,7 +731,7 @@ Los pasos del diagrama de flujo son los siguientes:
         
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/3-6/ejemplo-multiples-frames-rviz.png}
+            \includegraphics[width=0.5\linewidth]{Main/Chapter3/Images3/3-6/ejemplo-multiples-frames-rviz.png}
             \caption{Múltiples ``frames'' en Rviz}
             \label{f:Cap3-6_frames_rviz}
         \end{figure}
@@ -453,16 +740,19 @@ Los pasos del diagrama de flujo son los siguientes:
       
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/3-6/estructura-arbol-tf.png}
+            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/3-6/estructura-arbol-tf.png}
             \caption{nose}
             \label{f:Cap3-6_nose1}
         \end{figure}    
         
-        Esta biblioteca tiene dos módulos estándar, broadcaster y listener. Estos módulos están diseñados para integrarse con el ecosistema ROS, pero generalmente son útiles fuera de ROS [20]. El broadcaster envía actualizaciones periódicamente de la pose de los fotogramas de coordenadas al resto del sistema. El sistema es capaz de tener muchos broadcaster que proporcionan información sobre una parte diferente del robot [19] [21]. El listener recopila los valores recibidos y almacena en búfer todos los fotogramas de coordenadas que se emiten en el sistema y consulta las transformaciones específicas entre fotogramas [21].
+                \newpage
+
+        
+        Esta biblioteca tiene dos módulos estándar, broadcaster y listener. Estos módulos están diseñados para integrarse con el ecosistema ROS, pero generalmente son útiles fuera de ROS. El broadcaster envía actualizaciones periódicamente de la pose de los fotogramas de coordenadas al resto del sistema. El sistema es capaz de tener muchos broadcaster que proporcionan información sobre una parte diferente del robot. El listener recopila los valores recibidos y almacena en búfer todos los fotogramas de coordenadas que se emiten en el sistema y consulta las transformaciones específicas entre fotogramas.
 
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/3-6/esquema-funcionamiento-tf.png}
+            \includegraphics[width=0.45\linewidth]{Main/Chapter3/Images3/3-6/esquema-funcionamiento-tf.png}
             \caption{Ecosistema de la biblioteca TF}
             \label{f:Cap3-6_ecosistema_tf}
         \end{figure}   
@@ -470,19 +760,22 @@ Los pasos del diagrama de flujo son los siguientes:
         Además, TF ofrece una serie de herramientas o aplicaciones que facilitan al usuario la visualización del estado de las transformadas como:
         
         \begin{itemize}
-            \item \textbf{tf\_monitor:} Imrpime la información sobre el árbol de transformación actual.
+            \item \textbf{tf\_monitor:} Imprime la información sobre el árbol de transformación actual.
             \item \textbf{tf\_echo:} Imprime información sobre la transformación entre dos fotogramas.
             \item \textbf{tf\_tree:} Crea un gráfico visual del árbol de transformación (en formato pdf).
         \end{itemize}
         
-        En la Figura \ref{f:Cap3-6_sistema_arbol_tf} se muestra un árbol de transformada haciendo uso de la herramienta rqt\_tf\_tree. En él se puede observar los distintos frames del sistema y sus relaciones
+        En la figura \ref{f:Cap3-6_sistema_arbol_tf} se muestra un árbol de transformada haciendo uso de la herramienta rqt\_tf\_tree. En él se puede observar los distintos frames del sistema y sus relaciones
         
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/3-6/ejemplo-frames-sistema-arbol.png}
+            \includegraphics[width=0.75\linewidth]{Main/Chapter3/Images3/3-6/ejemplo-frames-sistema-arbol.png}
             \caption{Frames de un sistema visualizado mediante tf\_tree}
             \label{f:Cap3-6_sistema_arbol_tf}
         \end{figure} 
+        
+                        \newpage
+
         
         \begin{figure}[htb]
             \centering
@@ -507,7 +800,8 @@ Los pasos del diagrama de flujo son los siguientes:
             \item Es implementado como modelo de publisher/subscriber en los temas con nombres /tf y /tf\_statics
         \end{itemize}
         
-        
+                        \newpage
+
     \subsection{Unified Robot Description Format (URDF)}\label{cap2_urfdf}
     
         \subsubsection{Introducción URDF}
@@ -516,7 +810,7 @@ Los pasos del diagrama de flujo son los siguientes:
         
         Los archivos URDF están basados en XML y como tal, están compuestos por etiquetas de XML especiales que pueden ser leídas para extracción de información. A la lectura del archivo para extraer la información importante del modelo se denomina parsing y al programa o función que lo realiza, parser.
         
-        La descripción del modelo consiste básicamente en de unir dos conjuntos: el conjunto de enlaces (link) y el conjunto de uniones (Joint). La forma de construir y visualizar un modelo de robot en URDF es escribir y compilar el archivo URDF. Una vez que se crea la representación 3D de un robot mediante el uso de un archivo URDF, es posible utilizar dicha representación para simular el movimiento del robot. Para ello, el usuario debe publicar las condiciones del robot en TF, utilizando un nodo (o nodos) para publicar la información de transformación [22].
+        La descripción del modelo consiste básicamente en de unir dos conjuntos: el conjunto de enlaces (link) y el conjunto de uniones (Joint). La forma de construir y visualizar un modelo de robot en URDF es escribir y compilar el archivo URDF. Una vez que se crea la representación 3D de un robot mediante el uso de un archivo URDF, es posible utilizar dicha representación para simular el movimiento del robot. Para ello, el usuario debe publicar las condiciones del robot en TF, utilizando un nodo (o nodos) para publicar la información de transformación.
         
         \begin{figure}[htb]
             \centering
@@ -525,13 +819,16 @@ Los pasos del diagrama de flujo son los siguientes:
             \label{f:Cap3-7_eslabon_urdf}
         \end{figure} 
         
+                                \newpage
+
+        
         \subsubsection{Links}
         
         Los eslabones o enlaces (conjunto link) describen la parte física rígida del robot y permite especificar sus propiedades, como tamaño, forma, color o una malla 3D compleja importada. Consta de tres elementos:
     
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=0.5\linewidth]{Main/Chapter3/Images3/3-7/eslabon2.png}
+            \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/3-7/eslabon2.png}
             \caption{nose}
             \label{f:Cap3-7_noseee_urdf}
         \end{figure} 
@@ -544,10 +841,13 @@ Los pasos del diagrama de flujo son los siguientes:
         
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/3-7/codigo.png}
+            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/3-7/codigo.png}
             \caption{nose}
             \label{f:Cap3-7_nose_nose}
         \end{figure} 
+        
+                                \newpage
+
         
         \subsubsection{Joints}
         
@@ -571,9 +871,12 @@ Los pasos del diagrama de flujo son los siguientes:
             \item \textbf{Planar:} Articulación que permite el movimiento en un plano.
         \end{enumerate}
         
+                                        \newpage
+
+        
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/3-8/codigo-joint.png}
+            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/3-8/codigo-joint.png}
             \caption{nose}
             \label{f:Cap3-8_nose_nose}
         \end{figure} 
@@ -592,7 +895,8 @@ Los pasos del diagrama de flujo son los siguientes:
             \item \textbf{Safety controller:} es un elemento opcional. Específica para qué valores debe empezar a limitar la posición o la velocidad de una articulación en función de los límites establecidos en el tag <límit>.
         \end{enumerate}
         
-        
+                                                \newpage
+
     \subsection{Herramientas complementarias}
     
         Algunos paquetes y herramientas utiles para la interaccion con modelos URDF son los siguientes:
@@ -603,11 +907,11 @@ Los pasos del diagrama de flujo son los siguientes:
             \item \textbf{xacro:} Significa Xml mACROs y es un formato que permite utilizar variables y otros add-ons para la generación de modelos complejos en formato URDF. De esta forma los modelos pueden ser más fáciles de entender y más mantenibles.
         \end{itemize}      
         
-        La herramienta urdf\_to\_graphiz sirve para para obtener un diagrama graphviz de su archivo urdf, tal como se aprecia en la siguiente ilustración:
+        La herramienta urdf\_to\_graphiz sirve para para obtener un diagrama graphviz de su archivo urdf, tal como se aprecia en la figura \ref{f:Cap3-9_nose_nose}:
         
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=0.35\linewidth]{Main/Chapter3/Images3/3-9/Esquema-de-los-componentes-de-un-fichero-urdf.png}
+            \includegraphics[width=0.45\linewidth]{Main/Chapter3/Images3/3-9/Esquema-de-los-componentes-de-un-fichero-urdf.png}
             \caption{nose}
             \label{f:Cap3-9_nose_nose}
         \end{figure} 
