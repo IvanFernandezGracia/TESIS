@@ -70,7 +70,7 @@ Los pasos del diagrama de flujo son los siguientes:
     \newpage
 
     
-\section{Partes mecánicas (hay que repensar esto)}
+\section{Partes mecánicas}
     Con el fin de describir el robot delta, en esta sección se presenta un resumen del capítulo 2 de la tesis doctoral del ingeniero mecánico Reymond Clavel, el creador de este mecanismo, realizada en École Polytechnique Fédérale de Lausanne [referencia tanto]. 
 
     
@@ -154,17 +154,54 @@ Los pasos del diagrama de flujo son los siguientes:
         
         \begin{figure}[htbp]
             \centering
-            \subfigure{\includegraphics[width=40mm]{Main/Chapter3/Images3/3-4/entidade-asociadas-al-inicio-de-ros-1.png}}
-            \subfigure{\includegraphics[width=60mm]{Main/Chapter3/Images3/3-4/entidade-asociadas-al-inicio-de-ros-2.png}}
-            \subfigure{\includegraphics[width=40mm]{Main/Chapter3/Images3/3-4/entidade-asociadas-al-inicio-de-ros-3.png}}
+            \includegraphics[width=0.7\linewidth]{Main/Chapter3/Images3/3-4/entidade-asociadas-al-inicio-de-ros-3.png}
             \caption{Entidades asociadas al inicio de ROS} 
-            \label{f:Cap3-4_entidades_inicio_ros}
-        \end{figure}
+            \label{f:Cap3-4_entidades_inicio_ros_334}
+        \end{figure}        
+        
+        \newpage
         
         La mayoría de las compañías y laboratorios de investigación en robótica están ahora portando su software a ROS. Esta tendencia también es visible en robots industriales, donde compañías están paulatinamente migrando de aplicaciones propietarias a ROS. El movimiento llamado ROS Industrial se ha incrementado en estos últimos años y su objetivo, básicamente, consiste en extender las capacidades avanzadas de ROS a la automatización y la robótica industrial. Este proyecto comenzó como un intento de colaboración de Yaskawa Motoman Robotics, Southwest Research Institute (SwRI) y Willow Garage. En enero de 2012, Shaun Edwards de SwRI fundó un software repositorio, alojado en Github, donde la comunidad robótica puede encontrar interfaces para manipuladores industriales, pinzas, sensores y redes de dispositivos.
         
+        \begin{figure}[htbp]
+            \centering
+            \includegraphics[width=0.65\linewidth]{Main/Chapter3/Images3/3-4/entidade-asociadas-al-inicio-de-ros-2.png}
+            \caption{Entidades asociadas al inicio de ROS} 
+            \label{f:Cap3-4_entidades_inicio_ros_33364}
+        \end{figure}    
         
         Finalizando con la breve historia de ROS, se puede decir que se utiliza en estos momentos en todo el mundo en instituciones académicas, industriales y de investigación. Los desarrolladores han contribuido con miles de paquetes, incluidas soluciones de algunos de los principales expertos del mundo en áreas específicas. Las nuevas empresas de robots ofrecen interfaces ROS con sus productos, y las empresas de robots industriales establecidas también están introduciendo interfaces ROS. Con la adopción generalizada de ROS como el enfoque estándar de facto para la programación de robots, existe una nueva esperanza de acelerar las capacidades de los robots.
+        
+        \begin{figure}[htbp]
+            \centering
+            \includegraphics[width=0.4\linewidth]{Main/Chapter3/Images3/3-4/entidade-asociadas-al-inicio-de-ros-1.png}
+            \caption{Entidades asociadas al inicio de ROS} 
+            \label{f:Cap3-4_entidades_inicio_ros_32}
+        \end{figure}
+
+    \newpage
+
+    \subsection{Problema Principal}
+    
+    La intención con que se creó ROS fue de permitir a los investigadores desarrollar rápidamente nuevos sistemas robóticos sin tener que reinventar todo nuevamente, mediante el uso de herramientas e interfaces estándar. Para hacer más eficientes los procesos de investigación y desarrollo de software de robots, se detectaron los siguientes 3 problemas a solucionar:
+    
+    \begin{itemize}
+        \item {Programación secuencial inadecuada para el mundo asincrónico robótico}
+        \item {Sistemas robóticos deben gestionar una complejidad significativa}
+        \item {Abstracción de los detalles de un hardware específico del robot.}
+    \end{itemize}
+
+        \begin{figure}[htbp]
+            \centering
+            \includegraphics[width=0.4\linewidth]{Main/Chapter3/Images3/agrupar_problem_1.png}
+            \label{f:Cap3-4_entidades_inicio_ros_1}
+            \caption{asdasd}
+        \end{figure}
+        
+    La solución para el problema de programación secuencias se basó en Callback, que son una función que se ejecuta siempre que hay datos disponibles para su procesamiento. Son asincrónico, ya que la devolución de llamada puede ocurrir en cualquier momento. Con respecto a el problema de softwares multifuncionales complejos y atracción de detalles de hardware específicos, se separaron los procesos en “nodos” que se comunican a través de una interfaz de mensajería. Por ejemplo, se separaron los procesos de las cámaras, edometría, escáner láser y creación de mapas y estos interactúan a través de una interfaz que comunica estos procesos por medio de “temas”. Estos últimos conceptos se explican en detalle en secciones posteriores.
+
+    \newpage
+
 
     \subsection{Que es ROS}
        ROS es una abreviatura de  Robot Operating System y es una plataforma de desarrollo de aplicaciones en robótica que provee estilos de programación (en particular, que se basa en nodos distribuidos y acoplados libremente); definiciones de interfaz y paradigmas para las comunicaciones entre nodos ; definiciones de interfaz para la incorporación de bibliotecas y paquetes; una colección de herramientas para visualización, depuración, registro de datos y diagnóstico del sistema; un repositorio de código fuente compartido; y puentes a múltiples bibliotecas útiles e independientes de código abierto.
@@ -175,10 +212,12 @@ Los pasos del diagrama de flujo son los siguientes:
        
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/3-4/diferencia-ROS-SO.png}
+            \includegraphics[width=0.6\linewidth]{Main/Chapter3/Images3/3-4/diferencia-ROS-SO.png}
             \caption{Diferencias entre un sistema operativo convencional y ROS}
             \label{f:Cap3-4_diferencias_ros_so}
         \end{figure}
+        
+        \newpage
         
         Las principales características de ROS se pueden resumir de la siguiente manera:
         
@@ -188,24 +227,18 @@ Los pasos del diagrama de flujo son los siguientes:
             \item \textbf{Capacidades} ROS proporciona una amplia colección de bibliotecas que implementan funcionalidades robóticas útiles, con un enfoque en la movilidad, la manipulación y la percepción.
             \item \textbf{Ecosistema:} ROS es apoyado y mejorado por una gran comunidad, con un fuerte enfoque en la integración y documentación. ros.org es una ventanilla única que busca y aprende sobre los miles de paquetes ROS que están disponibles a través de desarrolladores de todo el mundo.
         \end{itemize}
+
+        Un ejemplo se muestra en la figura \ref{f:Cap3-4_compatibilidad_ros}, la comunicación de datos ROS es compatible no solo con un sistema operativo, sino también con múltiples sistemas operativos, hardware y programas, lo que lo hace muy adecuado para el desarrollo de robots donde se combinan varios hardware. 
         
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/3-4/caracteristicas-ros.png}
-            \caption{Principales características de ROS}
-            \label{f:Cap3-4_caracteristicas_ros}
-        \end{figure}
-        
-        Como se describe en la figura \ref{f:Cap3-4_caracteristicas_ros}, ROS es un sistema de apoyo para controlar un robot y sensor con una abstracción de hardware y desarrollar una aplicación de robot basada en sistemas operativos convencionales existentes.
-        
-        Un ejemplo se muestra en la Figura 2-2, la comunicación de datos ROS es compatible no solo con un sistema operativo, sino también con múltiples sistemas operativos, hardware y programas, lo que lo hace muy adecuado para el desarrollo de robots donde se combinan varios hardware. 
-        
-        \begin{figure}[htb]
-            \centering
-            \includegraphics[width=0.9\linewidth]{Main/Chapter3/Images3/3-4/compatibilidad-ros.png}
+            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/3-4/compatibilidad-ros.png}
             \caption{Compatibilidad de ROS y otras plataformas}
             \label{f:Cap3-4_compatibilidad_ros}
         \end{figure}
+        
+    \newpage
+
         
     \subsection{Objetivos de ROS}
     
@@ -217,7 +250,7 @@ Los pasos del diagrama de flujo son los siguientes:
             
             \begin{figure}[htb]
                 \centering
-                \includegraphics[width=0.9\linewidth]{Main/Chapter3/Images3/3-5/arquitectura-ros.png}
+                \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/arquitectura_por_nodos_1.png}
                 \caption{Arquitectura por nodos de ROS}
                 \label{f:Cap3-5_arquitectura_ros}
             \end{figure}
@@ -232,10 +265,12 @@ Los pasos del diagrama de flujo son los siguientes:
             
             \begin{figure}[htb]
                 \centering
-                \includegraphics[width=0.9\linewidth]{Main/Chapter3/Images3/3-5/esquema-multi-lenguaje-ros.png}
+                \includegraphics[width=0.55\linewidth]{Main/Chapter3/Images3/multilenguaje_1.png}
                 \caption{Esquema multilenguaje de ROS}
                 \label{f:Cap3-5_multilenguaje_ros}
             \end{figure}
+
+\newpage
             
         \subsubsection{Pequeño}
         
@@ -252,17 +287,132 @@ Los pasos del diagrama de flujo son los siguientes:
                 \label{f:Cap3-5_multilenguaje_ros}
             \end{figure}
             
-        
-            
-    
-        
-    
-        
-    
-    
-       
-       
+
 \newpage
+
+    \subsection{Estadisticas}
+    
+    \subsubsection{Science Robotics}
+        Science Robotics publico el articulo el 2017 “Powering the world’s robots 10 years of ROS” que habla sobre la iniciativa ROS-I (http://rosindustrial.org/) que se lanzó en 2012. Debido a las arquitecturas de software limitadas de los robots industriales actuales, es demasiado caro aplicar capacidades robóticas avanzadas para mejorar la productividad industrial. ROS-I proporciona interfaces para robots industriales comunes y dispositivos sensoriales junto con bibliotecas de software específicas para la automatización de la fabricación. ROS-I ha apoyado un número creciente de hardware industrial, como los robots producidos por ABB, Fanuc y Yaskawa. Además, el Consorcio ROS-I existe para desarrollar la comunidad ROS-I proporcionando apoyo técnico, organizando cursos de capacitación y talleres, y estableciendo la hoja de ruta para ROS-I. El Consorcio ROS-I tiene más de 50 miembros en todo el mundo, incluidos institutos de investigación y agencias gubernamentales, integradores de sistemas y usuarios finales, y fabricantes de equipos originales. Además, la próxima versión de ROS 2.0 debería abordar una de las principales limitaciones que ha ralentizado la adopción de ROS en la industria: que es una implementación de middleware interna. ROS 2.0 ahora se basa en el servicio de distribución de datos para la comunicación entre procesos, lo que brinda una confiabilidad mucho mejor con protocolos de calidad de servicio y seguridad con cifrado.
+
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/science_robot_esta_1.png}
+                \caption{Algunas estadísticas clave de ROS. (Izquierda) Países de visitantes de la wiki de ROS en los últimos 4 años, que muestra un cambio creciente de investigadores de países del Lejano Oriente (del informe métrico anual de ROS). (Medio) Los 20 principales repositorios ROS según la cantidad de bifurcaciones y estrellas (de Github, 10 de octubre de 2017). (Derecha) Artículos recientemente publicados que han citado el artículo ROS original (1) (de la búsqueda de Google Scholar, palabras clave “Sistema operativo de robot ROS”) y el número de usuarios de wiki registrados.}
+                \label{f:Cap3-5_estadisticas_1}
+            \end{figure}        
+        
+        
+    \newpage
+
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/science_robot_esta_2.png}
+                \caption{Diez años de desarrollos de ROS que respaldan la investigación y el desarrollo, incluida la robótica móvil, industrial, quirúrgica y espacial, así como los automóviles autónomos. Se han lanzado 11 distribuciones de ROS en los últimos 10 años, y el gráfico de barras muestra el número de descargas binarias de ROS en cada año. El Consorcio ROS-I se lanzó en 2013 con el objetivo de transformar las capacidades de ROS en tiempo real para robots industriales. ROS 2.0 es actualmente en desarrollo intenso, y se acaba de lanzar una versión beta.}
+                \label{f:Cap3-5_estadisticas_2}
+            \end{figure}  
+
+
+         \newpage
+    
+        \subsubsection{Metricas de la comunidad ROS}
+    
+    Miden aspectos de la comunidad ROS para comprender y rastrear el impacto de su trabajo e identificar áreas de mejora. Se inspiran en las métricas del Proyecto MeeGo .
+    
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=0.4\linewidth]{Main/Chapter3/Images3/cap3_estadisticas_3.png}
+            \caption{}
+            \label{f:Cap3-5_estadisticas_3}
+        \end{figure}  
+        
+        Se presentan a continuación ilustraciones con estadísticas recolectadas de la pagina https://metrics.ros.org/ para el año 2020:
+        
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/cap3_estadisticas_7.png}
+            \caption{}
+            \label{f:Cap3-5_estadisticas_4}
+        \end{figure}  
+        
+        Según el reporte de agosto del 2020 los países que más han visitado ROS según Google Analytics son: China, EEUU, Japón y Alemania:
+        
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/cap3_estadisticas_4.png}
+            \caption{}
+            \label{f:Cap3-5_estadisticas_5}
+        \end{figure}  
+        
+        \newpage
+
+
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=0.5\linewidth]{Main/Chapter3/Images3/cap3_estadisticas_5.png}
+            \caption{}
+            \label{f:Cap3-5_estadisticas_6}
+        \end{figure}  
+
+
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=0.5\linewidth]{Main/Chapter3/Images3/cap3_estadisticas_6.png}
+            \caption{}
+            \label{f:Cap3-5_estadisticas_7}
+        \end{figure}  
+
+        \newpage
+
+        
+        \subsubsection{Repositorio GitHub}
+            Para comprender GitHub, primero se debe comprender Git. Git es un sistema de control de versiones de código abierto que fue iniciado por Linus Torvalds, la misma persona que creó Linux. Sirve para cuando los desarrolladores crean algo (una aplicación, por ejemplo), realizan cambios constantes en el código, lanzando nuevas versiones hasta y después del primer lanzamiento oficial. Los sistemas de control de versiones mantienen estas revisiones en orden, almacenando las modificaciones en un repositorio central. Esto permite a los desarrolladores colaborar fácilmente, ya que pueden descargar una nueva versión del software, realizar cambios y cargar la revisión más reciente. Todos los desarrolladores pueden ver estos nuevos cambios, descargarlos y contribuir. Del mismo modo, las personas que no tienen nada que ver con el desarrollo de un proyecto aún pueden descargar los archivos y usarlos. Git es una herramienta de línea de comandos, pero el centro alrededor del cual giran todas las cosas relacionadas con Git es el centro, GitHub.com, donde los desarrolladores almacenan sus proyectos y se conectan con personas de ideas afines.
+    
+            \begin{figure}[htb]
+            \centering
+            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/}
+            \caption{}
+            \label{f:Cap3-5_estadisticas_8}
+            \end{figure} 
+        
+            Dirk Thomas trabajo en ROS durante casi 9 años y envio 15 distribuciones de ROS. Uno del repositorio que subió a GitHub registra el total de autores, commits y repositorios en Github con relación a ROS hasta octubre del 2020. (https://github.com/dirk-thomas/rosworld2020_ros-contributions)
+        
+            \begin{figure}[htb]
+            \centering
+            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/}
+            \caption{}
+            \label{f:Cap3-5_estadisticas_9}
+            \end{figure} 
+    
+        \newpage
+
+    \subsection{Versiones}
+            En 2007, Willow Garage logró la investigación del marco de software de robot que comenzó con Switchyard en el laboratorio de inteligencia artificial de la Universidad de Stanford y continuó el desarrollo bajo el nombre de Robot Operating System (ROS). Con la sexta versión de lanzamiento oficial "ROS Groovy Galápagos", Willow Garage intentó penetrar en el mercado de robots de servicios comerciales en 2013, pero terminó dividiéndose en varias empresas emergentes y finalmente se entregó a la Open Source Robotics Foundation (OSRF). Desde entonces, se lanzaron cuatro versiones más y, a partir de mayo de 2017, OSRF cambió su nombre a Open Robotics y ha estado desarrollando, operando y administrando ROS. Más recientemente, la undécima versión de ROS, ROS Lunar Loggerhead, fue lanzada el 23 de mayo de 2017. ROS etiqueta la primera letra de cada nombre de lanzamiento en orden alfabético y usa una tortuga como su símbolo (ver Figura 2-7).
+            
+            \begin{figure}[htb]
+            \centering
+            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/}
+            \caption{}
+            \label{f:Cap3-5_estadisticas_10}
+            \end{figure} 
+    
+            \begin{figure}[htb]
+            \centering
+            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/}
+            \caption{}
+            \label{f:Cap3-5_estadisticas_11}
+            \end{figure} 
+    
+    \newpage
+    
+    \subsection{Conceptos Principales}
+
+    \newpage
+
+    \subsection{Herramientas}
+
+    \newpage    
+
 
 \section{Visualización}
     
