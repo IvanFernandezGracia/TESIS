@@ -1,39 +1,90 @@
 \chapter{Resultados}\label{CAP7}
-RESUMEN 
-
 
 \section{Visualizador}
-        En esta sección se presentan los resultados de la visualización del robot delta en Rviz. Primero se muestra la explicación gráfica de la conexión de los nodos con los temas creados en ROS. Luego se muestran los enlaces y los marcos referencia de cada enlace en coordenadas TF. 
+        En esta sección se presentan los resultados de la visualización del robot delta en Rviz. Primero se muestra la explicación gráfica de la conexión de los nodos y temas creados en ROS. Luego se muestran los enlaces y los marcos referencia de cada enlace en coordenadas TF. 
 
-    \subsection{Nodo}
-    El nodo creado para balbal con el nombre tanto 
-    mensaje tipo 
-    salida
-        El nodo creado para balbal con el nombre tanto 
-    mensaje tipo 
-    salida
-        \begin{figure}[h]
+    \subsection{Temas y Nodo}
+    
+    \begin{figure}[h]
             \centering
             \includegraphics[width=1.0\linewidth]{Main/Chapter7/Images7/nodo_1.png}
             \caption{Rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
             \label{f:cap7_rviz1111}
         \end{figure} 
+        
+    \begin{itemize}
+        \item {\textbf{Entrada:} el tema 'm\_txyzth123' esta configurado por un mensaje escrito en el archivo llamado 'matriz\_path\_ls.msg', compuesto por los datos de la tabla \ref{tab:cap6_rviz_1_msg}. Las matrices x,y,z son los puntos de la trayectoria lineal  en el espacio cartesiano de la base movil. Las matrices th1,th2,th3 son la trayectoria en el espacio articular de los actuadores. La matriz de tiempo es la escala de tiempo de la trayectoria a simular.}
+        \item {\textbf{Nodo:} el nodo con el nombre 'posicionador\_rviz\_realtime\_tm1' es el encargado de calcular los ángulos de las articulación o juntas del robot delta a partir de las coordenadas en el espacio cartesiano xyz  de la trayectoria de la base móvil. Los puntos xyz son utilizados para simular el movimiento la base movil y los angulos de cada junta para el movimiento de 3 cadenas cinemáticas.}
+        \item {\textbf{Salida:}  el tema 'joint\_states' esta configurado por un mensaje escrito en el archivo llamado 'JointState.msg', compuesto por los datos mostrados en la tabla \ref{tab:cap6_rviz_2_msg}. Este es un mensaje que contiene datos para describir el estado de un conjunto de juntas controladas por torque. Cada articulación (revoluta o prismática) se identifica de forma única por su nombre. Name es el nombre de cada articulación, position es la posición de la articulación (rad o m), velocity es la velocidad de la articulación (rad/s o m/s) y effort es el esfuerzo que se aplica en la articulación (Nm o N). En esta tesis solo se utilizan las matrices de los nombres y posición de cada junta.}
+    \end{itemize} 
+    
+        \begingroup
+            \renewcommand{\arraystretch}{1.5}
+            \begin{table}[H]
+                \centering
+                \begin{tabular}{c m{2.5cm}}
+                   \hline                   \hline
+                   \textbf{Tipo de dato}  & \textbf{Nombre}    \\\hline \hline 
+                   bool &  permiso
+                   \\\hline
+                   int64 &  id\_call
+                   \\\hline
+                   float32[] &  x
+                   \\\hline
+                   float32[] &  y
+                   \\\hline
+                   float32[] &  z
+                   \\\hline
+                   float32[] &  th1
+                   \\\hline
+                   float32[] &  th2
+                   \\\hline
+                   float32[] &  th3
+                   \\\hline
+                   float32[] &  tiempo
+                      \\\hline                   \hline
+                \end{tabular}
+                \caption{Referencias del dibujo}
+                \label{tab:cap6_rviz_1_msg}
+            \end{table}
+        \endgroup
+        
+        \begingroup
+            \renewcommand{\arraystretch}{1.5}
+            \begin{table}[H]
+                \centering
+                \begin{tabular}{c m{2.5cm}}
+                   \hline                   \hline
+                   \textbf{Tipo de dato}  & \textbf{Nombre}    \\\hline \hline 
+                    string[]  & name
+                   \\\hline
+                    float64[]  & position
+                   \\\hline
+                    float64[]  & velocity
+                   \\\hline
+                    float64[] &  effort
+                    \\\hline                   \hline
+                \end{tabular}
+                \caption{Referencias del dibujo}
+                \label{tab:cap6_rviz_2_msg}
+            \end{table}
+        \endgroup
 
 \newpage
 
-    \subsection{Enlaces y Juntas}
-        en la primera figura la visualizacion de los enlaces. Se puede visualizar en un cilindro de color plomo la base fija, en uyn cilindro de color azul la base movil y los brazos y antebrazos son cajas alargadas de color blanco .Ademas, se muestra los nombres de cada enlace con sus marcos de referencia TF respectivos.
+    \subsection{Enlaces y Juntas}\label{enalcesyjuntas_cap7}
+        La figura \ref{f:cap7_rviz_2} representa la visualización de los enlaces del robot delta. La base fija es un cilindro de color gris, la base móvil es un cilindro de color azul y tanto los brazos como los antebrazos son cajas alargadas de color blanco. Además, se muestra los nombres de cada enlace con sus marcos de referencia TF respectivos.
         \begin{figure}[h]
             \centering
-            \includegraphics[width=0.6\linewidth]{Main/Chapter7/Images7/rviz_2.png}
+            \includegraphics[width=0.8\linewidth]{Main/Chapter7/Images7/rviz_2.png}
             \caption{R}
             \label{f:cap7_rviz_2}
         \end{figure}  
         
-    en la figura tanto se muestra la relacion entre cada enlace, es decir, la relacion padre hijo. Se aprecian 4 cadenas cinematicas, 3 pcompuestas de base fija, braso y antebraso y una compeusta por la base movil.    
+    La figura \ref{f:cap7_rviz_3} se muestra la relación entre cada enlace, es decir, la relación padre-hijo. Se aprecian 4 cadenas cinemáticas las cuales son: 3 compuestas por la base fija-brazo-antebrazo y 1 compuesta por la base móvil.    
     \begin{figure}[h]
             \centering
-            \includegraphics[width=0.6\linewidth]{Main/Chapter7/Images7/rviz_3.png}
+            \includegraphics[width=0.8\linewidth]{Main/Chapter7/Images7/rviz_3.png}
             \caption{Rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
             \label{f:cap7_rviz_3}
         \end{figure}  
@@ -41,11 +92,11 @@ RESUMEN
 \newpage
 
     \subsection{Estructura de arbol URDF}
-    Esta es una representación gráfica de la relación padre -hijo entre los enlaces y sus marcos de referencia. Los nombre de los enlaces estan el cuadrados blancos y las juntas en circulos azules. Las juntas son las encargadas de configurar la relacion padre-hijo.. xyz se refiere a la traslacion del marco de referencia de los hijos respecto al marco de referencia del padre. de mismo modo, rpy es la rotacion del marco de referencia de los hijos respecto a los de los padres. al igual que en la seccion anterior, se aprecian 4 cadenas cinematicas.
+    La estructura de árbol URDF es una representación gráfica de la relación padre-hijo entre los enlaces y sus marcos de referencia. En la figura \ref{f:cap7_rviz_12341} los nombre de los enlaces son los en rectángulos blancos y las juntas en círculos azules. Las juntas son las encargadas de configurar la relación padre-hijo. En la figura ,xyz se refiere a la traslación del marco de referencia de los hijos respecto al marco de referencia del padre, de modo similar, rpy es la rotación del marco de referencia de los hijos respecto a los de los padres. Al igual que en la sección \ref{enalcesyjuntas_cap7}, se aprecian 4 cadenas cinemáticas.
 
         \begin{figure}[h]
             \centering
-            \includegraphics[width=0.8\linewidth]{Main/Chapter7/Images7/rviz_1.png}
+            \includegraphics[width=1.0\linewidth]{Main/Chapter7/Images7/rviz_1.png}
             \caption{RRrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
             \label{f:cap7_rviz_12341}
         \end{figure}  
@@ -54,25 +105,55 @@ RESUMEN
 
 
 \section{Espacio de Trabajo}
-        En esta sección se presentan los resultados del espacio de trabajo del robot delta del capitulo \ref{CAP5} con las restricciones impuestas en la tabla \ref{t:cap6_ws_1}
+        En esta sección se presentan los resultados del espacio de trabajo del robot delta del capitulo \ref{CAP6} con las restricciones impuestas en la tabla \ref{t:cap6_ws_1}
         
-    \subsection{Nodo}
-    entradas nomrbe nodo salidas
-    marco referencia seccion tanto
-    se muestras 56 giuras itemzize explicando cada una 
+    \subsection{Temas y Nodo}
     
         \begin{figure}[h]
             \centering
             \includegraphics[width=1.0\linewidth]{Main/Chapter7/Images7/nodo_2.png}
-            \caption{Rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
+            \caption{Rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
             \label{f:cap7_rviz2222}
-        \end{figure}  
+        \end{figure}    
     
-    \subsection{Puntos Alcanzables}
+    \begin{itemize}
+        \item {\textbf{Entrada:}  el tema 'input\_workspace' esta configurado por un mensaje escrito en el archivo llamado 'parameter\_ws.msg', compuesto por los datos de la tabla \ref{tab:cap6_rviz_4_msg}. Step es la discretizacion de los ángulos de los motores en grados para graficar el espacio de trabajo. Graficar\_realtime es una entrada que confirma si se quieren graficar los resultados del espacio de trabajo. }
+        \item {\textbf{Nodo:} workspace\_delta es el nodo encargado de generar el espacio de trabajo del robot delta a partir de restricciones impuestas.}
+    \end{itemize}
     
+        
+            \begingroup
+            \renewcommand{\arraystretch}{2.0}
+            \begin{table}[H]
+                \centering
+                \begin{tabular}{c m{3.0cm}}
+                   \hline                   \hline
+                   \textbf{Tipo de dato}  & \textbf{Nombre}    \\\hline \hline 
+                    bool & graficar\_realtime
+                   \\\hline
+                    int64 & step
+                    \\\hline                   \hline
+                \end{tabular}
+                \caption{Referencias del dibujo}
+                \label{tab:cap6_rviz_4_msg}
+            \end{table}
+        \endgroup    
+        
+        \newpage
+
+        \subsection{Espacio de trabajo}
         \begin{figure}[h]
             \centering
-            \includegraphics[width=1.0\linewidth]{Main/Chapter7/Images7/ws_1.png}
+            \includegraphics[width=0.55\linewidth]{Main/Chapter7/Images7/ws_6.png}
+            %\includesvg[width=1\textwidth]{Main/Chapter7/Images7/ws_6.svg}
+            \caption{R}
+            \label{f:cap7_ws6}
+        \end{figure}
+        
+    \subsection{Puntos Alcanzables}
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.82\linewidth]{Main/Chapter7/Images7/ws_1.png}
             %\includesvg[width=1\textwidth]{Main/Chapter7/Images7/ws_1.svg}
             \caption{R}
             \label{f:cap7_ws1}
@@ -121,14 +202,7 @@ RESUMEN
         
     \newpage
     
-    \subsection{Espacio de trabajo}
-        \begin{figure}[h]
-            \centering
-            \includegraphics[width=1.0\linewidth]{Main/Chapter7/Images7/ws_6.png}
-            %\includesvg[width=1\textwidth]{Main/Chapter7/Images7/ws_6.svg}
-            \caption{R}
-            \label{f:cap7_ws6}
-        \end{figure}  
+
 
         
         
@@ -140,9 +214,20 @@ RESUMEN
 \section{Trayectorias}
     En esta sección se presentan los resultados de los torques aplicados a los actuadores del robot delta del capitulo \ref{CAP5} para realizar las trayectorias impuestas de la sección \ref{nodoprincipal_tray}.
 
-    \subsection{Nodo}
-    NODO 
-
+    \subsection{Temas y Nodo}
+    
+    \begin{figure}[h]
+            \centering
+            \includegraphics[width=1.0\textwidth]{Main/Chapter7/Images7/nodo_3.jpg}
+            \caption{Resultado de la dinámica inversa en trayectoria 1}
+            \label{f:cap7_tray_5_nodo}
+    \end{figure}
+    
+    \begin{itemize}
+        \item {\textbf{Entrada:}  el tema 'input\_workspace' esta configurado por un mensaje escrito en el archivo llamado 'parameter\_ws.msg', compuesto por los datos de la tabla \ref{tab:cap6_rviz_4_msg}. Step es la discretizacion de los ángulos de los motores en grados para graficar el espacio de trabajo. Graficar\_realtime es una entrada que confirma si se quieren graficar los resultados del espacio de trabajo. }
+        \item {\textbf{Nodo:} workspace\_delta es el nodo encargado de generar el espacio de trabajo del robot delta a partir de restricciones impuestas.}
+    \end{itemize}
+    
     \subsection{Trayectoria 1}
     
         \begin{figure}[h]
