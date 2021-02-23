@@ -960,7 +960,7 @@
                  \begin{tikzpicture}[node distance = 5cm, auto]
                     % Place nodes
                     \node [block1] (funcion) {\textbf{Cinemática Aceleracion\\ Sección (\ref{cap4_mb_subsection_acel})}};
-                    \node [block2, left of=funcion] (input) {\textbf{$P_{0x},P_{0y},P_{0z},$\\${\theta }_{1},{\theta }_{2},{\theta }_{3},$\\$\dot{\theta }_{1},\dot{\theta }_{2},\dot{\theta }_{3}$}};
+                    \node [block2, left of=funcion] (input) {\textbf{$P_{0x},P_{0y},P_{0z},$\\${\theta }_{1},{\theta }_{2},{\theta }_{3},$\\$\dot{P}_{0x},\dot{P}_{0y},\dot{P}_{0z}$}};
                     \node [block2, right of=funcion] (ouput) {\textbf{$-J_{1},J_{2},J,$\\$\overrightarrow{{\dot{s}}_i}^T,K,\overrightarrow{\dot{\theta}},\overrightarrow{{{s}}_i}^T$}};
                     % Draw edges
                     \path [line] (funcion) -- node {}(ouput);
@@ -1265,7 +1265,7 @@
               \KwObjetivo {Hallar la matrices para calcular la aceleración angular de los actuadores}
               \Kwfile{$jacobian\_Paderborn\_tm1\_v2\_adams.py$}
               
-              \KwInput{$P_{0x},P_{0y},P_{0z},{\theta }_{1},{\theta }_{2},{\theta }_{3},\dot{\theta }_{1},\dot{\theta }_{2},\dot{\theta }_{3}$}
+              \KwInput{$P_{0x},P_{0y},P_{0z},{\theta }_{1},{\theta }_{2},{\theta }_{3},\dot{P}_{0x},\dot{P}_{0y},\dot{P}_{0z}$}
               \KwOutput{ $-J_{1},J_{2},J,\overrightarrow{{\dot{s}}_i}^T,K,\overrightarrow{\dot{\theta}},\overrightarrow{{{s}}_i}^T$}
                
                 % Set Function Names,
@@ -1273,21 +1273,21 @@
 
               \tcc{FUNCION PRINCIPAL}
               \SetKwProg{Fn}{}{:}{}
-              \Fn{\FSum{$P_{0x}$,$P_{0y}$,$P_{0z}$,${\theta }_{1}$,${\theta }_{2}$,${\theta }_{3},\dot{\theta }_{1},\dot{\theta }_{2},\dot{\theta }_{3}$}}{
+              \Fn{\FSum{$P_{0x}$,$P_{0y}$,$P_{0z}$,${\theta }_{1}$,${\theta }_{2}$,${\theta }_{3},\dot{P}_{0x},\dot{P}_{0y},\dot{P}_{0z}$}}{
               \tcc{Cambiar ángulos y punto P al sistema Referencia Local}
               \tcc{Posición actuadores $\varphi$ respecto a ejes $YX$ S.ref Local}
               \tcc{Usar función de jacobiano metodo B}
                $[-J_{1},J_{2},J] =jacobian\_calculo\_Paderborn(P_{0x},P_{0y},P_{0z},{\theta }_{1},{\theta }_{2},{\theta }_{3})$\;
-                \tcc{Calcular matriz $\overrightarrow{\dot{P}_0}$ }
-                   $ \left[  \begin{matrix}
-                \dot{P}_{0x}\\
-                \dot{P}_{0y}\\
-                \dot{P}_{0z}\\
-                \end{matrix}\right] =  J *\left[ \begin{matrix}
+                \tcc{Calcular matriz $\overrightarrow{\dot{\theta}}$ }
+                   $ \overrightarrow{\dot{\theta}}=\left[  \begin{matrix}
                 \dot{ \theta _{1}}~\\
                 \dot{ \theta _{2}}\\
                 \dot{ \theta _{3}}~\\
-                \end{matrix} \right] = J *\overrightarrow{\dot{\theta}} $\;
+                \end{matrix}\right] =  J^{-1} *\left[ \begin{matrix}
+                \dot{P}_{0x}\\
+                \dot{P}_{0y}\\
+                \dot{P}_{0z}\\
+                \end{matrix} \right] = J^{-1} *\overrightarrow{\dot{P}_0} $\;
 
         
               \tcc{Calcular Transpose $\overrightarrow{{\dot{s}}_i}$  $para$ $i=1,2,3$ $(1x3)$ }
