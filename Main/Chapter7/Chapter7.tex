@@ -224,7 +224,7 @@
     \end{figure}
     
     \begin{itemize}
-        \item {\textbf{Subscriber:}  el tema \textit{input\_ls\_final} esta configurado por un mensaje escrito en el archivo llamado \textit{linear\_speed\_xyz.msg}, compuesto por los datos de la tabla \ref{tab:cap6_rviz_5_msg}. El punto inicial de la trayectoria es \textit{(xo,yo,zo)}. El punto final de la trayectoria es \textit{(xf,yf,zf)}. La velocidad y aceleración máxima permitida en la trayectoria lineal es \textit{vmax} y \textit{amax} respectivamente. El tamaño de la división del perfil de velocidad trapezoidal de la trayectoria en el área de aceleración y desaceleración es \textit{paso1}, mientras que en el área de velocidad constante es \textit{paso2}}
+        \item {\textbf{Subscriber:}  el tema \textit{input\_ls\_final} esta configurado por un mensaje escrito en el archivo llamado \textit{linear\_speed\_xyz.msg}, compuesto por los datos de la tabla \ref{tab:cap6_rviz_5_msg}. El punto inicial de la trayectoria es \textit{(xo,yo,zo)}. El punto final de la trayectoria es \textit{(xf,yf,zf)}. La velocidad y aceleración máxima permitida en la trayectoria lineal es \textit{vmax} y \textit{amax} respectivamente. El tamaño de la división del perfil de velocidad trapezoidal de la trayectoria en el área de aceleración y desaceleración es \textit{paso1}, mientras que en el área de velocidad constante es \textit{paso2}. El numero de la trayectoria a simular es \textit{num\_tray}}
         \item {\textbf{Nodo:} el nodo con el nombre \textit{torque\_metodo\_1} es el nodo encargado de calcular el torque que debe accionar los motores del robot delta para producir una trayectoria lineal con velocidad tipo trapezoidal de la base móvil.}
     \end{itemize}
     
@@ -254,6 +254,8 @@
                     int64 & paso1
                    \\\hline
                     int64 & paso2
+                   \\\hline
+                    int64 & num\_tray
                     \\\hline                   \hline
                 \end{tabular}
                 \caption{Referencias del dibujo}
