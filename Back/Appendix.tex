@@ -1998,5 +1998,567 @@ Calculando los valores relacionados con la coordenada generalizada  \( q_{j}=Z_{
 \chapter{Codigos}\label{anexoC}
 \thispagestyle{fancy}
 \pagenumbering{arabic}\renewcommand{\thepage}{B.\arabic{page}}
-    \section{}
-        \subsection{}
+    \section{Carpetas creadas por catkin make}
+    
+    \newpage
+
+    \section{Comandos para compilar nodos en shell}
+    
+    \begin{itemize}
+        \item Transformar archivo nodos .yp a ejectuable
+    \end{itemize}
+chmod +x nombre\_py\_ejecutable.py\\
+    \begin{itemize}
+        \item Nodos
+    \end{itemize}
+Trayectoria y Torques: path\_tm1\_v2\_adams.py\\
+Espacio de trabajo: workspace\_v2.py\\
+Visualizacion: posicionador\_rviz\_realtime\_tm1\_adams.py\\
+    \begin{itemize}
+        \item Calcular torque trayectorias
+    \end{itemize}
+-------- [shell en Todos]: \\
+cd r\_delta\\
+source devel/setup.bash\\
+-------- [shell 1]: \\
+roscore\\
+-------- [shell 2]: \\
+roslaunch simu\_visual rviz\_tm1\_adams.launch\\
+-------- [shell 3]:\\
+rosrun simu\_visual posicionador\_rviz\_realtime\_tm1\_adams.py\\
+-------- [shell 4]:\\
+rosrun rqt\_graph rqt\_graph\\
+-------- [shell 5]: \\
+rosrun simu\_visual path\_tm1\_v2\_adams.py\\
+-------- [shell 6] (trayectoria 1):\\
+rostopic pub -1 /input\_ls\_final simu\_visual/linear\_speed\_xyz\\
+$"\{xo: -300.0, yo: 0.0, zo: -450.0,$\\
+$xf: 300.0, yf: 150.0, zf: -750.0,$\\
+$vmax: 2000.0, amax: 40000.0,$\\
+$paso1: 50,  paso2: 150,$\\
+$ls\_fin: true, idcall: 1, num\_tray: 1\}"$\\
+-------- [shell 6] (trayectoria 2):-\\
+rostopic pub -1 /input\_ls\_final simu\_visual/linear\_speed\_xyz\\
+$"\{xo: -300.0, yo: -150.0, zo: -450.0,$\\
+$xf: 300.0, yf: 150.0, zf: -750.0,$\\
+$vmax: 2000.0, amax: 40000.0,$\\
+$paso1: 50,  paso2: 150,$\\
+$ls\_fin: true, idcall: 1, num\_tray: 2\}"$\\
+-------- [shell 6] (trayectoria 3): \\
+rostopic pub -1 /input\_ls\_final simu\_visual/linear\_speed\_xyz\\ 
+$"\{xo: 300.0, yo: -150.0, zo: -450.0,$\\
+$xf: -300.0, yf: 150.0, zf: -750.0,$\\
+$vmax: 2000.0, amax: 40000.0,$\\
+$paso1: 50,  paso2: 150,$\\
+$ls\_fin: true, idcall: 1, num\_tray: 3\}"$\\
+-------- [shell 6] (trayectoria 4): \\
+rostopic pub -1 /input\_ls\_final simu\_visual/linear\_speed\_xyz\\ 
+$"\{xo: 400.0, yo: 150.0, zo: -450.0,$\\
+$xf: -400.0, yf: 150.0, zf: -450.0,$\\
+$vmax: 2000.0, amax: 40000.0,$\\
+$paso1: 50,  paso2: 150,$\\
+$ls\_fin: true, idcall: 1, num\_tray: 4\}"$\\
+-------- [shell 6] (trayectoria 5): \\
+rostopic pub -1 /input\_ls\_final simu\_visual/linear\_speed\_xyz\\ 
+$"\{xo: -300.0, yo: 0.0, zo: -450.0,$\\
+$xf: 300.0, yf: 150.0, zf: -750.0,$\\
+$vmax: 200.0, amax: 10000.0,$\\
+$paso1: 50,  paso2: 150,$\\
+$ls\_fin: true, idcall: 1, num\_tray: 5\}"$\\
+-------- [shell 6] (trayectoria 6): \\
+rostopic pub -1 /input\_ls\_final simu\_visual/linear\_speed\_xyz\\ 
+$"\{xo: -300.0, yo: -150.0, zo: -450.0,\\
+$xf: 300.0, yf: 150.0, zf: -750.0,\\
+$vmax: 200.0, amax: 10000.0,\\
+$paso1: 50,  paso2: 150,\\
+$ls\_fin: true, idcall: 1, num\_tray: 6\}"$\\
+-------- [shell 6] (trayectoria 7):\\
+rostopic pub -1 /input\_ls\_final simu\_visual/linear\_speed\_xyz\\ 
+$"\{xo: 300.0, yo: -150.0, zo: -450.0,$\\
+$xf: -300.0, yf: 150.0, zf: -750.0,$\\
+$vmax: 200.0, amax: 10000.0,$\\
+$paso1: 50,  paso2: 150,$\\
+$ls\_fin: true, idcall: 1, num\_tray: 7\}"$\\
+-------- [shell 6] (trayectoria 8):\\
+rostopic pub -1 /input\_ls\_final simu\_visual/linear\_speed\_xyz\\ 
+$"\{xo: 400.0, yo: 150.0, zo: -450.0,$\\
+$xf: -400.0, yf: 150.0, zf: -450.0,$\\
+$vmax: 200.0, amax: 10000.0,$\\
+$paso1: 50,  paso2: 150,$\\
+$ls\_fin: true, idcall: 1, num\_tray: 8\}"$\\
+
+    \begin{itemize}
+        \item Espacio de Trabajo
+    \end{itemize}
+-------- [shell TODOS]:\\
+cd r\_delta\\
+source devel/setup.bash\\
+-------- [shell 1]:\\
+rosrun simu\_visual workspace\_v2.py\\
+-------- [shell 2]:\\
+rostopic pub -1 /input\_workspace simu\_visual/parameter\_ws "graficar\_realtime: true\\
+step: 10\\
+idcall: 1"\\
+
+    
+    
+    
+    
+    
+    
+    \newpage
+    
+    \section{CMakeLists.txt}
+-------\\
+cmake\_minimum\_required(VERSION 2.8.3)\\
+project(simu\_visual)\\
+\\
+\#\# Find catkin macros and libraries\\
+\#\# if COMPONENTS list like find\_package(catkin REQUIRED COMPONENTS xyz)\\
+\#\# is used, also find other catkin packages\\
+find\_package(catkin REQUIRED COMPONENTS\\
+  roscpp\\
+  rospy\\
+  std\_msgs\\
+  sensor\_msgs\\
+  message\_generation\\
+  genmsg\\
+  urdf)\\
+\\
+\#\# Generate messages in the 'msg' folder\\
+ add\_message\_files(\\
+   FILES\\
+   parameter\_ws.msg\\
+   linear\_speed\_xyz.msg\\
+   matriz\_path\_ls.msg\\
+ )\\
+ \\
+ \#\# Generate added messages and services with any dependencies listed here\\
+ generate\_messages(\\
+   DEPENDENCIES\\
+   std\_msgs\\
+ )\\
+ \\
+ catkin\_package(
+  INCLUDE\_DIRS include
+  LIBRARIES simu\_visual
+  CATKIN\_DEPENDS roscpp rospy std\_msgs message\_runtime
+  \#DEPENDS system\_lib
+) \\
+ \\
+include\_directories( \\
+\# include \\
+  \${catkin\_INCLUDE\_DIRS} \\
+) \\
+ \\
+    \newpage
+    
+    \section{Package.xml}
+        \lstset{language=XML}
+        \begin{lstlisting}
+<?xml version="1.0"?>
+<package format="2">
+  <name>simu_visual</name>
+  <version>0.0.0</version>
+  <description>The simu_visual package</description>
+
+  <!-- One maintainer tag required, multiple allowed, one person per tag -->
+  <maintainer email="ivan.fernandez.g@usach.cl">ivan</maintainer>
+
+  <!-- Commonly used license strings: -->
+  <license>BSD</license>
+
+  <!-- Use build_depend for packages you need at compile time: -->
+  <build_depend>roscpp</build\_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>message_generation</build_depend>
+
+  <!-- Use build_export_depend for packages you need in order to build against this package: -->
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>rospy</build_export_depend>
+  <build_export_depend>std_msgs</build_export_depend>
+  <build_export_depend>message_generation</build_export_depend>
+
+  <!-- Use buildtool_depend for build tool packages: -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Use exec_depend for packages you need at runtime: -->
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>message_runtime</exec_depend>
+  
+  <export>
+
+  </export>
+
+</package>
+
+    \end{lstlisting}
+
+    \newpage
+
+    \section{Mensajes (msg)}
+        \subsection{linear\_speed\_xyz.msg}
+        ---------\\
+            float32 xo \\
+            float32 yo\\
+            float32 zo\\
+            float32 xf\\
+            float32 yf\\
+            float32 zf\\
+            float32 vmax\\
+            float32 amax\\
+            int64 paso1\\
+            int64 paso2\\
+            bool ls\_fin\\
+            int64 idcall\\
+            int64 num\_tray\\
+        ---------\\
+
+        \subsection{matriz\_path\_ls.msg}
+        ---------\\
+            bool permiso\\
+            int64 id\_call\\
+            float32[] x\\
+            float32[] y\\
+            float32[] z\\
+            float32[] th1\\
+            float32[] th2\\
+            float32[] th3\\
+            float32[] tiempo\\
+        ---------\\
+
+        \subsection{parameter\_ws.msg}
+        ---------\\
+            bool graficar\_realtime\\
+            int64 step\\
+            int64 idcall\\
+                    ---------\\
+
+        \newpage
+    \newpage
+    
+    \section{URDF (urfd)}
+    
+    \lstset{language=XML}
+    \begin{lstlisting}
+
+ <?xml version="1.0"?>
+
+<robot name="Delta_robot">
+
+  <!--BASE SUPERIOR:____________________-->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.005" radius="0.210"/>  <!--f/2-->
+      </geometry>
+      <material name="gris">
+        <color rgba="0.55 0.55 0.55 0.5"/>
+      </material>
+    </visual>
+  </link>
+
+  <!--BRAZOS SUPERIORES:____________________-->
+  <!--BRAZO_1-->
+  <link name="brazo1">
+    <visual>
+      <origin xyz="0.310 0 0" rpy="0 0 0"/> <!--la = 150-->
+      <geometry>
+        <box size="0.620 0.003 0.003"/> <!--la = 150-->
+      </geometry>
+      <material name="blanco">
+        <color rgba="0.9 0.9 0.9 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="base_brazo1" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="100.0" lower="0.0" upper="1.8" velocity="0.5"/>
+    <parent link="base_link"/>
+    <child link="brazo1"/>
+    <origin xyz="-0.181865335 0.105 0" rpy="0 0 2.61799"/>
+  </joint>
+
+  <!--BRAZO_2-->
+  <link name="brazo2">
+    <visual>
+      <origin xyz="0.310 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.620 0.003 0.003"/> <!--la = 150-->
+      </geometry>
+      <material name="blanco"/>
+    </visual>
+  </link>
+
+  <joint name="base_brazo2" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="100.0" lower="0.0" upper="1.8" velocity="0.5"/>
+    <parent link="base_link"/>
+    <child link="brazo2"/>
+    <origin xyz="0 -0.210 0" rpy="0 0 -1.57075"/>
+  </joint>
+
+  <!--BRAZO_3-->
+  <link name="brazo3">
+    <visual>
+      <origin xyz="0.310 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.620 0.003 0.003"/> <!--la = 150-->
+      </geometry>
+      <material name="blanco"/>
+    </visual>
+  </link>
+  <joint name="base_brazo3" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="100.0" lower="0.0" upper="1.8" velocity="0.5"/>
+    <parent link="base_link"/>
+    <child link="brazo3"/>
+    <origin xyz="0.181865335 0.105 0" rpy="0 0 0.523599"/>
+  </joint>
+
+  <!--BRAZOS INFERIORES:____________________-->
+
+  <!--Ante_BRAZO_1-->
+  <link name="barra1_a"/>
+  <joint name="codo1_a" type="revolute">
+    <axis xyz="0 -1 0"/>
+    <limit effort="100.0" lower="-3.14" upper="3.14" velocity="0.5"/>
+    <parent link="brazo1"/>
+    <child link="barra1_a"/>
+    <origin xyz="0.620 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="barra1_b">
+    <visual>
+      <origin xyz="-0.440 0 0" rpy="0 0 0"/> <!--0.175-->
+      <geometry>
+        <box size="0.880 0.003 0.003"/> <!--lb = 205-->
+      </geometry>
+      <material name="blanco"/>
+    </visual>
+  </link>
+
+  <joint name="codo1_b" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="100.0" lower="-3.14" upper="3.14" velocity="0.5"/>
+    <parent link="barra1_a"/>
+    <child link="barra1_b"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <!--Ante_BRAZO_2-->
+
+  <link name="barra2_a"/>
+  <joint name="codo2_a" type="revolute">
+    <axis xyz="0 -1 0"/>
+    <limit effort="100.0" lower="-3.14" upper="3.14" velocity="0.5"/>
+    <parent link="brazo2"/>
+    <child link="barra2_a"/>
+    <origin xyz="0.620 0 0" rpy="0 0 0"/> <!--la = 150-->
+  </joint>
+
+  <link name="barra2_b">
+    <visual>
+      <origin xyz="-0.440 0 0" rpy="0 0 0"/> <!--lb = 205  / 2 -->
+      <geometry>
+        <box size="0.880 0.003 0.003"/> <!--lb = 205-->
+      </geometry>
+      <material name="blanco"/>
+    </visual>
+  </link>
+
+  <joint name="codo2_b" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="100.0" lower="-3.14" upper="3.14" velocity="0.5"/>
+    <parent link="barra2_a"/>
+    <child link="barra2_b"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/> <!--O2 = 62.0652 -107.5000 0-->
+  </joint>
+
+  <!--Ante_BRAZO_3-->
+  <link name="barra3_a"/>
+  <joint name="codo3_a" type="revolute">
+    <axis xyz="0 -1 0"/>
+    <limit effort="100.0" lower="-3.14" upper="3.14" velocity="0.5"/>
+    <parent link="brazo3"/>
+    <child link="barra3_a"/>
+    <origin xyz="0.620 0 0" rpy="0 0 0"/> <!--O2 = 62.0652 -107.5000 0-->
+  </joint>
+
+  <link name="barra3_b">
+    <visual>
+      <origin xyz="-0.440 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.880 0.003 0.003"/> <!--lb = 205-->
+      </geometry>
+      <material name="blanco"/>
+    </visual>
+  </link>
+
+  <joint name="codo3_b" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="100.0" lower="-3.14" upper="3.14" velocity="0.5"/>
+    <parent link="barra3_a"/>
+    <child link="barra3_b"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/> <!--O2 = 62.0652 -107.5000 0-->
+  </joint>
+
+  <!--ACTUADOR:____________________-->
+
+  <link name="actuador">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 -1.57075 0"/>
+      <geometry>
+        <cylinder length="0.001" radius="0.050"/>
+      </geometry>
+      <material name="colorte">
+        <color rgba="0.15 0.55 0.95 0.3"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="aux1"/>
+  <link name="aux2"/>
+
+
+  <joint name="act_x" type="prismatic">
+    <parent link="base_link"/>
+    <child link="aux1"/>
+    <limit effort="100.0" lower="-1" upper="1" velocity="0.5"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+
+  <joint name="act_y" type="prismatic">
+    <parent link="aux1"/>
+    <child link="aux2"/>
+    <limit effort="100.0" lower="-1" upper="1" velocity="0.5"/>
+    <origin rpy="0 0 1.57075" xyz="0 0 0"/>
+  </joint>
+
+  <joint name="act_z" type="prismatic">
+    <parent link="aux2"/>
+    <child link="actuador"/>
+    <limit effort="100.0" lower="0" upper="1" velocity="0.5"/>
+    <origin rpy="0 -1.57075 0" xyz="0 0 0"/>
+  </joint>
+</robot>
+
+
+    \end{lstlisting}
+
+    
+    \newpage
+    
+    \section{Rviz Launch (launch)}
+        \lstset{language=XML}
+
+    \begin{lstlisting}
+
+<launch>
+  <!-- comentarios -->
+  <arg name="model"/>
+  <arg name="gui" default="true"/>
+
+  <param name="robot_description" 
+		 textfile="$(find simu_visual)/urdf/robot_urdftm1_adams.urdf"/>
+  <param name="use_gui" value="$(arg gui)"/>
+
+  <node name="estados_robot_pub" 
+		pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+  <node name="rviz" pkg="rviz" type="rviz" 
+		args="−d $(find simu_visual)/rviz/tfm_simulacion.rviz" required="true"/>
+
+</launch>
+    \end{lstlisting}
+
+    
+    
+    \newpage
+    
+    \section{Python (script)}
+    
+        \subsection{pd\_tm1\_adams.py}
+        {\footnotesize 
+            \inputminted{python}{Back/codigos_py/pd_tm1_adams.py}
+            }
+        \newpage    
+        
+        \subsection{path\_tm1\_v2\_adams.py}
+        {\footnotesize 
+            \inputminted{python}{Back/codigos_py/path_tm1_v2_adams.py}
+            }
+        \newpage
+        
+        \subsection{linear\_speed\_f\_adams.py}
+        {\footnotesize 
+            \inputminted{python}{Back/codigos_py/linear_speed_f_adams.py}
+            }
+        \newpage
+        
+        \subsection{trans\_rot\_ls\_adams.py}
+        {\footnotesize 
+            \inputminted{python}{Back/codigos_py/trans_rot_ls_adams.py}
+            }
+        \newpage
+        
+        \subsection{delta\_kinematics\_t1m\_adams.py}
+        {\footnotesize 
+            \inputminted{python}{Back/codigos_py/delta_kinematics_t1m_adams.py}
+            }
+        \newpage
+        
+        \subsection{delta\_kinematics\_Paderborn\_tm1\_adams.py}
+        {\footnotesize 
+            \inputminted{python}{Back/codigos_py/delta_kinematics_Paderborn_tm1_adams.py}
+            }
+        \newpage
+        
+
+        \subsection{jacobian\_tm1\_adams.py}
+        {\footnotesize 
+            \inputminted{python}{Back/codigos_py/jacobian_tm1_adams.py}
+            }
+        \newpage
+    
+        \subsection{jacobian\_Paderborn\_tm1\_v2\_adams.py}
+        {\footnotesize 
+            \inputminted{python}{Back/codigos_py/jacobian_Paderborn_tm1_v2_adams.py}
+            }
+        \newpage    
+    
+        \subsection{torque\_m1\_adams.py}
+        {\footnotesize 
+            \inputminted{python}{Back/codigos_py/torque_m1_adams.py}
+            }
+        \newpage    
+        
+        \subsection{torque\_m1\_Paderborn\_v2\_adams.py}
+        {\footnotesize 
+            \inputminted{python}{Back/codigos_py/torque_m1_Paderborn_v2_adams.py}
+            }
+        \newpage    
+        
+        \subsection{workspace\_v2.py}
+        {\footnotesize 
+            \inputminted{python}{Back/codigos_py/workspace_v2.py}
+            }
+        \newpage   
+        
+        \subsection{posicionador\_rviz\_realtime\_tm1\_adams.py}
+        {\footnotesize 
+            \inputminted{python}{Back/codigos_py/posicionador_rviz_realtime_tm1_adams.py}
+            }
+        \newpage  
+        
+        \subsection{codos\_tm1\_adams.py}
+        {\footnotesize 
+            \inputminted{python}{Back/codigos_py/codos_tm1_adams.py}
+            }
+        \newpage   
