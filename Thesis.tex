@@ -6,7 +6,8 @@
 \usepackage{amssymb,bm}
 \usepackage{gensymb}
 \usepackage{graphicx,color}
-\usepackage{subfigure}
+%\usepackage{subfigure}
+\usepackage{subfig}
 \usepackage{caption}
 \usepackage[spanish]{babel}
 \usepackage{float}
@@ -180,6 +181,8 @@ escapechar=* % <=  to escape to LaTeX
 \include{Front/Abstract}
 \phantomsection  
 \include{Front/Dedicatoria}
+\phantomsection  
+\include{Front/acknowledgment}
 
 \addtocontents{toc}{\protect\thispagestyle{fancy}} 
 \tableofcontents
@@ -196,14 +199,14 @@ escapechar=* % <=  to escape to LaTeX
 \onehalfspacing
 \mainmatter 
 
-% \include{Main/Chapter1/Chapter1}
-%\include{Main/Chapter2/Chapter2}
-%\include{Main/Chapter3/Chapter3}
-% \include{Main/Chapter4/Chapter4}
-%\include{Main/Chapter5/Chapter5}
-% \include{Main/Chapter6/Chapter6}
-% \include{Main/Chapter7/Chapter7}
-% \include{Main/Chapter8/Chapter8}
+ \include{Main/Chapter1/Chapter1}
+\include{Main/Chapter2/Chapter2}
+\include{Main/Chapter3/Chapter3}
+ \include{Main/Chapter4/Chapter4}
+\include{Main/Chapter5/Chapter5}
+ \include{Main/Chapter6/Chapter6}
+ %\include{Main/Chapter7/Chapter7}
+ \include{Main/Chapter8/Chapter8}
 
 %\addbibresource{Ohne-Titel.bib}
 

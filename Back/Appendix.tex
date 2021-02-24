@@ -1995,11 +1995,16 @@ Calculando los valores relacionados con la coordenada generalizada  \( q_{j}=Z_{
 
 
         
-\chapter{Codigos}\label{anexoC}
+\chapter{Carpetas, comandos y codigos}\label{anexoC}
 \thispagestyle{fancy}
 \pagenumbering{arabic}\renewcommand{\thepage}{B.\arabic{page}}
     \section{Carpetas creadas por catkin make}
-    
+        \begin{figure}[H]
+              \centering
+	          \includegraphics[width=1.0\linewidth]{Back/image_anexo/catkin_make.png}
+              \caption{Fotografía de un paraguas}
+              \label{f:Cap4_Metodo_B_Modelacion_Dinamica_2}
+        \end{figure}
     \newpage
 
     \section{Comandos para compilar nodos en shell}
@@ -2464,17 +2469,13 @@ include\_directories( \\
   <!-- comentarios -->
   <arg name="model"/>
   <arg name="gui" default="true"/>
-
   <param name="robot_description" 
 		 textfile="$(find simu_visual)/urdf/robot_urdftm1_adams.urdf"/>
   <param name="use_gui" value="$(arg gui)"/>
-
   <node name="estados_robot_pub" 
 		pkg="robot_state_publisher" type="robot_state_publisher"/>
-
   <node name="rviz" pkg="rviz" type="rviz" 
 		args="−d $(find simu_visual)/rviz/tfm_simulacion.rviz" required="true"/>
-
 </launch>
     \end{lstlisting}
 
