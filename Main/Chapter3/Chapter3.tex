@@ -1,5 +1,7 @@
 \chapter{Arquitectura de un robot delta}\label{CAP3}
 
+En este capitulo, se explica detalladamente la descripción del robot delta y las herramientas que se utilizan para la solución de la problemática de la modelación cinemática y dinámica. Inicialmente se explica de forma general el funcionamiento y una estructura básica de un robot delta, con el fin de que el lector de esta tesis entienda lo complejo que es crear un robot por la gran variedad de áreas que lo componen. Luego se muestra y se describen las partes mecánicas o piezas físicas con que esta estructurado. Posteriormente se presenta el funcionamiento y los componentes del middleware ROS, el encargado de controlar y ordenar la lógica de la modelación cinemática y dinámica. Posteriormente se enseña una herramienta de ROS, llamada Rviz, la encargada de la visualización del robot. Finalmente se muestra el sofware que comprueba la modelacion dinamica del sistema, llamado ADAMS.
+
 \section{Funcionamiento general}
 
 La principal tarea de un robot es ir de un punto a otro para realizar determinada acción. Para realizar la tarea se debe pasar por una serie de pasos con el fin de asegurar la ejecución exitosa de dicha tarea. Con el fin de explicar brevemente los pasos a seguir para lograr dicho objetivo, en la figura \ref{f:Cap3-1_diagrama_de_flujo_robot_accion} se muestra un ejemplo básico de un diagrama de flujo de un robot delta accionado por motores paso a paso.\\
@@ -8,32 +10,32 @@ Los pasos del diagrama de flujo son los siguientes:
 
 \begin{itemize}
     \item Definir los puntos de inicio y final de la trayectoria del robot.
-    \item Elegir el tipo de trayectoria, posiciones, velocidades y aceleraciones impuestas y no dañar los componentes del robot.
-    \item Comprobar la cinemática y dinámica para asegurar la trayectoria impuesta y no dañar los componentes del robot.
-    \item Transformación de la trayectoria cartesiana al espacio articular de los actuadores que controlan el movimiento de las partes mecánicas del robot.
+    \item Elegir el tipo de trayectoria, posiciones, velocidades y aceleraciones impuestas.
+    \item Comprobar la cinemática para obtener la trayectoria angular de los motores .
+    \item Transformación de la trayectoria cartesiana a la trayectoria en el espacio articular de los actuadores.    
+    \item Comprobar dinámica para asegurar que la trayectoria impuesta no dañe los componentes del robot y los motores.
     \item Traducción de trayectoria en el espacio articular a pulsaciones que entiendan los drivers de cada motor.
     \item Envío de pulsos al driver de los motores por medio de un controlador.
+    \item Envío de pulsos del driver hacia los motores paso a paso.
 \end{itemize}
-
-        \newpage
 
     \begin{figure}[h]
         \centering
-        \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/3-1/diagrama-de-flujo-robot.png}
-        \caption{asd}
+        \includegraphics[width=1\linewidth]{Main/Chapter3/Images3/3-1/diagrama-de-flujo-robot.png}
+        \caption{Ejemplo de diagrama de flujo de tareas que realiza un robot delta para realizar una trayectoria especifica}
         \label{f:Cap3-1_diagrama_de_flujo_robot_accion}
     \end{figure}
-
         \newpage
+        
 \section{Estructura de un robot delta}
 %00X0 : reordenar los títulos del cap al diagrama de abajo en formato general, y luego explicar los software específicos para nosotros
 
-    El robot delta puede ser subdivido por categorías de acuerdo al grupo estructural al que pertenezcan. Estas categorías facilitan la generación de conceptos para cada grupo de manera independiente \cite{Robot_parelelo_tipo}
+    El robot delta puede ser subdivido por categorías de acuerdo al grupo estructural al que pertenezcan. Estas categorías facilitan la generación de conceptos para cada grupo de manera independiente, como se ilustra en la figura \ref{f:Cap3-2_esquema_arquitectura_robot_delta}.
     
     \begin{figure}[h]
         \centering
         \includegraphics[width=0.85\linewidth]{Main/Chapter3/Images3/3-2/esquema-categorias-estructura.png}
-        \caption{asd}
+        \caption{Descomposición estructural del robot delta \cite{Robot_parelelo_tipo}}
         \label{f:Cap3-2_esquema_arquitectura_robot_delta}
     \end{figure}
     
@@ -51,7 +53,7 @@ Los pasos del diagrama de flujo son los siguientes:
     \begin{figure}[h]
         \centering
         \includegraphics[width=1\linewidth]{Main/Chapter3/Images3/3-2/sistema-de-control.png}
-        \caption{asd}
+        \caption{Ejemplo de el sistema de control de un robot delta}
         \label{f:Cap3-2_esquema_sistema_control}
     \end{figure}
     
@@ -83,35 +85,38 @@ Los pasos del diagrama de flujo son los siguientes:
     
     \begin{figure}[htb]
         \centering
-        \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/3-3/caja-negra-reymond.png}
-        \caption{asd}
+        \includegraphics[width=0.75\linewidth]{Main/Chapter3/Images3/3-3/caja-negra-reymond.png}
+        \caption{Representación de la función general del robot proyectada en forma de caja negra \cite{Clavel:31403}}
         \label{f:Cap3-3_caja_negra_reymond}
     \end{figure}
     
     \newpage
     
     \subsection{Elección del concepto ``Delta``}
-    El catálogo de soluciones del anexo A2.2 de la tesis doctoral \cite{Clavel:31403} presenta 18 tipos de soluciones principales que permiten mantener constantes 2 orientaciones de un sólido. La figura \ref{f:Cap3-3_soluciones_interesantes_catalogo} muestra las soluciones más interesantes para el objetivo previsto. Entre estas 18 soluciones, Reymond conserva aquellas que tienen las siguientes particularidades:
+    El catálogo de soluciones del anexo A2.2 de la tesis doctoral \cite{Clavel:31403} presenta 18 tipos de soluciones principales de la estructura de un robot delta que permiten mantener constantes 2 orientaciones de un sólido. La figura \ref{f:Cap3-3_soluciones_interesantes_catalogo} muestra las soluciones más interesantes para el objetivo previsto. 
 
      \begin{figure}[htb]
         \centering
         \includegraphics[width=0.85\linewidth]{Main/Chapter3/Images3/3-3/soluciones-interesantes.png}
-        \caption{Extracto de las soluciones más interesantes del catálogo del Apéndice A.2.2}
+        \caption{Extracto de las soluciones del catálogo del Apéndice A.2.2  \cite{Clavel:31403}}
         \label{f:Cap3-3_soluciones_interesantes_catalogo}
     \end{figure}
-    
-    \begin{enumerate}
+ 
+      \begin{figure}[htb]
+        \centering
+        \includegraphics[width=0.8\linewidth]{Main/Chapter4/Images4/juntas.png}
+        \caption{Nombre, movimiento relativo. grados de libertad y simbolos de juntas dibujadas en la figura  \ref{f:Cap3-3_soluciones_interesantes_catalogo}  \cite{Clavel:31403}}
+        \label{f:Cap3-3_soluciones_interesantes_catalogo_JUNTAS}
+    \end{figure}
+ 
+ Entre estas 18 soluciones, Reymond conserva aquellas que tienen las siguientes particularidades:   
+    \begin{itemize}
         \item El movimiento en el espacio (con tres grados de libertad) es proporcionado por el tres actuadores asegurados a la base fija, las soluciones 10 a 13 y 15 a 18 de la figura \ref{f:Cap3-3_soluciones_interesantes_catalogo} cumplen esta condición.
         \item Los actuadores son del tipo giratorio. Las soluciones 11, 13, 16 y 18 cumplen esta condicion.
         \item La estabilidad del órgano terminal está asegurada por una mayoría de elementos que trabajan en tensión-compresión más que en torsión. Finalmente se adopta la solución numero 18.
-    \end{enumerate}
+    \end{itemize}
     
-     \begin{figure}[htb]
-        \centering
-        \includegraphics[width=0.9\linewidth]{Main/Chapter4/Images4/juntas.png}
-        \caption{Extracto de las soluciones más interesantes del catálogo del Apéndice A.2.2}
-        \label{f:Cap3-3_soluciones_interesantes_catalogo_JUNTAS}
-    \end{figure}
+
     
         \newpage
     
@@ -129,11 +134,11 @@ Los pasos del diagrama de flujo son los siguientes:
               \subfloat[Representación de paralelogramos del robot delta]{
                \label{f:Cap3-3_ayuda_dimensiones}
                 \includegraphics[width=0.5\textwidth]{Main/Chapter3/Images3/3-3/ayuda-dimensiones.png}}
-         \caption{Múltiples imágenes}
+         \caption{Descripción visual de un robot delta \cite{Clavel:31403}}
          %\label{f:animales}
     \end{figure}
 
-    La orientación de la góndola está asegurada constantemente por los 3 paralelogramos que comprenden cada uno 2 dimensiones pequeñas y 2 dimensiones grandes formadas por las barras paralelas. Cada lado pequeño integrado al extremo de un brazo permanece constantemente paralelo al eje de rotación del brazo en cuestión. Los 3 pares de barras paralelas aseguran que las 3 pequeñas dimensiones integradas a la góndola permanezcan paralelas a las pequeñas dimensiones integradas a los extremos de los brazos, por tanto, paralelas a los ejes de rotación de los brazos que, por construcción, se ubican en el mismo plano. Las juntas en los extremos de las barras paralelas son del tipo de junta esférica, por lo que cada barra puede girar alrededor de su eje longitudinal; esta rotación no altera el comportamiento de esta estructura articulada que forma el paralelogramo del espacio. Una conexión por resortes y estribos entre las 2 barras paralelas simplifica la construcción de las rótulas y limita las evoluciones giratorias de las barras paralelas.
+    La orientación de la góndola está asegurada constantemente por los 3 paralelogramos (figura \ref{f:Cap3-3_ayuda_dimensiones}), que comprenden cada uno 2 dimensiones pequeñas y 2 dimensiones grandes formadas por las barras paralelas. Cada lado pequeño integrado al extremo de un brazo permanece constantemente paralelo al eje de rotación del brazo en cuestión. Los 3 pares de barras paralelas aseguran que las 3 pequeñas dimensiones integradas a la góndola permanezcan paralelas a las pequeñas dimensiones integradas a los extremos de los brazos, por tanto, paralelas a los ejes de rotación de los brazos que, por construcción, se ubican en el mismo plano. Las juntas en los extremos de las barras paralelas son del tipo de junta esférica, por lo que cada barra puede girar alrededor de su eje longitudinal; esta rotación no altera el comportamiento de esta estructura articulada que forma el paralelogramo del espacio. Una conexión por resortes y estribos entre las 2 barras paralelas simplifica la construcción de las rótulas.
     
     \newpage
 
@@ -918,8 +923,30 @@ Adaptación del paquete “Dynamic reconfigure” que permite modificar en tiemp
         
     \newpage
 
-\section{Software Algorithm Development and mining (ADAMS)}
-Desde
+\section{Software Algorithm Development and Mining (ADAMS)}
+
+% COPY PASTE DE VARIOS PAPEOS, PARA POSTERIOR MEJORA Y INTRODUCCIÓN AL CONTEXTO DE NUESTRA TESIS
+
+    La simulación de sistemas robotizados esta íntimamente ligada a la potencia
+    computacional de los procesadores de cálculo. El gran avance producido
+    con los microprocesadores actuales, ha permitido el desarrollo de diferentes
+    paquetes de simulación dinámica capaces de simular el comportamiento dinámico
+    de casi cualquier mecanismo multicuerpo. En esta tesis, el modelo del robot delta en estudio es construido en ADAMS.
+    
+    Adams es un programa para simulación dinámica y análisis de movimiento cinemático en multiples cuerpos. Ayuda en el estudio de la dinámica de las partes móviles, como cargas y fuerzas que se distribuyen a lo largo de los sistemas mecánicos, para mejorar y optimizar el rendimiento de los productos. Permite  crear y probar prototipos virtuales de los sistemas mecánicos en una fracción del tiempo y costo requerido para la estructura física y la prueba, incorporando la física real de forma simultánea a la resolución de ecuaciones de cinemática, estática, y la dinámica.
+
+    Adams ejecuta la dinámica no lineal en una fracción del tiempo requerido por las soluciones de FEA. Proporcionando una mejor evaluación de la forma en que varían a través de una gama completa de movimiento y entornos operativos.
+    
+    Los módulos opcionales e integrados con Adams permiten a los usuarios integrar los componentes mecánicos, neumática, hidráulica, electrónica y tecnologías de control de sistemas para construir y probar prototipos virtuales que representan con precisión las interacciones entre estos subsistemas.
+    
+    
+    \begin{figure}[htb]
+        \centering
+        \includegraphics[width=1\linewidth]{Main/Chapter3/Images3/adams/logo_adams.png}
+        \caption{Iamgen de referencia del software Adams}
+        \label{f:Cap3-adams_logo}
+    \end{figure} 
+    
 
     
       

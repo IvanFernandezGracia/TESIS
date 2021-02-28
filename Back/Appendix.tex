@@ -1,3 +1,5 @@
+ \begin{comment}
+
 \chapter{Desarrollo de formulas teóricas}\label{anexoB}
 \thispagestyle{fancy}
 \pagenumbering{arabic}\renewcommand{\thepage}{B.\arabic{page}}
@@ -1992,9 +1994,15 @@ Calculando los valores relacionados con la coordenada generalizada  \( q_{j}=Z_{
                  \[ \overrightarrow{G} \left(  \theta  \right) =- J^{T}\overrightarrow{F_{g}}-\overrightarrow{ \tau_{Gb}} \] 
          \newpage
 
+\comment{
+This line of text won't show
 
+This one won't either
+}
+      
+...
+\end{comment}
 
-        
 \chapter{Carpetas, comandos y codigos}\label{anexoC}
 \thispagestyle{fancy}
 \pagenumbering{arabic}\renewcommand{\thepage}{B.\arabic{page}}
@@ -2485,6 +2493,38 @@ include\_directories( \\
     
     \section{Python (script)}
     
+    % INICIO rodrigo   en desarrolllo
+        \subsection{TEST Códigos Bonitos} 
+            \input{Back/codigosLatex/pd_tm1_adams}
+   % FIN rodrigo  en desarrolllo
+            \newpage    
+            
+            
+    % INICIO ivan LISTO   OPCION 1
+    \subsection{IVAN LISTO}
+   \begin{code}
+        {\footnotesize 
+                    \inputminted[frame=lines,
+                                breaklines=true, 
+                                framesep=2mm,
+                                baselinestretch=1.2,
+                                bgcolor=LightGray,
+                                fontsize=\footnotesize,
+                                linenos]{python}{Back/codigos_py/pd_tm1_adams.py}
+                    \captionof{listing}{Some caption\label{lst:some-flabel}}
+                    }
+    \end{code}
+    
+    \newpage    
+      % FIN ivan  en desarrolllo    
+
+   
+   
+   
+   
+   
+   
+
         \subsection{pd\_tm1\_adams.py}
         {\footnotesize 
             \inputminted{python}{Back/codigos_py/pd_tm1_adams.py}

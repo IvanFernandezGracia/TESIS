@@ -72,6 +72,15 @@
 \usepackage{smartdiagram}  
 \usepackage{svg}
 
+\usepackage{caption}
+\usepackage{listings}
+\usepackage[newfloat]{minted}
+\usepackage{caption}
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\SetupFloatingEnvironment{listing}{name=Source Code}
+%\renewcommand\listoflistingscaption{Lista de fragmentos de códigos}
+%\renewcommand\listingscaption{Código}
+
 %%%   XML %%%   
 \usepackage{lmodern}
 \usepackage{listings}
@@ -184,7 +193,6 @@ escapechar=* % <=  to escape to LaTeX
 \renewcommand{\appendixpagename}{APÉNDICE}
 \newcommand\tr{\rule{0pt}{4.5ex}}
 \newcommand\br{\rule[-3ex]{0pt}{3ex}}
-
 \include{Front/TitlePage}
 \include{Front/Copyright}
 
@@ -217,14 +225,14 @@ escapechar=* % <=  to escape to LaTeX
 \onehalfspacing
 \mainmatter 
 
-\include{Main/Chapter1/Chapter1}
-\include{Main/Chapter2/Chapter2}
+% \include{Main/Chapter1/Chapter1}
+% \include{Main/Chapter2/Chapter2}
 \include{Main/Chapter3/Chapter3}
-\include{Main/Chapter4/Chapter4}
-\include{Main/Chapter5/Chapter5}
-\include{Main/Chapter6/Chapter6}
-%\include{Main/Chapter7/Chapter7}
-\include{Main/Chapter8/Chapter8}
+% \include{Main/Chapter4/Chapter4}
+% \include{Main/Chapter5/Chapter5}
+% \include{Main/Chapter6/Chapter6}
+% \include{Main/Chapter7/Chapter7}
+% \include{Main/Chapter8/Chapter8}
 
 %\addbibresource{Ohne-Titel.bib}
 
