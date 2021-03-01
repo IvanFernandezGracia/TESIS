@@ -648,12 +648,14 @@ Los pasos del diagrama de flujo son los siguientes:
             En un proyecto ROS, es posible que desee ejecutar varios nodos ROS al mismo tiempo para realizar sistemas más complejos. ROS tiene una herramienta llamada roslaunch que permite a los usuarios ejecutar numerosos nodos, establecer parámetros de configuración de cada nodo, renombrar los nombres de temas predeterminados e incluso cambiar el nombre del nodo. El propósito de esto es configurar fácilmente el sistema global.
             
         \subsubsection{RQT Graph}
-            Proporciona visualización de un sistema ROS, mostrando los nodos y las conexiones entre ellos que permite depurar y comprender el sistema en ejecución y cómo está estructurado. La herramienta rqt también permite controlar los valores de las articulaciones del robot. 
+            Proporciona visualización de un sistema ROS, mostrando los nodos y las conexiones entre ellos que permite depurar y comprender el sistema en ejecución y cómo está estructurado. 
             
             \begin{figure}[htb]
                 \centering
                 \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/herramientas_1.png}
-                \caption{}
+                \caption{Visualización de la comunicación entre un nodo publisher y el nodo subscriber a travez del tema number en RQT Graph.
+
+}
                 \label{f:Cap3_herramientas_1}
             \end{figure}       
             
@@ -677,8 +679,8 @@ Adaptación del paquete “Dynamic reconfigure” que permite modificar en tiemp
  
              \begin{figure}[htb]
                 \centering
-                \includegraphics[width=0.7\linewidth]{Main/Chapter3/Images3/herramientas_2.png}
-                \caption{}
+                \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/herramientas_2.png}
+                \caption{Logo Proyecto MoveIt}
                 \label{f:Cap3_herramientas_2}
             \end{figure}     
             
@@ -689,16 +691,16 @@ Adaptación del paquete “Dynamic reconfigure” que permite modificar en tiemp
         
         \begin{figure}[htb]
                 \centering
-                \includegraphics[width=0.35\linewidth]{Main/Chapter3/Images3/herramientas_4.png}
-                \caption{}
+                \includegraphics[width=0.3\linewidth]{Main/Chapter3/Images3/herramientas_4.png}
+                \caption{Logo Gazebo}
                 \label{f:Cap3_herramientas_4}
         \end{figure} 
     
         
         \begin{figure}[htb]
                 \centering
-                \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/herramientas_3.png}
-                \caption{}
+                \includegraphics[width=0.98\linewidth]{Main/Chapter3/Images3/herramientas_3.png}
+                \caption{Simulación de dron en Gazebo}
                 \label{f:Cap3_herramientas_3}
         \end{figure}  
 
@@ -715,8 +717,8 @@ Adaptación del paquete “Dynamic reconfigure” que permite modificar en tiemp
         
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=0.5\linewidth]{Main/Chapter3/Images3/3-6/logo-rviz.png}
-            \caption{Logo del software Rviz}
+            \includegraphics[width=0.35\linewidth]{Main/Chapter3/Images3/3-6/logo-rviz.png}
+            \caption{Logo de Rviz}
             \label{f:Cap3-6_logo_rviz}
         \end{figure}
         
@@ -724,14 +726,14 @@ Adaptación del paquete “Dynamic reconfigure” que permite modificar en tiemp
         
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=0.7\linewidth]{Main/Chapter3/Images3/3-6/interfaz-rviz.png}
-            \caption{Interfaz principal de Rviz}
+            \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/interfaz-rviz.png}
+            \caption{ABB IRB 2400 con publicador de estado de juntas en RViz \cite{lentin_20188}}
             \label{f:Cap3-6_interfaz_rviz}
         \end{figure}
         
         \newpage
     
-    \subsection{Interfaz de visualización gráfica ROS visualization (Rviz)}
+    \subsection{Coordenadas TF}
     
         Un marco de coordenadas o frame es un concepto importante en ROS. Cualquier robot puede tener varios componentes, como un láser, una cámara, un sonar o brazos, y pueden tener un marco de coordenadas adjunto. Muchos algoritmos ROS requieren realizar un seguimiento de todos estos marcos de coordenadas.
         
@@ -739,33 +741,38 @@ Adaptación del paquete “Dynamic reconfigure” que permite modificar en tiemp
         
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=0.5\linewidth]{Main/Chapter3/Images3/3-6/ejemplo-multiples-frames-rviz.png}
-            \caption{Múltiples ``frames'' en Rviz}
+            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/3-6/ejemplo-multiples-frames-rviz.png}
+            \caption{Tres visualizaciones diferentes del modelo Minibot URDF. Visualizacion en Rviz, modelo de coliciones y estructura tf  \cite{phdthesistfhuman}. }
             \label{f:Cap3-6_frames_rviz}
         \end{figure}
         
-        La biblioteca tf opera en un sistema distribuido, por lo que la información correspondiente a los marcos de coordenadas de un robot está disponible para todos los componentes ROS en cualquier parte del sistema. Se crea una estructura de árbol con todos los marcos de coordenadas del sistema y todas las transformaciones se publican a través del tema “tf”.
-      
+Un ejemplo para explicar las coordenadas tf es el del robot simple  mostrado en la figura \ref{f:Cap3-6_nose1}, que tiene una base móvil con un láser montado encima. El objetivo de este robot es evitar obstáculos para no colisionar, como una pared.
+En referencia al robot, se definen dos marcos de coordenadas: uno correspondiente al punto central de la base del robot llamado ''base\_link''y otro para el punto central del láser que está montado en la parte superior de la base movil llamado ''base\_laser''. 
+
+El láser recopila datos en forma de distancias desde el punto central del láser a una pared, es decir, el láser tiene datos de distancia en el marco de coordenadas ''base\_laser''. Para evitar obstáculos se debe mover la base móvil, por los que los datos del láser se deben transformar al sistema de referencia ''base\_link'', en otras palabras,  se tiene que definir una relación entre los marcos de coordenadas ''base\_laser'' y ''base\_link''.
+ \newpage
+ 
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/3-6/estructura-arbol-tf.png}
-            \caption{nose}
+            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/simple_robot.png}
+            \caption{Ejemplo robot simple compuesto por base móvil y un láser}
+            \label{f:Cap3-6_nose1}
+        \end{figure}    
+
+Esta relación entre los marcos de referencia son desplazamiento de traslación y rotacional entre los marcos 'base\_laser'' y ''base\_link''. Gestionar esta relación en todo momento en una simulación del robot , es decir, almacenar y aplicar los desplazamientos adecuados entre los fotogramas en cada momento, se convierte en un verdadero problema a medida que aumenta el número de fotogramas de coordenadas. Afortunadamente, sin embargo, no se tiene que hacer este trabajo ya que en su lugar, se define la relación entre "base\_link" y "base\_laser" una sola vez usando tf y la bibloteca tf gestiona la transformación entre los dos marcos de coordenadas automáticamente.
+
+Para definir y almacenar la relación entre los marcos ''base\_link'' y ''base\_laser'' usando tf, se necesita crear a un árbol de transformación. Conceptualmente, cada nodo en el árbol de transformación corresponde a un marco de coordenadas y cada borde corresponde a la transformación que debe aplicarse para pasar del nodo actual a su hijo. Tf usa una estructura de árbol para garantizar que haya un solo recorrido que vincule dos marcos de coordenadas cualesquiera, y asume que todos los bordes del árbol se dirigen desde los nodos principales a los secundarios.    
+
+
+        \begin{figure}[htb]
+            \centering
+            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/tf_robot.png}
+            \caption{Láser recolectando datos respecto a ''base\_laser'', árbol de transformación y datos del láser transformados a marco ''base\_link'' }
             \label{f:Cap3-6_nose1}
         \end{figure}    
         
-                \newpage
-
         
-        Esta biblioteca tiene dos módulos estándar, broadcaster y listener. Estos módulos están diseñados para integrarse con el ecosistema ROS, pero generalmente son útiles fuera de ROS. El broadcaster envía actualizaciones periódicamente de la pose de los fotogramas de coordenadas al resto del sistema. El sistema es capaz de tener muchos broadcaster que proporcionan información sobre una parte diferente del robot. El listener recopila los valores recibidos y almacena en búfer todos los fotogramas de coordenadas que se emiten en el sistema y consulta las transformaciones específicas entre fotogramas.
-
-        \begin{figure}[htb]
-            \centering
-            \includegraphics[width=0.45\linewidth]{Main/Chapter3/Images3/3-6/esquema-funcionamiento-tf.png}
-            \caption{Ecosistema de la biblioteca TF}
-            \label{f:Cap3-6_ecosistema_tf}
-        \end{figure}   
-        
-        Además, TF ofrece una serie de herramientas o aplicaciones que facilitan al usuario la visualización del estado de las transformadas como:
+         TF ofrece una serie de herramientas o aplicaciones que facilitan al usuario la visualización del estado de las transformadas como:
         
         \begin{itemize}
             \item \textbf{tf\_monitor:} Imprime la información sobre el árbol de transformación actual.
@@ -773,32 +780,25 @@ Adaptación del paquete “Dynamic reconfigure” que permite modificar en tiemp
             \item \textbf{tf\_tree:} Crea un gráfico visual del árbol de transformación (en formato pdf).
         \end{itemize}
         
-        En la figura \ref{f:Cap3-6_sistema_arbol_tf} se muestra un árbol de transformada haciendo uso de la herramienta rqt\_tf\_tree. En él se puede observar los distintos frames del sistema y sus relaciones
+        \newpage
+        La figura \ref{f:Cap3-6_sistema_arbol_tf} muestra un ejemplo de un árbol de transformada haciendo uso de la herramienta rqt\_tf\_tree y la figura \ref{f:Cap3-6_NOSE_tf} los respectivos marcos de referencia de cada parte del robot . En las dos figuras se puede observar los distintos frames del sistema y sus relaciones.
         
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=0.75\linewidth]{Main/Chapter3/Images3/3-6/ejemplo-frames-sistema-arbol.png}
+            \includegraphics[width=0.7\linewidth]{Main/Chapter3/Images3/3-6/ejemplo-frames-sistema-arbol.png}
             \caption{Frames de un sistema visualizado mediante tf\_tree}
             \label{f:Cap3-6_sistema_arbol_tf}
         \end{figure} 
         
-                        \newpage
-
         
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/3-6/nose2.png}
-            \caption{NO SE QUE ES}
+            \includegraphics[width=0.55\linewidth]{Main/Chapter3/Images3/3-6/nose2.png}
+            \caption{Figura que contiene los marcos tf más utilizados \cite{10.5555/2904061}}
             \label{f:Cap3-6_NOSE_tf}
         \end{figure} 
         
-        Hay dos marcos de referencia que son importantes de conocer para obtener la visualización adecuada en Rviz:
-        
-        \begin{itemize}
-            \item \textbf{Fixed frame:} Es el más importante de los dos. El fixed frame o marco fijo es el marco de referencia utilizado como frame global. Por norma general, este marco se suele asociar al mapa o ``mundo'' para poder visualizar los datos de manera correcta.
-            \item \textbf{Target frame:} Es el sistema de coordenadas que sirve como referencia, por ejemplo, a la cámara o vista del visualizador, pudiendo tener distintas vistas e ir cambiando dependiendo de la perspectiva que se desee visualizar.
-        \end{itemize}
-        
+    
         Resumiendo esta sección, TF es una biblioteca con las siguientes características:
         
         \begin{itemize}
@@ -822,8 +822,8 @@ Adaptación del paquete “Dynamic reconfigure” que permite modificar en tiemp
         
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=0.5\linewidth]{Main/Chapter3/Images3/3-7/representacion-de-eslabon-en-urdf.png}
-            \caption{Representación de un eslabón en URDF}
+            \includegraphics[width=0.55\linewidth]{Main/Chapter3/Images3/3-7/representacion-de-eslabon-en-urdf.png}
+            \caption{Elementos basicos de visualization URDF: links y joints \cite{urdftutorials}.}
             \label{f:Cap3-7_eslabon_urdf}
         \end{figure} 
         
@@ -837,7 +837,7 @@ Adaptación del paquete “Dynamic reconfigure” que permite modificar en tiemp
         \begin{figure}[htb]
             \centering
             \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/3-7/eslabon2.png}
-            \caption{nose}
+            \caption{Reparcelación de la visual, inercia y colisión de un link con sus respectivos marcos de referencia para urdf  \cite{urdftutorials}}
             \label{f:Cap3-7_noseee_urdf}
         \end{figure} 
 
@@ -849,8 +849,8 @@ Adaptación del paquete “Dynamic reconfigure” que permite modificar en tiemp
         
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/3-7/codigo.png}
-            \caption{nose}
+            \includegraphics[width=0.9\linewidth]{Main/Chapter3/Images3/3-7/codigo.png}
+            \caption{Descripción de un link en código URDF}
             \label{f:Cap3-7_nose_nose}
         \end{figure} 
         
@@ -864,7 +864,7 @@ Adaptación del paquete “Dynamic reconfigure” que permite modificar en tiemp
         \begin{figure}[htb]
             \centering
             \includegraphics[width=0.65\linewidth]{Main/Chapter3/Images3/3-8/representacion-de-una-articulacion-en-URDF.png}
-            \caption{nose}
+            \caption{Representación gráfica de un joint y su relación padre-hijo con los link \cite{urdftutorials}}
             \label{f:Cap3-8_nose_nose}
         \end{figure} 
         
@@ -885,7 +885,7 @@ Adaptación del paquete “Dynamic reconfigure” que permite modificar en tiemp
         \begin{figure}[htb]
             \centering
             \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/3-8/codigo-joint.png}
-            \caption{nose}
+            \caption{Descripción de un joint en código URDF}
             \label{f:Cap3-8_nose_nose}
         \end{figure} 
         
@@ -919,8 +919,8 @@ Adaptación del paquete “Dynamic reconfigure” que permite modificar en tiemp
         
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=0.45\linewidth]{Main/Chapter3/Images3/3-9/Esquema-de-los-componentes-de-un-fichero-urdf.png}
-            \caption{nose}
+            \includegraphics[width=0.43\linewidth]{Main/Chapter3/Images3/3-9/Esquema-de-los-componentes-de-un-fichero-urdf.png}
+            \caption{Ejemplo de la representación gráfica URDF de un robot por medio de la herramienta urdf\_to\_graphiz \cite{urdftutorials}}
             \label{f:Cap3-9_nose_nose}
         \end{figure} 
         
