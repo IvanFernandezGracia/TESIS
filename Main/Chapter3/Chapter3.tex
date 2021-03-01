@@ -144,43 +144,43 @@ Los pasos del diagrama de flujo son los siguientes:
 
 \section{Software Robor Operating System (ROS)}
     
-    En esta sección se proporciona una descripción general de Robot Operating System, por sus siglas ROS y sus principales lineamientos. ROS es un marco para desarrollar software de robótica. El software está estructurado bajo un paradigma modular, pequeños paquetes que se comunican entre si mediante rápidos mensajes. Este paradigma se fomenta la reutilización de código y la colaboración global por sobre los entornos particulares.
+        En esta sección se proporciona una descripción general de Robot Operating System, por sus siglas ROS y sus principales lineamientos. ROS es un marco para desarrollar software de robótica. El software está estructurado bajo un paradigma modular, pequeños paquetes que se comunican entre si mediante rápidos mensajes. Este paradigma se fomenta la reutilización de código y la colaboración global por sobre los entornos particulares.
     
     \begin{figure}[htb]
         \centering
         \includegraphics[width=0.5\linewidth]{Main/Chapter3/Images3/3-4/logo-ros.png}
-        \caption{Logotipo de ROS}
+        \caption{Logo de ROS \cite{ros2222}}
         \label{f:Cap3-4_logo_ros}
     \end{figure}
     
     \subsection{Historia}
     
-        ROS es un gran proyecto que tiene muchos antepasados y contribuyentes. Mucha gente en la comunidad de investigación robótica sintió la necesidad de un marco de colaboración abierto. Varios proyectos en la Universidad de Stanford a mediados de la década de 2000 involucraban inteligencia artificial incorporada e integradora, como el Stanford AI Robot (STAIR) y el programa Personal Robots (PR), que crearon prototipos internos de los tipos de sistemas de software dinámicos y flexibles como lo es ROS. Se basó en Switchyard, que era parte de un proyecto de STAIR y fue escrito por Morgan Quigley en Stanford. En 2007, Willow Garage, Inc., una incubadora de robótica cercana, proporcionó importantes recursos para extender estos conceptos mucho más y crear implementaciones bien probadas. Desde el 2013 hasta el presente, ROS es mantenido permanentemente por la OSRF (Open Source Robotics Foundation) de Google y desde el 2017 cambio su nombre a Open Robotics.
+        ROS es un gran proyecto que tiene muchos antepasados y contribuyentes. Mucha gente en la comunidad de investigación robótica sintió la necesidad de un marco de colaboración abierto. Varios proyectos en la Universidad de Stanford (figura \ref{f:Cap3-4_entidades_inicio_ros_32}) a mediados de la década de 2000 involucraban inteligencia artificial incorporada e integradora, como el Stanford AI Robot (STAIR) y el programa Personal Robots (PR), que crearon prototipos internos de los tipos de sistemas de software dinámicos y flexibles como lo es ROS. Se basó en Switchyard, que era parte de un proyecto de STAIR y fue escrito por Morgan Quigley en Stanford. En 2007, Willow Garage, Inc., una incubadora de robótica cercana, proporcionó importantes recursos para extender estos conceptos mucho más y crear implementaciones bien probadas. Desde el 2013 hasta el presente, ROS es mantenido permanentemente por Open Source Robotics Foundation (OSRF, figura \ref{f:Cap3-4_entidades_inicio_ros_334}) de Google y desde el 2017 cambio su nombre a Open Robotics.
         
         \begin{figure}[htbp]
             \centering
             \includegraphics[width=0.7\linewidth]{Main/Chapter3/Images3/3-4/entidade-asociadas-al-inicio-de-ros-3.png}
-            \caption{Entidades asociadas al inicio de ROS} 
+            \caption{OSRF \cite{osrf}} 
             \label{f:Cap3-4_entidades_inicio_ros_334}
         \end{figure}        
         
         \newpage
         
-        La mayoría de las compañías y laboratorios de investigación en robótica están ahora portando su software a ROS. Esta tendencia también es visible en robots industriales, donde compañías están paulatinamente migrando de aplicaciones propietarias a ROS. El movimiento llamado ROS Industrial se ha incrementado en estos últimos años y su objetivo, básicamente, consiste en extender las capacidades avanzadas de ROS a la automatización y la robótica industrial. Este proyecto comenzó como un intento de colaboración de Yaskawa Motoman Robotics, Southwest Research Institute (SwRI) y Willow Garage. En enero de 2012, Shaun Edwards de SwRI fundó un software repositorio, alojado en Github, donde la comunidad robótica puede encontrar interfaces para manipuladores industriales, pinzas, sensores y redes de dispositivos.
+        La mayoría de las compañías y laboratorios de investigación en robótica están ahora portando su software a ROS. Esta tendencia también es visible en robots industriales, donde compañías están paulatinamente migrando de aplicaciones propietarias a ROS. El movimiento llamado ROS Industrial se ha incrementado en estos últimos años y su objetivo, básicamente, consiste en extender las capacidades avanzadas de ROS a la automatización y la robótica industrial. Este proyecto comenzó como un intento de colaboración de Yaskawa Motoman Robotics, Southwest Research Institute (SwRI) y Willow Garage (figura \ref{f:Cap3-4_entidades_inicio_ros_33364}). En enero de 2012, Shaun Edwards de SwRI fundó un software repositorio, alojado en Github, donde la comunidad robótica puede encontrar interfaces para manipuladores industriales, pinzas, sensores y redes de dispositivos.
         
         \begin{figure}[htbp]
             \centering
             \includegraphics[width=0.65\linewidth]{Main/Chapter3/Images3/3-4/entidade-asociadas-al-inicio-de-ros-2.png}
-            \caption{Entidades asociadas al inicio de ROS} 
+            \caption{Fundadores y contribuidores de ROS} 
             \label{f:Cap3-4_entidades_inicio_ros_33364}
         \end{figure}    
         
-        Finalizando con la breve historia de ROS, se puede decir que se utiliza en estos momentos en todo el mundo en instituciones académicas, industriales y de investigación. Los desarrolladores han contribuido con miles de paquetes, incluidas soluciones de algunos de los principales expertos del mundo en áreas específicas. Las nuevas empresas de robots ofrecen interfaces ROS con sus productos, y las empresas de robots industriales establecidas también están introduciendo interfaces ROS. Con la adopción generalizada de ROS como el enfoque estándar de facto para la programación de robots, existe una nueva esperanza de acelerar las capacidades de los robots.
+        Finalizando con la breve historia de ROS, se puede decir que se utiliza en estos momentos en todo el mundo en instituciones académicas, industriales y de investigación. Los desarrolladores han contribuido con miles de paquetes, incluidas soluciones de algunos de los principales expertos del mundo en áreas específicas. Las nuevas empresas de robots ofrecen interfaces ROS con sus productos, y las empresas de robots industriales establecidas también están introduciendo interfaces ROS. Con la adopción generalizada de ROS como el enfoque estándar de factor para la programación de robots, existe una nueva esperanza de acelerar las capacidades de los robots.
         
         \begin{figure}[htbp]
             \centering
-            \includegraphics[width=0.4\linewidth]{Main/Chapter3/Images3/3-4/entidade-asociadas-al-inicio-de-ros-1.png}
-            \caption{Entidades asociadas al inicio de ROS} 
+            \includegraphics[width=0.6\linewidth]{Main/Chapter3/Images3/Stanford-University-logo1.jpg}
+            \caption{Logo Stanford University \cite{stanford}} 
             \label{f:Cap3-4_entidades_inicio_ros_32}
         \end{figure}
 
@@ -191,16 +191,16 @@ Los pasos del diagrama de flujo son los siguientes:
     La intención con que se creó ROS fue de permitir a los investigadores desarrollar rápidamente nuevos sistemas robóticos sin tener que reinventar todo nuevamente, mediante el uso de herramientas e interfaces estándar. Para hacer más eficientes los procesos de investigación y desarrollo de software de robots, se detectaron los siguientes 3 problemas a solucionar:
     
     \begin{itemize}
-        \item {Programación secuencial inadecuada para el mundo asincrónico robótico}
+        \item {Programación secuencial inadecuada para el mundo asincrónico robótico (figura \ref{f:Cap3-4_entidades_ini_ros_1})}
         \item {Sistemas robóticos deben gestionar una complejidad significativa}
         \item {Abstracción de los detalles de un hardware específico del robot.}
     \end{itemize}
 
         \begin{figure}[htbp]
             \centering
-            \includegraphics[width=0.4\linewidth]{Main/Chapter3/Images3/agrupar_problem_1.png}
-            \label{f:Cap3-4_entidades_inicio_ros_1}
-            \caption{asdasd}
+            \includegraphics[width=0.25\linewidth]{Main/Chapter3/Images3/agrupar_problem_111.png}
+            \caption{Programación Secuencial}
+            \label{f:Cap3-4_entidades_ini_ros_1}
         \end{figure}
         
     La solución para el problema de programación secuencias se basó en Callback, que son una función que se ejecuta siempre que hay datos disponibles para su procesamiento. Son asincrónico, ya que la devolución de llamada puede ocurrir en cualquier momento. Con respecto a el problema de softwares multifuncionales complejos y atracción de detalles de hardware específicos, se separaron los procesos en “nodos” que se comunican a través de una interfaz de mensajería. Por ejemplo, se separaron los procesos de las cámaras, edometría, escáner láser y creación de mapas y estos interactúan a través de una interfaz que comunica estos procesos por medio de “temas”. Estos últimos conceptos se explican en detalle en secciones posteriores.
@@ -213,11 +213,11 @@ Los pasos del diagrama de flujo son los siguientes:
        
        El objetivo principal de ROS es apoyar la reutilización de código en la investigación y el desarrollo de robótica. ROS es un marco distribuido de procesos (también conocido como nodos) que permite que los ejecutables se diseñen individualmente y se acoplen libremente en tiempo de ejecución. Estos procesos se pueden agrupar en paquetes, que se pueden compartir y distribuir fácilmente. ROS también es compatible con un sistema federado de repositorios de código que también permite la distribución de la colaboración. Este diseño, desde el nivel del sistema de archivos hasta el nivel de la comunidad, permite decisiones independientes sobre el desarrollo y la implementación, pero todos pueden combinarse con las herramientas de infraestructura ROS.
        
-       ROS no es un sistema operativo convencional como Windows, Linux y Android en el sentido tradicional de gestión y programación de procesos; más bien, es un meta-sistema operativo que se ejecuta en el sistema operativo. ROS es un middleware, que proporciona los servicios que esperaría de un sistema operativo, incluida la abstracción de hardware, control de dispositivos de bajo nivel, implementación de funciones de uso común, transmisión de mensajes entre procesos y administración de paquetes. También proporciona herramientas y bibliotecas para obtener, compilar, escribir y ejecutar código en varios equipos.
+       ROS no es un sistema operativo convencional como Windows, Linux y Android en el sentido tradicional de gestión y programación de procesos; más bien, es un meta-sistema operativo que se ejecuta en el sistema operativo. Las diferencias entre un OS y ROS se muestran el la figura \ref{f:Cap3-4_diferencias_ros_so}. ROS es un middleware, que proporciona los servicios que esperaría de un sistema operativo, incluida la abstracción de hardware, control de dispositivos de bajo nivel, implementación de funciones de uso común, transmisión de mensajes entre procesos y administración de paquetes. También proporciona herramientas y bibliotecas para obtener, compilar, escribir y ejecutar código en varios equipos.
        
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=0.6\linewidth]{Main/Chapter3/Images3/3-4/diferencia-ROS-SO.png}
+            \includegraphics[width=0.65\linewidth]{Main/Chapter3/Images3/3-4/diferencia-ROS-SO.png}
             \caption{Diferencias entre un sistema operativo convencional y ROS}
             \label{f:Cap3-4_diferencias_ros_so}
         \end{figure}
@@ -238,7 +238,7 @@ Los pasos del diagrama de flujo son los siguientes:
         \begin{figure}[htb]
             \centering
             \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/3-4/compatibilidad-ros.png}
-            \caption{Compatibilidad de ROS y otras plataformas}
+            \caption{Compatibilidad de ROS y otras plataformas \cite{ROS_BOOK_1}}
             \label{f:Cap3-4_compatibilidad_ros}
         \end{figure}
         
@@ -251,12 +251,12 @@ Los pasos del diagrama de flujo son los siguientes:
         
         \subsubsection{Peer to peer (Nodos)}
         
-            Los sistemas ROS consisten en numerosos programas pequeños de computadora que se conectan entre sí e intercambian mensajes continuamente. Estos mensajes viajan directamente de un programa a otro; no hay un servicio de enrutamiento central. Aunque esto hace que la ``plumbing'' subyacente sea más compleja, el resultado es un sistema que escala mejor a medida que aumenta la cantidad de datos.
+            Los sistemas ROS consisten en numerosos programas pequeños de computadora que se conectan entre sí e intercambian mensajes continuamente. Estos mensajes viajan directamente de un programa a otro; no hay un servicio de enrutamiento central. Aunque esto hace que la ``plumbing'' subyacente sea más compleja, el resultado es un sistema que escala mejor a medida que aumenta la cantidad de datos. La mentalidad Peer to peer se representa en la figura \ref{f:Cap3-5_arquitectura_ros}.
             
             \begin{figure}[htb]
                 \centering
                 \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/arquitectura_por_nodos_1.png}
-                \caption{Arquitectura por nodos de ROS}
+                \caption{Modelo de cómo los nodos ROS publican y se suscriben a temas \cite{naval_delta}}
                 \label{f:Cap3-5_arquitectura_ros}
             \end{figure}
             
@@ -266,12 +266,12 @@ Los pasos del diagrama de flujo son los siguientes:
             
         \subsubsection{Multilenguaje}
         
-            Muchas tareas de software son más fáciles de realizar en lenguajes de secuencias de comandos de "alta productividad" como Python o Ruby. Sin embargo, hay ocasiones en las que los requisitos de rendimiento exigen el uso de lenguajes más rápidos, como C ++. También hay varias razones por las que algunos programadores prefieren lenguajes como Lisp o MATLAB. Se han librado guerras interminables de correo electrónico, se están librando actualmente y, sin duda, se seguirá librando sobre qué idioma es el más adecuado para una tarea en particular. Reconociendo que todas estas opiniones tienen mérito, que los lenguajes tienen diferentes utilidades en diferentes contextos, y que la experiencia única de cada programador es muy importante al elegir un idioma, ROS eligió un enfoque multilingüe. Los módulos de software ROS se pueden escribir en cualquier idioma para el que se haya escrito una biblioteca cliente. En el momento de escribir este artículo, existen bibliotecas cliente para C ++, Python, LISP, Java, JavaScript, MATLAB, Ruby, Haskell, R, Julia y otros. Las bibliotecas de cliente ROS se comunican entre sí siguiendo una convención que describe cómo los mensajes se ``aplanan'' o ``serializan'' antes de transmitirse a través de la red. Este libro utilizará la biblioteca cliente de Python casi exclusivamente, para ahorrar espacio en los ejemplos de código y para su facilidad de uso general. Sin embargo, las tareas descritas en este libro se pueden realizar con cualquiera de las bibliotecas cliente.
+            Muchas tareas de software son más fáciles de realizar en lenguajes de secuencias de comandos de ''alta productividad'' como Python o Ruby. Sin embargo, hay ocasiones en las que los requisitos de rendimiento exigen el uso de lenguajes más rápidos, como C ++. También hay varias razones por las que algunos programadores prefieren lenguajes como Lisp o MATLAB. Se han librado guerras interminables de correo electrónico, se están librando actualmente y, sin duda, se seguirá librando sobre qué idioma es el más adecuado para una tarea en particular. Reconociendo que todas estas opiniones tienen mérito, que los lenguajes tienen diferentes utilidades en diferentes contextos, y que la experiencia única de cada programador es muy importante al elegir un idioma, ROS eligió un enfoque multilingüe. Los módulos de software ROS se pueden escribir en cualquier idioma para el que se haya escrito una biblioteca cliente. En el momento de escribir este artículo, existen bibliotecas cliente para C ++, Python, LISP, Java, JavaScript, MATLAB, Ruby, Haskell, R, Julia y otros. Las bibliotecas de cliente ROS se comunican entre sí siguiendo una convención que describe cómo los mensajes se ``aplanan'' o ``serializan'' antes de transmitirse a través de la red. La figura \ref{f:Cap3-5_multilenguaje_ros} representa un ejemplo de multilenguaje en ROS. En ella se muestra el nodo ''Laser Scanner'' escrito en lenguaje Python con el objetivo de obtener datos de un entorno físico por medio de un escáner de láser y el nodo ''Map Building'' escrito en lenguaje C++ encargado de transformar los datos obtenidos por del nodo anterior para poder visualizarlos a la computadora.     
             
             \begin{figure}[htb]
                 \centering
-                \includegraphics[width=0.55\linewidth]{Main/Chapter3/Images3/multilenguaje_1.png}
-                \caption{Esquema multilenguaje de ROS}
+                \includegraphics[width=0.5\linewidth]{Main/Chapter3/Images3/multilenguaje_1.png}
+                \caption{Ejemplo de multilenguaje de ROS}
                 \label{f:Cap3-5_multilenguaje_ros}
             \end{figure}
 
@@ -298,22 +298,30 @@ Los pasos del diagrama de flujo son los siguientes:
     \subsection{Estadisticas}
     
     \subsubsection{Science Robotics}
-        Science Robotics publico el articulo el 2017 “Powering the world’s robots 10 years of ROS” que habla sobre la iniciativa ROS-I (http://rosindustrial.org/) que se lanzó en 2012. Debido a las arquitecturas de software limitadas de los robots industriales actuales, es demasiado caro aplicar capacidades robóticas avanzadas para mejorar la productividad industrial. ROS-I proporciona interfaces para robots industriales comunes y dispositivos sensoriales junto con bibliotecas de software específicas para la automatización de la fabricación. ROS-I ha apoyado un número creciente de hardware industrial, como los robots producidos por ABB, Fanuc y Yaskawa. Además, el Consorcio ROS-I existe para desarrollar la comunidad ROS-I proporcionando apoyo técnico, organizando cursos de capacitación y talleres, y estableciendo la hoja de ruta para ROS-I. El Consorcio ROS-I tiene más de 50 miembros en todo el mundo, incluidos institutos de investigación y agencias gubernamentales, integradores de sistemas y usuarios finales, y fabricantes de equipos originales. Además, la próxima versión de ROS 2.0 debería abordar una de las principales limitaciones que ha ralentizado la adopción de ROS en la industria: que es una implementación de middleware interna. ROS 2.0 ahora se basa en el servicio de distribución de datos para la comunicación entre procesos, lo que brinda una confiabilidad mucho mejor con protocolos de calidad de servicio y seguridad con cifrado.
+        Science Robotics publico el articulo el 2017 “Powering the world’s robots 10 years of ROS” \cite{Zhangeaar1868} que habla sobre la iniciativa ROS-I (Ros Industrial) que se lanzó en 2012. Debido a las arquitecturas de software limitadas de los robots industriales actuales, es demasiado caro aplicar capacidades robóticas avanzadas para mejorar la productividad industrial. ROS-I proporciona interfaces para robots industriales comunes y dispositivos sensoriales junto con bibliotecas de software específicas para la automatización de la fabricación. ROS-I ha apoyado un número creciente de hardware industrial, como los robots producidos por ABB, Fanuc y Yaskawa. Además, el Consorcio ROS-I existe para desarrollar la comunidad ROS-I proporcionando apoyo técnico, organizando cursos de capacitación y talleres, y estableciendo la hoja de ruta para ROS-I. El Consorcio ROS-I tiene más de 50 miembros en todo el mundo, incluidos institutos de investigación y agencias gubernamentales, integradores de sistemas y usuarios finales, y fabricantes de equipos originales. Además, la próxima versión de ROS 2.0 debería abordar una de las principales limitaciones que ha ralentizado la adopción de ROS en la industria: que es una implementación de middleware interna. ROS 2.0 ahora se basa en el servicio de distribución de datos para la comunicación entre procesos, lo que brinda una confiabilidad mucho mejor con protocolos de calidad de servicio y seguridad con cifrado.
+
+        La figura \ref{f:Cap3-5_estadisticas_1} muestra algunas estadísticas clave de ROS, las cuales son:
 
             \begin{figure}[htb]
                 \centering
                 \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/science_robot_esta_1.png}
-                \caption{Algunas estadísticas clave de ROS. (Izquierda) Países de visitantes de la wiki de ROS en los últimos 4 años, que muestra un cambio creciente de investigadores de países del Lejano Oriente (del informe métrico anual de ROS). (Medio) Los 20 principales repositorios ROS según la cantidad de bifurcaciones y estrellas (de Github, 10 de octubre de 2017). (Derecha) Artículos recientemente publicados que han citado el artículo ROS original (1) (de la búsqueda de Google Scholar, palabras clave “Sistema operativo de robot ROS”) y el número de usuarios de wiki registrados.}
+                \caption{Estadísticas mundiales de ROS \cite{Zhangeaar1868}}
                 \label{f:Cap3-5_estadisticas_1}
             \end{figure}        
+
+        \begin{itemize}
+            \item {Los países visitantes de la wiki de ROS en los últimos 4 años, muestra un cambio creciente de investigadores de países del Lejano Oriente (información recolectada del informe métrico anual de ROS). }
+            \item {Los 20 principales repositorios ROS según la cantidad de bifurcaciones y estrellas (de Github, 10 de octubre de 2017).}
+            \item {Artículos recientemente publicados en los últimos 10 años que han citado el artículo ''ROS original'' (de la búsqueda de Google Scholar, palabras clave “Sistema operativo de robot ROS”) y el número de usuarios de wiki registrados.}
+        \end{itemize}
         
-        
-    \newpage
+
+        La figura \ref{f:Cap3-5_estadisticas_2} muestra los diez años de desarrollos de ROS que respaldan la investigación y el desarrollo, incluida la robótica móvil, industrial, quirúrgica y espacial, así como los automóviles autónomos. Se han lanzado 11 distribuciones de ROS en los últimos 10 años, y el gráfico de barras muestra el número de descargas binarias de ROS en cada año. El Consorcio ROS-I se lanzó en 2013 con el objetivo de transformar las capacidades de ROS en tiempo real para robots industriales. ROS 2.0 es actualmente en desarrollo intenso, y se acaba de lanzar una versión beta.
 
             \begin{figure}[htb]
                 \centering
                 \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/science_robot_esta_2.png}
-                \caption{Diez años de desarrollos de ROS que respaldan la investigación y el desarrollo, incluida la robótica móvil, industrial, quirúrgica y espacial, así como los automóviles autónomos. Se han lanzado 11 distribuciones de ROS en los últimos 10 años, y el gráfico de barras muestra el número de descargas binarias de ROS en cada año. El Consorcio ROS-I se lanzó en 2013 con el objetivo de transformar las capacidades de ROS en tiempo real para robots industriales. ROS 2.0 es actualmente en desarrollo intenso, y se acaba de lanzar una versión beta.}
+                \caption{Desarrollo de ROS en los últimos 10 años \cite{Zhangeaar1868}}
                 \label{f:Cap3-5_estadisticas_2}
             \end{figure}  
 
@@ -327,132 +335,113 @@ Los pasos del diagrama de flujo son los siguientes:
         \begin{figure}[htb]
             \centering
             \includegraphics[width=0.4\linewidth]{Main/Chapter3/Images3/cap3_estadisticas_3.png}
-            \caption{}
+            \caption{Logo de ROS Metrics \cite{rosmetrics}}
             \label{f:Cap3-5_estadisticas_3}
         \end{figure}  
         
-        Las figuras \ref{f:Cap3-5_estadisticas_4}, \ref{f:Cap3-5_estadisticas_5}, \ref{f:Cap3-5_estadisticas_6} y \ref{f:Cap3-5_estadisticas_7}  presentan estadísticas recolectadas de la pagina oficial de ROS Metrics para el año 2020. Según el reporte de agosto del 2020, los países que más han visitado ROS según Google Analytics son: China, EEUU, Japón y Alemania.
+        Las figuras \ref{f:Cap3-5_estadisticas_4} y \ref{f:Cap3-5_estadisticas_5} presentan estadísticas recolectadas de la pagina oficial de ROS Metrics hasta el año 2021. Según la figura \ref{f:Cap3-5_estadisticas_4}, los países que más han visitado ROS son China, EEUU, Japón y Alemania. 
         
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/cap3_estadisticas_7.png}
-            \caption{}
+            \includegraphics[width=0.27\linewidth]{Main/Chapter3/Images3/cap3_estadisticas_7.png}
+            \caption{Top de países que utilizan ROS en base a la descarga de paquetes registrados hasta el 28 de marzo del año 2021 \cite{rosmetrics}.}
             \label{f:Cap3-5_estadisticas_4}
         \end{figure}  
         
+
         \begin{figure}[htb]
             \centering
-            \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/cap3_estadisticas_4.png}
-            \caption{}
+            \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/cap3_estadisticas_4.png}
+            \caption{Colección de diferentes métricas para medir la cantidad de usuarios de la comunidad ROS \cite{rosmetrics}}
             \label{f:Cap3-5_estadisticas_5}
         \end{figure}  
         
         \newpage
 
-
-        \begin{figure}[htb]
-            \centering
-            \includegraphics[width=0.95\linewidth]{Main/Chapter3/Images3/cap3_estadisticas_5.png}
-            \caption{}
-            \label{f:Cap3-5_estadisticas_6}
-        \end{figure}  
-
-
-        \begin{figure}[htb]
-            \centering
-            \includegraphics[width=0.92\linewidth]{Main/Chapter3/Images3/cap3_estadisticas_6.png}
-            \caption{}
-            \label{f:Cap3-5_estadisticas_7}
-        \end{figure}  
-
-        \newpage
-
-        
         \subsubsection{Repositorio GitHub}
             Para comprender GitHub, primero se debe comprender Git. Git es un sistema de control de versiones de código abierto que fue iniciado por Linus Torvalds, la misma persona que creó Linux. Sirve para cuando los desarrolladores crean algo (una aplicación, por ejemplo), realizan cambios constantes en el código, lanzando nuevas versiones hasta y después del primer lanzamiento oficial. Los sistemas de control de versiones mantienen estas revisiones en orden, almacenando las modificaciones en un repositorio central. Esto permite a los desarrolladores colaborar fácilmente, ya que pueden descargar una nueva versión del software, realizar cambios y cargar la revisión más reciente. Todos los desarrolladores pueden ver estos nuevos cambios, descargarlos y contribuir. Del mismo modo, las personas que no tienen nada que ver con el desarrollo de un proyecto aún pueden descargar los archivos y usarlos. Git es una herramienta de línea de comandos, pero el centro alrededor del cual giran todas las cosas relacionadas con Git es el centro, GitHub.com, donde los desarrolladores almacenan sus proyectos y se conectan con personas de ideas afines.
     
             \begin{figure}[htb]
             \centering
-            \includegraphics[width=0.2\linewidth]{Main/Chapter3/Images3/repo_git_1.png}
-            \caption{}
+            \includegraphics[width=0.23\linewidth]{Main/Chapter3/Images3/repo_git_1.png}
+            \caption{Logo GitHub, Inc.}
             \label{f:Cap3-5_estadisticas_8}
             \end{figure} 
         
-            Dirk Thomas trabajo en ROS durante casi 9 años y envio 15 distribuciones de ROS. Uno del repositorio que subió a GitHub registra el total de autores, commits y repositorios en Github con relación a ROS hasta octubre del 2020. (https:\/\/github.com\/dirk-thomas\/rosworld2020\_ros-contributions)
+            Dirk Thomas trabajo en ROS durante casi 9 años y envio 15 distribuciones de ROS. Uno del repositorio que subió a GitHub registra el total de autores, commits y repositorios en Github con relación a ROS hasta octubre del 2020.
         
             \begin{figure}[htb]
             \centering
-            \includegraphics[width=0.93\linewidth]{Main/Chapter3/Images3/repo_git_2.png}
-            \caption{}
+            \includegraphics[width=0.99\linewidth]{Main/Chapter3/Images3/repo_git_2.png}
+            \caption{Visualización de las contribuciones de ROS en GitHub \cite{gitreposito}}
             \label{f:Cap3-5_estadisticas_9}
             \end{figure} 
     
         \newpage
 
     \subsection{Versiones}
-            En 2007, Willow Garage logró la investigación del marco de software de robot que comenzó con Switchyard en el laboratorio de inteligencia artificial de la Universidad de Stanford y continuó el desarrollo bajo el nombre de Robot Operating System (ROS). Con la sexta versión de lanzamiento oficial "ROS Groovy Galápagos", Willow Garage intentó penetrar en el mercado de robots de servicios comerciales en 2013, pero terminó dividiéndose en varias empresas emergentes y finalmente se entregó a la Open Source Robotics Foundation (OSRF). Desde entonces, se lanzaron cuatro versiones más y, a partir de mayo de 2017, OSRF cambió su nombre a Open Robotics y ha estado desarrollando, operando y administrando ROS. Más recientemente, la undécima versión de ROS, ROS Lunar Loggerhead, fue lanzada el 23 de mayo de 2017. ROS etiqueta la primera letra de cada nombre de lanzamiento en orden alfabético y usa una tortuga como su símbolo (ver figura \ref{f:Cap3-5_estadisticas_10}).
+            En 2007, Willow Garage logró la investigación del marco de software de robot que comenzó en el laboratorio de inteligencia artificial de la Universidad de Stanford y continuó el desarrollo bajo el nombre de Robot Operating System. Con la sexta versión de lanzamiento oficial "ROS Groovy Galápagos", Willow Garage intentó penetrar en el mercado de robots de servicios comerciales en 2013, pero terminó dividiéndose en varias empresas emergentes y finalmente se entregó a la Open Source Robotics Foundation. Desde entonces, se lanzaron 4 versiones más y, a partir de mayo de 2017, OSRF cambió su nombre a Open Robotics y ha estado desarrollando, operando y administrando ROS. Más recientemente, la undécima versión de ROS, ROS Lunar Loggerhead, fue lanzada el 23 de mayo de 2017. ROS etiqueta la primera letra de cada nombre de lanzamiento en orden alfabético y usa una tortuga como su símbolo (ver figura \ref{f:Cap3-5_estadisticas_10}).
             
             \begin{figure}[htb]
             \centering
             \includegraphics[width=0.94\linewidth]{Main/Chapter3/Images3/ver_ros_1.png}
-            \caption{}
+            \caption{Linea temporal e iconos de tortuga para cada versión de ROS \cite{ROS_BOOK_1}}
             \label{f:Cap3-5_estadisticas_10}
             \end{figure} 
     
             \begin{figure}[htb]
             \centering
             \includegraphics[width=0.94\linewidth]{Main/Chapter3/Images3/ver_ros_2.png}
-            \caption{}
-            \label{f:Cap3-5_estadisticas_11}
+            \caption{Uso relativo de cada versión de ROS basado en descargas de packages.ros.org \cite{rosmetrics}.}            \label{f:Cap3-5_estadisticas_11}
             \end{figure} 
     
     \newpage
     
     \subsection{Conceptos principales}
             
-            Hay tres niveles de conceptos en ROS. El primero se refiere a cómo diferentes archivos están organizados en la computadora, herramientas ROS para administrar código fuente, instrucciones de compilación y definiciones de mensajes (nivel de sistema de archivos). El segundo son los componentes de la red peer to peer de nodos ROS, es decir, los procesos. (nivel de gráfico computacional). Por último, el nivel 3 es en relación a cómo los usuarios comparten software para permitir que todos lo utilicen (nivel de comunidad).
+            Hay tres niveles de conceptos en ROS. El primero se refiere a cómo diferentes archivos están organizados en la computadora, herramientas ROS para administrar código fuente, instrucciones de compilación y definiciones de mensajes (nivel de sistema de archivos). El segundo son los componentes de la red peer to peer de nodos ROS, es decir, los procesos. (nivel de gráfico computacional). Por último, el nivel 3 es en relación a cómo los usuarios comparten software para permitir que todos lo utilicen (nivel comunitario).
             
             \begin{figure}[htb]
                 \centering
-                \includegraphics[width=0.5\linewidth]{Main/Chapter3/Images3/nivel_s_a_1.png}
-                \caption{}
+                \includegraphics[width=1\linewidth]{Main/Chapter3/Images3/nivel_s_a_1.png}
+                \caption{Niveles de conceptos de ROS}
                 \label{f:Cap3_conceptos_1}
             \end{figure} 
             
+
+                
+                
+               \newpage
+               
             \subsubsection{Nivel de sistemas de archivos}
-                Similar a un sistema operativo, los archivos de ROS también se organizan en el disco duro de una manera particular. En este nivel, podemos ver cómo se organizan estos archivos en el disco. La figura \ref{f:Cap3_conceptos_2} muestra cómo se organizan los archivos y carpetas ROS en el disco:
+
+                Similar a un sistema operativo, los archivos de ROS también se organizan en el disco duro de una manera particular. En este nivel, se puede ver cómo se organizan estos archivos en el disco. La figura \ref{f:Cap3_conceptos_2} muestra cómo se organizan los archivos y carpetas:
                 
                 
             \begin{figure}[htb]
                 \centering
-                \includegraphics[width=0.6\linewidth]{Main/Chapter3/Images3/n_s_a_2.png}
-                \caption{}
+                \includegraphics[width=0.55\linewidth]{Main/Chapter3/Images3/n_s_a_2.png}
+                \caption{Nivel de sistema de archivos ROS \cite{lentin_2015}}
                 \label{f:Cap3_conceptos_2}
             \end{figure} 
                 
                 
-               \newpage
 
-            Aquí están las explicaciones de cada bloque en el sistema de archivos:
+            A cuntinuacion se presenta la descripcion de cada bloque en el sistema de archivos:
             \begin{itemize}
                 \item {\textbf{Meta packages:} Es un único paquete lógico compuesto por muchos paquetes en su interior. Además, los meta paquetes contienen un archivo package.xml que describe la carpeta y sus dependencias.}
                 \item {\textbf{Packages:} Son las unidades más bajas y la principal para organizar el software en ROS. Un paquete puede contener procesos en tiempo de ejecución ROS (nodos), un Biblioteca dependiente de ROS, conjuntos de datos, archivos de configuración o achivos de lanzamiento. Cada directorio de paquete debe incluir un archivo CMakeList.txt y package.xml que describa el contenido del paquete y cómo catkin debe interactuar con él.}
-                \item {\textbf{Stacks:} Son grupos de paquetes que se combinan para realizar funcionalidades de alto nivel.}
-                \item {\textbf{Manifests:} Los manifiestos proporcionan metadatos sobre un paquete. Pueden pertenecer a un packages o una Stacks y describen información general sobre un paquete o Stacks específico, como una breve descripción de lo que hace, el nombre del autor, su tipo de licencia y las dependencias.con otros paquetes. Estas dependencias son importantes porque generalmente los paquetes dependen de otros paquetes y deben estar instalados para que funcionen perfectamente.}
-                \item {\textbf{Message (msg) types:} Las descripciones de los mensajes definen los datos estructuras para mensajes enviados en ROS}
+                \item {\textbf{Stacks:} Son grupos de paquetes que se juntan para realizar funciones de alto nivel.}
+                \item {\textbf{Manifests:} Los manifiestos proporcionan metadatos sobre un paquete. Pueden pertenecer a un packages o una Stacks y describen información general sobre un paquete o Stacks específico, como una breve descripción de lo que hace, el nombre del autor, su tipo de licencia y las dependencias.con otros paquetes.}
+                \item {\textbf{Message (msg) types:} Las descripciones de los mensajes definen los datos estructuras para mensajes enviados en ROS.}
                 \item {\textbf{Service (srv) types:} Las descripciones de servicio definen la solicitud y estructuras de datos de respuesta para servicios en ROS.}
             \end{itemize}
             
-            ROS está basado en CMake y puede ser utilizado por muchos sistemas operativos como Ubuntu o Windows. Catkin es el sistema de compilación de ROS que genera programas ejecutables, bibliotecas e interfaces y proporciona el concepto de espacio de trabajo en la construcción de cada proyecto. Este espacio de trabajo está compuesto por:
-            
-            \begin{figure}[htb]
-                \centering
-                \includegraphics[width=0.75\linewidth]{Main/Chapter3/Images3/n_s_a_3.png}
-                \caption{}
-                \label{f:Cap3_conceptos_3}
-            \end{figure} 
-            
                \newpage
+               
+            ROS está basado en CMake y puede ser utilizado por muchos sistemas operativos como Linux o Windows. CMake es un generador de herramientas de creación, una herramienta de nivel superior, que simplifica el proceso de compilación y construcción, puede gestionar grandes proyectos y tiene una buena escalabilidad. Para una plataforma a gran escala como ROS, se usa CMake, y ROS ha extendido CMake, por lo que hay un sistema de compilación Catkin. Catkin es el sistema de compilación de ROS que genera programas ejecutables, bibliotecas e interfaces y proporciona el concepto de espacio de trabajo en la construcción de cada proyecto.
+            
+            La estructura del espacio de trabajo catkin, incluye las carpetas src, build, devel. Las tres rutas también pueden incluir otras en algunas opciones de compilación. Pero estas tres carpetas son las predeterminadas para el sistema de compilación catkin. Sus roles específicos son los siguientes:
 
             \begin{itemize}
                 \item {\textbf{Espacio fuente (src):} Contiene el código fuente donde el usuario puede extraer, verificar o clonar el código fuente de los paquetes que quiere construir.}
@@ -460,12 +449,25 @@ Los pasos del diagrama de flujo son los siguientes:
                 \item {\textbf{Espacio de desarrollo (devel):} Se encuentran archivos de objetos generados (incluidos archivos de encabezado, bibliotecas de vínculos dinámicos, bibliotecas de vínculos estáticos, archivos ejecutables, etc.), variables de entorno}
             \end{itemize}
 
+
+            Durante el proceso de compilación, el flujo de trabajo de un catkin workspace es el que se muestra con flechas azules en la figura \ref{f:Cap3_conceptos_3}. Los dos últimos procesos son generados y administrados automáticamente por el sistema catkin. El uso principal para los usuarios de ROS es la carpeta src\/, donde los paquetes creados o copiados se almacenan en dicha carpeta. En el momento de la compilación, el sistema de compilación de catkin busca y compila todos los paquetes de código fuente de forma de src\/.
+
+            \begin{figure}[htb]
+                \centering
+                \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/n_s_a_3.png}
+                \caption{Espacio de trabajo catkin\_make \cite{cmake_blogcsdn}}
+                \label{f:Cap3_conceptos_3}
+            \end{figure} 
+            
+               \newpage
+
+
             Cuando se crea un paquete, normalmente es común encontrar las carpetas de la figura \ref{f:Cap3_conceptos_4} dentro de el:
             
             \begin{figure}[htb]
                 \centering
                 \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/n_s_a_4.png}
-                \caption{}
+                \caption{Estructura y características de catkin\_make \cite{cmake_blogcsdn}}
                 \label{f:Cap3_conceptos_4}
             \end{figure} 
 
@@ -481,15 +483,15 @@ Los pasos del diagrama de flujo son los siguientes:
                 \item {\textbf{CmakeLists.txt:} Lista de requisitos y dependencias que debe compilar el ejecutador del paquete.}
             \end{itemize}
 
-
+\newpage
             \subsubsection{Nivel gráfico computacional}
             
             El nivel gráfico computacional describe la infraestructura que utilizan los componentes ROS para comunicarse. Se basa en una red de procesos peer-to-peer (nodos) y se compone de varias unidades tales como las de la figura \ref{f:Cap3_conceptos_5}:
             
             \begin{figure}[htb]
                 \centering
-                \includegraphics[width=0.5\linewidth]{Main/Chapter3/Images3/n_s_a_5.png}
-                \caption{}
+                \includegraphics[width=0.63\linewidth]{Main/Chapter3/Images3/n_s_a_5.png}
+                \caption{Estructura de la capa ROS Graph \cite{lentin_2015}}
                 \label{f:Cap3_conceptos_5}
             \end{figure} 
             
@@ -500,8 +502,8 @@ Los pasos del diagrama de flujo son los siguientes:
                     Ros Master habilita el funcionamiento de la red ROS y es el primer proceso que debe ejecutarse cuando estamos usando ROS. Su función es registrar todos los nodos que se ejecutan y los temas y servicios existentes. Esto es esencial para interconectar nodos y monitorear todas las unidades en el sistema
             \begin{figure}[htb]
                 \centering
-                \includegraphics[width=0.5\linewidth]{Main/Chapter3/Images3/n_s_a_6.png}
-                \caption{}
+                \includegraphics[width=0.55\linewidth]{Main/Chapter3/Images3/n_s_a_6.png}
+                \caption{Registro de nodos en ROS Master \cite{rosmaster_diagram}.}
                 \label{f:Cap3_conceptos_6}
             \end{figure} 
             
@@ -513,14 +515,14 @@ Los pasos del diagrama de flujo son los siguientes:
                 Los nodos comparten información pasando y recibiendo mensajes. Estos mensajes se publican con un nombre especial llamado tema. Por lo tanto, los nodos pueden publicar o suscribirse a un tema específico para obtener los mensajes deseados. Muchos nodos se pueden suscribir al mismo tema para recibir los mensajes que necesitan. Las comunicaciones entre nodos se realizan de forma unidireccional, por lo que cualquier nodo que envíe la información sobre un tema no puede recibir respuesta en el mismo canal, ni saber si el nodo receptor ha recibido el mensaje.
             \begin{figure}[htb]
                 \centering
-                \includegraphics[width=0.7\linewidth]{Main/Chapter3/Images3/n_s_a_7.png}
-                \caption{}
+                \includegraphics[width=0.68\linewidth]{Main/Chapter3/Images3/n_s_a_7.png}
+                \caption{Nodos comunicándose a través de topic por medio de un mensaje *.msg \cite{rosmaster_diagram}.}
                 \label{f:Cap3_conceptos_7}
             \end{figure} 
             \begin{figure}[htb]
                 \centering
-                \includegraphics[width=0.75\linewidth]{Main/Chapter3/Images3/n_s_a_8.png}
-                \caption{}
+                \includegraphics[width=0.92\linewidth]{Main/Chapter3/Images3/n_s_a_8.PNG}
+                \caption{Comunicación de mensajes por medio de topics \cite{ROS_BOOK_1}}
                 \label{f:Cap3_conceptos_8}
             \end{figure} 
 
@@ -530,41 +532,42 @@ Los pasos del diagrama de flujo son los siguientes:
 
             \paragraph{Services (Servicios)}
                  Aunque el principal método de comunicación entre nodos es a través de temas, ya que explicado anteriormente, existe otra metodología en ROS llamada llamadas de servicio. Las llamadas de servicio ROS son diferentes de mensajes debido a las siguientes características: son bidireccionales y uno a uno. 
+                 
                 Este proceso síncrono de comunicación se basa en un sistema cliente / servidor o solicitud / respuesta., donde un nodo cliente envía algunos datos llamados solicitud a un nodo servidor y espera hasta que el servidor pueda responder. Los servidor, habiendo recibido esta solicitud, toma alguna acción  y enviar algunos datos llamados respuesta al nodo cliente
-                La descripción del servicio se almacena en un archivo de definición de servicio * .msg, guardado en un subdirectorio / srv. 
+                La descripción del servicio se almacena en un archivo de definición de servicio *.msg, guardado en un subdirectorio /srv. 
 
             \begin{figure}[htb]
                 \centering
-                \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/n_s_a_9.png}
-                \caption{}
+                \includegraphics[width=0.85\linewidth]{Main/Chapter3/Images3/n_s_a_9.png}
+                \caption{Comunicación request/response entre nodos que realizan servicios \cite{rosmaster_diagram}.}
                 \label{f:Cap3_conceptos_9}
             \end{figure} 
             
             \begin{figure}[htb]
                 \centering
-                \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/n_s_a_10.png}
-                \caption{}
+                \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/n_s_a_10.PNG}
+                \caption{Comunicación de mensajes de servicio \cite{ROS_BOOK_1}.}
                 \label{f:Cap3_conceptos_10}
             \end{figure}             
 
                \newpage
 
             \paragraph{ Actions (Acciones)}
-                    Una acción es una comunicación bidireccional asíncrona entre los nodos activos basados en el cliente de la acción y el sistema del servidor de la acción que se muestra en la figura 2.13. El sistema de acción, como los servicios explicados anteriormente, envía algo del cliente de acción de datos al servidor de acción llamado objetivo y el servidor de acción responde un resultado. Las acciones se diferencian de los servicios porque el servidor puede proporcionar retroalimentación y estado al cliente en cualquier momento sobre el proceso que se está realizando y el nodo cliente puede cancelar el objetivo anterior requerido para el servidor en cualquier momento también.
+                    Una acción es una comunicación bidireccional asíncrona entre los nodos activos basados en el cliente de la acción y el sistema del servidor de la acción que se muestra en la figura \ref{f:Cap3_conceptos_11}. El sistema de acción, como los servicios explicados anteriormente, envía algo del cliente de acción de datos al servidor de acción llamado objetivo y el servidor de acción responde un resultado. Las acciones se diferencian de los servicios porque el servidor puede proporcionar retroalimentación y estado al cliente en cualquier momento sobre el proceso que se está realizando y el nodo cliente puede cancelar el objetivo anterior requerido para el servidor en cualquier momento también.
                     Al igual que en las llamadas de servicio ROS, las acciones deben definir pocos mensajes para comunicar al cliente con el servidor. Esto es posible gracias a las especificaciones de acciones, que definen estos mensajes en un archivo de acción con extensión *.action. Estos archivos generalmente se almacenan en una subcarpeta /action/ en el directorio del paquete.
-                    El archivo * .action se divide en 3 secciones. Cada parte está separada por 3 guiones (---). En la primera parte se define el objetivo, en la segunda se establece la retroalimentación y en la última se especifica la definición del resultado
+                    El archivo * .action se divide en 3 secciones. Cada parte está separada por 3 guiones (---). En la primera parte se define el objetivo, en la segunda se establece la retroalimentación y en la última se especifica la definición del resultado.
 
             \begin{figure}[htb]
                 \centering
-                \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/n_s_a_11.png}
-                \caption{}
+                \includegraphics[width=0.7\linewidth]{Main/Chapter3/Images3/action_diagram.png}
+                \caption{Comunicación bidireccional entre nodos por medio de acciones \cite{rosmaster_diagram}.}
                 \label{f:Cap3_conceptos_11}
             \end{figure}             
 
             \begin{figure}[htb]
                 \centering
                 \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/n_s_a_12.png}
-                \caption{}
+                \caption{Comunicación de mensajes de acción \cite{ROS_BOOK_1}.}
                 \label{f:Cap3_conceptos_12}
             \end{figure}   
 
@@ -582,7 +585,7 @@ Los pasos del diagrama de flujo son los siguientes:
             \begin{figure}[htb]
                 \centering
                 \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/n_s_a_13.png}
-                \caption{}
+                \caption{Tipos de datos basicos para mensajes en ROS \cite{ROS_BOOK_1}.}
                 \label{f:Cap3_conceptos_13}
             \end{figure}   
 
@@ -601,14 +604,14 @@ Los pasos del diagrama de flujo son los siguientes:
                 
             \begin{figure}[htb]
                 \centering
-                \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/n_s_a_14.png}
-                \caption{}
+                \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/n_s_a_14.PNG}
+                \caption{Comunicación de mensajes entre nodos \cite{ROS_BOOK_1}}
                 \label{f:Cap3_conceptos_14}
             \end{figure}   
 
                \newpage
                
-            \subsubsection{Nivel de comunidad}
+            \subsubsection{Nivel Comunitario}
             
             El ecosistema ROS ahora consta de decenas de miles de usuarios en todo el mundo, que trabajan en dominios que van desde proyectos de pasatiempos de mesa hasta grandes sistemas de automatización industrial. 
             Una característica importante de ROS es la comunidad que comparte software y código, lo que convierte a ROS en una de las comunidades de robots más grandes. Hay diferentes formas de obtener recursos ROS:
@@ -616,7 +619,7 @@ Los pasos del diagrama de flujo son los siguientes:
             \begin{figure}[htb]
                 \centering
                 \includegraphics[width=0.9\linewidth]{Main/Chapter3/Images3/n_s_a_15.png}
-                \caption{}
+                \caption{Nivel comunitario de ROS \cite{lentin_2017}}
                 \label{f:Cap3_conceptos_15}
             \end{figure}        
             
@@ -624,7 +627,7 @@ Los pasos del diagrama de flujo son los siguientes:
                 \item {\textbf{Distribuciones:} las distribuciones ROS son colecciones de stacks versionadas que puede instalar. Las distribuciones juegan un papel similar a las distribuciones de Linux: facilitan la instalación de una colección de software y también mantienen versiones consistentes en un conjunto de software. (http://wiki.ros.org/Distributions)}
                 \item {\textbf{Repositorios:} ROS se basa en una red federada de repositorios de código, donde diferentes instituciones pueden desarrollar y lanzar sus propios componentes de software de robot. }
                 \item {\textbf{El ROS Wiki:} La Wiki de la comunidad de ROS es el foro principal para documentar información sobre ROS. Cualquiera puede registrarse para obtener una cuenta y contribuir con su propia documentación, proporcionar correcciones o actualizaciones, escribir tutoriales y más. (http://wiki.ros.org/) }
-                \item {\textbf{Mailing Lists:} : Listas de correo de usuarios ROS}
+                \item {\textbf{Mailing Lists:} Listas de correo de usuarios ROS}
                 \item {\textbf{Answers:} Página web donde los usuarios comparten preguntas, respuestas y comentarios. (https://answers.ros.org/) }
                 \item {\textbf{Blog ROS:} Noticias de la comunidad ROS. (www.ros.org/news/)  }
                 \item {\textbf{ROS Discourse:} es el foro de discusión de la comunidad (https://discourse.ros.org/). No es para cuestiones técnicas específicas, sino para temas, anuncios y noticias más amplio.}
@@ -923,21 +926,40 @@ Adaptación del paquete “Dynamic reconfigure” que permite modificar en tiemp
         
     \newpage
 
-\section{Software Algorithm Development and Mining (ADAMS)}
+\section{ADAMS (Automated Dynamic Analysis of Mechanical Systems)}
 
-% COPY PASTE DE VARIOS PAPEOS, PARA POSTERIOR MEJORA Y INTRODUCCIÓN AL CONTEXTO DE NUESTRA TESIS
+    % Adams es el software de análisis de movimiento y dinámica multicuerpo más utilizado en el mundo. Adams ayuda a los ingenieros a estudiar la dinámica de las piezas móviles, cómo se distribuyen las cargas y fuerzas en los sistemas mecánicos y a mejorar y optimizar el rendimiento de sus productos. El software de dinámica multicuerpo de Adams permite a los ingenieros crear y probar fácilmente prototipos virtuales de sistemas mecánicos en una fracción del tiempo y el costo necesarios para la construcción y prueba físicas. A diferencia de la mayoría de las herramientas integradas de CAD, Adams incorpora la física real resolviendo simultáneamente ecuaciones de cinemática, estática, cuasi-estática y dinámica. Al utilizar la tecnología de solución de dinámica multicuerpo, Adams también ejecuta dinámica no lineal en una pequeña fracción del tiempo requerido por las soluciones FEA. Las cargas y fuerzas calculadas por las simulaciones de Adams mejoran la precisión de FEA al proporcionar una mejor evaluación de cómo varían en una amplia gama de entornos operativos y de movimiento.
 
-    La simulación de sistemas robotizados esta íntimamente ligada a la potencia
-    computacional de los procesadores de cálculo. El gran avance producido
-    con los microprocesadores actuales, ha permitido el desarrollo de diferentes
-    paquetes de simulación dinámica capaces de simular el comportamiento dinámico
-    de casi cualquier mecanismo multicuerpo. En esta tesis, el modelo del robot delta en estudio es construido en ADAMS.
-    
-    Adams es un programa para simulación dinámica y análisis de movimiento cinemático en multiples cuerpos. Ayuda en el estudio de la dinámica de las partes móviles, como cargas y fuerzas que se distribuyen a lo largo de los sistemas mecánicos, para mejorar y optimizar el rendimiento de los productos. Permite  crear y probar prototipos virtuales de los sistemas mecánicos en una fracción del tiempo y costo requerido para la estructura física y la prueba, incorporando la física real de forma simultánea a la resolución de ecuaciones de cinemática, estática, y la dinámica.
+    Adams es un programa para simulación dinámica y análisis de movimiento cinemático en múltiples cuerpos. Ayuda en el estudio de la dinámica de las partes móviles, como cargas y fuerzas que se distribuyen a lo largo de los sistemas mecánicos, para mejorar y optimizar el rendimiento de los productos. Permite  crear y probar prototipos virtuales de los sistemas mecánicos en una fracción del tiempo y costo requerido para la estructura física y la prueba, incorporando la física real de forma simultánea a la resolución de ecuaciones de cinemática, estática, y la dinámica.
 
     Adams ejecuta la dinámica no lineal en una fracción del tiempo requerido por las soluciones de FEA. Proporcionando una mejor evaluación de la forma en que varían a través de una gama completa de movimiento y entornos operativos.
     
     Los módulos opcionales e integrados con Adams permiten a los usuarios integrar los componentes mecánicos, neumática, hidráulica, electrónica y tecnologías de control de sistemas para construir y probar prototipos virtuales que representan con precisión las interacciones entre estos subsistemas.
+
+
+    \subsection{Análisis de sistemas multicuerpo}
+    
+    Un sistema multicuerpo es la modelización de un sistema mecánico como un conjunto de sólidos rígidos o flexibles conectados entre sí por un conjunto de uniones. Este conjunto forma un sistema físico cuya cinemática y dinámica se pueden describir con una serie de ecuaciones diferenciales y algebraicas
+    
+    \subsection{Descripción del ambiente de ADAMS}
+    
+    
+    
+
+
+% COPY PASTE DE VARIOS PAPEOS, PARA POSTERIOR MEJORA Y INTRODUCCIÓN AL CONTEXTO DE NUESTRA TESIS
+
+    % La simulación de sistemas robotizados esta íntimamente ligada a la potencia
+    % computacional de los procesadores de cálculo. El gran avance producido
+    % con los microprocesadores actuales, ha permitido el desarrollo de diferentes
+    % paquetes de simulación dinámica capaces de simular el comportamiento dinámico
+    % de casi cualquier mecanismo multicuerpo. En esta tesis, el modelo del robot delta en estudio es construido en ADAMS.
+    
+    
+
+
+    
+
     
     
     \begin{figure}[htb]
