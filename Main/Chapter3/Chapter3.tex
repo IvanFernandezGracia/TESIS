@@ -283,7 +283,7 @@ Los pasos del diagrama de flujo son los siguientes:
             
         \subsubsection{Libre y Open Source}
         
-            El núcleo de ROS se publica bajo la licencia BSD permisiva, que permite el uso comercial y no comercial. ROS pas\subsua datos entre módulos mediante comunicación entre procesos (IPC), lo que significa que los sistemas construidos con ROS pueden tener licencias detalladas de sus diversos componentes. Los sistemas comerciales, por ejemplo, a menudo tienen varios módulos de fuente cerrada que se comunican con una gran cantidad de módulos de fuente abierta. Los proyectos académicos y de pasatiempos suelen ser de código abierto. El desarrollo de productos comerciales a menudo se realiza completamente detrás de un firewall. Todos estos casos de uso, y más, son comunes y perfectamente válidos bajo la licencia ROS.
+            El núcleo de ROS se publica bajo la licencia BSD permisiva, que permite el uso comercial y no comercial. ROS pas datos entre módulos mediante comunicación entre procesos (IPC), lo que significa que los sistemas construidos con ROS pueden tener licencias detalladas de sus diversos componentes. Los sistemas comerciales, por ejemplo, a menudo tienen varios módulos de fuente cerrada que se comunican con una gran cantidad de módulos de fuente abierta. Los proyectos académicos y de pasatiempos suelen ser de código abierto. El desarrollo de productos comerciales a menudo se realiza completamente detrás de un firewall. Todos estos casos de uso, y más, son comunes y perfectamente válidos bajo la licencia ROS.
             
             \begin{figure}[htb]
                 \centering
@@ -653,9 +653,7 @@ Los pasos del diagrama de flujo son los siguientes:
             \begin{figure}[htb]
                 \centering
                 \includegraphics[width=1.0\linewidth]{Main/Chapter3/Images3/herramientas_1.png}
-                \caption{Visualización de la comunicación entre un nodo publisher y el nodo subscriber a travez del tema number en RQT Graph.
-
-}
+                \caption{Visualización de la comunicación entre un nodo publisher y el nodo subscriber a travez del tema number en RQT Graph.}
                 \label{f:Cap3_herramientas_1}
             \end{figure}       
             
@@ -929,19 +927,91 @@ Para definir y almacenar la relación entre los marcos ''base\_link'' y ''base\_
 \section{ADAMS (Automated Dynamic Analysis of Mechanical Systems)}
 
     % Adams es el software de análisis de movimiento y dinámica multicuerpo más utilizado en el mundo. Adams ayuda a los ingenieros a estudiar la dinámica de las piezas móviles, cómo se distribuyen las cargas y fuerzas en los sistemas mecánicos y a mejorar y optimizar el rendimiento de sus productos. El software de dinámica multicuerpo de Adams permite a los ingenieros crear y probar fácilmente prototipos virtuales de sistemas mecánicos en una fracción del tiempo y el costo necesarios para la construcción y prueba físicas. A diferencia de la mayoría de las herramientas integradas de CAD, Adams incorpora la física real resolviendo simultáneamente ecuaciones de cinemática, estática, cuasi-estática y dinámica. Al utilizar la tecnología de solución de dinámica multicuerpo, Adams también ejecuta dinámica no lineal en una pequeña fracción del tiempo requerido por las soluciones FEA. Las cargas y fuerzas calculadas por las simulaciones de Adams mejoran la precisión de FEA al proporcionar una mejor evaluación de cómo varían en una amplia gama de entornos operativos y de movimiento.
+    
+    \subsection{Historia}
+    ADAMS significa Análisis dinámico automático de sistemas mecánicos y fue desarrollado originalmente por Mechanical Dynamics
+    Inc. (MDI). MDI fue formado por investigadores / desarrolladores del código ADAMS original en la Universidad de Michigan, Ann
+    Arbor, MI, Estados Unidos. Más tarde, fue absorbida por McNeil Schindler Corp (MSC) en 2002.
+    
+    En el núcleo de ADAMS hay un código de gran desplazamiento llamado ADAMS / Solver, que resuelve ecuaciones numéricas no lineales.
+    En ese entonce los modelos se creaban en formato de texto y luego se enviaban a ADAMS / Solver. 
+    
+    A principios de los 90, se lanzó ADAMS / View, que permitió a los usuarios crear, simular y examinar resultados en un único entorno gráfico de usuario (GUI). Hoy, MSC produce
+    muchos paquetes de análisis de ingeniería general como MSC.NASTRAN, MSC.PATRAN, MSC.DYTRAN, etc. y también paquetes
+    que atienden a usuarios específicos de la industria como MSC.ADAMS / Car, MSC.ADAMS / Rail, MSC.ADAMS / Engine, etc.
+    
+     \subsection{introducción}
 
     Adams es un programa para simulación dinámica y análisis de movimiento cinemático en múltiples cuerpos. Ayuda en el estudio de la dinámica de las partes móviles, como cargas y fuerzas que se distribuyen a lo largo de los sistemas mecánicos, para mejorar y optimizar el rendimiento de los productos. Permite  crear y probar prototipos virtuales de los sistemas mecánicos en una fracción del tiempo y costo requerido para la estructura física y la prueba, incorporando la física real de forma simultánea a la resolución de ecuaciones de cinemática, estática, y la dinámica.
 
-    Adams ejecuta la dinámica no lineal en una fracción del tiempo requerido por las soluciones de FEA. Proporcionando una mejor evaluación de la forma en que varían a través de una gama completa de movimiento y entornos operativos.
+    % Adams ejecuta la dinámica no lineal en una fracción del tiempo requerido por las soluciones de FEA. Proporcionando una mejor evaluación de la forma en que varían a través de una gama completa de movimiento y entornos operativos.
     
-    Los módulos opcionales e integrados con Adams permiten a los usuarios integrar los componentes mecánicos, neumática, hidráulica, electrónica y tecnologías de control de sistemas para construir y probar prototipos virtuales que representan con precisión las interacciones entre estos subsistemas.
+    % Los módulos opcionales e integrados con Adams permiten a los usuarios integrar los componentes mecánicos, neumática, hidráulica, electrónica y tecnologías de control de sistemas para construir y probar prototipos virtuales que representan con precisión las interacciones entre estos subsistemas.
+    
 
 
-    \subsection{Análisis de sistemas multicuerpo}
+
+    % \subsection{Análisis de sistemas multicuerpo}
     
-    Un sistema multicuerpo es la modelización de un sistema mecánico como un conjunto de sólidos rígidos o flexibles conectados entre sí por un conjunto de uniones. Este conjunto forma un sistema físico cuya cinemática y dinámica se pueden describir con una serie de ecuaciones diferenciales y algebraicas
+    Un \textbf{sistema multicuerpo} es la modelización de un sistema mecánico como un conjunto de sólidos rígidos o flexibles conectados entre sí por un conjunto de uniones. Este conjunto forma un sistema físico cuya cinemática y dinámica se pueden describir con una serie de ecuaciones diferenciales y algebraicas.\cite{cap3:adams-dinamica_multicuerpo}
+    
+    Excepto en el caso de sistemas mecánicos muy sencillos, la resolución de las ecuaciones que describen el movimiento de un sistema multicuerpo requiere con frecuencia la ayuda de programas informáticos de cálculo numérico. Por este motivo, la simulación y el análisis de sistemas multicuerpo están estrechamente ligados a disciplinas como el álgebra lineal y la programación.
+    
+    Hoy en día existen diversos programas que se encargan de darle un aspecto mas visual a todas las ecuaciones subyacentes por debajo en la resolución de este tipo de sistemas, en nuestra tesis utilizaremos ADAMS, dado que se puede adquirir bajo una licencia estudiantil por un semestre, previa creación y validación de una \href{https://www.mscsoftware.com/page/adams-student-edition}{cuenta universitaria}.
+    
+    Pese a que nuestra hipótesis nos guía a regirnos solo por software libre, esto preocupa sobretodo en la formulación, en la validación hemos intentado ocupar los mejores estándares para verificar los códigos propuestos.
+    
+    
+    \begin{figure}[htb]
+        \centering
+        \includegraphics[width=1\linewidth]{Main/Chapter3/Images3/adams/logo_adams.png}
+        \caption{Iamgen de referencia del software Adams}
+        \label{f:Cap3-adams_logo}
+    \end{figure} 
+    
     
     \subsection{Descripción del ambiente de ADAMS}
+    
+    La versión actualizada de ADAMS trabajada durante la tesis es la 2020 FP1, y la descripción del ambiente se hará bajo el sistema operativo Windows dada su extensión, y con el fin de llegar a la mayor cantidad de personas.
+    
+        \subsubsection{Inicio de un nuevo modelo y su configuración}
+        
+            Al iniciar ADAMS lo primero que encontraremos sera el dialogo de bienvenida mostrado en la figura FIGURA, la ventana nos da tres opciones, New Model, para iniciar un nuevo modelo; Existing Model para abrir la base de datos de un modelo existente (los archivos ADAMS tienen extensión .bin) y finalmente también tenemos la opción exit, para cerrar ADAMS. 
+            
+            
+    \subsection{Modelo y estructura de los datos en ADAMS}
+        
+        
+        \subsubsection{Convención de nombres en ADAMS}
+        
+        \subsubsection{Sistemas de coordenadas}
+        
+        \subsubsection{Parts}
+        % \paragraph{Geometria}
+        
+        \begin{itemize}
+            \item \textbf{Geometry:} asd
+            \item \textbf{Markers:} asd
+            \item \textbf{Construction Points:} asd
+        \end{itemize}
+
+        
+        \subsubsection{Constrains}
+        
+        \subsubsection{Measures}
+        
+        \subsubsection{Forces}
+        
+    
+    \subsection{Simulación}
+    
+        \subsubsection{Analyses}
+        
+        \subsubsection{Results Sets}
+        
+        \subsubsection{Components}
+    
+            
     
     
     
@@ -962,12 +1032,7 @@ Para definir y almacenar la relación entre los marcos ''base\_link'' y ''base\_
 
     
     
-    \begin{figure}[htb]
-        \centering
-        \includegraphics[width=1\linewidth]{Main/Chapter3/Images3/adams/logo_adams.png}
-        \caption{Iamgen de referencia del software Adams}
-        \label{f:Cap3-adams_logo}
-    \end{figure} 
+
     
 
     
