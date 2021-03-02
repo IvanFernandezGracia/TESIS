@@ -14,7 +14,7 @@
     Cinematica \\de\\ aceleracion,
     Dinamica \\inversa
     }  
-    \caption{Fotografía de un paraguas}
+    \caption{Flujo de trabajo para el Metodo A y B}
     \label{f:Cap4_metodologia}
 \end{figure}
 
@@ -30,8 +30,8 @@
     
         \begin{figure}[htb]
              \centering
-             \includegraphics[width=0.75\linewidth]{Main/Chapter4/Images4/DIBUJO1.jpg}
-              \caption{Sistema de referencia global $XYZ$ y numeracion de angulos $\theta_i , i=1,2,3$ }
+             \includegraphics[width=0.73\linewidth]{Main/Chapter4/Images4/DIBUJO1.jpg}
+              \caption{Sistema de referencia global $XYZ$ y angulos de los brazos $\theta_i , i\in \{1,2,3\}$ }
               \label{f:ref1}
         \end{figure}
 
@@ -51,7 +51,7 @@ La tabla \ref{tab:cap4_tabla_00} relaciona el nombre dado a las piezas mecánica
              4 & Base Móvil\\
             \hline
             \end{tabular}
-           \caption{Referencias del dibujo}
+           \caption{Relación entre la numeración y piezas mecánicas de la figura  \ref{f:ref1}}
            \label{tab:cap4_tabla_00}
         \end{table}
         
@@ -70,7 +70,7 @@ La tabla \ref{tab:cap4_tabla_00} relaciona el nombre dado a las piezas mecánica
         \begin{figure}[htb]
              \centering
              \includegraphics[width=0.45\linewidth]{Main/Chapter4/Images4/DIBUJO2.jpg}
-              \caption{Sistema de referencia local para cinemática de posición método A}
+              \caption{Sistema de referencia local para la cinemática de posición del método A \cite{Diseno_e_implementacion_de_un_sistema_de_control_para_la_representacion_grafica_a_partir_de_imagenes}. }
               \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_1}
         \end{figure}
 
@@ -109,13 +109,13 @@ La tabla \ref{tab:cap4_tabla_00} relaciona el nombre dado a las piezas mecánica
              \centering
              \includegraphics[width=0.45\linewidth]{Main/Chapter4/Images4/DIBUJO3.jpg}
              %\includegraphics[width=0.6\linewidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_2.png}
-              \caption{Fotografía de un paraguas}
+              \caption{Principales parámetros geométricos y puntos para la cinemática de posición del método A \cite{Diseno_e_implementacion_de_un_sistema_de_control_para_la_representacion_grafica_a_partir_de_imagenes}.}
               \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_2}
         \end{figure}
         
 
         \begingroup
-            \renewcommand{\arraystretch}{1.5}
+            \renewcommand{\arraystretch}{1.3}
             \begin{table}[H]
             \centering
             \begin{tabular}{c m{12cm}}
@@ -152,7 +152,7 @@ La tabla \ref{tab:cap4_tabla_00} relaciona el nombre dado a las piezas mecánica
         \begin{figure}[htb]
              \centering
              \includegraphics[width=0.8\linewidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_3.png}
-              \caption{Fotografía de un paraguas}
+              \caption{Sistema de ecuaciones para la cinemática directa del método A \cite{Diseno_e_implementacion_de_un_sistema_de_control_para_la_representacion_grafica_a_partir_de_imagenes}.}
               \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_3}
         \end{figure}
         
@@ -209,7 +209,7 @@ La tabla \ref{tab:cap4_tabla_00} relaciona el nombre dado a las piezas mecánica
     \end{equation}
 
 
-    Despu\'{e}s de un extenso desarrollo alg\'{e}brico, la soluci\'{o}n del sistema de ecuaciones  (\ref{eq:cap4_eq_2}) es:
+    Despu\'{e}s de un extenso desarrollo alg\'{e}brico, la soluci\'{o}n del sistema de ecuaciones \ref{eq:cap4_eq_2} es:
 
     \vspace{-2.5em}
 
@@ -261,7 +261,7 @@ La tabla \ref{tab:cap4_tabla_00} relaciona el nombre dado a las piezas mecánica
         \begin{figure}[htb]
              \centering
              \includegraphics[width=0.43\linewidth]{Main/Chapter4/Images4/DIBUJO6.jpg}
-              \caption{Fotografía de un paraguas}
+              \caption{Sistema de ecuaciones para la cinemática inversa del método A \cite{Diseno_e_implementacion_de_un_sistema_de_control_para_la_representacion_grafica_a_partir_de_imagenes}.}
               \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_4}
         \end{figure}
         
@@ -313,7 +313,7 @@ Las ecuaciones cartesianas de las dos circunferencias quedan representadas en t�
     \label{eq:cap4_eq_15}
     \end{equation}
 
-La solución del sistema de ecuaciones (\ref{eq:cap4_eq_15}) es:
+La solución del sistema de ecuaciones \ref{eq:cap4_eq_15} es:
 
     \begin{equation}
     J_{1}= \left( x_{J_{1}},y_{J_{1}},z_{J_{1}} \right) = \left( 0,y,a+by \right)
@@ -351,20 +351,18 @@ En último lugar, se determina el ángulo \( ~ \theta _{1} \)  por medio del tri
     
         \begin{figure}[htb]
              \centering
-             \includegraphics[width=0.4\linewidth]{Main/Chapter4/Images4/DIBUJO4.png}
-              \caption{Fotografía de un paraguas}
+             \includegraphics[width=0.37\linewidth]{Main/Chapter4/Images4/DIBUJO4.png}
+              \caption{Intersección entre circulos en punto $J_1$ y proyección del punto $E_1$ sobre el plano XY  \cite{Diseno_e_implementacion_de_un_sistema_de_control_para_la_representacion_grafica_a_partir_de_imagenes}.}
               \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_5}
         \end{figure}
-
-
 
 
 Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \theta _{2} \)  y  \(  \theta _{3} \)  por medio de matrices de rotación, con un ángulo de rotación de 120$ ^{\circ} $  para la cadena cinemática con el actuador 2 y de 240$ ^{\circ} $  para la cadena cinemática con el actuador 3. Estas matrices giran el sistema de referencia local en 120$ ^{\circ} $  y 240$ ^{\circ} $ . 
 
         \begin{figure}[htb]
              \centering
-             \includegraphics[width=0.5\linewidth]{Main/Chapter4/Images4/DIBUJO5.jpg}
-              \caption{Fotografía de un paraguas}
+             \includegraphics[width=0.49\linewidth]{Main/Chapter4/Images4/DIBUJO5.jpg}
+              \caption{Rotación del sistema de referencia local para la solución de la cinemática inversa del método A \cite{Diseno_e_implementacion_de_un_sistema_de_control_para_la_representacion_grafica_a_partir_de_imagenes}.}
               \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_6}
         \end{figure}
 
@@ -373,7 +371,7 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
     \subsection{Modelación cinemática de la velocidad}\label{ma_cvel}
         En esta sección, se da a conocer un método para calcular la matriz jacobiana y su estrecha relación con las singularidades de un robot paralelo tipo delta. Se implementan las ideas extraídas del paper \cite{Hsu_modelling_ai}
     
-        \subsubsection{Nomenclatura de parámetros geométricos y sistema de referencia loca}
+        \subsubsection{Nomenclatura de parámetros geométricos y sistema de referencia local}
         
         La figura \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_7} se visualizan 3 cadenas cinemáticas las cuales se componen de 4 partes mecánicas: la base fija, los brazos accionados, las barras seguidoras y la plataforma móvil.
         
@@ -381,7 +379,7 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
              \centering
              %\includegraphics[width=0.45\linewidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_7.png}
              \includegraphics[width=0.62\linewidth]{Main/Chapter4/Images4/DIBUJO18.jpg}
-              \caption{Fotografía de un paraguas}
+              \caption{Sistema de referencia local para la cinemática de velocidad del método A. }
               \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_7}
         \end{figure}
  
@@ -404,7 +402,7 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
              5 & Juntas universales \\
              \hline
             \end{tabular}
-           \caption{Referencias del dibujo}
+           \caption{Relación entre la numeración y piezas mecánicas de la figura  \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_7}}
            \label{tab:cap4_tabla_5}
         \end{table}
         
@@ -425,7 +423,7 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
              \centering
              %\includegraphics[width=0.45\linewidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_7.png}
              \includegraphics[width=0.8\linewidth]{Main/Chapter4/Images4/DIBUJO19.jpg}
-              \caption{Fotografía de un paraguas}
+              \caption{Traslación y rotación del sistema de referencia local $O$ - $xyz$ para la solución de la cinemática de velocidad del metodo A. }
               \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_71}
         \end{figure}
         
@@ -480,8 +478,9 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
         
         \begin{figure}[htb]
              \centering
-             \includegraphics[width=1.0\linewidth]{Main/Chapter4/Images4/DIBUJO21.jpg}
-              \caption{Fotografía de un paraguas}
+             \includegraphics[width=0.97\linewidth]{Main/Chapter4/Images4/DIBUJO21.jpg}
+              \caption{Vectorización y ángulos interiores para la cinemática de velocidad del metodo 
+              A.}
               \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_8}
         \end{figure}
         
@@ -521,7 +520,7 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
     \label{eq:cap4_eq_21}
     \end{equation}
     
-    Reescribiendo la ecuacion (\ref{eq:cap4_eq_21}) en el marco de coordenadas $A_{i} – x_{i} y_{i} z_{i}$  conduce a la siguiente representación matricial:   
+    Reescribiendo la ecuación \ref{eq:cap4_eq_21} en el marco de coordenadas $A_{i} – x_{i} y_{i} z_{i}$  conduce a la siguiente representación matricial:   
 
     \begin{equation}
          a \left[ \begin{matrix}
@@ -578,7 +577,7 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
     \end{equation}
     
     
-    Con $\theta _{3i}$ y $\theta_{2i}$ determinados, solo queda un par de ecuaciones con $\theta_{1i}$ como la única incógnita que se deriva de la ecuacion (\ref{eq:cap4_eq_22}). Por lo tanto, es posible obtener  $\theta_{1i}$.
+    Con $\theta _{3i}$ y $\theta_{2i}$ determinados, solo queda un par de ecuaciones con $\theta_{1i}$ como la única incógnita que se deriva de la ecuación \ref{eq:cap4_eq_22}. Por lo tanto, es posible obtener $\theta_{1i}$.
 
     
         \newpage
@@ -587,21 +586,21 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
         
         La matriz jacobiana tradicional proporciona una transformación de la velocidad del efector final en el espacio cartesiano a las velocidades articulares accionadas.
 
-        Con referencia a la figura \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_10}, una ecuación de cierre de bucle para una extremidad i en marco de coordenadas  \( A_{i} \) – \( x_{i}y_{i}z_{i} \) se puede escribir como:
+        Con referencia a la figura \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_8}, una ecuación de cierre de bucle para una extremidad i en marco de coordenadas  \( A_{i} \) – \( x_{i}y_{i}z_{i} \) se puede escribir como:
         
         \begin{equation}
              \overrightarrow{OP}+\overrightarrow{~PC_{i}} =\overrightarrow{OA_{i}}+\overrightarrow{A_{i}B_{i}}+\overrightarrow{B_{i}C_{i}}  
          \label{eq:cap4_eq_25}
         \end{equation}
 
-        Al diferenciar vectorialmente la ecuación (\ref{eq:cap4_eq_25}) con respecto a el tiempo y separando las componentes de velocidad de la plataforma móvil de las velocidades angulares de los actuadores se llega a la siguiente expresión:
+        Al diferenciar vectorialmente la ecuación \ref{eq:cap4_eq_25} con respecto a el tiempo y separando las componentes de velocidad de la plataforma móvil de las velocidades angulares de los actuadores se llega a la siguiente expresión:
         
         \begin{equation}
             J_{x}v_{p}=J_{ \theta }\dot{ \theta } 
             \label{eq:cap4_eq_26}
         \end{equation}
         
-        La expresion matricial de la ecuacion (\ref{eq:cap4_eq_26}) es:
+        La expresión matricial de la ecuación \ref{eq:cap4_eq_26} es:
         
         \begin{equation}
                 \left[ \begin{matrix}
@@ -655,7 +654,7 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
     \end{equation}
          \vspace{-1em}
    
-    Manipulando algebraicamente la ecuación (\ref{eq:cap4_eq_26}):
+    Manipulando algebraicamente la ecuación \ref{eq:cap4_eq_26}:
     
      \begin{equation}
         v_{p}=J\dot{ \theta }
@@ -683,20 +682,20 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
         
         \subsubsection{Singularidades}\label{CAP4_SINGULARIDAD}
         
-        Se debe tener especial cuidado en el diseño de estos manipuladores paralelos para evitar singularidades. Cuando un manipulador está en una posición singular, la matriz jacobiana también es singular. En el caso de los manipuladores paralelos conviene trabajar con un jacobiano de dos partes, matriz jacobiana inversa   $J_{ \theta }$  y la directa  $ J_{x} $ . La ventaja es que un jacobiano bipartito permite, de forma natural, la identificación y clasificación de varios tipos de singularidades. Una de las formas de analizar las singularidades es igualando el determinante de la matriz jacobiana igual a cero y extraer varias posturas indeseables robot delta. Desde la ecuación  (\ref{eq:cap4_eq_26}) se puede observar y clasificar la singularidad en 3 situaciones:
+        Se debe tener especial cuidado en el diseño de estos manipuladores paralelos para evitar singularidades. Cuando un manipulador está en una posición singular, la matriz jacobiana también es singular. En el caso de los manipuladores paralelos conviene trabajar con un jacobiano de dos partes, matriz jacobiana inversa   $J_{ \theta }$  y la directa  $ J_{x} $ . La ventaja es que un jacobiano bipartito permite, de forma natural, la identificación y clasificación de varios tipos de singularidades. Una de las formas de analizar las singularidades es igualando el determinante de la matriz jacobiana igual a cero y extraer varias posturas indeseables robot delta. Desde la ecuación \ref{eq:cap4_eq_26} se puede observar y clasificar la singularidad en 3 situaciones:
         
         \begin{figure}[htb]
          \centering
-          \subfloat[Gatito]{
+          \subfloat[$\det  \left( J_{ \theta } \right) =0$ .]{
          \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_9a}
             \includegraphics[width=0.3\textwidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_9a.png}}
-          \subfloat[Tigre]{
+          \subfloat[$\det  \left( J_{x} \right) =0 $]{
          \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_9b}
             \includegraphics[width=0.3\textwidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_9b.png}}
-          \subfloat[Conejo]{
+          \subfloat[$ \det  \left( J_{ \theta } \right) =0 $  y $ \det  \left( J_{x} \right) =0 $]{
          \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_9c}
             \includegraphics[width=0.3\textwidth]{Main/Chapter4/Images4/Metodo_A_Modelacion_Cinematica_Posicion_9c.png}}
-         \caption{Múltiples imágenes}
+         \caption{Representación de 3 tipos de singularidades de un robot delta \cite{Clavel:31403}}
          \label{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_9}
         \end{figure}
         
@@ -711,9 +710,9 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
     
     \newpage
     
-    \subsection{Modelación Cinematica de Aceleracion}\label{ma_acel}
+    \subsection{Modelación cinemática de aceleración}\label{ma_acel}
 
-    En esta sección se presentan las ecuaciones para determinar la aceleración angular de los actuadores del robot delta. La aceleración se determina derivando matricial mente la ecuación (\ref{eq:cap4_eq_26}) de la sección \ref{ma_cvel} modelacion cinemática de velocidad para el método A.
+    En esta sección se presentan las ecuaciones para determinar la aceleración angular de los actuadores del robot delta. La aceleración se determina derivando matricial mente la ecuación \ref{eq:cap4_eq_26} de la sección \ref{ma_cvel} modelación cinemática de velocidad para el método A.
 
     \vspace{-2.5em}
 
@@ -725,7 +724,7 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
     \end{align}
     
     
-    Las matrices en la ecuacion (\ref{eq:cap4_eq_34}) son: 
+    Las matrices en la ecuación \ref{eq:cap4_eq_34} son: 
         \vspace{-0.5em}
     \begin{multline}
             \left[ \begin{matrix}
@@ -854,7 +853,7 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
         \end{equation}
 
 
-      Las expresiones (\ref{eq:cap4_dina_ma_1}) son las ecuaciones de Lagrange para ligaduras holónomas  $f_{i}^{(h)}$ $( q_{i},t) =0$  cuando son usadas en forma explícita. Representan un conjunto de  $\eta =3N$  ecuaciones para el conjunto completo de coordenadas (dependientes + independientes)  $q_{1},q_{2},q_{3},...,q_{\eta=3N}$. Estas ecuaciones, en conjunto con las  $K^{ \left( h \right) }$ ecuaciones de ligadura dadas por $f_{i}^{(h)}$ $( q_{i},t) =0$  forman un sistema de   $ 3N+~K^{ \left( h \right) } $  ecuaciones para  $ 3N+~K^{ \left( h \right) } $  incógnitas,  $ 3N $  coordenadas  $ q_{j} $ y  $ K^{ \left( h \right) } $ multiplicadores de Lagrange  $ \lambda _{l}$ , quedando así determinado dicho sistema de ecuaciones. Aquí las ligaduras entran en forma explícita en los  $ Q_{j}^{ \left( lig \right) }$ dados por (\ref{eq:cap4_dina_ma_2}), que son fuerzas adicionales que actúan sobre el sistema. Debido a que estas fuerzas están relacionadas con las ligaduras se les da el nombre de fuerzas generalizadas de ligadura, las cuales no realizan trabajo virtual como lo requiere la validez del Principio de D’Alembert.
+      Las ecuaciones \ref{eq:cap4_dina_ma_1} son las ecuaciones de Lagrange para ligaduras holónomas  $f_{i}^{(h)}$ $( q_{i},t) =0$  cuando son usadas en forma explícita. Representan un conjunto de  $\eta =3N$  ecuaciones para el conjunto completo de coordenadas (dependientes + independientes)  $q_{1},q_{2},q_{3},...,q_{\eta=3N}$. Estas ecuaciones, en conjunto con las  $K^{ \left( h \right) }$ ecuaciones de ligadura dadas por $f_{i}^{(h)}$ $( q_{i},t) =0$  forman un sistema de   $ 3N+~K^{ \left( h \right) } $  ecuaciones para  $ 3N+~K^{ \left( h \right) } $  incógnitas,  $ 3N $  coordenadas  $ q_{j} $ y  $ K^{ \left( h \right) } $ multiplicadores de Lagrange  $ \lambda _{l}$ , quedando así determinado dicho sistema de ecuaciones. Aquí las ligaduras entran en forma explícita en los  $ Q_{j}^{ \left( lig \right) }$ dados por la ecuacion \ref{eq:cap4_dina_ma_2}, que son fuerzas adicionales que actúan sobre el sistema. Debido a que estas fuerzas están relacionadas con las ligaduras se les da el nombre de fuerzas generalizadas de ligadura, las cuales no realizan trabajo virtual como lo requiere la validez del Principio de D’Alembert.
 
 
     \newpage
@@ -872,12 +871,12 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
     \newpage
 
 
-    \subsubsection{Nomenclatura de Parameros Geométricos y Sistema de Referencia Global}
+    \subsubsection{Nomenclatura de parámetros geométricos y sistema de referencia global}
     
             \begin{figure}[htb]
                  \centering
-                 \includegraphics[width=0.8\linewidth]{Main/Chapter4/Images4/DIBUJO23.jpg}
-                  \caption{Fotografía de un paraguas}
+                 \includegraphics[width=0.77\linewidth]{Main/Chapter4/Images4/DIBUJO23.jpg}
+                  \caption{Sistema de referencia local, parámetros geométricos y masas para la solución de la dinámica inversa del método A \cite{Clavel:31403}.}
                   \label{f:Cap4_Metodo_A_dina_1}
             \end{figure}    
 
@@ -901,8 +900,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
              4 & Base Movil\\
             \hline
             \end{tabular}
-           \caption{Referencias del dibujo}
-           \label{tab:cap4_tabla_dina_ma_1}
+            \caption{Relación entre la numeración y piezas mecánicas de la figura  \ref{f:Cap4_Metodo_A_dina_1}}           \label{tab:cap4_tabla_dina_ma_1}
         \end{table}
 
     \newpage
@@ -911,7 +909,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
    
            \begin{table}[h]
             \centering
-            \renewcommand{\arraystretch}{1.3}
+            \renewcommand{\arraystretch}{1.47}
                 \begin{tabular}{c m{11cm}}
             \hline
                 \textbf{Simbolo}& \textbf{Descripción} \\ 
@@ -957,7 +955,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
     \newpage
 
 
-    \subsubsection{Dinámica Inversa}
+    \subsubsection{Dinámica inversa}
     
         Un paso importante en el proceso de diseño de un robot es comprender el comportamiento del dispositivo mientras se mueve por su espacio de trabajo o al realizar una tarea específica. Este comportamiento se determina mediante el estudio de la dinámica del mecanismo, donde se pueden determinar las fuerzas que actúan sobre los elementos y los pares requeridos por los actuadores. En consecuencia, cada componente debe optimizarse en dimensiones y material para ser utilizado en los procesos de fabricación. Por lo tanto, es esencial buscar cuáles son los enfoques comunes utilizados para calcular la dinámica del robot. Hay tres enfoques: en primer lugar, la formulación de Newton-Euler, que es un método tradicional basado en las leyes de Newton, pero necesita una gran cantidad de ecuaciones, ya que requiere establecer un número n de ecuaciones para cada elemento con el fin de resolver el sistema. Como resultado, es el método más lento en cuanto a eficiencia computacional. En segundo lugar, el trabajo virtual de Principio, que es una derivación del método de Euler y Lagrange utilizando el cálculo de variaciones, se ha utilizado para estudiar la mecánica de los cuerpos deformables. Este enfoque establece que el trabajo total realizado por una fuerza a lo largo de la trayectoria sobre una partícula se puede calcular si esas fuerzas actúan cuando la partícula se mueve del punto A al punto B. Finalmente, la formulación lagrangiana, que se basa en variaciones de cálculo, establece que un sistema dinámico puede expresarse en términos de su energía cinética y potencial conduciendo de manera sencilla a la solución del problema. Además, se considera una buena opción para el control en tiempo real de manipuladores paralelos.
     
@@ -1060,18 +1058,18 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
 
 \section{Metodología B}
 
-    \subsection{Modulación cinemática de la Posición}\label{MB_MP}
+    \subsection{Modulación cinemática de la posición}\label{MB_MP}
     
             Con el objetivo de modelar la cinemática del robot delta, en esta sección se implementan las ideas expuestas en la fuente \cite{Path_Planning_and_Trajectory_Optimization}, que aborda en uno de sus capítulos la problemática de cinemática directa e inversa.
     
-        \subsubsection{Nomenclatura de Parámetros Geométricos y Sistema de Referencia Local}
+        \subsubsection{Nomenclatura de parámetros geométricos y sistema de referencia local}
 
             En la figura \ref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_1}, se presenta las partes mecánicas y la nomenclatura de los parámetros del robot delta simplificado para resolver el problema de cinemática con su respectivo sistema de referencia local:
 
             \begin{figure}[htb]
                  \centering
                  \includegraphics[width=0.55\linewidth]{Main/Chapter4/Images4/DIBUJO24.jpg}
-                  \caption{Fotografía de un paraguas}
+                  \caption{Sistema de referencia local para la cinemática del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
                   \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_1}
             \end{figure}        
         
@@ -1096,7 +1094,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
              6 & Actuador \\
              \hline
             \end{tabular}
-           \caption{Referencias del dibujo}
+           \caption{Nombres de partes mecánicas del robot delta del método B}
            \label{tab:cap4_tabla_11}
         \end{table}
         
@@ -1108,8 +1106,9 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
 
             \begin{figure}[htb]
                  \centering
-                 \includegraphics[width=0.6\linewidth]{Main/Chapter4/Images4/DIBUJO25.jpg}
-                  \caption{Fotografía de un paraguas}
+                 \includegraphics[width=0.52\linewidth]{Main/Chapter4/Images4/DIBUJO25.jpg}
+                  \caption{Principales parámetros geométricos y puntos para la solución de la cinemática
+del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
                   \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_2}
             \end{figure}        
         
@@ -1146,7 +1145,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
              $P_0$ & posición del final efector en el espacio cartesiano con respecto al sistema de coordenadas con origen $O$ en el centroide de la base fija\\
             \hline            
             \end{tabular}
-            \caption{Referencias del dibujo}
+            \caption{Principales parámetros geométricos y puntos para la solución de la cinemática del método B}
            \label{tab:cap4_tabla_12}
         \end{table}
         \endgroup     
@@ -1159,7 +1158,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
             \begin{figure}[htb]
                  \centering
                  \includegraphics[width=0.55\linewidth]{Main/Chapter4/Images4/DIBUJO26.png}
-                  \caption{Fotografía de un paraguas}
+                  \caption{Vectorización para la solución de cinemática del metodo B  \cite{Path_Planning_and_Trajectory_Optimization}.}
                   \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_33}
             \end{figure} 
     
@@ -1182,9 +1181,8 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
              $\overrightarrow{{\xi}_{F_iJ_i}}$ & Vector que inicia en la junta esférica que conecta el brazo con el antebrazo y su extremo se encuentra en la junta esférica que conecta el efector con el antebrazo $i\in\{1,2,3\}$.Este vector es una representación de los antebrazos.
  \\
             \hline
-            \hline            
             \end{tabular}
-            \caption{Referencias del dibujo}
+            \caption{Vectorización para la solución de cinemática del metodo B}
            \label{tab:cap4_tabla_1332}
         \end{table}
         \endgroup     
@@ -1192,7 +1190,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
         \newpage
 
 
-\subsubsection{Cinemática Directa}\label{mb_cd}
+\subsubsection{Cinemática directa}\label{mb_cd}
         
         En\ la cinemática directa, se calcula la posición del efector final del manipulador robótico a partir de la información dada de los ángulos en los actuadores.
 
@@ -1209,7 +1207,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
             \begin{figure}[htb]
                  \centering
                \includegraphics[width=0.7\linewidth]{Main/Chapter4/Images4/DIBUJO28.png}
-                  \caption{Fotografía de un paraguas}
+                  \caption{Traslación de los vectores que representan los antebrazos para crear un sistema de ecuaciones y determinar la cinemática directa del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
                   \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_3}
             \end{figure}        
 
@@ -1243,7 +1241,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
             \begin{figure}[htb]
                  \centering
                \includegraphics[width=0.45\linewidth]{Main/Chapter4/Images4/DIBUJO29.png}
-               \caption{eadaed}
+               \caption{Vista frontal  de la base fija \cite{Path_Planning_and_Trajectory_Optimization}.}
                \label{f:cap4_mb_cineposdirect}
             \end{figure}
             
@@ -1285,7 +1283,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
         
         
 
-\subsubsection{Cinemática Inversa}\label{mb_ci}
+\subsubsection{Cinemática inversa}\label{mb_ci}
 
       En la cinemática inversa, se calculan los ángulos de las articulaciones, en este caso, los actuadores gracias a la posición dada de efector final en el espacio cartesiano. 
       
@@ -1298,15 +1296,15 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
   
            \begin{figure}[htb]
              \centering
-              \subfloat[Gatito]{
+              \subfloat[Intersección de círculos en punto $J_i$]{
              \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_4a}
                 %\includegraphics[width=0.5\textwidth]{Main/Chapter4/Images4/Metodo_B_Modelacion_Cinematica_Posicion_4a.png}
-                \includegraphics[width=0.55\textwidth]{Main/Chapter4/Images4/DIBUJO27.png}
+                \includegraphics[width=0.52\textwidth]{Main/Chapter4/Images4/DIBUJO27.png}
                 }
-              \subfloat[Tigre]{
+              \subfloat[Vista frontal efector final]{
              \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_4b}
                 \includegraphics[width=0.45\textwidth]{Main/Chapter4/Images4/DIBUJO30}}
-             \caption{Múltiples imágenes}
+             \caption{Solución de la cinemática directa de posición del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
              \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_4}
         \end{figure}
   
@@ -1317,11 +1315,11 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
             \begin{figure}[htb]
                  \centering
                \includegraphics[width=0.7\linewidth]{Main/Chapter4/Images4/Metodo_B_Modelacion_Cinematica_Posicion_4b.png}
-               \caption{eadaed}
+               \caption{Proyección del punto $P_2$ sobre el plano YZ \cite{Path_Planning_and_Trajectory_Optimization}.}
                \label{f:f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_44}
             \end{figure}
             
-      La ecuación general de la circunferencia \ref{eq:cap4_MB_7} y \ref{eq:cap4_MB_8} representan los círculos con radio  \( L_{A} \)  y  \( \sqrt[]{L_{B}^{2}-P_{0x}^{2}} \)  respectivamente, como se muestra en la figura \ref{f:f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_44}.
+      La ecuación general de la circunferencia de las ecuaciones \ref{eq:cap4_MB_7} y \ref{eq:cap4_MB_8} representan los círculos con radio  \( L_{A} \)  y  \( \sqrt[]{L_{B}^{2}-P_{0x}^{2}} \)  respectivamente, como se muestra en la figura \ref{f:f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_44}.
   
   
         \begin{equation*}
@@ -1354,7 +1352,8 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
         \begin{figure}[htb]
                  \centering
                \includegraphics[width=1\linewidth]{Main/Chapter4/Images4/DIBUJO32.jpg}
-               \caption{eadaed}
+               \caption{Rotación del sistema de referencia local para la solución de la cinemática
+inversa del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
                \label{f:f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_44}
             \end{figure}
         \newpage
@@ -1368,7 +1367,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
 
         \subsubsection{Jacobiano}
 
-        La matriz jacobiana $J$ describe la relación entre las velocidades espaciales cartesianas y las velocidades articulares como se indica en la ecuación (\ref{eq:cap4_MB_10}).
+        La matriz jacobiana $J$ describe la relación entre las velocidades espaciales cartesianas y las velocidades articulares como se indica en la ecuación \ref{eq:cap4_MB_10}.
 
         \begin{equation} 
             \overrightarrow{\dot{P_{0}}}=J\overrightarrow{\dot{ \theta }}~ 
@@ -1384,8 +1383,8 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
             
                 \begin{figure}[htb]
                  \centering
-                 \includegraphics[width=0.55\linewidth]{Main/Chapter4/Images4/Metodo_B_Modelacion_Cinematica_Posicion_5.png}
-                  \caption{Fotografía de un paraguas}
+                 \includegraphics[width=0.5\linewidth]{Main/Chapter4/Images4/Metodo_B_Modelacion_Cinematica_Posicion_5.png}
+                  \caption{Puntos y distancias geométricas para la solución de la cinemática de velocidad del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
                   \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_5}
             \end{figure}  
         
@@ -1422,9 +1421,9 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
     \end{align}
 
 
-    En (\ref{eq:cap4_MB_12}), $[P_{0x},P_{0y},P_{0z}]$ es la posición del efector final $\overrightarrow{P_{0}}$ , y el superíndice $R$ es el marco de referencia local $O-xyz$ como se muestra en la figura \ref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_5}. $R$ es la diferencia entre ${R}_{A}$ y ${R}_{B}$.
+    En la ecuación \ref{eq:cap4_MB_12}, $[P_{0x},P_{0y},P_{0z}]$ es la posición del efector final $\overrightarrow{P_{0}}$ , y el superíndice $R$ es el marco de referencia local $O-xyz$ como se muestra en la figura \ref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_5}. $R$ es la diferencia entre ${R}_{A}$ y ${R}_{B}$.
     Debido a la simetría en la estructura del robot paralelo delta, cada brazo se puede tratar por separado. Cada brazo está separado por un ángulo de 120° grados y la posición del sistema de referencia correspondiente para cada brazo $O_i - x_i y_i z_i$  es el mismo que el superindice $R$ pero girado en un ángulo para cada brazo $i={1,2 ,3}$, respectivamente. 
-    La matriz de transformación  o  la  matriz de rotación se indica en (\ref{eq:cap4_MB_13}).
+    La matriz de transformación  o  la  matriz de rotación se indica en la ecuacion \ref{eq:cap4_MB_13}.
     
        \begin{equation}
          R_{i}^{R} =
@@ -1438,8 +1437,8 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
     
             \begin{figure}[htb]
                  \centering
-                 \includegraphics[width=0.95\linewidth]{Main/Chapter4/Images4/DIBUJO33.jpg}
-                  \caption{Fotografía de un paraguas}
+                 \includegraphics[width=0.9\linewidth]{Main/Chapter4/Images4/DIBUJO33.jpg}
+                  \caption{Representación gráfica de la rotación del sistema de coordenadas local $O$-$XYZ$ en los ángulos $\varphi_i \in \{i=1,2,3\}$ }
                   \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_5asdasdfvtk}
             \end{figure}  
             
@@ -1448,7 +1447,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
     \newpage
 
             
-    Derivando la ecuación (\ref{eq:cap4_MB_11}) para obtener una expresión del jacobiano $J$: 
+    Derivando la ecuación \ref{eq:cap4_MB_11} para obtener una expresión del jacobiano $J$: 
     
     \begin{equation} 
             \overrightarrow{s_{i}}^T \cdot \overrightarrow{\dot{s}_{i}}= 0
@@ -1593,7 +1592,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
 
     \newpage
 
-    \subsection{Modelación Dinámica}\label{cap4_mb_subsection_dina}
+    \subsection{Modelación dinámica}\label{cap4_mb_subsection_dina}
     
         En esta sección se presenta un método para resolver la dinámica inversa de un robot delta inspirado en los trabajos de Zeeshan Shareef \cite{Path_Planning_and_Trajectory_Optimization}, Collins F. Adetu, Carl A. Moore, Jr. y Rodney G. Roberts \cite{dynamic_omega3}. La modelacion dinámica utiliza como base el principio de trabajo virtual desarrollado por Codourey \cite{Codourey_decoupling}.
 
@@ -1607,7 +1606,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
         \newpage
 
 
-        \subsubsection{Principio de Trabajo Virtual}
+        \subsubsection{Principio de trabajo virtual}
 
         Para obtener el torque de los actuadores se emplea el principio del trabajo virtual. El principio establece que, en el equilibrio, el trabajo virtual,  $\delta W$  , realizado por todas las fuerzas externas, $F$ , que actúan sobre un cuerpo durante cualquier desplazamiento virtual,  $\delta r $  , consistente con las restricciones estructurales impuestas al cuerpo, es igual a cero. Este principio se ilustra matemáticamente a continuación:
         
@@ -1617,7 +1616,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
         \end{equation}
 
         
-        En (\ref{eq:cap4_MB_20}), solo se consideran las fuerzas externas, todas las fuerzas internas, es decir, las fuerzas de restricción y reacción se ignoran porque estas fuerzas no realizan ningún trabajo virtual. El principio de trabajo virtual se utiliza tradicionalmente para resolver problemas estáticos. Sin embargo, para un sistema que no está en reposo, la fuerza (fuerza de inercia) como resultado de la masa del cuerpo,  \( m \) , que acelera a una tasa,  \( a \) , se incluye en (\ref{eq:cap4_MB_20}). Esta extensión del principio de trabajo virtual para casos dinámicos se conoce como principio de D'Alembert \cite{}. La ecuación (\ref{eq:cap4_MB_21}) es una extensión de  (\ref{eq:cap4_MB_20}) con la fuerza de inercia incluida:
+        En la ecuación \ref{eq:cap4_MB_20}, solo se consideran las fuerzas externas, todas las fuerzas internas, es decir, las fuerzas de restricción y reacción se ignoran porque estas fuerzas no realizan ningún trabajo virtual. El principio de trabajo virtual se utiliza tradicionalmente para resolver problemas estáticos. Sin embargo, para un sistema que no está en reposo, la fuerza (fuerza de inercia) como resultado de la masa del cuerpo,  \( m \) , que acelera a una tasa,  \( a \) , se incluye en la ecuación \ref{eq:cap4_MB_20}. Esta extensión del principio de trabajo virtual para casos dinámicos se conoce como principio de D'Alembert \cite{dynamic_omega3}. La ecuación \ref{eq:cap4_MB_21} es una extensión de  la ecuación \ref{eq:cap4_MB_20} con la fuerza de inercia incluida:
         
         \begin{equation}
           \delta W= \sum _{i=1}^{N} \left( F_{i}-m_{i}a_{i} \right) \ast \delta r_{i}=0 \\
@@ -1625,7 +1624,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
         \end{equation}
 
         
-        Para un cuerpo rígido que es capaz de realizar movimientos tanto de traslación como de rotación, (\ref{eq:cap4_MB_21}) generalmente se escribe como:
+        Un cuerpo rígido que es capaz de realizar movimientos tanto de traslación como de rotación, por lo tanto la ecuación \ref{eq:cap4_MB_21} generalmente se escribe como:
         
         \begin{equation}
           \delta W= \sum _{i=1}^{N} \left[  \left( F_{i}-m_{i}a_{i} \right) \ast \delta r_{i}+ \left(  \tau-I\ddot{ \theta } \right) \ast \delta  \theta  \right] =0 \\
@@ -1637,7 +1636,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
         \newpage
 
 
-        \subsubsection{Simplificaciones e Hipótesis}
+        \subsubsection{Simplificaciones e hipótesis}
         Antes de proceder a derivar el modelo dinámico, existen unas pocas hipótesis para hacer que el modelo sea factible y computacionalmente eficiente. Las hipótesis simplificadoras son:
         
         \begin{itemize}
@@ -1650,25 +1649,24 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
         \begin{figure}[H]
               \centering
 	          \includegraphics[width=0.5\linewidth]{Main/Chapter4/Images4/DIBUJO39.jpg}
-              \caption{Fotografía de un paraguas}
+              \caption{Simplificación de masas para la solución de la dinámica inversa del método B.}
               \label{f:Cap4_Metodo_B_Modelacion_Dinamica_1}
         \end{figure}
         
                 \newpage
 
 
-        \subsubsection{Nomenclatura de Parámetros Geométricos, Simplificación de Masas y Sistema de Referencia Global }
+        \subsubsection{Nomenclatura de parámetros geométricos, simplificación de masas y sistema de referencia global }
 
-        En siguiente tabla e ilustración representa la nomenclatura de los parámetros principales para resolver el problema dinámico del robot delta y la simplificación de masas:
+        En la tabla \ref{tab:cap4_tabla_13} y figura \ref{f:Cap4_Metodo_B_Modelacion_Dinamica_2} representa la nomenclatura de los parámetros principales para resolver el problema dinámico del robot delta y la simplificación de masas:
         
         \begin{figure}[H]
               \centering
 	          \includegraphics[width=0.55\linewidth]{Main/Chapter4/Images4/DIBUJO36.jpg}
-              \caption{Fotografía de un paraguas}
+              \caption{Sistema de referencia local y parámetros geométricos para la solución
+de la dinámica inversa del método B.}
               \label{f:Cap4_Metodo_B_Modelacion_Dinamica_2}
         \end{figure}
-
-
 
         \begingroup
             \renewcommand{\arraystretch}{1.5}
@@ -1690,12 +1688,12 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
             \hline
              $F_{x},F_{y},F_{z}$ & Fuerzas externas sobre efector final\\
             \hline
-            $\theta_i$ & asfasfl\\
+            $\theta_i$ & Ángulo del actuador $i \in \{1,2,3\}$\\
             \hline
-            $P_0$ & asfasfl\\
-            \hline \hline
+            $P_0$ & Centroide del efector final\\
+            \hline 
             \end{tabular}
-            \caption{Referencias del dibujo}
+            \caption{Parámetros para la solución de la dinámica inversa del método B.}
            \label{tab:cap4_tabla_13}
         \end{table}
         \endgroup     
@@ -1703,8 +1701,9 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
 
         \begin{figure}[H]
               \centering
-	          \includegraphics[width=0.65\linewidth]{Main/Chapter4/Images4/DIBUJO37.jpg}
-              \caption{Fotografía de un paraguas}
+	          \includegraphics[width=0.63\linewidth]{Main/Chapter4/Images4/DIBUJO37.jpg}
+              \caption{Sistema de referencia local y masas para la solución
+de la dinámica inversa del método B.}
               \label{f:Cap4_Metodo_B_Modelacion_Dinamica_2}
         \end{figure}
 
@@ -1731,7 +1730,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
             $I_{m}$ & Inercia de los motores\\
             \hline
             \end{tabular}
-            \caption{Referencias del dibujo}
+            \caption{Masas, relación de división de masas e inercia de los motores para la solución de la dinámica inversa del método B.}
            \label{tab:cap4_tabla_13333}
         \end{table}
         \endgroup 
@@ -1755,7 +1754,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
         \end{equation}
         
         
-        A partir de (\ref{eq:cap4_MB_24}), se identificar fácilmente la matriz de masa  $ M \left(  \theta  \right)$, la matriz  $ C \left(  \theta ,\dot{ \theta } \right)  $  de coeficiente de Coriolis y centrífuga, y el vector de términos de gravedad  $ \overrightarrow{G} \left(  \theta  \right)  $  comparándolo con la dinámica estándar:
+        A partir de la ecuación \ref{eq:cap4_MB_24}, se identificar fácilmente la matriz de masa  $ M \left(  \theta  \right)$, la matriz  $ C \left(  \theta ,\dot{ \theta } \right)  $  de coeficiente de Coriolis y centrífuga, y el vector de términos de gravedad  $ \overrightarrow{G} \left(  \theta  \right)  $  comparándolo con la dinámica estándar:
         
         \begin{equation}
               \overrightarrow{ \tau}=M \left(  \theta  \right) \overrightarrow{\ddot{ \theta }}+C \left(  \theta ,\dot{ \theta } \right) \overrightarrow{\dot{ \theta }}+ \overrightarrow{G} \left(  \theta  \right) 
