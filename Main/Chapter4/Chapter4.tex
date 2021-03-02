@@ -1808,8 +1808,8 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
     
     \begin{figure}[htb]
         \centering
-        \includegraphics[width=0.7\linewidth]{Main/Chapter4/Images4/cap4_ws_1.png}
-        \caption{Fotografía de un paraguas}
+        \includegraphics[width=0.7\linewidth]{Main/Chapter4/Images4/wsazul.png}
+        \caption{Aproximacion del espacio de trabajo para un robot delta \cite{inproceedingsworkspace1}}
         \label{f:Cap4_ws_1}
     \end{figure}  
     
@@ -1825,6 +1825,16 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
     El método de discretización \cite{delta_Urrea}, que se basa en métodos numéricos, consiste en discretizar el espacio en tres dimensiones, resolviendo la cinemática inversa para cada punto y verificando las restricciones que limitan dicho espacio de trabajo (Ottaviano and Ceccarelli, 2000). La exactitud del volumen de trabajo del robot Delta, depende de la probabilidad de que los puntos seleccionados aleatoriamente puedan ser alcanzados por el robot. 
     
     En esta tesis se basa en el método de discretización, sin embargo, será modificado para que el algoritmo calcule la cantidad exacta de los puntos en el espacio que es capaz de alcanzar la plataforma móvil del robot \cite{delta_Urrea}. El algoritmo se basa en la solución de la cinemática directa para todas las posibles combinaciones de los actuadores, obteniendo en cada caso un punto en el espacio. El punto pertenece al espacio de trabajo del robot sí y solo sí cumple con todas las restricciones impuestas.
+    
+        
+    \begin{figure}[htb]
+        \centering
+        \includegraphics[width=0.8\linewidth]{Main/Chapter4/Images4/abbabb.PNG}
+        \caption{Espacio de trabajo YF003N \cite{Kawasakiasd}}
+        \label{f:Cap4_ws_2_abb}
+    \end{figure} 
+    
+    
     
     \newpage
 
@@ -1854,7 +1864,7 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
     \begin{figure}[htb]
         \centering
         \includegraphics[width=1\linewidth]{Main/Chapter4/Images4/DIBUJO51.jpg}
-        \caption{Fotografía de un paraguas}
+        \caption{2 tipos de restricciones del espacio de trabajo}
         \label{f:Cap4_ws_2}
     \end{figure}   
 
