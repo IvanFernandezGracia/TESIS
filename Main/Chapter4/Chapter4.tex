@@ -1845,9 +1845,9 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
     Las restricciones que se toman en cuenta en este documento para determinar el espacio de trabajo del robot delta son principalmente: 
    
     \begin{itemize}
-    	\item Limites impuesto de los ángulos de los actuadores [  \(  \theta _{1i,min} \)  -   \(  \theta _{1i,max} \)  ] para cada actuador  \( i= \{ 1,2,3 \}  \)  .\par
+    	\item Limites impuesto de los ángulos de los actuadores [  \(  \theta _{1i,min} \)  -   \(  \theta _{1i,max} \)  ] para cada actuador  \( i \in \{ 1,2,3 \}  \)  .\par
     
-    	\item Resolución basada en tamaño del paso de los actuadores, es decir, la discretización del rango impuesto por los límites del punto anterior  \(  \Delta  \theta _{1i} \)  para cada actuador  \( i= \{ 1,2,3 \}  \) .\par
+    	\item Resolución basada en tamaño del paso de los actuadores, es decir, la discretización del rango impuesto por los límites del punto anterior  \(  \Delta  \theta _{1i} \)  para cada actuador  \( i \in \{ 1,2,3 \}  \) .\par
     
     	\item Restricciones de ángulos internos en base a restricción de las juntas o rotulas  \(  \theta _{2i} \)  y  \(  \theta _{3i} \) .\par
     
@@ -1881,7 +1881,7 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
     Finalmente, se describe la trayectoria como la combinación de 2 partes: una descripción puramente geométrica de la secuencia de configuraciones logradas por el robot y una escala de tiempo que especifica los tiempos en que se alcanzan esas configuraciones. A partir del punto de vista anterior, se consideran el caso de las trayectorias punto a punto tanto en el espacio de articulaciones como en el espacio de cartesiano.
     
     \subsection{Definición de trayectorias}
-        Un camino geométrico $p$ es un conjunto de puntos en el espacio articular o cartesiano que un manipulador de un robot debe seguir, en otras palabras, es una descripción puramente geométrica. La ecuación (\ref{eq:cap4_tray_1}) representa un camino geométrico en el espacio cartesiano: 
+        Un camino geométrico $p$ es un conjunto de puntos en el espacio articular o cartesiano que un manipulador de un robot debe seguir, en otras palabras, es una descripción puramente geométrica. La ecuación \ref{eq:cap4_tray_1} representa un camino geométrico en el espacio cartesiano: 
 
         \begin{equation}
             p(s) = [x(s), y(s), z(s)]^T
@@ -1899,7 +1899,7 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
     \begin{figure}[htb]
         \centering
         \includegraphics[width=0.7\linewidth]{Main/Chapter4/Images4/cap4_tray_1.png}
-        \caption{Fotografía de un paraguas}
+        \caption{Descomposición de trayectoria en camino + ley temporal \cite{tray_utec}}
         \label{f:Cap4_tray_1}
     \end{figure}    
     
@@ -1968,7 +1968,7 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
     \begin{figure}[htb]
         \centering
         \includegraphics[width=0.65\linewidth]{Main/Chapter4/Images4/cap4_tray_3.png}
-        \caption{Fotografía de un paraguas}
+        \caption{Procedimiento típico para generar trayectorias \cite{tray_utec}}
         \label{f:Cap4_tray_3}
     \end{figure}  
     
@@ -1985,16 +1985,16 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
            \begin{figure}[htb]
              \centering
              \label{f:cap4_tray_4a}
-                \includegraphics[width=0.6\textwidth]{Main/Chapter4/Images4/cap4_tray_4a.png}
-             \caption{Múltiples imágenes A}
+                \includegraphics[width=0.8\textwidth]{Main/Chapter4/Images4/cap4_tray_4a.png}
+             \caption{Interpolación articular no coordinada \cite{tray_utec}}
         \end{figure}            
 
 
            \begin{figure}[htb]
              \centering
              \label{f:cap4_tray_4b}
-                \includegraphics[width=0.6\textwidth]{Main/Chapter4/Images4/cap4_tray_4b.png}
-             \caption{Múltiples imágenes B}
+                \includegraphics[width=0.8\textwidth]{Main/Chapter4/Images4/cap4_tray_4b.png}
+             \caption{Interpolación en el espacio cartesiano \cite{tray_utec}}
         \end{figure}         
             
             
@@ -2012,7 +2012,7 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
         \begin{figure}[htb]
             \centering
             \includegraphics[width=1\linewidth]{Main/Chapter4/Images4/cap4_tray_5.png}
-            \caption{Fotografía de un paraguas}
+            \caption{Polinomios \cite{tray_utec}}
             \label{f:Cap4_tray_5}
         \end{figure}              
             
@@ -2029,13 +2029,14 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
             
            \begin{figure}[htb]
              \centering
-              \subfloat[Gatito]{
+              \subfloat[Posición]{
              \label{f:cap4_tray_6a}
                 \includegraphics[width=0.5\textwidth]{Main/Chapter4/Images4/cap4_tray_6a.png}}
-              \subfloat[Tigre]{
+              \subfloat[Velocidad]{
              \label{f:cap4_tray_6b}
                 \includegraphics[width=0.5\textwidth]{Main/Chapter4/Images4/cap4_tray_6b.png}}
-             \caption{Múltiples imágenes}
+             \caption{Trayectorias Punto a Punto
+: Interpolador de Velocidad Trapezoidal \cite{tray_utec}}
              \label{f:cap4_tray_6}
         \end{figure}            
             
@@ -2090,7 +2091,8 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
             \begin{figure}[htb]
                 \centering
                 \includegraphics[width=1\linewidth]{Main/Chapter4/Images4/cap4_tray_7.png}
-                \caption{Fotografía de un paraguas}
+                \caption{(Izquierda) Un robot 2R con límites de articulación $0^{\circ} \leq \theta_1 \leq 180^{\circ}$
+, $0^{\circ} \leq \theta_2 \leq 150^{\circ}$. (Centro superior) Una trayectoria en línea recta en el espacio articular y (arriba a la derecha) el movimiento correspondiente del efector final en el espacio de la tarea (línea discontinua). Las configuraciones de punto final alcanzables, sujetas a límites de articulación, se indican en gris. (Centro inferior) Esta línea curva en el espacio de la articulación y (parte inferior derecha) la trayectoria de la línea recta correspondiente en la línea discontinua del espacio de la tarea) violaría los límites de la articulación. \cite{moder_robot}}
                 \label{f:Cap4_tray_7}
             \end{figure}  
             
@@ -2106,7 +2108,7 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
             
             
         \subsubsection{Escala temporal de un camino en línea recta}
-            Una escala de tiempo $s(t)$ de una trayectoria debe garantizar que el movimiento sea lo suficientemente suave y que se satisfaga cualquier restricción sobre la velocidad y aceleración del robot. Para una trayectoria en línea recta en el espacio articular de la forma de la ecuacion (\ref{eq:cap4_tray_9}), las velocidades y aceleraciones articulares escaladas en el tiempo son respectivamente:
+            Una escala de tiempo $s(t)$ de una trayectoria debe garantizar que el movimiento sea lo suficientemente suave y que se satisfaga cualquier restricción sobre la velocidad y aceleración del robot. Para una trayectoria en línea recta en el espacio articular de la forma de la ecuacion \ref{eq:cap4_tray_9}, las velocidades y aceleraciones articulares escaladas en el tiempo son respectivamente:
         
         
             \begin{equation}
@@ -2148,20 +2150,20 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
                 \label{eq:cap4_tray_18}
              \end{equation}         
              
-            Derivando la ecuación (\ref{eq:cap4_tray_15}):
+            Derivando la ecuación \ref{eq:cap4_tray_15}:
             \begin{equation}
                 \dot{s}(t)= a_{1}+2a_{2}t+3a_{3}t^{2}
                 \label{eq:cap4_tray_19}
              \end{equation}     
             
-        Evaluando la ecuación (\ref{eq:cap4_tray_19}) en  $t = 0$ , $t = T$ y resolviendo las cuatro restricciones (\ref{eq:cap4_tray_16}),(\ref{eq:cap4_tray_17}),(\ref{eq:cap4_tray_18}) :
+        Evaluando la ecuación \ref{eq:cap4_tray_19} en  $t = 0$ , $t = T$ y resolviendo las cuatro restricciones representadas por las ecuaciones  \ref{eq:cap4_tray_16},\ref{eq:cap4_tray_17} y \ref{eq:cap4_tray_18} :
         
             \begin{equation}
                  a_{0}=0;a_{1}=0;a_{2}=\frac{3}{T^2};a_{3}=-\frac{2}{T^3}
                 \label{eq:cap4_tray_20}
              \end{equation}     
         
-        Reemplazando los coeficientes $a_i$ en la ecuación (\ref{eq:cap4_tray_15}): 
+        Reemplazando los coeficientes $a_i$ en la ecuación \ref{eq:cap4_tray_15}: 
         
             \begin{equation}
                 s(t)=a_{2}t^{2}+a_{3}t^{3} = (\frac{3}{T^2})t^{2}+(-\frac{2}{T^3})t^{3}
@@ -2169,7 +2171,7 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
              \end{equation}  
              
 
-            Sustituyendo la ecuación (\ref{eq:cap4_tray_21}) y sus derivadas en las ecuaciones (\ref{eq:cap4_tray_9}),(\ref{eq:cap4_tray_13}) y  (\ref{eq:cap4_tray_14}) :
+            Sustituyendo la ecuación \ref{eq:cap4_tray_21} y sus derivadas en las ecuaciones \ref{eq:cap4_tray_9},\ref{eq:cap4_tray_13} y  \ref{eq:cap4_tray_14} :
             
             \begin{equation}
                 \theta(t)= \theta_{inicio} + \left(  \frac{3t^{2}}{T^2}-\frac{2t^{3}}{T^3} \right) (\theta_{fin}-\theta_{inicio})            
@@ -2189,7 +2191,7 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
              \begin{figure}[htb]
                 \centering
                 \includegraphics[width=0.8\linewidth]{Main/Chapter4/Images4/cap4_tray_8.png}
-                \caption{Fotografía de un paraguas}
+                \caption{Gráficas de $s(t)$, $\dot{s}(t)$ y $\ddot{s}(t)$ para una escala de tiempo polinomial de tercer orden \cite{moder_robot} }
                 \label{f:Cap4_tray_8}
             \end{figure}  
              
@@ -2213,7 +2215,7 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
                 \label{eq:cap4_tray_27}
              \end{equation} 
              
-        Si existen límites conocidos en las velocidades máximas de la articulación $\left|\dot{\theta} \right|  \leq  {\dot{\theta}}_{limite} $  y las aceleraciones máximas de la articulación  $\left|\ddot{\theta} \right|  \leq  {\ddot{\theta}}_{limite} $ , estos límites se pueden verificar para ver si el tiempo de movimiento solicitado $T$ es factible. Alternativamente, se podría resolver $T$ para encontrar el tiempo de movimiento mínimo posible que satisfaga la restricción de velocidad o aceleración más restrictiva
+        Si existen límites conocidos en las velocidades máximas de la articulación $\left|\dot{\theta} \right|  \leq  {\dot{\theta}}_{limite} $  y las aceleraciones máximas de la articulación  $\left|\ddot{\theta} \right|  \leq  {\ddot{\theta}}_{limite} $ , estos límites se pueden verificar para ver si el tiempo de movimiento solicitado $T$ es factible. Alternativamente, se podría resolver $T$ para encontrar el tiempo de movimiento mínimo posible que satisfaga la restricción de velocidad o aceleración más restrictiva.
         
         \newpage
 
@@ -2225,7 +2227,7 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
             \begin{figure}[htb]
                 \centering
                 \includegraphics[width=0.7\linewidth]{Main/Chapter4/Images4/cap4_tray_9.png}
-                \caption{Fotografía de un paraguas}
+                \caption{Gráficas de $s(t)$ y $\dot{s}(t)$ para un perfil de movimiento trapezoidal \cite{moder_robot}}
                 \label{f:Cap4_tray_9}
             \end{figure}  
     
@@ -2245,8 +2247,8 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
         
         \begin{figure}[htb]
                 \centering
-                \includegraphics[width=0.27\linewidth]{Main/Chapter4/Images4/cap4_tray_10.png}
-                \caption{Fotografía de un paraguas}
+                \includegraphics[width=0.3\linewidth]{Main/Chapter4/Images4/cap4_tray_10.png}
+                \caption{Bang - bang \cite{moder_robot}}
                 \label{f:Cap4_tray_10}
             \end{figure} 
     
