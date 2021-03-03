@@ -58,7 +58,7 @@ La tabla \ref{tab:cap4_tabla_00} relaciona el nombre dado a las piezas mecánica
      \newpage
      
 
-\section{Metodología A}
+\section{Método A}
 
     \subsection{Modelación Cinemática de Posición}
     
@@ -131,7 +131,7 @@ La tabla \ref{tab:cap4_tabla_00} relaciona el nombre dado a las piezas mecánica
                del triangulo que forma el efector) i=1,2,3.    \\\hline
                $E_{0}(x_{0},y_{0},z_{0})$  & Coordenadas del centroide del efector   \\\hline               
             \end{tabular}
-            \caption{Referencias del dibujo}
+            \caption{Parámetros geométricos y puntos para cinemática de posición del método A}
             \label{tab:cap4_tabla_2}
         \end{table}
         \endgroup
@@ -185,7 +185,7 @@ La tabla \ref{tab:cap4_tabla_00} relaciona el nombre dado a las piezas mecánica
                            $\left(x_3,y_3,z_3\right)$ & ${J^'}_3\left(-\left[\frac{f-e}{2\sqrt{3}}+r_f{\mathrm{cos} \left({\theta }_3\right)\ }\right]\mathrm{cos}\mathrm{}(30{}^\circ ),\left[\frac{f-e}{2\sqrt{3}}+r_f{\mathrm{cos} \left({\theta }_3\right)\ }\right]\mathrm{sin}\mathrm{}(30{}^\circ ),-r_f{\mathrm{sin} \left({\theta }_3\right)\ }\right)$\\
                  \hline
             \end{tabular}
-            \caption{Referencias del dibujo}
+            \caption{Posición de los centros de las esferas originadas por la traslación de las juntas $J_i$ }
             \label{tab:cap4_tabla_3}
             \end{table}
         \end{center}
@@ -295,7 +295,7 @@ La tabla \ref{tab:cap4_tabla_00} relaciona el nombre dado a las piezas mecánica
                           $r_2=\sqrt{{r_e}^2-{x_o}^2}$ \\
                 \hline
             \end{tabular}
-            \caption{Referencias del dibujo}
+            \caption{Coordenadas del centro de las esferas y sus radios utilizados para la solución de la cinemática inversa del método A}
             \label{tab:cap4_tabla_4}
             \end{table}
         \end{center}
@@ -465,7 +465,7 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
              $  A_{i}$ – $x_{i}y_{i}z_{i}$ & Angulo que representa la posición angular de las barras accionadas respecto al eje que contiene los puntos del origen del sistema de referencia local y A_{i}  \\
             \hline
             \end{tabular}
-            \caption{Referencias del dibujo}
+            \caption{Simbología y descripción de las longitudes, puntos, ángulos sistemas de referencia para el desarrollo de la solución cinemática de velocidad del método A}
            \label{tab:cap4_tabla_6}
         \end{table}
         \endgroup        
@@ -506,7 +506,7 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
              \overrightarrow{OA_{i}} & Vector que representa la posición de los actuadores respecto al origen O.  \\
             \hline
             \end{tabular}
-            \caption{Referencias del dibujo}
+            \caption{Descripción de los vectores de la figura \ref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_8}}
            \label{tab:cap4_tabla_10}
         \end{table}
         \endgroup      
@@ -905,11 +905,11 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
 
     \newpage
    
-   En la tabla \ref{tab:cap4_tabla_dina_ma_2} se presenta la simbología de los sistema de referencia, magnitudes, puntos y angulos principales para el desarrollo de la dinámica inversa del robot delta:
+   En la tabla \ref{tab:cap4_tabla_dina_ma_2} se presenta la simbología de los sistema de referencia, magnitudes, puntos y ángulos principales para el desarrollo de la dinámica inversa del robot delta:
    
            \begin{table}[h]
             \centering
-            \renewcommand{\arraystretch}{1.47}
+            \renewcommand{\arraystretch}{1.41}
                 \begin{tabular}{c m{11cm}}
             \hline
                 \textbf{Simbolo}& \textbf{Descripción} \\ 
@@ -936,7 +936,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
             \hline
              $P$ & Centroide base móvil\\
             \hline
-             $\phi _{i}$ & Angulo que representa la posición angular de los 3 actuadores sobre el plano de la base fija en relación al sistema de referencia  –  para la cadena cinemática i. \\
+             $\phi _{i}$ & Angulo que representa la posición angular de los 3 actuadores sobre el plano de la base fija en relación al sistema de referencia  local para la cadena cinemática i. \\
             \hline
              $\theta _{i}$ & Angulo que representa la posición angular de los brazos respecto al eje construido por el punto del origen del sistema de referencia local  y  para la cadena cinemática i.\\
             \hline
@@ -947,7 +947,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
              $F_{x},F_{y},F_{z}$ & Fuerzas externas sobre la base movil\\
             \hline
             \end{tabular}
-           \caption{Referencias del dibujo}
+           \caption{Simbología y descripción de los sistema de referencia, longitudes, puntos y ángulos principales para el desarrollo de la dinámica inversa del método A}
            \label{tab:cap4_tabla_dina_ma_2}
         \end{table}
    
@@ -1056,7 +1056,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
     \newpage
 
 
-\section{Metodología B}
+\section{Metodo B}
 
     \subsection{Modulación cinemática de la posición}\label{MB_MP}
     
@@ -1200,7 +1200,7 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
         \label{eq:cap4_MB_1}
         \end{equation}
 
-        El método de solución de la cinemática directa en esta sección es el mismo que el empleado para la metodología A de este capitulo. Lo único que cambia es la nomenclatura de los parámetros y la orientación del sistema de referencia local.
+        El método de solución de la cinemática directa en esta sección es el mismo que el empleado para el método A de este capitulo. Lo único que cambia es la nomenclatura de los parámetros y la orientación del sistema de referencia local.
         
         Como los ángulos   $\theta_1,\theta_2,\theta_3$  se conocen en el problema de cinemática directa, las coordenadas de los puntos $J_1,J_2,J_3$   se pueden encontrar fácilmente. Los antebrazos   $\overline{J_1P_1},\overline{J_2P_2},\overline{J_3P_3}$   pueden girar libremente alrededor de los puntos $J_1,J_2,J_3$   respectivamente. A fin de que calcular la cinemática directa, los puntos  $J_1,J_2,J_3$   se trasladan a  $J'_1,J'_2,J'_3$ , utilizando los vectores de traslación $\overrightarrow{\xi_{P_1 P_0}},\overrightarrow{\xi_{P_2P_0}},\overrightarrow{\xi_{P_3 P_0}}$    respectivamente, como se muestra en la figura \ref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_3} (vectores color amarillo):
         

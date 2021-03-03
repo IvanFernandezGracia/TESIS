@@ -1,4 +1,4 @@
-%\begin{comment}
+\begin{comment}
 \chapter{Desarrollo de formulas teóricas}\label{anexoB}
 \thispagestyle{fancy}
 \pagenumbering{arabic}\renewcommand{\thepage}{B.\arabic{page}}
@@ -2000,17 +2000,20 @@ This one won't either
 }
       
 ...
-%\end{comment}
+\end{comment}
 
-\begin{comment}
-\chapter{Carpetas, comandos y codigos}\label{anexoC}
+%\begin{comment}
+\chapter{Carpetas, comandos y códigos}\label{anexoC}
 \thispagestyle{fancy}
 \pagenumbering{arabic}\renewcommand{\thepage}{B.\arabic{page}}
+
+Se muestra en la figura \ref{f:Cap4_Metodo_B_Modelacion_Dinamica_2} todas las carpetas donde esta la configuración en ROS y RVIZ. Los archivos creados en esta tesis que están contenidos en estas carpetas principalmente: son los algoritmos en lenguaje python de los metodos A, metodo B, espacio de trabajo y trayectorias, los mensajes que se utilizan en los temas de ROS, la configuración URDF del robot delta y la configuracion de la vizualizacion en Rviz. Los archivos se pueden descargar del siguiente repositorio en GitHub: \url{www.bablablabla}.
+
     \section{Carpetas creadas por catkin make}
         \begin{figure}[H]
               \centering
 	          \includegraphics[width=1.0\linewidth]{Back/image_anexo/catkin_make.png}
-              \caption{Fotografía de un paraguas}
+              \caption{Espacio de trabajo creado por catkin\_make para los algoritmos de los métodos A y B}
               \label{f:Cap4_Metodo_B_Modelacion_Dinamica_2}
         \end{figure}
     \newpage
@@ -2018,100 +2021,130 @@ This one won't either
     \section{Comandos para compilar nodos en shell}
     
     \begin{itemize}
-        \item Transformar archivo nodos .yp a ejectuable
+        \item Transformar archivos de nodos a archivos python ejecutables
     \end{itemize}
-chmod +x nombre\_py\_ejecutable.py\\
+            \lstset{language=XML}
+            \begin{lstlisting}
+chmod +x nombre_py_nodo_ejecutable.py
+            \end{lstlisting}
+
     \begin{itemize}
-        \item Nodos
+        \item Archivos python que son nodos
     \end{itemize}
-Trayectoria y Torques: path\_tm1\_v2\_adams.py\\
-Espacio de trabajo: workspace\_v2.py\\
-Visualizacion: posicionador\_rviz\_realtime\_tm1\_adams.py\\
+            \lstset{language=XML}
+            \begin{lstlisting}
+Trayectoria y Torques: path_tm1_v2_adams.py
+Espacio de trabajo: workspace_v2.py
+Visualizacion: posicionador_rviz_realtime_tm1_adams.py
+            \end{lstlisting}
+
     \begin{itemize}
-        \item Calcular torque trayectorias
+        \item Shell y comandos necesarios para calcular torques de trayectorias
     \end{itemize}
--------- [shell en Todos]: \\
-cd r\_delta\\
-source devel/setup.bash\\
--------- [shell 1]: \\
-roscore\\
--------- [shell 2]: \\
-roslaunch simu\_visual rviz\_tm1\_adams.launch\\
--------- [shell 3]:\\
-rosrun simu\_visual posicionador\_rviz\_realtime\_tm1\_adams.py\\
--------- [shell 4]:\\
-rosrun rqt\_graph rqt\_graph\\
--------- [shell 5]: \\
-rosrun simu\_visual path\_tm1\_v2\_adams.py\\
--------- [shell 6] (trayectoria 1):\\
-rostopic pub -1 /input\_ls\_final simu\_visual/linear\_speed\_xyz\\
-$"\{xo: -300.0, yo: 0.0, zo: -450.0,$\\
-$xf: 300.0, yf: 150.0, zf: -750.0,$\\
-$vmax: 2000.0, amax: 40000.0,$\\
-$paso1: 50,  paso2: 150,$\\
-$ls\_fin: true, idcall: 1, num\_tray: 1\}"$\\
--------- [shell 6] (trayectoria 2):-\\
-rostopic pub -1 /input\_ls\_final simu\_visual/linear\_speed\_xyz\\
-$"\{xo: -300.0, yo: -150.0, zo: -450.0,$\\
-$xf: 300.0, yf: 150.0, zf: -750.0,$\\
-$vmax: 2000.0, amax: 40000.0,$\\
-$paso1: 50,  paso2: 150,$\\
-$ls\_fin: true, idcall: 1, num\_tray: 2\}"$\\
--------- [shell 6] (trayectoria 3): \\
-rostopic pub -1 /input\_ls\_final simu\_visual/linear\_speed\_xyz\\ 
-$"\{xo: 300.0, yo: -150.0, zo: -450.0,$\\
-$xf: -300.0, yf: 150.0, zf: -750.0,$\\
-$vmax: 2000.0, amax: 40000.0,$\\
-$paso1: 50,  paso2: 150,$\\
-$ls\_fin: true, idcall: 1, num\_tray: 3\}"$\\
--------- [shell 6] (trayectoria 4): \\
-rostopic pub -1 /input\_ls\_final simu\_visual/linear\_speed\_xyz\\ 
-$"\{xo: 400.0, yo: 150.0, zo: -450.0,$\\
-$xf: -400.0, yf: 150.0, zf: -450.0,$\\
-$vmax: 2000.0, amax: 40000.0,$\\
-$paso1: 50,  paso2: 150,$\\
-$ls\_fin: true, idcall: 1, num\_tray: 4\}"$\\
--------- [shell 6] (trayectoria 5): \\
-rostopic pub -1 /input\_ls\_final simu\_visual/linear\_speed\_xyz\\ 
-$"\{xo: -300.0, yo: 0.0, zo: -450.0,$\\
-$xf: 300.0, yf: 150.0, zf: -750.0,$\\
-$vmax: 200.0, amax: 10000.0,$\\
-$paso1: 50,  paso2: 150,$\\
-$ls\_fin: true, idcall: 1, num\_tray: 5\}"$\\
--------- [shell 6] (trayectoria 6): \\
-rostopic pub -1 /input\_ls\_final simu\_visual/linear\_speed\_xyz\\ 
-$"\{xo: -300.0, yo: -150.0, zo: -450.0,\\
-$xf: 300.0, yf: 150.0, zf: -750.0,\\
-$vmax: 200.0, amax: 10000.0,\\
-$paso1: 50,  paso2: 150,\\
-$ls\_fin: true, idcall: 1, num\_tray: 6\}"$\\
--------- [shell 6] (trayectoria 7):\\
-rostopic pub -1 /input\_ls\_final simu\_visual/linear\_speed\_xyz\\ 
-$"\{xo: 300.0, yo: -150.0, zo: -450.0,$\\
-$xf: -300.0, yf: 150.0, zf: -750.0,$\\
-$vmax: 200.0, amax: 10000.0,$\\
-$paso1: 50,  paso2: 150,$\\
-$ls\_fin: true, idcall: 1, num\_tray: 7\}"$\\
--------- [shell 6] (trayectoria 8):\\
-rostopic pub -1 /input\_ls\_final simu\_visual/linear\_speed\_xyz\\ 
-$"\{xo: 400.0, yo: 150.0, zo: -450.0,$\\
-$xf: -400.0, yf: 150.0, zf: -450.0,$\\
-$vmax: 200.0, amax: 10000.0,$\\
-$paso1: 50,  paso2: 150,$\\
-$ls\_fin: true, idcall: 1, num\_tray: 8\}"$\\
+            \lstset{language=XML}
+            \begin{lstlisting}
+-------- [shell 0]: Para todos los shell 
+cd r_delta
+source devel/setup.bash
+
+-------- [shell 1]: ROS Master
+roscore
+
+-------- [shell 2]: Abrir Rviz
+roslaunch simu_visual rviz_tm1_adams.launch
+
+-------- [shell 3]: Nodo visualización
+rosrun simu_visual posicionador_rviz_realtime_tm1_adams.py
+
+-------- [shell 4]: Herramienta que grafica nodos iniciados
+rosrun rqt_graph rqt_graph
+
+-------- [shell 5]: Nodo de Trayectoria y Torques
+rosrun simu_visual path_tm1_v2_adams.py
+
+-------- [shell 6]: Mensaje para el nodo torques y trayectorias (1)
+rostopic pub -1 /input_ls_final simu_visual/linear_speed_xyz
+"{xo: -300.0, yo: 0.0, zo: -450.0,
+xf: 300.0, yf: 150.0, zf: -750.0,
+vmax: 2000.0, amax: 40000.0,
+paso1: 50,  paso2: 150,
+ls_fin: true, idcall: 1, num_tray: 1}"
+
+-------- [shell 6]: Mensaje para el nodo torques y trayectorias (2)
+rostopic pub -1 /input_ls_final simu_visual/linear_speed_xyz
+"{xo: -300.0, yo: -150.0, zo: -450.0,
+xf: 300.0, yf: 150.0, zf: -750.0,
+vmax: 2000.0, amax: 40000.0,
+paso1: 50,  paso2: 150,
+ls_fin: true, idcall: 1, num_tray: 2}"
+
+-------- [shell 6]:  Mensaje para el nodo torques y trayectorias (3)
+rostopic pub -1 /input_ls_final simu_visual/linear_speed_xyz
+"{xo: 300.0, yo: -150.0, zo: -450.0,
+xf: -300.0, yf: 150.0, zf: -750.0,
+vmax: 2000.0, amax: 40000.0,
+paso1: 50,  paso2: 150,
+ls_fin: true, idcall: 1, num_tray: 3}"
+
+-------- [shell 6]: Mensaje para el nodo torques y trayectorias (4)
+rostopic pub -1 /input_ls_final simu_visual/linear_speed_xyz
+"{xo: 400.0, yo: 150.0, zo: -450.0,
+xf: -400.0, yf: 150.0, zf: -450.0,
+vmax: 2000.0, amax: 40000.0,
+paso1: 50,  paso2: 150,
+ls_fin: true, idcall: 1, num_tray: 4}"
+
+-------- [shell 6]: Mensaje para el nodo torques y trayectorias (5)
+rostopic pub -1 /input_ls_final simu_visual/linear_speed_xyz
+"{xo: -300.0, yo: 0.0, zo: -450.0,
+xf: 300.0, yf: 150.0, zf: -750.0,
+vmax: 200.0, amax: 10000.0,
+paso1: 50,  paso2: 150,
+ls_fin: true, idcall: 1, num_tray: 5}"
+
+-------- [shell 6]: Mensaje para el nodo torques y trayectorias (6)
+rostopic pub -1 /input_ls_final simu_visual/linear_speed_xyz
+"{xo: -300.0, yo: -150.0, zo: -450.0,
+xf: 300.0, yf: 150.0, zf: -750.0,
+vmax: 200.0, amax: 10000.0,
+paso1: 50,  paso2: 150,
+ls_fin: true, idcall: 1, num_tray: 6}"
+
+-------- [shell 6]: Mensaje para el nodo torques y trayectorias (7)
+rostopic pub -1 /input_ls_final simu_visual/linear_speed_xyz
+"{xo: 300.0, yo: -150.0, zo: -450.0,
+xf: -300.0, yf: 150.0, zf: -750.0,
+vmax: 200.0, amax: 10000.0,
+paso1: 50,  paso2: 150,
+ls_fin: true, idcall: 1, num_tray: 7}"
+
+-------- [shell 6]: Mensaje para el nodo torques y trayectorias (8)
+rostopic pub -1 /input_ls_final simu_visual/linear_speed_xyz
+"{xo: 400.0, yo: 150.0, zo: -450.0,
+xf: -400.0, yf: 150.0, zf: -450.0,
+vmax: 200.0, amax: 10000.0,
+paso1: 50,  paso2: 150,
+ls_fin: true, idcall: 1, num_tray: 8}"
+
+            \end{lstlisting}
+
 
     \begin{itemize}
         \item Espacio de Trabajo
     \end{itemize}
--------- [shell TODOS]:\\
-cd r\_delta\\
-source devel/setup.bash\\
--------- [shell 1]:\\
-rosrun simu\_visual workspace\_v2.py\\
--------- [shell 2]:\\
-rostopic pub -1 /input\_workspace simu\_visual/parameter\_ws "graficar\_realtime: true\\
-step: 10\\
-idcall: 1"\\
+            \lstset{language=XML}
+            \begin{lstlisting}
+-------- [shell 0]: Para todos los shell 
+cd r_delta
+source devel/setup.bash
+-------- [shell 1]: Nodo  espacio de trabajo
+rosrun simu_visual workspace_v2.py
+-------- [shell 2]: Mensaje para tema de nodo espacio de trabajo
+rostopic pub -1 /input_workspace simu_visual/parameter_ws
+"graficar_realtime: true
+step: 10
+idcall: 1"
+            \end{lstlisting}
 
     
     
@@ -2121,52 +2154,57 @@ idcall: 1"\\
     
     \newpage
     
-    \section{CMakeLists.txt}
--------\\
-cmake\_minimum\_required(VERSION 2.8.3)\\
-project(simu\_visual)\\
-\\
-\#\# Find catkin macros and libraries\\
-\#\# if COMPONENTS list like find\_package(catkin REQUIRED COMPONENTS xyz)\\
-\#\# is used, also find other catkin packages\\
-find\_package(catkin REQUIRED COMPONENTS\\
-  roscpp\\
-  rospy\\
-  std\_msgs\\
-  sensor\_msgs\\
-  message\_generation\\
-  genmsg\\
-  urdf)\\
-\\
-\#\# Generate messages in the 'msg' folder\\
- add\_message\_files(\\
-   FILES\\
-   parameter\_ws.msg\\
-   linear\_speed\_xyz.msg\\
-   matriz\_path\_ls.msg\\
- )\\
- \\
- \#\# Generate added messages and services with any dependencies listed here\\
- generate\_messages(\\
-   DEPENDENCIES\\
-   std\_msgs\\
- )\\
- \\
- catkin\_package(
-  INCLUDE\_DIRS include
-  LIBRARIES simu\_visual
-  CATKIN\_DEPENDS roscpp rospy std\_msgs message\_runtime
-  \#DEPENDS system\_lib
-) \\
- \\
-include\_directories( \\
-\# include \\
-  \${catkin\_INCLUDE\_DIRS} \\
-) \\
- \\
+    \section{CMakeLists.txt (/simu\_visual)}
+            \lstset{language=XML}
+
+    \begin{lstlisting}
+cmake_minimum_required(VERSION 2.8.3)
+project(simu_visual)
+
+## Find catkin macros and libraries
+## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
+## is used, also find other catkin packages
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  rospy
+  std_msgs
+  sensor_msgs
+  message_generation
+  genmsg
+  urdf)
+
+## Generate messages in the 'msg' folder
+ add_message_files(
+   FILES
+   parameter_ws.msg
+   linear_speed_xyz.msg
+   matriz_path_ls.msg
+ )
+ 
+ ## Generate added messages and services with any dependencies listed here
+ generate_messages(
+   DEPENDENCIES
+   std_msgs
+ )
+ 
+ catkin_package(
+  INCLUDE_DIRS include
+  LIBRARIES simu_visual
+  CATKIN_DEPENDS roscpp rospy std_msgs message_runtime
+  #DEPENDS system_lib
+) 
+ 
+include_directories( 
+# include 
+  ${catkin_INCLUDE_DIRS} 
+) 
+ 
+    \end{lstlisting}
+
     \newpage
     
-    \section{Package.xml}
+    \section{Package.xml (/simu\_visual)}
+    
         \lstset{language=XML}
         \begin{lstlisting}
 <?xml version="1.0"?>
@@ -2188,7 +2226,8 @@ include\_directories( \\
   <build_depend>sensor_msgs</build_depend>
   <build_depend>message_generation</build_depend>
 
-  <!-- Use build_export_depend for packages you need in order to build against this package: -->
+  <!-- Use build_export_depend for packages you need 
+  in order to build against this package: -->
   <build_export_depend>roscpp</build_export_depend>
   <build_export_depend>rospy</build_export_depend>
   <build_export_depend>std_msgs</build_export_depend>
@@ -2205,57 +2244,59 @@ include\_directories( \\
   <exec_depend>message_runtime</exec_depend>
   
   <export>
-
   </export>
-
 </package>
 
     \end{lstlisting}
 
     \newpage
 
-    \section{Mensajes (msg)}
+    \section{Mensajes (/msg)}
         \subsection{linear\_speed\_xyz.msg}
-        ---------\\
-            float32 xo \\
-            float32 yo\\
-            float32 zo\\
-            float32 xf\\
-            float32 yf\\
-            float32 zf\\
-            float32 vmax\\
-            float32 amax\\
-            int64 paso1\\
-            int64 paso2\\
-            bool ls\_fin\\
-            int64 idcall\\
-            int64 num\_tray\\
-        ---------\\
+
+    \lstset{language=XML}
+        \begin{lstlisting}
+            float32 xo 
+            float32 yo
+            float32 zo
+            float32 xf
+            float32 yf
+            float32 zf
+            float32 vmax
+            float32 amax
+            int64 paso1
+            int64 paso2
+            bool ls_fin
+            int64 idcall
+            int64 num_tray
+        \end{lstlisting}
 
         \subsection{matriz\_path\_ls.msg}
-        ---------\\
-            bool permiso\\
-            int64 id\_call\\
-            float32[] x\\
-            float32[] y\\
-            float32[] z\\
-            float32[] th1\\
-            float32[] th2\\
-            float32[] th3\\
-            float32[] tiempo\\
-        ---------\\
+    \lstset{language=XML}
+        \begin{lstlisting}
+            bool permiso
+            int64 id_call
+            float32[] x
+            float32[] y
+            float32[] z
+            float32[] th1
+            float32[] th2
+            float32[] th3
+            float32[] tiempo
+        \end{lstlisting}
 
         \subsection{parameter\_ws.msg}
-        ---------\\
-            bool graficar\_realtime\\
-            int64 step\\
-            int64 idcall\\
-                    ---------\\
+    \lstset{language=XML}
+        \begin{lstlisting}
+            bool graficar_realtime
+            int64 step
+            int64 idcall
+        \end{lstlisting}
 
         \newpage
     \newpage
     
-    \section{URDF (urfd)}
+    \section{robot\_urdftm1\_adams.urdf (/urfd)}
     
     \lstset{language=XML}
     \begin{lstlisting}
@@ -2466,9 +2507,7 @@ include\_directories( \\
     \end{lstlisting}
 
     
-    \newpage
-    
-    \section{Rviz Launch (launch)}
+    \section{rviz\_tm1\_adams.launch (/launch)}
         \lstset{language=XML}
 
     \begin{lstlisting}
@@ -2491,39 +2530,38 @@ include\_directories( \\
     
     \newpage
     
-    \section{Python (script)}
+    \section{Python (/script)}
+    
+%%%%%%%%%%%%%%%% INICIO PRUEBAS &&&&&&&&&&&&&&&&    
     
     % INICIO rodrigo   en desarrolllo
-        \subsection{TEST Códigos Bonitos} 
-            \input{Back/codigosLatex/pd_tm1_adams}
+        %\subsection{TEST Códigos Bonitos} 
+            %\input{Back/codigosLatex/pd_tm1_adams}
    % FIN rodrigo  en desarrolllo
-            \newpage    
-            
+            %\newpage    
+
             
     % INICIO ivan LISTO   OPCION 1
-    \subsection{IVAN LISTO}
-   \begin{code}
-        {\footnotesize 
-                    \inputminted[frame=lines,
-                                breaklines=true, 
-                                framesep=2mm,
-                                baselinestretch=1.2,
-                                bgcolor=LightGray,
-                                fontsize=\footnotesize,
-                                linenos]{python}{Back/codigos_py/pd_tm1_adams.py}
-                    \captionof{listing}{Some caption\label{lst:some-flabel}}
-                    }
-    \end{code}
+   % \subsection{IVAN LISTO}
+   %\begin{code}
+    %    {\footnotesize 
+    %                \inputminted{python}{Back/codigos_py/pd_tm1_adams.py}
+                    %\captionof{listing}{Some caption\label{lst:some-flabel}}
+    %                }
+    %\end{code}
     
-    \newpage    
+    %\newpage    
       % FIN ivan  en desarrolllo    
 
+  % \begin{code}
+   %     {\footnotesize 
+    %                \inputminted{python}{Back/codigos_py/.py}}
+    %\end{code}
+    
+    %\newpage       
    
-   
-   
-   
-   
-   
+%%%%%%%%%%%%%%%% FIN PRUEBAS &&&&&&&&&&&&&&&&    
+
 
         \subsection{pd\_tm1\_adams.py}
         {\footnotesize 
@@ -2603,4 +2641,4 @@ include\_directories( \\
             \inputminted{python}{Back/codigos_py/codos_tm1_adams.py}
             }
         \newpage  
-\end{comment}
+%\end{comment}
