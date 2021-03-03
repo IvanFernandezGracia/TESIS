@@ -6,13 +6,13 @@
     \begin{figure}[h]
         \centering
         \smartdiagram[bubble diagram]{Solucion,ROS,RVIZ,ADAMS}
-        \caption{Caption}
+        \caption{Elementos principales para la solucion de la dinamica y cinematica del robot delta}
         \label{fig:cap6_intro_1}
     \end{figure}
 
     Se sigue una serie de pasos para validad la cinemática y dinamica del robot delta:
     
-        \item 1. ROS y RVIZ
+        \item \textbf{1. ROS y RVIZ}
             \begin{itemize}
                 \item {Trayectoria: Se crear trayectoria lineal (trapezoidal) en el espacio cartesiano $XYZ$ , velocidad $\dot{X}\dot{Y}\dot{Z}$ y aceleración $\ddot{X}\ddot{Y}\ddot{Z}$ del centroide del efector a partir de un punto inicial $P_i(x,y,z)$, un punto final $P_f(x,y,z)$, velocidad maxima $v_{max}$ y aceleración maxima $a_{max}$ deseada}
                 \item {Cinemática inversa: Se calcular la trayectoria en el espacio articular $\theta_{i=1,2,3}$ de los motores del robot delta.}
@@ -24,14 +24,15 @@
                 \item {Guardar torque: Se guarda en un archivo .txt el torque calculado por los motores (actuadores) con los algoritmos compilados en ROS.
                 }
             \end{itemize}
-        \item 2. ADAMS
+        \item \textbf{2. ADAMS}
         \begin{itemize}
             \item {Importación de la trayectoria: Se importan los datos de la trayectoria en el espacio articular $\theta_{i=1,2,3}$ , espacio cartesiano $XYZ$ y la escala de tiempo desde ROS}
             \item {Dibujar trayectoria: Se dibuja la trayectoria cartesiana $XYZ$ importada desde ROS en el espacio de simulación de ADAMS para comprobar a simple vista que la trayectoria articular (impuesta a los motores) sea la correcta al momento de la simulación. El efector debe seguir dicha trayectoria cartesiana lineal si es que el robot delta esta bien configurado en ADAMS}
             \item {Trayectoria articular y escala de tiempo: Se simula la trayectoria creada en ROS en el robot delta configurado en ADAMS, imponiendo a los motores (o sensores tipo junta) la trayectoria articular $\theta_{i=1,2,3}$ y su respectiva escala de tiempo exportada desde ROS.}
             \item {Guardar torque: Se guarda en un archivo .txt el torque producido por los motores en simulación en ADAMS.  }
         \end{itemize}
-        \item 3. Validación Cinemática y Dinámica
+        \item \textbf{3. Validación 
+        cinemática y dinámica}
         \begin{itemize}
             \item {Se comparan los resultados de torque de ROS y ADAMS. Si estos tienen errores relativamente bajos se asume que los algoritmos de cinemática y dinámica creados y compilados en ROS y la configuración del robot delta en ADAMS son correctas.}
         \end{itemize}  
@@ -40,7 +41,7 @@
         
     \tikzstyle{process} = [rectangle, minimum width=2em, minimum height=1em,text width=25em,text height=1em, text centered, draw=blue, fill=gray!10]
     \tikzstyle{startend} = [ellipse, minimum width=2em, minimum height=1em,text width=15em,text height=0.5em, text centered, draw=red, fill=red!20]
-    \tikzstyle{process_final} = [rectangle,minimum width=2em, minimum height=1em,text width=12em,text height=1em, text centered, draw=cyan, fill=cyan!30]
+    \tikzstyle{process_final} = [rectangle,minimum width=2em, minimum height=1em,text width=13em,text height=1em, text centered, draw=cyan, fill=cyan!30]
     \tikzstyle{startend1} = [ellipse, minimum width=2em, minimum height=1em,text width=7em,text height=0.5em, text centered, draw=red, fill=red!20]
 
     \tikzstyle{everynode}=[trapezium, draw=green!99, minimum width=1cm,trapezium left angle=120, trapezium right angle=60,fill=green!20,text centered, text width=30em]
@@ -50,22 +51,22 @@
     \centering
     \hfill\\
     \begin{tikzpicture}[node distance=2em]
-        \node [startend1] (S) {ROS y RVIZ};
+        \node [startend1] (S) {\textbf{ROS y RVIZ}};
         \node [process, below of=S, yshift= -1.9em](S1){Crear trayectoria lineal espacio cartesiano \\ $XYZ$ , $\dot{X}\dot{Y}\dot{Z}$ y $\ddot{X}\ddot{Y}\ddot{Z}$};
-        \node [process, below of=S1, yshift=-1.9em](S2){Calcular trayectoria en espacio articular \\ $\theta_{i=1,2,3}$ (cinematica inversa)};
-        \node [process, below of=S2, yshift=-1.9em](S3){Visualización de trayectoria  a partir de $XYZ$ y \\ $\theta_{i=1,2,3}$ configurando el robot delta en Rviz };
+        \node [process, below of=S1, yshift=-1.9em](S2){Calcular trayectoria en espacio articular \\ $\theta_{i\in\{1,2,3\}}$ (cinematica inversa)};
+        \node [process, below of=S2, yshift=-1.9em](S3){Visualización de trayectoria  a partir de $XYZ$ y \\ $\theta_{i\in\{1,2,3\}}$ configurando el robot delta en Rviz };
         
-        \node (S4) [process, below of=S3, yshift=-1.9em]{Guardar trayectoria  $XYZ$, $\theta_{i=1,2,3}$ \\ y la escala de tiempos $s(t)$ en archivo .txt};
-        \node (S5) [process, below of=S4, yshift=-1.9em]{Calcular la velocidad angular  $\dot{\theta}_{i=1,2,3}$ y aceleración angular  $\ddot{\theta}_{i=1,2,3}$ de los actuadores};
-        \node (S6) [process, below of=S5, yshift=-1.9em,]{Calcular torque de los motores  $\tau_{i=1,2,3}$ a partir de los datos adquiridos en los pasos anteriores.};
-        \node (S7) [process, below of=S6, yshift=-1.9em,]{Guardar torque $\tau_{i=1,2,3}$ en archivo .txt};
-        \node (S8) [startend1, below of=S7, yshift=-1.9em]{ADAMS};
-        \node (S9) [process, below of=S8, yshift=-1.9em]{Importación de la trayectoria $\theta_{i=1,2,3}$, $XYZ$ y la escala de tiempo $s(t)$ desde ROS};
+        \node (S4) [process, below of=S3, yshift=-1.9em]{Guardar trayectoria  $XYZ$, $\theta_{i\in\{1,2,3\}}$ \\ y la escala de tiempos $s(t)$ en archivo .txt};
+        \node (S5) [process, below of=S4, yshift=-1.9em]{Calcular la velocidad angular  $\dot{\theta}_{i\in\{1,2,3\}}$ y aceleración angular  $\ddot{\theta}_{i\in1,2,3\}}$ de los actuadores};
+        \node (S6) [process, below of=S5, yshift=-1.9em,]{Calcular torque de los motores  $\tau_{i\in\{1,2,3\}}$ a partir de los datos adquiridos en los pasos anteriores.};
+        \node (S7) [process, below of=S6, yshift=-1.9em,]{Guardar torque $\tau_{i\in\{1,2,3\}}$ en archivo .txt};
+        \node (S8) [startend1, below of=S7, yshift=-1.9em]{\textbf{ADAMS}};
+        \node (S9) [process, below of=S8, yshift=-1.9em]{Importación de la trayectoria $\theta_{i\in\{1,2,3\}}$, $XYZ$ y la escala de tiempo $s(t)$ desde ROS};
         \node (S10) [process, below of=S9, yshift=-1.9em,]{Dibujar $XYZ$ en el espacio de simulacion de ADAMS};
-        \node (S11) [process, below of=S10, yshift=-1.9em,]{Insertar trayectoria $\theta_{i=1,2,3}$ y escala de tiempo $s(t)$ a los motores o juntas creadas en ADAMS};    
-        \node (S12) [process, below of=S11, yshift=-1.9em,]{Guardar Torque $\tau_{i=1,2,3}$ en archivo .txt};
-        \node [startend, below of=S12, yshift=-1.9em](S13){Validación \\ Cinemática y Dinámica};
-        \node (S14) [process_final, right of=S13, xshift=18em,]{Comparar Torques $\tau_{i=1,2,3}$\\Metodo A\\Metodo B\\ADAMS};
+        \node (S11) [process, below of=S10, yshift=-1.9em,]{Insertar trayectoria $\theta_{i\in\{1,2,3\}}$ y escala de tiempo $s(t)$ a los motores o juntas creadas en ADAMS};    
+        \node (S12) [process, below of=S11, yshift=-1.9em,]{Guardar Torque $\tau_{i\in\{1,2,3\}}$ en archivo .txt};
+        \node [startend, below of=S12, yshift=-1.9em](S13){\textbf{Validación} \\ \textbf{Cinemática y Dinámica}};
+        \node (S14) [process_final, right of=S13, xshift=18em,]{\textbf{Comparar Torques} $\tau_{i\in\{1,2,3\}}$\\Metodo A\\Metodo B\\ADAMS};
         \draw [line] (S) -- (S1);
         \draw [line] (S1) -- (S2);
         \draw [line] (S2) -- (S3);
@@ -83,7 +84,7 @@
         \draw [line,dotted] (S7) -| (S14);
         \draw [line,dotted] (S12) -| (S14);
         \end{tikzpicture}
-    \caption{Caption}
+    \caption{Flujo de trabajo para la validación dinámica y cinemática del robot delta }
     \label{fig:cap6_intro_2}
     \end{figure}
     \end{center}
@@ -110,7 +111,7 @@
                 \path [line] (funcion) -- node {}(ouput);
                 \path [line] (input) -- node { }(funcion);
             \end{tikzpicture}
-                \caption{Fotografía de un paraguas}
+                \caption{Ejemplo representación gráfica de funciones o nodos}
                 \label{f:Cap6_funtion_1}
          \end{figure}
          \end{center}
@@ -172,8 +173,8 @@
                 % root of the the initial tree, level 1
                 \node[root] {\textbf{Algoritmos ROS}}
                 % The first level, as children of the initial tree
-                  child {node[level-2] (c1) {\textbf{Metodologia\\  A}}}
-                  child {node[level-2] (c2) {\textbf{Metodologia\\  B}}}
+                  child {node[level-2] (c1) {\textbf{Método\\  A}}}
+                  child {node[level-2] (c2) {\textbf{Método\\  B}}}
                   child {node[level-2] (c3) {\textbf{Espacio \\ de\\  Trabajo}}}
                   child {node[level-2] (c4) {\textbf{Trayectoria}}};
                 
@@ -202,14 +203,14 @@
                 
             \end{tikzpicture}
             
-                \caption{This is a simple Taxonomy}
+                \caption{Conceptos programados en ROS}
                 \label{fig:my_label}
         \end{figure}
  \end{center}
    
     \newpage
     
-    \subsection{Nodo Principal}\label{nodoprincipal_tray}
+    \subsection{Nodo principal}\label{nodoprincipal_tray}
     Los algoritmos de los métodos A y B son utilizados finalmente para obtener el toque de los motores de un robot delta a partir de una trayectoria lineal especifica del efector final. Estos algoritmos son compilados en un nodo llamado: nodo principal. 
     
     % Define block styles
@@ -227,7 +228,7 @@
                 \path [line] (funcion) -- node {}(ouput);
                 \path [line] (input) -- node { }(funcion);
             \end{tikzpicture}
-                \caption{Fotografía de un paraguas}
+                \caption{Entradas y salidas del nodo principal}
                 \label{f:Cap6_funtion_1}
          \end{figure}
          \end{center}
@@ -295,7 +296,7 @@
             $8$    & (400,150,-450)            & (-400,150,-450)      & 200     & 10000         \\\hline
 
         \end{tabular}
-        \caption{Referencias del dibujo}
+        \caption{Trayectorias simuladas}
         \label{tab:cap5_tabla_1}
     \end{table}
     \endgroup
@@ -303,9 +304,9 @@
      Los puntos iniciales y finales son en base al sistema de referencia global presentado en la figura \ref{f:ref1}. Los valores de las velocidades y aceleraciones máximas son en dirección tangencial a las trayectorias lineales creadas.
     
     \newpage
-    \subsection{Metodología A}
+    \subsection{Método A}
     
-    Las figuras (\ref{f:Cap6_funtion_2} a la \ref{f:Cap6_funtion_6}) representan de forma visual los algoritmos, tareas o funciones planteadas en esta sección con respecto a la  metodología A del capitulo \ref{CAP4}, de igual forma que en la figura \ref{f:Cap6_funtion_1}. Las entradas y las salidas de cada función son escritas con las misma nomenclatura de cada sección con que fue inspirado el algoritmo respectivamente. Es notorio recalcar que cada algoritmo es obtenido de diferentes referencias bibliográficas, por lo que los sistemas de referencia y el orden numérico de los ángulos de los actuadores son diferentes. Por ende, las entradas y las salidas en cada algoritmo son transformadas del sistema global al sistema de referencia local y viceversa.     
+    Las figuras de la \ref{f:Cap6_funtion_2} a la \ref{f:Cap6_funtion_6} representan de forma visual los algoritmos, tareas o funciones planteadas en esta sección con respecto a la  metodología A del capitulo \ref{CAP4}, de igual forma que en la figura \ref{f:Cap6_funtion_1}. Las entradas y las salidas de cada función son escritas con las misma nomenclatura de cada sección con que fue inspirado el algoritmo respectivamente. Es notorio recalcar que cada algoritmo es obtenido de diferentes referencias bibliográficas, por lo que los sistemas de referencia y el orden numérico de los ángulos de los actuadores son diferentes. Por ende, las entradas y las salidas en cada algoritmo son transformadas del sistema global al sistema de referencia local y viceversa.     
     
 
             \hspace{1cm}
@@ -329,7 +330,7 @@
                     \path [line] (funcion) -- node {}(ouput);
                     \path [line] (input) -- node { }(funcion);
                 \end{tikzpicture}
-                    \caption{Fotografía de un paraguas}
+                    \caption{Entradas y salidas de la función de cinemática directa del metodo A}
                     \label{f:Cap6_funtion_2}
         \end{subfigure}
         
@@ -346,7 +347,7 @@
                     \path [line] (funcion) -- node {}(ouput);
                     \path [line] (input) -- node { }(funcion);
                 \end{tikzpicture}
-                    \caption{Fotografía de un paraguas}
+                    \caption{Entradas y salidas de la función de cinemática inversa del método A}
                     \label{f:Cap6_funtion_3}
         \end{subfigure}
         
@@ -363,7 +364,7 @@
                     \path [line] (funcion) -- node {}(ouput);
                     \path [line] (input) -- node { }(funcion);
                 \end{tikzpicture}
-                    \caption{Fotografía de un paraguas}
+                    \caption{Entradas y salidas de la función del jacobiano del método A}
                     \label{f:Cap6_funtion_4}
          \end{subfigure}
          
@@ -381,7 +382,7 @@
                     \path [line] (funcion) -- node {}(ouput);
                     \path [line] (input) -- node { }(funcion);
                 \end{tikzpicture}
-                    \caption{Fotografía de un paraguas}
+                    \caption{Entradas y salidas de la función de cinemática de aceleración del método A}
                     \label{f:Cap6_funtion_5}
          \end{subfigure}
          
@@ -398,7 +399,7 @@
                     \path [line] (funcion) -- node {}(ouput);
                     \path [line] (input) -- node { }(funcion);
                 \end{tikzpicture}
-                    \caption{Fotografía de un paraguas}
+                    \caption{Entradas y salidas de la función de dinámica inversa del método A}
                     \label{f:Cap6_funtion_6}
          \end{subfigure}
                 \hspace{1cm}
@@ -889,7 +890,7 @@
   
   
       
-    \subsection{Metodología B}
+    \subsection{Método B}
     
        Al igual que la sección anterior, se presentan en las figuras \ref{f:Cap6_funtion_7} a la \ref{f:Cap6_funtion_11} las tareas con respecto a la  metodología B del capitulo \ref{CAP4}. 
     
@@ -914,7 +915,7 @@
                     \path [line] (funcion) -- node {}(ouput);
                     \path [line] (input) -- node { }(funcion);
                 \end{tikzpicture}
-                    \caption{Fotografía de un paraguas}
+                    \caption{Entradas y salidas de la función de cinemática directa del metodo B}
                     \label{f:Cap6_funtion_7}
         \end{subfigure}
         
@@ -931,7 +932,7 @@
                     \path [line] (funcion) -- node {}(ouput);
                     \path [line] (input) -- node { }(funcion);
                 \end{tikzpicture}
-                    \caption{Fotografía de un paraguas}
+                    \caption{Entradas y salidas de la función de cinemática inversa del método B}
                     \label{f:Cap6_funtion_8}
         \end{subfigure}
         
@@ -948,7 +949,7 @@
                     \path [line] (funcion) -- node {}(ouput);
                     \path [line] (input) -- node { }(funcion);
                 \end{tikzpicture}
-                    \caption{Fotografía de un paraguas}
+                    \caption{Entradas y salidas de la función del Jacobiano del método B}
                     \label{f:Cap6_funtion_9}
          \end{subfigure}
          
@@ -966,8 +967,7 @@
                     \path [line] (funcion) -- node {}(ouput);
                     \path [line] (input) -- node { }(funcion);
                 \end{tikzpicture}
-                    \caption{Fotografía de un paraguas}
-                    \label{f:Cap6_funtion_10}
+                    \caption{Entradas y salidas de la función de cinemática de aceleración del método B}                    \label{f:Cap6_funtion_10}
          \end{subfigure}
          
                  \hspace{1cm}
@@ -983,8 +983,7 @@
                     \path [line] (funcion) -- node {}(ouput);
                     \path [line] (input) -- node { }(funcion);
                 \end{tikzpicture}
-                    \caption{Fotografía de un paraguas}
-                    \label{f:Cap6_funtion_11}
+                    \caption{Entradas y salidas de la función de dinámica inversa del método B}                    \label{f:Cap6_funtion_11}
          \end{subfigure}
                 \hspace{1cm}
     \end{figure}
@@ -1460,7 +1459,7 @@
     \subsection{Espacio de Trabajo}\label{espaciotrabajows1}
      Encontrar el espacio de trabajo de un robot delta significa calcular todas las posiciones posibles y viables del efector final. El siguiente diagrama de flujo representa una de las muchas soluciones que existen, donde las dimensiones del robot y los parámetros de las restricciones son valores preestablecidos. Es importante recalcar que la nomenclatura en esta sección es la misma que se implementa para determinar el jacobiano del robot delta de la sección \ref{ma_jac}. 
      % Define block styles
-\tikzstyle{decision} = [diamond, draw=black!50, fill=black!99,text=white, 
+\tikzstyle{decision} = [diamond, draw=black!50, fill=black!79,text=white, 
     text width=6.5em, text badly centered, node distance=4cm, inner sep=0pt]
 \tikzstyle{block} = [rectangle, draw=blue!99, fill=blue!10, 
     text width=10em, text centered,   minimum height=4em,node distance=2.5cm]
@@ -1481,9 +1480,9 @@
         \node [block, below of=input,node distance=1.5cm] (theta11) {Variar $\theta_{11}$ \\ $[\theta_{11min}$ - $\theta_{11max}  ]$};
         \node [block, below of=theta11,node distance=2.5cm] (theta12) {Variar $\theta_{12}$ \\ $[\theta_{12min}$ - $\theta_{12max}  ]$};
         \node [block, below of=theta12,node distance=2.5cm] (theta13) {Variar $\theta_{13}$ \\ $[\theta_{13min}$ - $\theta_{13max}  ]$};
-        \node [block2, below of=theta13,node distance=3cm] (restri) {Posición efector$[P_XP_YP_Z]$ a través de cinemática directa\\$[P_XP_YP_Z]=f(\theta_{11},\theta_{12},\theta_{13})$\\Ángulos interiores $\theta_{2i}$ y $\theta_{3i}$
-           \\Jacobiano y sus Determinantes};
-        \node [decision, below of=restri] (cumple) {¿Cumple con todas las restricciones?};
+        \node [block2, below of=theta13,node distance=3cm] (restri) {1. Posición efector$[P_XP_YP_Z]$ a través de cinemática directa\\$[P_XP_YP_Z]=f(\theta_{11},\theta_{12},\theta_{13})$\\2. Ángulos interiores $\theta_{2i}$ y $\theta_{3i}$
+           \\3. Jacobiano y sus Determinantes};
+        \node [decision, below of=restri] (cumple) {¿Cumple con restricciones? Figura \ref{fig:my_label_ws_cap6_1}};
         \node [block1, left of=cumple,node distance=5cm] (guardar) {El punto $[P_XP_YP_Z]$ \\ SI pertenece al \\ espacio de trabajo.\\Guardar punto};
         \node [block1, right of=cumple, node distance=5cm] (noguardar) {El punto $[P_XP_YP_Z]$ \\ NO pertenece al \\ espacio de trabajo};
         % Draw edges
@@ -1501,7 +1500,7 @@
         \path [line] (cumple) --  node {\Large No}(noguardar);
         \path [line] (input) --  (theta11);
 \end{tikzpicture} 
-    \caption{Caption}
+    \caption{Diagrama de flujo para la solucion del espacio de trabajo}
     \label{fig:my_label_ws_cap6_1}
 \end{figure}    
 
@@ -1541,7 +1540,7 @@
         \path [line] (limxyz) -| node[pos=0.1, below] {\Large No} (noguardar);
         \path [line] (limxyz) -- node {\Large Si} (guardar);
 \end{tikzpicture} 
-    \caption{Caption}
+    \caption{Diagrama de flujo de restricciones para el espacio de trabajo}
     \label{fig:my_label_ws_cap6_1}
 \end{figure}  
 
@@ -1562,14 +1561,14 @@
          \begin{figure}[htb]
              \begin{tikzpicture}[node distance = 5cm, auto]
                 % Place nodes
-                \node [block1] (funcion) {\textbf{Espacio de\\Trabajo}};
-                \node [block2, left of=funcion] (input) {\textbf{Discretizacion Espacio Articular \\ $\Delta\theta _{1i}$}};
+                \node [block1] (funcion) {\textbf{Espacio de\\trabajo}};
+                \node [block2, left of=funcion] (input) {\textbf{Discretizacion espacio articular \\ $\Delta\theta _{1i}$}};
                 \node [block3, right of=funcion] (ouput) {\textbf{Espacios de trabajo en coordenadas $XYZ$ y $\theta_i$\\$\mathcal{W}_{(J_{x},J_{\theta})},\mathcal{W}_{J_{x}},\mathcal{W}_{J_{\theta}},\mathcal{W}_{(J_{x},J_{\theta},Limites)}$}};
                 % Draw edges
                 \path [line] (funcion) -- node {}(ouput);
                 \path [line] (input) -- node { }(funcion);
             \end{tikzpicture}
-                \caption{Fotografía de un paraguas}
+                \caption{Entradas y salidas de la función de espacio de trabajo}
                 \label{f:Cap6_ws_1}
          \end{figure}
          \end{center}
@@ -1702,7 +1701,7 @@
                 \path [line] (funcion) -- node {}(ouput);
                 \path [line] (input) -- node { }(funcion);
             \end{tikzpicture}
-                \caption{Fotografía de un paraguas}
+                \caption{Entradas y salidas de la función de trayectoria}
                 \label{f:cap6_trayectory_1}
          \end{figure}
          \end{center}
@@ -1737,7 +1736,7 @@
                 \path [line] (ouput2) -- node { }(ouput3);
 
             \end{tikzpicture}
-                \caption{Fotografía de un paraguas}
+                \caption{Flujo de trabajo para la creacion de trayectorias}
                 \label{f:cap6_trayectory_112129}
          \end{figure}
          \end{center}
@@ -1748,14 +1747,14 @@
          \begin{figure}[htb]
             \centering
             \includegraphics[width=0.9\linewidth]{Main/Chapter6/Images6/cap6_trayectory_1.png}
-            \caption{Fotografía de un paraguas}
+            \caption{Ejemplo gráfico del diagrama de flujo para la creación de trayectoria lineal con perfil trapezoidal}
             \label{f:cap6_trayectory_5}
         \end{figure}    
     \newpage
     
     \newpage
     
-    El perfil de movimiento trapezoidal visto en la sección \ref{Perfiles_de_movimiento_trapezoidal} se puede modificar para que las ecuaciones consideren el punto inicial y final especificando la velocidad máxima y la aceleracion maxima de la siguiente manera:
+    El perfil de movimiento trapezoidal visto en la sección \ref{Perfiles_de_movimiento_trapezoidal} se puede modificar para que las ecuaciones consideren el punto inicial y final especificando la velocidad máxima y la aceleración máxima de la siguiente manera \cite{tray_trape}:
         \begin{equation}
         \Large
             q(t) = \left\lbrace
@@ -1788,40 +1787,44 @@
      \begin{figure}[htb]
             \centering
             \includegraphics[width=0.5\linewidth]{Main/Chapter6/Images6/cap6_trayectory_2.png}
-            \caption{Fotografía de un paraguas}
+            \caption{Interpolador Trapezoidal \cite{tray_trape}}
             \label{f:cap6_trayectory_2}
         \end{figure} 
     \newpage
 
-    \newpage
-
-
     Para utilizar el perfil de velocidad trapezoidal en el camino geométrico lineal interpolado desde el punto inicial $P_i$ al punto final $P_f$ se aplican matrices de rotaciones. 
     
-    \begin{figure}[htb]
-        \captionsetup[subfloat]{farskip=2pt,captionskip=1pt}
-        \centering
-        \subfloat[Some figure]{\includegraphics[width=0.49\textwidth]{Main/Chapter6/Images6/DIBUJO531.jpg}}\hfill
-        \subfloat[Some other figure]{\includegraphics[width=0.49\textwidth]{Main/Chapter6/Images6/DIBUJO532.jpg}}
+       Primero se traslada el sistema de referencia general $O$-$X_0Y_0Z_0$ al punto inicial $P_i$ generando un nuevo sistema de referencia $X_{trans}Y_{trans}Z_{trans}$ .
         
-        \subfloat[Some more]{\includegraphics[width=0.49\textwidth]{Main/Chapter6/Images6/DIBUJO533.jpg}}\hfill
-        \subfloat[Some less]{\includegraphics[width=0.49\textwidth]{Main/Chapter6/Images6/DIBUJO534.jpg}}
-        
-        \caption{There are example figures}
-\end{figure}
+        \begin{figure}[htb]
+                \centering
+                \includegraphics[width=0.6\textwidth]{Main/Chapter6/Images6/DIBUJO531.jpg}
+                \caption{Traslacion marco de referencia $X_0Y_0Z_0$ hasta punto $P_i$}
+        \end{figure}
 
-    \begin{itemize}
-        \item{Primero se traslada el sistema de referencia general $X_0Y_0Z_0$ al punto inicial $P_i$ generando un nuevo sistema de referencia $X_{trans}Y_{trans}Z_{trans}$ . }
-        \item {Luego se rota $X_{trans}Y_{trans}Z_{trans}$ sobre el eje $Z_{trans}$ en un angulo de $\theta_z$ generando un nuevo sistema de referencia $X_{rot_{\theta_z}}Y_{rot_{\theta_z}}Z_{rot_{\theta_z}}$. $\theta_z$  es el angulo interno entre el eje $X_{trans}$ y el vector   $\overrightarrow{O_{X_{trans}Y_{trans}Z_{trans}}{P'}_f}$ donde ${P'}_f$ es la  proyeccion de $P_f$ sobre el plano  $Y_{trans}Z_{trans}$.}
-        \item{Finalmente el marco de referencia $X_{rot_{\theta_z}}Y_{rot_{\theta_z}}Z_{rot_{\theta_z}}$ se rota sobre el eje  $Y_{rot_{\theta_z}}$ en un angulo de $\theta_y$ generando el ultimo sistema de referencia $X_{rot_{\theta_y}}Y_{rot_{\theta_y}}Z_{rot_{\theta_y}}$.
+        Luego se rota $X_{trans}Y_{trans}Z_{trans}$ sobre el eje $Z_{trans}$ en un angulo de $\theta_z$ generando un nuevo sistema de referencia $X_{rot_{\theta_z}}Y_{rot_{\theta_z}}Z_{rot_{\theta_z}}$. $\theta_z$  es el angulo interno entre el eje $X_{trans}$ y el vector   $\overrightarrow{O_{X_{trans}Y_{trans}Z_{trans}}{P'}_f}$ donde ${P'}_f$ es la  proyeccion de $P_f$ sobre el plano  $Y_{trans}Z_{trans}$.
+
+        \begin{figure}[htb]
+                \centering
+                \includegraphics[width=0.56\textwidth]{Main/Chapter6/Images6/DIBUJO532.jpg}
+                \caption{Rotación marco de referencia $X_{trans}Y_{trans}Z_{trans}$ sobre eje $Z_{trans}$ en un angulo de $\theta_z$  }
+        \end{figure}
+    \newpage
+        Finalmente el marco de referencia $X_{rot_{\theta_z}}Y_{rot_{\theta_z}}Z_{rot_{\theta_z}}$ se rota sobre el eje  $Y_{rot_{\theta_z}}$ en un angulo de $\theta_y$ generando el ultimo sistema de referencia $X_{rot_{\theta_y}}Y_{rot_{\theta_y}}Z_{rot_{\theta_y}}$.
         $\theta_y$  es el angulo interno entre el eje $X_{rot_{\theta_z}}$ y el vector   $\overrightarrow{O_{X_{rot_{\theta_z}}Y_{rot_{\theta_z}}Z_{rot_{\theta_z}}}{P''}_f}$ donde ${P''}_f$ es el punto  ${P}_f$ con respecto al sistema de referencia  $X_{rot_{\theta_z}}Y_{rot_{\theta_z}}Z_{rot_{\theta_z}}$ .
-         En el marco de referencia $X_{rot_{\theta_y}}Y_{rot_{\theta_y}}Z_{rot_{\theta_y}}$ se aplica el perfil de velocidad trapezoidal para que define la escala temporal de la trayectoria y la interpolación lineal en el espacio cartesiano del camino geométrico.}
-    \end{itemize}
-    
-
-
-
-
+         En el marco de referencia $X_{rot_{\theta_y}}Y_{rot_{\theta_y}}Z_{rot_{\theta_y}}$ se aplica el perfil de velocidad trapezoidal para que define la escala temporal de la trayectoria y la interpolación lineal en el espacio cartesiano del camino geométrico.
+         
+                 \begin{figure}[htb]
+                \centering
+                \includegraphics[width=0.65\textwidth]{Main/Chapter6/Images6/DIBUJO533.jpg}
+                \caption{Rotación marco de referencia $X_{rot_{\theta_z}}Y_{rot_{\theta_z}}Z_{rot_{\theta_z}}$ sobre eje $Y_{rot_{\theta_z}}$ en un angulo de $\theta_y$}
+        \end{figure}
+        
+                \begin{figure}[htb]
+                \centering
+                \includegraphics[width=0.48\textwidth]{Main/Chapter6/Images6/DIBUJO534.jpg}
+                \caption{Marco de referencia $X_{rot_{\theta_y}}Y_{rot_{\theta_y}}Z_{rot_{\theta_y}}$ en donde se aplica LSPB}
+        \end{figure}
 
 
     \newpage
@@ -1931,7 +1934,7 @@
 
     Rviz da la posibilidad de visualizar los componentes mecánicos de un robot de una forma mas simple. En esta tesis se desea simular una trayectoria lineal de la plataforma móvil de un robot delta. Para cumplir con dicho objetivo se necesitan en cada momento de la trayectoria los ángulos de las juntas que unen los componentes y la posición xyz del centroide de la plataforma móvil. La posición en el espacio de los brazos y antebrazos se determinan a partir de los ángulos de cada junta relativos a otras partes mecánicas y la posición de la plataforma móvil se determina mediante las coordenadas de su centroide xyz relativo al sistema de referencia global. Por lo tanto, como se configura la visualización de las partes mecánicas en 2 grupos por separado, si la cinemática inversa es correcta, entonces la plataforma móvil debe calzar perfectamente entre las rotulas (final de los antebrazos) que unen los antebrazos con la plataforma móvil.
      
-   \subsection{Conexion ROS - RVIZ}
+   \subsection{Conexión entre ROS y RVIZ}
    
            Básicamente se puede obtener la visualización de la trayectoria del robot delta en 3 pasos:
 
@@ -1953,7 +1956,7 @@
                 \path [line] (funcion) -- node {}(ouput);
                 \path [line] (input) -- node { }(funcion);
             \end{tikzpicture}
-                \caption{Fotografía de un paraguas}
+                \caption{Diagrama de flujo de pasos para obtener la visualización del robot delta}
                 \label{f:cap6_trayectory_1}
          \end{figure}
          \end{center}
@@ -1961,9 +1964,9 @@
         \vspace{-1cm}   
         
         \begin{itemize}
-            \item {Paso 1: Exportar de la trayectoria creada en ROS los siguientes datos: las posiciones de los motores $\theta_{i=1,2,3}$ , la posiciones del centroide de la plataforma móvil $XYZ$ y la escala de tiempo utilizada $s(t)$. Luego se determinan los ángulos interiores $\theta_{2i}$ y $\theta_{3i}$ (vistos en la sección \ref{cap4_angulosinteriores}) de las 3 cadenas cinemáticas. Esto es posible creando un nodo llamado $posicionador\_rviz\_realtime\_tm1\_adams$ que espera como datos de entrada los datos de la trayectoria  $\theta_{i=1,2,3}$, $XYZ$ y $s(t)$ y como salida da como resultado un objeto de tipo $JointState()$. Este ultimo objeto contiene los datos de los ángulos interiores en radianes, ángulo de los motores en radianes y la posición xyz de la plataforma móvil en metros. Además, cada ángulo y coordenada se le asigna un nombre único de tipo string, los cuales son usados para relacionar las juntas configuradas para el visualizador con respecto al valor de cada una de ellas a través de la trayectoria.}
-            \item {Paso 2: Pasar a valores TF cada junta y coordenada adquirida del paso 1. Rviz tiene un nodo integrado llamada $estados\_robot\_pub.py$ que tiene como requisito de entrada los valores de cada junta con cada nombre único respectivamente y como salida da como resultado los valores TF con cada nombre unico respectivamente}
-            \item {Paso 3: Anterior a crear una trayectoria en ROS se debe configurar el robot delta en formato URDF. Los nombres de cada juntas en el archivo urdf en formato xml deben ser exactamente los mismo que en los pasos 1 y 2}
+            \item {\textbf{Paso 1}: Exportar de la trayectoria creada en ROS los siguientes datos: las posiciones de los motores $\theta_{i\in\{1,2,3\}}$ , la posiciones del centroide de la plataforma móvil $XYZ$ y la escala de tiempo utilizada $s(t)$. Luego se determinan los ángulos interiores $\theta_{2i}$ y $\theta_{3i}$ (vistos en la sección \ref{cap4_angulosinteriores}) de las 3 cadenas cinemáticas. Esto es posible creando un nodo llamado $posicionador\_rviz\_realtime\_tm1\_adams$ que espera como datos de entrada los datos de la trayectoria  $\theta_{i\in\{1,2,3\}}$, $XYZ$ y $s(t)$ y como salida da como resultado un objeto de tipo $JointState()$. Este ultimo objeto contiene los datos de los ángulos interiores en radianes, ángulo de los motores en radianes y la posición xyz de la plataforma móvil en metros. Además, cada ángulo y coordenada se le asigna un nombre único de tipo string, los cuales son usados para relacionar las juntas configuradas para el visualizador con respecto al valor de cada una de ellas a través de la trayectoria.}
+            \item {\textbf{Paso 2}: Pasar a valores TF cada junta y coordenada adquirida del paso 1. Rviz tiene un nodo integrado llamada $estados\_robot\_pub.py$ que tiene como requisito de entrada los valores de cada junta con cada nombre único respectivamente y como salida da como resultado los valores TF con cada nombre unico respectivamente}
+            \item {\textbf{Paso 3}: Anterior a crear una trayectoria en ROS se debe configurar el robot delta en formato URDF. Los nombres de cada juntas en el archivo urdf en formato xml deben ser exactamente los mismo que en los pasos 1 y 2}
         \end{itemize}
         
 
@@ -1974,7 +1977,7 @@
             \begin{table}[H]
                 \centering
                 \begin{tabular}{c m{2.5cm} m{8cm}}
-                   \hline                   \hline
+                   \hline                   
                    \textbf{Simbología}  &  \textbf{Nombre}  & \textbf{Descipcion}    \\\hline \hline 
                    $\theta_{11}$  & base\_brazo1    & Ángulo del motor en cadena cinemática 1                       \\\hline
                    $\theta_{12}$  & base\_brazo2    & Ángulo del motor en cadena cinemática 2                            \\\hline
@@ -1987,10 +1990,10 @@
                    $\theta_{33}$  & codo3\_b    & Ángulo interior 2 de la rotula que une el brazo con el antebrazo en cadena cinemática 3                       \\\hline
                    $X$  & act\_x    & Posición X del centroide de la plataforma móvil                       \\\hline
                    $Y$  & act\_y    & Posición Y del centroide de la plataforma móvi                       \\\hline
-                   $Z$  & act\_z    & Posición Z del centroide de la plataforma móvi                       \\\hline                   \hline
+                   $Z$  & act\_z    & Posición Z del centroide de la plataforma móvi                       \\\hline                  
 
                 \end{tabular}
-                \caption{Referencias del dibujo}
+                \caption{Nombre de juntas del robot delta en URDF}
                 \label{tab:cap6_rviz_1}
             \end{table}
         \endgroup
@@ -2008,7 +2011,7 @@
              \begin{figure}[h]
                 \centering
                 \includegraphics[width=0.6\linewidth]{Main/Chapter6/Images6/cap6_basefija.png}
-                \caption{Fotografía de un paraguas}
+                \caption{Base fija en Rviz}
                 \label{f:Cap6_urdf_1}
             \end{figure}  
 
@@ -2037,7 +2040,7 @@
              \begin{figure}[h]
                 \centering
                 \includegraphics[width=0.4\linewidth]{Main/Chapter6/Images6/cap6_brazo.png}
-                \caption{Fotografía de un paraguas}
+                \caption{Brazo en Rviz}
                 \label{f:Cap6_urdf_2}
             \end{figure}  
             
@@ -2113,7 +2116,7 @@
         \begin{figure}[h]
                 \centering
                 \includegraphics[width=0.4\linewidth]{Main/Chapter6/Images6/cap6_antebrazo.png}
-                \caption{Fotografía de un paraguas}
+                \caption{Antebrazo en Rviz}
                 \label{f:Cap6_urdf_3}
             \end{figure}
         
@@ -2209,7 +2212,7 @@
         \begin{figure}[h]
                 \centering
                 \includegraphics[width=0.4\linewidth]{Main/Chapter6/Images6/cap6_basemovil.png}
-                \caption{Fotografía de un paraguas}
+                \caption{Base movil en Rviz}
                 \label{f:Cap6_urdf_4}
             \end{figure}
 
