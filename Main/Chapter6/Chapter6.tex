@@ -94,7 +94,7 @@
 
 \section{Software ROS}
 
-    Robot Operating Processing es una herramienta que sirve para ordenar y dividir en tareas especificas un robot complejo simplificando a los ingenieros la creación de estos. Estas tareas se representan en nodos, funciones y subfunciones que son escritos en lenguaje de programación python. En esta sección, estos algoritmos son explicados brevemente como una función con entradas y salidas definidas como se muestra en la figura \ref{f:Cap6_funtion_1} y explicados detalladamente en pseudocódigos como se puede visualizar en el algoritmo \ref{algo:cap6_1}. Los algoritmos se dividen en una función principal y en sus subfunciones.
+    Robot Operating Processing es una herramienta que sirve para ordenar y dividir en tareas especificas un robot complejo simplificando a los ingenieros la creación de estos. Estas tareas se representan en nodos, funciones y subfunciones que son escritos en lenguaje de programación python. En esta sección, estos algoritmos son explicados brevemente como una función con entradas y salidas definidas como se muestra en la figura \eqref{f:Cap6_funtion_1} y explicados detalladamente en pseudocódigos como se puede visualizar en el algoritmo \eqref{algo:cap6_1}. Los algoritmos se dividen en una función principal y en sus subfunciones.
     
         % Define block styles
         \tikzstyle{block1} = [rectangle, draw=blue,fill=blue!20, text width=10em, text centered, minimum height=7em, minimum width=2.5em , text=black]
@@ -152,7 +152,7 @@
         \newpage
 
 
-    Las tareas realizadas en ROS son principalmente los conceptos teóricos del capitulo \ref{CAP4}:
+    Las tareas realizadas en ROS son principalmente los conceptos teóricos del capitulo \eqref{CAP4}:
 
 \tikzset{
   basic/.style  = {draw, text width=2cm, drop shadow, font=\sffamily, rectangle},
@@ -301,12 +301,12 @@
     \end{table}
     \endgroup
     
-     Los puntos iniciales y finales son en base al sistema de referencia global presentado en la figura \ref{f:ref1}. Los valores de las velocidades y aceleraciones máximas son en dirección tangencial a las trayectorias lineales creadas.
+     Los puntos iniciales y finales son en base al sistema de referencia global presentado en la figura \eqref{f:ref1}. Los valores de las velocidades y aceleraciones máximas son en dirección tangencial a las trayectorias lineales creadas.
     
     \newpage
     \subsection{Método A}
     
-    Las figuras de la \ref{f:Cap6_funtion_2} a la \ref{f:Cap6_funtion_6} representan de forma visual los algoritmos, tareas o funciones planteadas en esta sección con respecto a la  metodología A del capitulo \ref{CAP4}, de igual forma que en la figura \ref{f:Cap6_funtion_1}. Las entradas y las salidas de cada función son escritas con las misma nomenclatura de cada sección con que fue inspirado el algoritmo respectivamente. Es notorio recalcar que cada algoritmo es obtenido de diferentes referencias bibliográficas, por lo que los sistemas de referencia y el orden numérico de los ángulos de los actuadores son diferentes. Por ende, las entradas y las salidas en cada algoritmo son transformadas del sistema global al sistema de referencia local y viceversa.     
+    Las figuras de la \eqref{f:Cap6_funtion_2} a la \eqref{f:Cap6_funtion_6} representan de forma visual los algoritmos, tareas o funciones planteadas en esta sección con respecto a la  metodología A del capitulo \eqref{CAP4}, de igual forma que en la figura \eqref{f:Cap6_funtion_1}. Las entradas y las salidas de cada función son escritas con las misma nomenclatura de cada sección con que fue inspirado el algoritmo respectivamente. Es notorio recalcar que cada algoritmo es obtenido de diferentes referencias bibliográficas, por lo que los sistemas de referencia y el orden numérico de los ángulos de los actuadores son diferentes. Por ende, las entradas y las salidas en cada algoritmo son transformadas del sistema global al sistema de referencia local y viceversa.     
     
 
             \hspace{1cm}
@@ -323,7 +323,7 @@
                 \centering
                  \begin{tikzpicture}[node distance = 5cm, auto]
                     % Place nodes
-                    \node [block1] (funcion) {\textbf{Cinemática Directa\\ Sección (\ref{ma_cd})}};
+                    \node [block1] (funcion) {\textbf{Cinemática Directa\\ Sección \eqref{ma_cd}}};
                     \node [block2, left of=funcion] (input) {\textbf{$\theta_1,\theta_2,\theta_3$}};
                     \node [block2, right of=funcion] (ouput) {\textbf{$E_0(x_0,y_0,z_0)$}};
                     % Draw edges
@@ -340,7 +340,7 @@
                 \centering
                  \begin{tikzpicture}[node distance = 5cm, auto]
                     % Place nodes
-                    \node [block1] (funcion) {\textbf{Cinemática Inversa\\ Sección (\ref{ma_ci})}};
+                    \node [block1] (funcion) {\textbf{Cinemática Inversa\\ Sección \eqref{ma_ci}}};
                     \node [block2, left of=funcion] (input) {\textbf{$E_0(x_0,y_0,z_0)$}};
                     \node [block2, right of=funcion] (ouput) {\textbf{$\theta_1,\theta_2,\theta_3$}};
                     % Draw edges
@@ -357,7 +357,7 @@
                 \centering
                  \begin{tikzpicture}[node distance = 5cm, auto]
                     % Place nodes
-                    \node [block1] (funcion) {\textbf{Jacobiano\\ Sección (\ref{ma_cvel})}};
+                    \node [block1] (funcion) {\textbf{Jacobiano\\ Sección \eqref{ma_cvel}}};
                     \node [block2, left of=funcion] (input) {\textbf{$P_x,P_y,P_z,{\theta }_{11},{\theta }_{12},{\theta }_{13}$}};
                     \node [block2, right of=funcion] (ouput) {\textbf{$ J,J_{\theta }, J_{x },$\\$\theta _{31},\theta _{32},\theta _{33},$\\$\theta _{21},\theta _{22},\theta _{23}$}};
                     % Draw edges
@@ -375,7 +375,7 @@
                 \centering
                  \begin{tikzpicture}[node distance = 5cm, auto]
                     % Place nodes
-                    \node [block1] (funcion) {\textbf{Cinemática Aceleracion\\ Sección (\ref{ma_acel})}};
+                    \node [block1] (funcion) {\textbf{Cinemática Aceleracion\\ Sección \eqref{ma_acel}}};
                     \node [block2, left of=funcion] (input) {\textbf{$P_x,P_y,P_z,$\\${\theta }_{11},{\theta }_{12},{\theta }_{13},$\\ $v_{px},v_{py},v_{pz}$}};
                     \node [block2, right of=funcion] (ouput) {\textbf{$J_{\theta }, J_{x},\dot{J}_{\theta }, \dot{J}_{x},$\\$\theta_{31},\theta_{32},\theta_{33},$\\$\theta_{21},\theta_{22},\theta_{23}$}};
                     % Draw edges
@@ -392,7 +392,7 @@
                 \centering
                  \begin{tikzpicture}[node distance = 5cm, auto]
                     % Place nodes
-                    \node [block1] (funcion) {\textbf{Dinamica Inversa\\ Sección (\ref{ma_dina})}};
+                    \node [block1] (funcion) {\textbf{Dinamica Inversa\\ Sección \eqref{ma_dina}}};
                     \node [block2, left of=funcion] (input) {\textbf{$\ddot{\theta}_{1},\ddot{\theta}_{2},\ddot{\theta}_{3},$\\$        {\theta}_{1},{\theta}_{2},{\theta}_{3},$\\$X_p,Y_p,Z_p,$\\$\ddot{X}_{p},\ddot{Y}_{p},\ddot{Z}_{p},$\\$F_{px},F_{py},F_{pz},$\\$m_{playload}$}};
                     \node [block2, right of=funcion] (ouput) {\textbf{$\tau_1,\tau_2,\tau_3$}};
                     % Draw edges
@@ -436,11 +436,11 @@
           \tcc{FUNCION PRINCIPAL}
             \Fn{\FSub{${\theta }_1$,${\theta }_2$,${\theta }_3$}}{
                 \tcc{Cambiar angulos al orden del sistema de referencia local}
-                \tcc{Calcular Centros de esferas (Ecuaciones tabla [\ref{tab:cap4_tabla_3}])}
+                \tcc{Calcular Centros de esferas (Ecuaciones tabla \eqref{tab:cap4_tabla_3})}
                 $(x_1,y_1,z_1)$=${J^'}_1\left(0,\left[-\frac{f-e}{2\sqrt{3}}-r_f{\mathrm{cos} \left({\theta }_1\right)\ }\right],-r_f{\mathrm{sin}\mathrm{n} \left({\theta }_1\right)\ }\right)$\;
                 $(x_2,y_2,z_2)$=${J^'}_2(\left[\frac{f-e}{2\sqrt{3}}+r_f{\mathrm{cos} \left({\theta }_2\right)\ }\right]\mathrm{cos}\mathrm{}(30{}^\circ ),\left[\frac{f-e}{2\sqrt{3}}+r_f{\mathrm{cos} \left({\theta }_2\right)\ }\right]\mathrm{sin}\mathrm{}(30{}^\circ ),-r_f{\mathrm{sin} \left({\theta }_2\right)\ })$\;
                 $(x_3,y_3,z_3)$=${J^'}_3(-\left[\frac{f-e}{2\sqrt{3}}+r_f{\mathrm{cos} \left({\theta }_3\right)\ }\right]\mathrm{cos}\mathrm{}(30{}^\circ ),\left[\frac{f-e}{2\sqrt{3}}+r_f{\mathrm{cos} \left({\theta }_3\right)\ }\right]\mathrm{sin}\mathrm{}(30{}^\circ ),-r_f{\mathrm{sin} \left({\theta }_3\right)\ })$\;
-                \tcc{Calcular intersección de las 3 esferaS (Ecuaciones de la \ref{eq:cap4_eq_3} a la \ref{eq:cap4_eq_13})}
+                \tcc{Calcular intersección de las 3 esferaS (Ecuaciones de la \eqref{eq:cap4_eq_3} a la \eqref{eq:cap4_eq_13})}
                 $d= \left(y_2- y_1\right)x_3-\left(y_3-y_1\right)x_2- \left(y_2-y_3\right)x_1$\;
                 $w_1={x_1}^2+{y_1}^2 +{z_1}^2$\;
                 $w_2={x_2}^2+{y_2}^2 +{z_2}^2$\;
@@ -523,7 +523,7 @@
                 $x_{J_{i}}=0$\;
                 $y_{J_{i}}=$ $\frac{(y_{1}-ab )-\sqrt{ -(a+by_{1}) ^{2}+ (b^{2}+1)r_{f}^{2}}}{b^{2}+1}$\;
                 $z_{J_{i}}=a+b*y_{J_{i}}$\;
-                \tcc{ Calculo del Angulo ${\theta }_i$ de la cadena cinemática i en posición ${ \phi }_i$ ecuacion (\ref{eq:cap4_eq_20})}
+                \tcc{ Calculo del Angulo ${\theta }_i$ de la cadena cinemática i en posición ${ \phi }_i$ ecuacion \eqref{eq:cap4_eq_20}}
                 ${\theta }_i=\arctan( ~\frac{z_{J_{i}}}{y_{F_{i}}-y_{J_{i}}})$\;
                 \KwRet${\theta }_i$\;
           }
@@ -580,7 +580,7 @@
                     $J_{2 \theta }=calculo\_jthetai(\theta_{22}$,$\theta _{32}$,$\phi_{120 ^{\circ}})$\;
                     $J_{3 \theta }=calculo\_jthetai(\theta_{23}$,$\theta _{33}$,$\phi_{240 ^{\circ}})$\;
                     $J_{ \theta }=[J_{1 \theta },0,0;0,J_{2 \theta },0;0,0,J_{3 \theta }]$\;  
-                \tcc{Calcular Matriz $J$  ecuación (\ref{eq:cap4_eq_33})  }
+                \tcc{Calcular Matriz $J$  ecuación \eqref{eq:cap4_eq_33}  }
                     $J=J_{x}^{-1}J_{ \theta } $\;
                 \tcc{Cambiar al sistema Referencia Global al operar}
                   \KwRet $[J_{\theta }, J_{x},\theta _{31},\theta _{32},\theta _{33},\theta _{21},\theta _{22},\theta _{23}, J]$\;}
@@ -593,14 +593,14 @@
           \caption{Jacobiano Metodología A (Continuacion...)}
           \tcc{SUBFUNCIONES}
           
-          \tcc{Calcular angulo ${\theta }_{3i}$ ecuación (\ref{eq:cap4_eq_23}) }  
+          \tcc{Calcular angulo ${\theta }_{3i}$ ecuación \eqref{eq:cap4_eq_23} }  
           \SetKwProg{Fn}{}{:}{}
           \Fn{\FSub{$P_x$,$P_y$ ,$\phi_i$}}{
             $c_{yi}= (-P_x)*(sin({ \phi }_i))+(P_y)*(cos({ \phi }_i))$\;    
             $\theta _{3i}= \cos ^{-1}\frac{c_{yi}}{b}$\;    
                 \KwRet${\theta }_{3i}$\;   } 
         
-          \tcc{Calcular angulo ${\theta }_{2i}$ ecuación (\ref{eq:cap4_eq_24}) }
+          \tcc{Calcular angulo ${\theta }_{2i}$ ecuación \eqref{eq:cap4_eq_24} }
           \SetKwProg{Fn}{}{:}{}
           \SetKwFunction{FSub}{calculo\_theta2i}
           \Fn{\FSub{$P_x$,$P_y$,$P_z$,${\theta }_{3i}$,$\phi_i$}}{
@@ -613,28 +613,28 @@
                 
                 
            \tcc{Calcular componentes Matriz $J_x$}
-          \tcc{Calcular componentes Matriz $J_{ix }$ ecuación (\ref{eq:cap4_eq_28}) }
+          \tcc{Calcular componentes Matriz $J_{ix }$ ecuación \eqref{eq:cap4_eq_28} }
            \SetKwFunction{FSub}{calculo\_jix}
            \SetKwProg{Fn}{}{:}{}
            \Fn{\FSub{$\theta _{1i}$,$\theta _{2i}$,$\theta _{3i}$, $\phi_i$}}{
             $ J_{ix}=\cos  \left(  \theta _{1i}+ \theta _{2i} \right) sin~ \theta _{3i}\cos  \phi _{i}-cos  \theta _{3i}\sin  \phi _{i}~ $\;    
             \KwRet$J_{ix}$\;  }
                 
-          \tcc{Calcular componentes $J_{iy }$ ecuación (\ref{eq:cap4_eq_29}) }
+          \tcc{Calcular componentes $J_{iy }$ ecuación \eqref{eq:cap4_eq_29} }
           \SetKwFunction{FSub}{calculo\_jiy}
            \SetKwProg{Fn}{}{:}{}
           \Fn{\FSub{$\theta _{1i}$,$\theta _{2i}$,$\theta _{3i}$,$\phi_i$}}{
             $J_{iy}=\cos  \left(  \theta _{1i}+ \theta _{2i} \right) sin~ \theta _{3i}\sin  \phi _{i}+ cos  \theta _{3i}\cos  \phi _{i}~$\;    
             \KwRet$J_{iy}$\;  }   
                     
-          \tcc{Calcular componentes $J_{iz }$ ecuación (\ref{eq:cap4_eq_30}) }
+          \tcc{Calcular componentes $J_{iz }$ ecuación \eqref{eq:cap4_eq_30} }
            \SetKwFunction{FSub}{calculo\_jiz}
            \SetKwProg{Fn}{}{:}{}
           \Fn{\FSub{$\theta _{1i}$,$\theta _{2i}$,$\theta _{3i}$,$\phi_i$}}{
             $ J_{iz}=sin \left(  \theta _{1i}+ \theta _{2i} \right) sin~ \theta _{3i}~ $\;    
             \KwRet$J_{iz}$\;} 
             
-          \tcc{Calcular componentes $J_{\theta }$ ecuación (\ref{eq:cap4_eq_31}) }
+          \tcc{Calcular componentes $J_{\theta }$ ecuación \eqref{eq:cap4_eq_31} }
           \SetKwFunction{FSub}{calculo\_jthetai}
           \Fn{\FSub{$\theta_{2i}$,$\theta _{3i}$,$\phi_i$}}{
                 $J_{i \theta }=a~\sin  \theta _{2i}~sin~ \theta _{3i}$\; 
@@ -703,7 +703,7 @@
           \caption{Aceleración Metodología A (Continuacion...)}
           \tcc{SUBFUNCIONES}
           
-          \tcc{Calcular $\dot{\theta }_{3i}$ ecuacion (\ref{eq:cap4_eq_44})}  
+          \tcc{Calcular $\dot{\theta }_{3i}$ ecuacion \eqref{eq:cap4_eq_44}}  
           \SetKwProg{Fn}{}{:}{}
           \SetKwFunction{FSub}{calculo\_theta3i\_der}
           \Fn{\FSub{$P_x$,$P_y$, ${\phi}_{i ^{\circ}}$,$v_{px}$,$v_{py}$}}{
@@ -714,7 +714,7 @@
             $\dot{ \theta }_{3i}={}& \frac{A}{B}$\;
                 \KwRet$\dot{\theta }_{3i}$\;   } 
         
-          \tcc{Calcular $\dot{\theta }_{2i}$ ecuacion (\ref{eq:cap4_eq_46})}
+          \tcc{Calcular $\dot{\theta }_{2i}$ ecuacion \eqref{eq:cap4_eq_46}}
           \SetKwProg{Fn}{}{:}{}
           \SetKwFunction{FSub}{calculo\_theta2i\_der}
           \Fn{\FSub{$P_x$,$P_y$,$P_z$, ${\phi}_{i ^{\circ}}$,$v_{px}$,$v_{py}$,$v_{pz}$,${\theta}_{3i}$,$\dot{\theta}_{3i}$}}
@@ -733,7 +733,7 @@
             $\dot{ \theta }_{2i}={}& \left[ \frac{ -K'}{\sqrt[]{1- \left(  K \right) ^{2}~}} \right]$\;
         	\KwRet$ \dot{ \theta }_{2i}$\;  }
 
-          \tcc{Calcular $\dot{J}_{ix}$ ecuacion (\ref{eq:cap4_eq_36})}
+          \tcc{Calcular $\dot{J}_{ix}$ ecuacion \eqref{eq:cap4_eq_36}}
           \SetKwProg{Fn}{}{:}{}
           \SetKwFunction{FSub}{calculo\_jix\_der}
           \Fn{\FSub{${\phi}_{i }$,$\theta_{1i}$,$\theta_{2i}$,$\theta_{3i}$,$\dot{ \theta _{1i}}$,$\dot{\theta_{2i}}$,$\dot{\theta_{3i}}$}}
@@ -757,7 +757,7 @@
           \caption{Aceleración Metodología A (Continuacion...)}
           \tcc{SUBFUNCIONES}
 
-          \tcc{Calcular $\dot{J}_{iy}$ ecuacion (\ref{eq:cap4_eq_39})}
+          \tcc{Calcular $\dot{J}_{iy}$ ecuacion \eqref{eq:cap4_eq_39}}
           \SetKwProg{Fn}{}{:}{}
           \SetKwFunction{FSub}{calculo\_jiy\_der}
           \Fn{\FSub{${\phi}_{i }$,$\theta_{1i}$,$\theta_{2i}$,$\theta_{3i}$,$\dot{ \theta _{1i}}$,$\dot{\theta_{2i}}$,$\dot{\theta_{3i}}$}}
@@ -770,7 +770,7 @@
     
         	\KwRet$\dot{J}_{iy}$\; }
         	
-          \tcc{Calcular $\dot{J}_{iz}$ ecuacion (\ref{eq:cap4_eq_42})}
+          \tcc{Calcular $\dot{J}_{iz}$ ecuacion \eqref{eq:cap4_eq_42}}
           \SetKwProg{Fn}{}{:}{}
           \SetKwFunction{FSub}{calculo\_jiz\_der}
           \Fn{\FSub{$\theta_{1i}$,$\theta_{2i}$,$\theta_{3i}$,$\dot{ \theta _{1i}}$,$\dot{\theta_{2i}}$,$\dot{\theta_{3i}}$}}
@@ -780,7 +780,7 @@
           $\dot{J}_{iz}= A + B$\;
         	\KwRet$\dot{J}_{iz}$\; }
  
-          \tcc{Calcular $\dot{J}_{i\theta}$ ecuacion (\ref{eq:cap4_eq_43})}
+          \tcc{Calcular $\dot{J}_{i\theta}$ ecuacion \eqref{eq:cap4_eq_43}}
           \SetKwProg{Fn}{}{:}{}
           \SetKwFunction{FSub}{calculo\_jthetai\_der}
           \Fn{\FSub{$\theta_{2i}$,$\theta_{3i}$,$\dot{\theta_{2i}}$,$\dot{\theta_{3i}}$}}
@@ -839,7 +839,7 @@
           \SetKwFunction{FSub}{ ti\_puntual}
           \Fn{\FSub{$\phi_{i^\circ},\ddot{\theta}_{i},\theta_{i},X_p,Y_p,Z_p,\lambda_i$}}
           {
-          \tcc{Resolver ecuacion (\ref{eq:cap4_dina_ma_15})  }
+          \tcc{Resolver ecuacion \eqref{eq:cap4_dina_ma_15}  }
           $A=\left( \frac{1}{3}m_{1}+m_{2} \right) L_{1}^{2}\ddot{ \theta }_{i} $\;
           $B= \left( \frac{1}{2}m_{1}+m_{2} \right) gL_{1}\cos  \theta _{i}$\;
           $C=2 \lambda _{i}L_{1} \left[  \left( X_{P}\cos  \phi _{i}+Y_{P}\sin  \phi _{i}- r \right) \sin  \theta _{i}-Z_{P}\cos  \theta _{i} \right]$\;
@@ -861,7 +861,7 @@
                   \SetKwProg{Fn}{}{:}{}
                   \SetKwFunction{FSub}{system\_tq}
                   \Fn{\FSub{\phi_{0^\circ},\phi_{120^\circ},\phi_{240^\circ},\theta_1,\theta_2,\theta_3,X_p,Y_p,Z_p,F_{px},F_{py},F_{pz},\ddot{X}_p,\ddot{Y}_p,\ddot{Z}_p,m_{playload}}}{
-                    \tcc{Resolver sistema ecuaciones $A\lambda_i=B$ , modelado desde las ecuaciones (\ref{eq:cap4_dina_ma_12}),(\ref{eq:cap4_dina_ma_13}),(\ref{eq:cap4_dina_ma_14})}
+                    \tcc{Resolver sistema ecuaciones $A\lambda_i=B$ , modelado desde las ecuaciones \eqref{eq:cap4_dina_ma_12},\eqref{eq:cap4_dina_ma_13},\eqref{eq:cap4_dina_ma_14}}
                     \tcc{Matriz A}
                 	$A_{0,0}=2(X_P-rcos\phi_1-L_1cos\theta_1cos\phi_{0^\circ})$\;
                 	$A_{0,1}=2(X_P-rcos\phi_2-L_1cos\theta_2cos\phi_{120^\circ})$\;
@@ -892,7 +892,7 @@
       
     \subsection{Método B}
     
-       Al igual que la sección anterior, se presentan en las figuras \ref{f:Cap6_funtion_7} a la \ref{f:Cap6_funtion_11} las tareas con respecto a la  metodología B del capitulo \ref{CAP4}. 
+       Al igual que la sección anterior, se presentan en las figuras \eqref{f:Cap6_funtion_7} a la \eqref{f:Cap6_funtion_11} las tareas con respecto a la  metodología B del capitulo \eqref{CAP4}. 
     
             \hspace{1cm}
 
@@ -908,7 +908,7 @@
                 \centering
                  \begin{tikzpicture}[node distance = 5cm, auto]
                     % Place nodes
-                    \node [block1] (funcion) {\textbf{Cinemática\\ Directa\\ Sección (\ref{mb_cd})}};
+                    \node [block1] (funcion) {\textbf{Cinemática\\ Directa\\ Sección \eqref{mb_cd}}};
                     \node [block2, left of=funcion] (input) {\textbf{$\theta_1,\theta_2,\theta_3$}};
                     \node [block2, right of=funcion] (ouput) {\textbf{$P_0(P_{0x},P_{0y},P_{0z})$}};
                     % Draw edges
@@ -925,7 +925,7 @@
                 \centering
                  \begin{tikzpicture}[node distance = 5cm, auto]
                     % Place nodes
-                    \node [block1] (funcion) {\textbf{Cinemática \\Inversa\\ Sección (\ref{mb_ci})}};
+                    \node [block1] (funcion) {\textbf{Cinemática \\Inversa\\ Sección \eqref{mb_ci}}};
                     \node [block2, left of=funcion] (input) {\textbf{$P_0(P_{0x},P_{0y},P_{0z})$}};
                     \node [block2, right of=funcion] (ouput) {\textbf{$\theta_1,\theta_2,\theta_3$}};
                     % Draw edges
@@ -942,7 +942,7 @@
                 \centering
                  \begin{tikzpicture}[node distance = 5cm, auto]
                     % Place nodes
-                    \node [block1] (funcion) {\textbf{Jacobiano\\ Sección (\ref{mb_cvel})}};
+                    \node [block1] (funcion) {\textbf{Jacobiano\\ Sección \eqref{mb_cvel}}};
                     \node [block2, left of=funcion] (input) {\textbf{$P_{0x},P_{0y},P_{0z},$\\${\theta }_{1},{\theta }_{2},{\theta }_{3}$}};
                     \node [block2, right of=funcion] (ouput) {\textbf{$-J_{1 }, J_{2}, J$}};
                     % Draw edges
@@ -960,7 +960,7 @@
                 \centering
                  \begin{tikzpicture}[node distance = 5cm, auto]
                     % Place nodes
-                    \node [block1] (funcion) {\textbf{Cinemática Aceleracion\\ Sección (\ref{cap4_mb_subsection_acel})}};
+                    \node [block1] (funcion) {\textbf{Cinemática Aceleracion\\ Sección \eqref{cap4_mb_subsection_acel}}};
                     \node [block2, left of=funcion] (input) {\textbf{$P_{0x},P_{0y},P_{0z},$\\${\theta }_{1},{\theta }_{2},{\theta }_{3},$\\$\dot{P}_{0x},\dot{P}_{0y},\dot{P}_{0z}$}};
                     \node [block2, right of=funcion] (ouput) {\textbf{$-J_{1},J_{2},J,$\\$\overrightarrow{{\dot{s}}_i}^T,K,\overrightarrow{\dot{\theta}},\overrightarrow{{{s}}_i}^T$}};
                     % Draw edges
@@ -976,7 +976,7 @@
                 \centering
                  \begin{tikzpicture}[node distance = 5cm, auto]
                     % Place nodes
-                    \node [block1] (funcion) {\textbf{Dinamica \\Inversa\\ Sección (\ref{cap4_mb_subsection_dina})}};
+                    \node [block1] (funcion) {\textbf{Dinamica \\Inversa\\ Sección \eqref{cap4_mb_subsection_dina}}};
                     \node [block2, left of=funcion] (input) {\textbf{$\ddot{\theta}_{1},\ddot{\theta}_{2},\ddot{\theta}_{3},$\\$        {\theta}_{1},{\theta}_{2},{\theta}_{3},$\\$F_{px},F_{py},F_{pz},$\\$J,m_{playload},\dot{J},$\\$\dot{\theta}_{1},\dot{\theta}_{2},\dot{\theta}_{3}$}};
                     \node [block2, right of=funcion] (ouput) {\textbf{$\tau_1,\tau_2,\tau_3$}};
                     % Draw edges
@@ -1012,7 +1012,7 @@
     
       \tcc{FUNCION PRINCIPAL}
         \Fn{\FSub{${\theta }_1$,${\theta }_2$,${\theta }_3$}}{
-            \tcc{Calcular Centros de esferas (Ecuaciones (\ref{eq:cap4_MB_3}),(\ref{eq:cap4_MB_4}),(\ref{eq:cap4_MB_5}))}
+            \tcc{Calcular Centros de esferas (Ecuaciones \eqref{eq:cap4_MB_3},\eqref{eq:cap4_MB_4},\eqref{eq:cap4_MB_5})}
             \tcc{Ordenar angulos segun sistema de referencia Local}
             
             $(x_1,y_1,z_1)$=$\overrightarrow{J'_{2}} \left [  0,-\frac{(f-e)}{2\sqrt{3}}-L_{A}cos(\theta_2),-L_{A}sin(\theta_2)\right]$\;
@@ -1021,7 +1021,7 @@
             
             $(x_3,y_3,z_3)$=$\overrightarrow{J'_{1}} \left [\left( \frac{(f-e)}{2\sqrt{3}}+{L}_{A}cos(\theta_1)\right) cos(30^\circ), \left(\frac{(f-e)}{2\sqrt{3}} + {L}_{A}cos(\theta_1)\right) sin(30^\circ), -L_{A}sin(\theta_1)\right]$\;
             
-            \tcc{Calcular intersección de las 3 esferaS (Ecuaciones de la \ref{eq:cap4_eq_3} a la \ref{eq:cap4_eq_13})}
+            \tcc{Calcular intersección de las 3 esferaS (Ecuaciones de la \eqref{eq:cap4_eq_3} a la \eqref{eq:cap4_eq_13})}
             $d= \left(y_2- y_1\right)x_3-\left(y_3-y_1\right)x_2- \left(y_2-y_3\right)x_1$\;
             $w_1={x_1}^2+{y_1}^2 +{z_1}^2$\;
             $w_2={x_2}^2+{y_2}^2 +{z_2}^2$\;
@@ -1170,7 +1170,7 @@
             \end{bmatrix}
             \right.
 
-              \tcc{Calcular $J$ ecuacion (\ref{eq:cap4_MB_14}) }
+              \tcc{Calcular $J$ ecuación \eqref{eq:cap4_MB_14} }
                 $J=-J_{1}J_{2}$\;
                 
                
@@ -1216,7 +1216,7 @@
                 0 \\
                 -L_{A} sin(\theta_i)
             \end{bmatrix}  \right.$\;
-            \tcc{calculo $\overrightarrow{s_{i}}$ ecuacion (\ref{eq:cap4_MB_12})}
+            \tcc{calculo $\overrightarrow{s_{i}}$ ecuacion \eqref{eq:cap4_MB_12}}
             $ \overrightarrow{s_{i}} & = \overrightarrow{P_{0}}- \left(\overrightarrow{F_{i}}+\overrightarrow{\xi_{F_{i}J_{i}}} \right)$\;
             \KwRet$\overrightarrow{s_{i}}$\;  }
                 
@@ -1227,7 +1227,7 @@
                 \tcc{Matriz de rotacion respecto a ángulo 
                $\varphi_i$ }
             $R_{i}^{R}=matri\_rot(\varphi_i)$\;
-            \tcc{calculo $\overrightarrow{b_{i}}$ ecuacion (\ref{eq:cap4_MB_15}) }
+            \tcc{calculo $\overrightarrow{b_{i}}$ ecuacion \eqref{eq:cap4_MB_15} }
             $ \overrightarrow{b_{i}} =  R_{i}^{R}      \begin{bmatrix}
                 L_{A} sin(\theta_i) \\
                 0\\
@@ -1235,7 +1235,7 @@
             \end{bmatrix}$\;
             \KwRet$\overrightarrow{b_{i}}$\;  }
         
-          \tcc{Calcular Matriz de rotacion $R_{i}^{R}$ ecuacion (\ref{eq:cap4_MB_13})}
+          \tcc{Calcular Matriz de rotacion $R_{i}^{R}$ ecuacion \eqref{eq:cap4_MB_13}}
           \SetKwProg{Fn}{}{:}{}
           \SetKwFunction{FSub}{matri\_rot}
           \Fn{\FSub{$\varphi_i$}}{
@@ -1307,7 +1307,7 @@
                $\overrightarrow{{\dot{b}}_2}=bi\_p(\varphi_{120^\circ},{\theta }_{2},\dot{\theta }_{2})$\;
                $\overrightarrow{{\dot{b}}_3}=bi\_p(\varphi_{240^\circ},{\theta }_{3},\dot{\theta }_{3})$\;
 
-              \tcc{	Calcular Matriz K ecuacion (\ref{eq:cap4_MB_17})}
+              \tcc{	Calcular Matriz K ecuacion \eqref{eq:cap4_MB_17}}
                $K= \left[ \begin{matrix}
                 \overrightarrow{\dot{s}_{1}}^{T}\overrightarrow{b_{1}}+\overrightarrow{s_{1}}^{T}\overrightarrow{\dot{b}_{1}}  &  0  &  0\\
                 0  &  \overrightarrow{\dot{s}_{2}}^{T}\overrightarrow{b_{2}}+\overrightarrow{s_{2}}^{T}\overrightarrow{\dot{b}_{2}}  &  0\\
@@ -1329,7 +1329,7 @@
                   \SetKwProg{Fn}{}{:}{}
                   \SetKwFunction{FSub}{si\_p}
                   \Fn{\FSub{$\dot{P}_{0x}$,$\dot{P}_{0y}$,$\dot{P}_{0z}$,$\varphi_{{}^\circ}$,${\theta }_{i}$,$\dot{\theta }_{i}$}}{
-                    \tcc{calculo ecuacion (\ref{eq:cap4_MB_19})}
+                    \tcc{calculo ecuación \eqref{eq:cap4_MB_19}}
                     $\overrightarrow{\dot{s}_{i}}= \left[ \begin{matrix}
                     \dot{P}_{0x}\\
                     \dot{P}_{0y}\\
@@ -1347,7 +1347,7 @@
                   \SetKwProg{Fn}{}{:}{}
                   \SetKwFunction{FSub}{bi\_p}
                   \Fn{\FSub{$\varphi_{{}^\circ}$,${\theta }_{i}$,$\dot{\theta }_{i}$}}{
-                    \tcc{calculo ecuacion (\ref{eq:cap4_MB_18})}
+                    \tcc{calculo ecuacion \eqref{eq:cap4_MB_18}}
                     $\overrightarrow{\dot{b}_{i}}= \left[ \begin{matrix}
                 L_{A} cos⁡ \left(  \theta _{i} \right) \\
                 0\\
@@ -1407,7 +1407,7 @@
           $\overrightarrow{F_{g}}=[F_{px},F_{py},F_{pz}]^T$\;          
           $m_{nt}=mnt(m_{playload})$\;
           $I_b=inercia\_b()$\;
-          \tcc{Resolver ecuación (\ref{eq:cap4_MB_25})  }
+          \tcc{Resolver ecuación \eqref{eq:cap4_MB_25}  }
           $M_1(\theta)= I_b\overrightarrow{\ddot{ \theta }} $\;
           $M_2(\theta)=J^Tm_{mt}J\overrightarrow{\ddot{ \theta }}$\;
           $C(\theta,\dot{\theta})=J^Tm_{mt}\dot{J}\overrightarrow{\dot{\theta}}$\;
@@ -1457,7 +1457,7 @@
 
         
     \subsection{Espacio de Trabajo}\label{espaciotrabajows1}
-     Encontrar el espacio de trabajo de un robot delta significa calcular todas las posiciones posibles y viables del efector final. El siguiente diagrama de flujo representa una de las muchas soluciones que existen, donde las dimensiones del robot y los parámetros de las restricciones son valores preestablecidos. Es importante recalcar que la nomenclatura en esta sección es la misma que se implementa para determinar el jacobiano del robot delta de la sección \ref{ma_jac}. 
+     Encontrar el espacio de trabajo de un robot delta significa calcular todas las posiciones posibles y viables del efector final. El siguiente diagrama de flujo representa una de las muchas soluciones que existen, donde las dimensiones del robot y los parámetros de las restricciones son valores preestablecidos. Es importante recalcar que la nomenclatura en esta sección es la misma que se implementa para determinar el jacobiano del robot delta de la sección \eqref{ma_jac}. 
      % Define block styles
 \tikzstyle{decision} = [diamond, draw=black!50, fill=black!79,text=white, 
     text width=6.5em, text badly centered, node distance=4cm, inner sep=0pt]
@@ -1482,7 +1482,7 @@
         \node [block, below of=theta12,node distance=2.5cm] (theta13) {Variar $\theta_{13}$ \\ $[\theta_{13min}$ - $\theta_{13max}  ]$};
         \node [block2, below of=theta13,node distance=3cm] (restri) {1. Posición efector$[P_XP_YP_Z]$ a través de cinemática directa\\$[P_XP_YP_Z]=f(\theta_{11},\theta_{12},\theta_{13})$\\2. Ángulos interiores $\theta_{2i}$ y $\theta_{3i}$
            \\3. Jacobiano y sus Determinantes};
-        \node [decision, below of=restri] (cumple) {¿Cumple con restricciones? Figura \ref{fig:my_label_ws_cap6_1}};
+        \node [decision, below of=restri] (cumple) {¿Cumple con restricciones? Figura \eqref{fig:my_label_ws_cap6_1}};
         \node [block1, left of=cumple,node distance=5cm] (guardar) {El punto $[P_XP_YP_Z]$ \\ SI pertenece al \\ espacio de trabajo.\\Guardar punto};
         \node [block1, right of=cumple, node distance=5cm] (noguardar) {El punto $[P_XP_YP_Z]$ \\ NO pertenece al \\ espacio de trabajo};
         % Draw edges
@@ -1508,7 +1508,7 @@
     
      La idea principal de la solución propuesta es calcular un grupo significativo de configuraciones $(P_x,P_y,P_z)$ posibles del efector final en base a sus dimensiones y evaluar si cumplen con restricciones impuestas. Se obtienen las configuraciones cartesianas del efector $(P_x,P_y,P_z)$  utilizando la cinemática directa y variando los angulos $\theta_{11}$,$\theta_{12}$,$\theta_{13}$ en los rangos $[\theta_{11min}-\theta_{11max}]$, $[\theta_{12min}-\theta_{12max}]$, $[\theta_{13min}-\theta_{13max}]$ respectivamente. Todos estos rangos se discretizan con un paso impuesto \(  \Delta  \theta _{1i} \). Si el punto  $(P_x,P_y,P_z)$ cumple con todas las restricciones, el punto pertenece al espacio de trabajo. Al contrario, si el punto no cumple con una o mas restricciones, este no pertenece al espacio de trabajo.
 
-    Las restricciones son las mismas que las expuestas en la sección \ref{restriccionesWS}. El orden en que se verifican las restricciones se muestran en el siguiente diagrama de flujo:
+    Las restricciones son las mismas que las expuestas en la sección \eqref{restriccionesWS}. El orden en que se verifican las restricciones se muestran en el siguiente diagrama de flujo:
 
      % Define block styles
 \tikzstyle{decision} = [diamond, draw=black!20, fill=black99!,text=white, 
@@ -1549,7 +1549,7 @@
 
 
     Para calcular el espacio de trabajo se crea un nodo en ROS. La tarea especifica de este nodo es calcular, guardar y graficar los puntos $(P_x,P_y,P_z)$ del efector final que cumplen con las restricciones impuestas. 
-    La representación gráfica del nodo se presenta en la figura \ref{f:Cap6_ws_1}: 
+    La representación gráfica del nodo se presenta en la figura \eqref{f:Cap6_ws_1}: 
     
     
         % Define block styles
@@ -1575,12 +1575,12 @@
          
         \vspace{-1cm}         
     
-    En este nodo, las dimensiones del robot y las restricciones son establecidas antes de calcular el espacio de trabajo. La única entrada es el paso de la discretizacion de los rangos \(  \Delta  \theta _{1i} \). La cinematica directa y el jacobiano se calculan a partir del método A, específicamente los desarrollados en las secciones \ref{ma_cd} y \ref{ma_jac} respectivamente. Se emplea este método por la razón de que el jacobiano $J$ se puede bipartir en dos matrices $(J_{x}$  y  $J_{ \theta })$, donde cada una de ellas representa una singularidad especifica . Ademas, el metodo A tiene la ventaja de tener las ecuaciones de los ángulos interiores $\theta_{2i}$ y $\theta_{3i}$.
+    En este nodo, las dimensiones del robot y las restricciones son establecidas antes de calcular el espacio de trabajo. La única entrada es el paso de la discretizacion de los rangos \(  \Delta  \theta _{1i} \). La cinematica directa y el jacobiano se calculan a partir del método A, específicamente los desarrollados en las secciones \eqref{ma_cd} y \eqref{ma_jac} respectivamente. Se emplea este método por la razón de que el jacobiano $J$ se puede bipartir en dos matrices $(J_{x}$  y  $J_{ \theta })$, donde cada una de ellas representa una singularidad especifica . Ademas, el metodo A tiene la ventaja de tener las ecuaciones de los ángulos interiores $\theta_{2i}$ y $\theta_{3i}$.
     
-    El valor de las restricciones en este trabajo de grado se encuentran en la tabla \ref{t:cap6_ws_1}: 
+    El valor de las restricciones en este trabajo de grado se encuentran en la tabla \eqref{t:cap6_ws_1}: 
     
             \begingroup
-            \renewcommand{\arraystretch}{1.3}
+            \renewcommand{\arraystretch}{1.2}
             \begin{table}[H]
             \centering
             \begin{tabular}{c m{7.5cm} c c}
@@ -1709,10 +1709,10 @@
         \vspace{-1cm}   
 
         
-    Esta trayectoria se compone de un camino geométrico lineal en el espacio cartesiano $XYZ$ llamado 'punto a punto en linea recta' y la escala temporal es 'perfil de movimiento trapezoidal respecto a la Velocidad' o 'linear segment with parabolic blends (LSPB)', visto en la sección \ref{cap4_tray}. 
+    Esta trayectoria se compone de un camino geométrico lineal en el espacio cartesiano $XYZ$ llamado 'punto a punto en linea recta' y la escala temporal es 'perfil de movimiento trapezoidal respecto a la Velocidad' o 'linear segment with parabolic blends (LSPB)', visto en la sección \eqref{cap4_tray}. 
     
     
-        El diagrama de flujo para el desarrollo de la trayectoria se presenta en la figura \ref{f:cap6_trayectory_112129}:
+        El diagrama de flujo para el desarrollo de la trayectoria se presenta en la figura \eqref{f:cap6_trayectory_112129}:
     
         % Define block styles
         \tikzstyle{block1} = [rectangle, draw=green!50,fill=green!20, text width=5em, text centered, minimum height=2em, minimum width=2.5em ]
@@ -1754,7 +1754,7 @@
     
     \newpage
     
-    El perfil de movimiento trapezoidal visto en la sección \ref{Perfiles_de_movimiento_trapezoidal} se puede modificar para que las ecuaciones consideren el punto inicial y final especificando la velocidad máxima y la aceleración máxima de la siguiente manera \cite{tray_trape}:
+    El perfil de movimiento trapezoidal visto en la sección \eqref{Perfiles_de_movimiento_trapezoidal} se puede modificar para que las ecuaciones consideren el punto inicial y final especificando la velocidad máxima y la aceleración máxima de la siguiente manera \cite{tray_trape}:
         \begin{equation}
         \Large
             q(t) = \left\lbrace
@@ -1896,7 +1896,7 @@
             	$\tau=v_{max}/a_{max}$\;
             	$s=signo(q_1-q_0)$\;
             	$T=s\frac{(q_1-q_0)}{v_{max}}+\tau$\;
-        \tcc{Ecuaciones  LSPB (\ref{eq:cap6_tray_1})}
+        \tcc{Ecuaciones  LSPB \eqref{eq:cap6_tray_1}}
         \tcc{Tramo 1}
           \If{$(0 \leq {tiempo}_{actual}\leq \tau)$}
             {
@@ -1964,7 +1964,7 @@
         \vspace{-1cm}   
         
         \begin{itemize}
-            \item {\textbf{Paso 1}: Exportar de la trayectoria creada en ROS los siguientes datos: las posiciones de los motores $\theta_{i\in\{1,2,3\}}$ , la posiciones del centroide de la plataforma móvil $XYZ$ y la escala de tiempo utilizada $s(t)$. Luego se determinan los ángulos interiores $\theta_{2i}$ y $\theta_{3i}$ (vistos en la sección \ref{cap4_angulosinteriores}) de las 3 cadenas cinemáticas. Esto es posible creando un nodo llamado $posicionador\_rviz\_realtime\_tm1\_adams$ que espera como datos de entrada los datos de la trayectoria  $\theta_{i\in\{1,2,3\}}$, $XYZ$ y $s(t)$ y como salida da como resultado un objeto de tipo $JointState()$. Este ultimo objeto contiene los datos de los ángulos interiores en radianes, ángulo de los motores en radianes y la posición xyz de la plataforma móvil en metros. Además, cada ángulo y coordenada se le asigna un nombre único de tipo string, los cuales son usados para relacionar las juntas configuradas para el visualizador con respecto al valor de cada una de ellas a través de la trayectoria.}
+            \item {\textbf{Paso 1}: Exportar de la trayectoria creada en ROS los siguientes datos: las posiciones de los motores $\theta_{i\in\{1,2,3\}}$ , la posiciones del centroide de la plataforma móvil $XYZ$ y la escala de tiempo utilizada $s(t)$. Luego se determinan los ángulos interiores $\theta_{2i}$ y $\theta_{3i}$ (vistos en la sección \eqref{cap4_angulosinteriores}) de las 3 cadenas cinemáticas. Esto es posible creando un nodo llamado $posicionador\_rviz\_realtime\_tm1\_adams$ que espera como datos de entrada los datos de la trayectoria  $\theta_{i\in\{1,2,3\}}$, $XYZ$ y $s(t)$ y como salida da como resultado un objeto de tipo $JointState()$. Este ultimo objeto contiene los datos de los ángulos interiores en radianes, ángulo de los motores en radianes y la posición xyz de la plataforma móvil en metros. Además, cada ángulo y coordenada se le asigna un nombre único de tipo string, los cuales son usados para relacionar las juntas configuradas para el visualizador con respecto al valor de cada una de ellas a través de la trayectoria.}
             \item {\textbf{Paso 2}: Pasar a valores TF cada junta y coordenada adquirida del paso 1. Rviz tiene un nodo integrado llamada $estados\_robot\_pub.py$ que tiene como requisito de entrada los valores de cada junta con cada nombre único respectivamente y como salida da como resultado los valores TF con cada nombre unico respectivamente}
             \item {\textbf{Paso 3}: Anterior a crear una trayectoria en ROS se debe configurar el robot delta en formato URDF. Los nombres de cada juntas en el archivo urdf en formato xml deben ser exactamente los mismo que en los pasos 1 y 2}
         \end{itemize}
@@ -2003,7 +2003,7 @@
        
        
     \subsection{Modelo URDF}
-        Para visualizar un modelo de un robot se usa un archivos de formato de descripción de robot unificado (URDF) basados en XML. En esta sección se presenta la configuración del modelo del robot delta mostrando el código para los enlaces, juntas y la respectiva unión padre-hijo para cada uno de ellos. La nomenclatura utilizada es la del capitulo \ref{CAP5}. El nombre del archivo donde estan contenidos todos estos codigos es robot.urdfm1.adams.urdf.  
+        Para visualizar un modelo de un robot se usa un archivos de formato de descripción de robot unificado (URDF) basados en XML. En esta sección se presenta la configuración del modelo del robot delta mostrando el código para los enlaces, juntas y la respectiva unión padre-hijo para cada uno de ellos. La nomenclatura utilizada es la del capitulo \eqref{CAP5}. El nombre del archivo donde estan contenidos todos estos codigos es robot.urdfm1.adams.urdf.  
         
        \subsubsection{Base Fija}
         La base fija es un enlace que se le nombra \textbf{"base\_link"} y se representa como un cilindro de radio \textbf{$R_a$}.
