@@ -666,13 +666,13 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
         \begin{itemize}
             \item {$J=J_{x}^{-1}J_{ \theta }$  es el jacobiano del robot delta
 }
-            \item {$v_{p}= \left[ v_{px},v_{py},v_{pz} \right] ^{T}$ es la velocidad del del punto  $p$ en la plataforma móvil
+            \item {$v_{p}= \left[ v_{px},v_{py},v_{pz} \right] ^{T}$ es la velocidad del del punto  $P$ en la plataforma móvil
 }
             \item {$\dot{ \theta }= \left[ \dot{ \theta _{11}},\dot{ \theta _{12}},\dot{ \theta _{13}}  \right] ^{T}$  es la velocidad angular de los actuadores
 }
         \end{itemize}
 
-    Finalmente, el jacobiano es $J$ y representa el cambio de las posiciones en el espacio cartesiano de la plataforma móvil respecto al cambio de los ángulos en el espacio articular de los actuadores:
+    Finalmente, el jacobiano es $J$ y representa el cambio de las posiciones en el espacio cartesiano de la plataforma móvil respecto al cambio de los ángulos en el espacio articular de los actuadores.
         
 
 
@@ -682,7 +682,7 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
         
         \subsubsection{Singularidades}\label{CAP4_SINGULARIDAD}
         
-        Se debe tener especial cuidado en el diseño de estos manipuladores paralelos para evitar singularidades. Cuando un manipulador está en una posición singular, la matriz jacobiana también es singular. En el caso de los manipuladores paralelos conviene trabajar con un jacobiano de dos partes, matriz jacobiana inversa   $J_{ \theta }$  y la directa  $ J_{x} $ . La ventaja es que un jacobiano bipartito permite, de forma natural, la identificación y clasificación de varios tipos de singularidades. Una de las formas de analizar las singularidades es igualando el determinante de la matriz jacobiana igual a cero y extraer varias posturas indeseables robot delta. Desde la ecuación \eqref{eq:cap4_eq_26} se puede observar y clasificar la singularidad en 3 situaciones:
+        Se debe tener especial cuidado en el diseño de estos manipuladores paralelos para evitar singularidades. Cuando un manipulador está en una posición singular, la matriz jacobiana también es singular. En el caso de los manipuladores paralelos conviene trabajar con un jacobiano de dos partes: matriz jacobiana inversa   $J_{ \theta }$  y la directa  $ J_{x} $ . La ventaja de este jacobiano bipartito es que permite de forma natural, la identificación y clasificación de varios tipos de singularidades. Una de las formas de analizar las singularidades es igualando el determinante de la matriz jacobiana a cero y extraer varias posturas indeseables robot delta. Desde la ecuación \eqref{eq:cap4_eq_26} se puede observar y clasificar las singularidades en 3 situaciones:
         
         \begin{figure}[htb]
          \centering
@@ -700,11 +700,11 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
         \end{figure}
         
         \begin{itemize}
-	        \item {\fontsize{10pt}{12.0pt}\selectfont Cuando  $\det  \left( J_{ \theta } \right) =0$ . Esto significa que  $\theta _{2i}=0$  o  $\pi$ , o \   $\theta _{3i}=0$ o  $\pi$  , para  \( i = \{ 1,2 ,3 \}  \) . En esta situación los tres pares de barras seguidoras son paralelos. Por tanto, la plataforma móvil tiene tres grados de libertad y se mueve a lo largo de una superficie esférica y gira sobre el eje perpendicular a la plataforma móvil (figura \eqref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_9a}) .Al mismo tiempo esta configuración representa el límite del espacio de trabajo, es decir, los puntos más lejanos que puede alcanzar el robot. }
+	        \item {\fontsize{10pt}{12.0pt}\selectfont Cuando  $\det  \left( J_{ \theta } \right) =0$ . Esto significa que  $\theta _{2i}=0 \lor \pi$ , o \   $\theta _{3i}=0 \lor \pi$  , para  \( i \in \{ 1,2 ,3 \}  \) . En esta situación, los tres pares de barras seguidoras son paralelos. Por tanto, la plataforma móvil tiene 3 grados de libertad, se mueve a lo largo de una superficie esférica y gira sobre el eje perpendicular a la plataforma móvil (figura \eqref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_9a}) .Al mismo tiempo, esta configuración representa el límite del espacio de trabajo, es decir, los puntos más lejanos que puede alcanzar el robot. }
 
-	        \item {\fontsize{10pt}{12.0pt}\selectfont Cuando  $\det  \left( J_{x} \right) =0 $ . Esto significa que    $ \theta _{1i}+  \theta _{2i}=0$  o  $\pi$ , o $\theta _{3i}=0$  o  $ \pi $   , para  \( i = \{ 1,2 ,3 \}  \) . En esta situación dos pares de barras seguidoras son paralelas. Los la plataforma móvil tiene un grado de libertad; es decir, la plataforma móvil se mueve en una sola dirección (figura \eqref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_9b}).}
+	        \item {\fontsize{10pt}{12.0pt}\selectfont Cuando  $\det  \left( J_{x} \right) =0 $ . Esto significa que    $ \theta _{1i}+  \theta _{2i}=0 \lor \pi$ , o $\theta _{3i}=0 \lor \pi $   , para  \( i \in \{ 1,2 ,3 \}  \) . En esta situación, dos pares de barras seguidoras son paralelas. Los la plataforma móvil tiene 1 grado de libertad, es decir, la plataforma móvil se mueve en una sola dirección (figura \eqref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_9b}).}
 
-	        \item {\fontsize{10pt}{12.0pt}\selectfont Cuando $ \det  \left( J_{ \theta } \right) =0 $  y $ \det  \left( J_{x} \right) =0 $. Esta situación ocurre cuando  $  \theta _{3i}=0$ o  $ \pi  $  , para  \( i = \{ 1,2 ,3 \}  \) . En esta situación dos pares de barras seguidoras están en el mismo plano o dos planos paralelos. La plataforma móvil tiene un grado de libertad; es decir, la plataforma móvil gira sobre el eje horizontal solamente (figura \eqref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_9c})}
+	        \item {\fontsize{10pt}{12.0pt}\selectfont Cuando $ \det  \left( J_{ \theta } \right) =0 $  y $ \det  \left( J_{x} \right) =0 $. Esta situación ocurre cuando  $  \theta _{3i}=0 \lor \pi  $  , para  \( i \in \{ 1,2 ,3 \}  \) . En esta situación, dos pares de barras seguidoras están en el mismo plano o dos planos paralelos. La plataforma móvil tiene 1 grado de libertad, es decir, la plataforma móvil gira solamente sobre el eje horizontal (figura \eqref{f:Cap4_Metodo_A_Modelacion_Cinematica_Posicion_9c}).}
 \end{itemize}
 
     
@@ -712,7 +712,7 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
     
     \subsection{Modelación cinemática de aceleración}\label{ma_acel}
 
-    En esta sección se presentan las ecuaciones para determinar la aceleración angular de los actuadores del robot delta. La aceleración se determina derivando matricial mente la ecuación \eqref{eq:cap4_eq_26} de la sección \eqref{ma_cvel} modelación cinemática de velocidad para el método A.
+    En esta sección se presentan las ecuaciones para determinar la aceleración angular de los actuadores del robot delta. La aceleración angular se determina derivando matricialmente la ecuación \eqref{eq:cap4_eq_26} de la sección \eqref{ma_cvel} llamada modelación cinemática de velocidad para el método A.
 
     \vspace{-2.5em}
 
@@ -766,49 +766,49 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
     
 
     Donde:
-    \vspace{-1.0em}
     
+    \vspace{-1.0em}
     
         \begin{align}
         \dot{J}_{ix}={}& A'_{ix}-B'_{ix}
-        \label{eq:cap4_eq_36} \\
+        \label{eq:cap4_eq_36} \\[0.5cm]
         A'_{ix}={}& cos \phi _{i}\ast \left[  \left[ -\sin  \left(  \theta _{1i}+ \theta _{2i} \right) \ast \left( \dot{ \theta }_{1i}+\dot{ \theta }_{2i} \right) \ast sin  \theta _{3i} \right]  + \left[ \cos  \left(  \theta _{1i}+ \theta _{2i} \right) \ast cos  \theta _{3i}\ast\dot{ \theta }_{3i} \right]  \right]
-        \label{eq:cap4_eq_37} \\
+        \label{eq:cap4_eq_37} \\[0.5cm]
         B'_{ix}={}& sin \phi _{i}\ast \left[ -sin \theta _{3i}\ast\dot{ \theta }_{3i} \right] 
-        \label{eq:cap4_eq_38} \\
+        \label{eq:cap4_eq_38} \\[0.5cm]
         \dot{J}_{iy}={}& A'_{iy}+B'_{iy}
-        \label{eq:cap4_eq_39} \\
+        \label{eq:cap4_eq_39} \\[0.5cm]
         A'_{iy}={}& sin \phi _{i}\ast \left[  \left[ -sin \left(  \theta _{1i}+ \theta _{2i} \right) \ast \left( \dot{ \theta }_{1i}+\dot{ \theta }_{2i} \right) \ast sin~ \theta _{3i} \right] + \left[ \cos  \left(  \theta _{1i}+ \theta _{2i} \right) \ast cos  \theta _{3i}\ast\dot{ \theta }_{3i} \right]  \right]
-        \label{eq:cap4_eq_40} \\
+        \label{eq:cap4_eq_40} \\[0.5cm]
         B'_{iy}={}& cos \phi _{i}\ast \left[ -sin  \theta _{3i}\ast\dot{ \theta }_{3i} \right]
-        \label{eq:cap4_eq_41} \\
+        \label{eq:cap4_eq_41} \\[0.5cm]
         \dot{J}_{iz}={}& \left[ \cos  \left(  \theta _{1i}+ \theta _{2i} \right) \ast \left( \dot{ \theta }_{1i}+\dot{ \theta }_{2i} \right) \ast sin  \theta _{3i} \right] + \left[ sin \left(  \theta _{1i}+ \theta _{2i} \right) \ast cos \theta _{3i}\ast \dot{ \theta }_{3i} \right]
-        \label{eq:cap4_eq_42} \\
+        \label{eq:cap4_eq_42} \\[0.5cm]
         \dot{J}_{i \theta }={}&a \left[ ~ \left[ \cos  \theta _{2i}\ast\dot{ \theta }_{2i}\ast \sin  \theta _{3i} \right] + \left[ \sin  \theta _{2i}\ast cos \theta _{3i}\ast\dot{ \theta }_{3i} \right]  \right]
         \label{eq:cap4_eq_43}
     \end{align}
-        
+
 \newpage
 
     \begin{align}
         \dot{ \theta }_{3i}={}& \left[ \frac{-1}{\sqrt[]{1- \left( \frac{c_{yi}}{b} \right) ^{2}~}} \right] \ast \left[ \frac{c_{yi}^{'}}{b} \right]
-        \label{eq:cap4_eq_44}\\
+        \label{eq:cap4_eq_44}\\[0.5cm]
         c_{yi}^{'}={}& \left[ -sin \phi _{i}\ast v_{px} + cos \phi _{i}\ast v_{py} \right]
-        \label{eq:cap4_eq_45}\\
+        \label{eq:cap4_eq_45}\\[0.5cm]
        \dot{ \theta }_{2i}={}& \left[ \frac{-1}{\sqrt[]{1- \left(  K \right) ^{2}~}} \right] \ast \left[ K' \right]
-        \label{eq:cap4_eq_46}\\
-        K={}& \frac{c_{xi}^{2}+c_{yi}^{2}+c_{zi}^{2}- a^{2}-b^{2}~}{\text{2 ab }sin~ \theta _{3i}}
-        \label{eq:cap4_eq_47}\\
+        \label{eq:cap4_eq_46}\\[0.5cm]
+        K={}& \frac{c_{xi}^{2}+c_{yi}^{2}+c_{zi}^{2}- a^{2}-b^{2}~}{\text{$2ab$ }sin~ \theta _{3i}}
+        \label{eq:cap4_eq_47}\\[0.5cm]
        K^{'}={}& \left[ \frac{1}{2ab} \right] \ast \left[ \frac{A_{11}-A_{12}~}{B_{1}} \right]
-        \label{eq:cap4_eq_48}\\
+        \label{eq:cap4_eq_48}\\[0.5cm]
         A_{11}={}& \left[ 2c_{xi}c_{xi}^{'}+2c_{yi}c_{yi}^{'}+2c_{zi}c_{zi}^{'} \right] \ast \left[ sin  \theta _{3i} \right]
-        \label{eq:cap4_eq_49}\\
+        \label{eq:cap4_eq_49}\\[0.5cm]
         A_{12}={}& \left[ c_{xi}^{2}+c_{yi}^{2}+c_{zi}^{2}- a^{2}-b^{2} \right] \ast \left[ cos~ \theta _{3i}\ast\dot{ \theta }_{3i} \right]
-        \label{eq:cap4_eq_50}\\
+        \label{eq:cap4_eq_50}\\[0.5cm]
         B_{1}={}& \left[ \sin  \theta _{3i} \right] ^{2}
-        \label{eq:cap4_eq_51}\\
+        \label{eq:cap4_eq_51}\\[0.5cm]
        c_{xi}^{'}={}& cos \phi _{i}\ast v_{px}+~ sin \phi _{i}\ast v_{py}
-        \label{eq:cap4_eq_52}\\
+        \label{eq:cap4_eq_52}\\[0.5cm]
        c_{zi}^{'}={}& v_{pz}
         \label{eq:cap4_eq_53}
     \end{align}
@@ -825,7 +825,8 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
 
     
     \subsection{Modelación dinámica}\label{ma_dina}
-            La aplicación directa de las leyes de Newton al movimiento de sistemas de partículas es sustituida por una propuesta más general, un método para encontrar las ecuaciones de movimiento para todos los sistemas dinámicos, desarrollado por el matemático Joseph Louis Lagrange. En el anexo \eqref{anexoB} se detalla esta propuesta, primero se habla de los conceptos básicos hasta llegar a la formulación de Lagrange. Se obtienen las ecuaciones de Lagrange partiendo del principio de D’Alembert.  Finalmente se aplican las ecuaciones de Lagrange al robot delta para determinar el torque de cada actuador. Toda la información teorica en esta sección es recopilada de la referencia \cite{INTRO_MECANICA_LAGRAGE}.
+            La aplicación directa de las leyes de Newton al movimiento de sistemas de partículas es sustituida por una propuesta más general, un método para encontrar las ecuaciones de movimiento para todos los sistemas dinámicos, desarrollado por el matemático Joseph Louis Lagrange. En el anexo \eqref{anexoB} se detalla esta propuesta. Primero se habla de los conceptos básicos hasta llegar a la formulación de Lagrange. Luego se obtienen las ecuaciones de Lagrange partiendo del principio de D’Alembert.  Finalmente se aplican las ecuaciones de Lagrange al robot delta para determinar el torque de cada actuador. Toda la información teórica en esta sección es recopilada del libro
+            \cite{INTRO_MECANICA_LAGRAGE}.
 
         \subsubsection{Teoria de las ecuaciones de Lagrange}
 
@@ -880,9 +881,9 @@ Se emplea el mismo procedimiento anterior para encontrar los ángulos  \(  \thet
                   \label{f:Cap4_Metodo_A_dina_1}
             \end{figure}    
 
-En la ilustración tanto se pueden visualizar 3 cadenas cinemáticas i=1,2,3 las cuales se componen de 4 partes mecánicas: la base fija, brazos, antebrazos y base móvil. La junta que une la base fija con los brazos representan una junta tipo revoluta accionadas por motores. También se muestra la simplificación de masas para resolver la dinámica del robot delta.
+En la figura \eqref{f:Cap4_Metodo_A_dina_1} se pueden visualizar 3 cadenas cinemáticas $i\in\{1,2,3\}$ las cuales se componen de 4 partes mecánicas: la base fija, brazos, antebrazos y base móvil. La unión entre la base fija y los brazos representa una junta tipo revoluta accionadas por motores. También se muestra la simplificación de masas para resolver la dinámica del robot delta.
 
-En la siguiente tabla muestra la relación entre la numeración en la figura anterior y su descripción:
+En la tabla \eqref{tab:cap4_tabla_dina_ma_1} muestra la relación entre la numeración en la figura \eqref{f:Cap4_Metodo_A_dina_1} y su nombre.
 
 
         \begin{table}[h]
@@ -905,11 +906,11 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
 
     \newpage
    
-   En la tabla \eqref{tab:cap4_tabla_dina_ma_2} se presenta la simbología de los sistema de referencia, magnitudes, puntos y ángulos principales para el desarrollo de la dinámica inversa del robot delta:
+   En la tabla \eqref{tab:cap4_tabla_dina_ma_2} se presenta la simbología de los sistema de referencia, magnitudes, puntos y ángulos principales para el desarrollo de la dinámica inversa del robot delta.
    
            \begin{table}[h]
             \centering
-            \renewcommand{\arraystretch}{1.41}
+            \renewcommand{\arraystretch}{1.35}
                 \begin{tabular}{c m{11cm}}
             \hline
                 \textbf{Simbolo}& \textbf{Descripción} \\ 
@@ -928,26 +929,26 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
             \hline
              $m_{P}$ & Masa de la base móvil. \\
             \hline
-             $A_{i}$ & Punto de unión entre base fija y brazo para la cadena cinematica i \\
+             $A_{i}$ & Punto de unión entre base fija y brazo para la cadena cinemática $i\in\{1,2,3\}$ \\
             \hline
-             $B_{i}$ & Punto de unión entre brazo y antebrazo para la cadena cinematica i \\
+             $B_{i}$ & Punto de unión entre brazo y antebrazo para la cadena cinemática $i\in\{1,2,3\}$ \\
             \hline
-             $D_{i}$ & Punto de unión entre antebrazo y base móvil para la cadena cinematica i \\
+             $D_{i}$ & Punto de unión entre antebrazo y base móvil para la cadena cinemática $i\in\{1,2,3\}$ \\
             \hline
-             $P$ & Centroide base móvil\\
+             $P$ & Punto que representa el centroide base móvil\\
             \hline
-             $\phi _{i}$ & Angulo que representa la posición angular de los 3 actuadores sobre el plano de la base fija en relación al sistema de referencia  local para la cadena cinemática i. \\
+             $\phi _{i}$ & Ángulo que representa la posición angular de los 3 actuadores sobre el plano de la base fija en relación al sistema de referencia  local para la cadena cinemática $i\in\{1,2,3\}$. \\
             \hline
-             $\theta _{i}$ & Angulo que representa la posición angular de los brazos respecto al eje construido por el punto del origen del sistema de referencia local  y  para la cadena cinemática i.\\
+             $\theta _{i}$ & Ángulo que representa la posición angular de los brazos respecto al eje construido por el punto del origen del sistema de referencia local  y  para la cadena cinemática $i\in\{1,2,3\}$.\\
             \hline
              $O$ – $xyz$ & Sistema de referencia local utilizado para resolver la dinámica del robot delta \\
             \hline
-            $A_{i}$ – $x_{i}y_{i}z_{i}$ & Sistema de referencia con origen coincidente en la junta revoluta que una la base fija con los brazos para la cadena cinemática i \\
+            $A_{i}$ – $x_{i}y_{i}z_{i}$ & Sistema de referencia con origen coincidente en la junta revoluta que una la base fija con los brazos para la cadena cinemática $i\in\{1,2,3\}$ \\
             \hline
-             $F_{x},F_{y},F_{z}$ & Fuerzas externas sobre la base movil\\
+             $F_{x},F_{y},F_{z}$ & Fuerzas externas sobre la base móvil\\
             \hline
             \end{tabular}
-           \caption{Simbología y descripción de los sistema de referencia, longitudes, puntos y ángulos principales para el desarrollo de la dinámica inversa del método A}
+           \caption{Simbología y descripción de los sistema de referencia, longitudes, puntos y ángulos principales para el desarrollo de la dinámica inversa del método A.}
            \label{tab:cap4_tabla_dina_ma_2}
         \end{table}
    
@@ -957,7 +958,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
 
     \subsubsection{Dinámica inversa}
     
-        Un paso importante en el proceso de diseño de un robot es comprender el comportamiento del dispositivo mientras se mueve por su espacio de trabajo o al realizar una tarea específica. Este comportamiento se determina mediante el estudio de la dinámica del mecanismo, donde se pueden determinar las fuerzas que actúan sobre los elementos y los pares requeridos por los actuadores. En consecuencia, cada componente debe optimizarse en dimensiones y material para ser utilizado en los procesos de fabricación. Por lo tanto, es esencial buscar cuáles son los enfoques comunes utilizados para calcular la dinámica del robot. Hay tres enfoques: en primer lugar, la formulación de Newton-Euler, que es un método tradicional basado en las leyes de Newton, pero necesita una gran cantidad de ecuaciones, ya que requiere establecer un número n de ecuaciones para cada elemento con el fin de resolver el sistema. Como resultado, es el método más lento en cuanto a eficiencia computacional. En segundo lugar, el trabajo virtual de Principio, que es una derivación del método de Euler y Lagrange utilizando el cálculo de variaciones, se ha utilizado para estudiar la mecánica de los cuerpos deformables. Este enfoque establece que el trabajo total realizado por una fuerza a lo largo de la trayectoria sobre una partícula se puede calcular si esas fuerzas actúan cuando la partícula se mueve del punto A al punto B. Finalmente, la formulación lagrangiana, que se basa en variaciones de cálculo, establece que un sistema dinámico puede expresarse en términos de su energía cinética y potencial conduciendo de manera sencilla a la solución del problema. Además, se considera una buena opción para el control en tiempo real de manipuladores paralelos.
+        Un paso importante en el proceso de diseño de un robot es comprender el comportamiento del dispositivo mientras se mueve por su espacio de trabajo o al realizar una tarea específica. Este comportamiento se determina mediante el estudio de la dinámica del mecanismo, donde se pueden determinar las fuerzas que actúan sobre los elementos y los pares requeridos por los actuadores. En consecuencia, cada componente debe optimizarse en dimensiones y material para ser utilizado en los procesos de fabricación. Por lo tanto, es esencial buscar cuáles son los enfoques comunes utilizados para calcular la dinámica del robot. Hay tres enfoques: en primer lugar, la formulación de Newton-Euler, que es un método tradicional basado en las leyes de Newton, pero necesita una gran cantidad de ecuaciones, ya que requiere establecer un número n de ecuaciones para cada elemento con el fin de resolver el sistema. Como resultado, es el método más lento en cuanto a eficiencia computacional. En segundo lugar, el principio de trabajo virtual, que es una derivación del método de Euler y Lagrange utilizando el cálculo de variaciones, se ha utilizado para estudiar la mecánica de los cuerpos deformables. Este enfoque establece que el trabajo total realizado por una fuerza a lo largo de la trayectoria sobre una partícula se puede calcular si esas fuerzas actúan cuando la partícula se mueve del punto A al punto B. Finalmente el tercer enfoque es la formulación lagrangiana, que se basa en variaciones de cálculo, establece que un sistema dinámico puede expresarse en términos de su energía cinética y potencial conduciendo de manera sencilla a la solución del problema. Además, se considera una buena opción para el control en tiempo real de manipuladores paralelos.
     
          Newton estableció los fundamentos de la dinámica donde se deben identificar las fuerzas que producen el cambio para resolver la dinámica de un cuerpo. En su enfoque, se utiliza un diagrama de cuerpo libre para representar todas las fuerzas de cada cuerpo para desarrollar el análisis. Por el contrario, Leibniz, un contemporáneo de Newton, pensó que la acción de una fuerza podría medirse analizando los cambios en la energía potencial y cinética. Más tarde, los métodos variacionales aparecieron formalmente gracias a Lagrange y Hamilton. En este enfoque, la energía, que es una cantidad escalar, facilita el análisis del trabajo realizado en comparación con vectores como la velocidad y la aceleración, que pueden volverse engorrosos en algunos sistemas de coordenadas. La ventaja de utilizar un enfoque lagrangiano es que mientras que en la mecánica vectorial es necesario definir un sistema de coordenadas específico para todos los objetos analizados, en los métodos variacionales no importa si un objeto está en coordenadas cilíndricas y el otro en coordenadas esféricas. Los detalles no son importantes siempre que puedan expresarse en términos de coordenadas que tienen tres coordenadas que se refieren al centro de masa del cuerpo y tres coordenadas a la orientación específica del cuerpo en el espacio.
 
@@ -1011,7 +1012,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
         \end{multline}
         
     
-        Donde  $L$  es el lagrangiano, $T$ es la energía cinética total,  $ V$  es la energía potencial,  $ q_{j}$  es la j-ésima coordenada generalizada,  $ \left( X_{p},~Y_{p},~Z_{p} \right)$  representan las coordenadas del centroide de la plataforma móvil, $\left(  \theta _{1}, \theta _{2}, \theta _{3} \right) $  es la posición angular de los motores, $Q_{j}^{ \left( NU \right) } $  son fuerzas externas generalizadas (no potencial), $\lambda _{l}$ es el multiplicador de Lagrange , $ K^{ \left( h \right) }$ cantidad de restricciones holónomas y  $f_{l}^{ \left( h \right) }$  son la ecuación de restricción holónomas de forma explícita. Empleando la fórmula anterior, es posible determinar las fuerzas externas de un cuerpo. Sin embargo, las fuerzas de fricción no son restricciones a pesar de que juegan un papel importante en el análisis de la dinámica, por lo que pueden tratarse por separado. Una vez que se introduce la ecuación de Lagrange para el movimiento y se establecen los parámetros necesarios para su análisis, es posible calcular el torque de un robot delta bajo una trayectoria específica.
+        Donde  $L$  es el lagrangiano, $T$ es la energía cinética total,  $ V$  es la energía potencial,  $ q_{j}$  es la j-ésima coordenada generalizada,  $ \left( X_{p},~Y_{p},~Z_{p} \right)$  representan las coordenadas del centroide de la plataforma móvil, $\left(  \theta _{1}, \theta _{2}, \theta _{3} \right) $  es la posición angular de los motores, $Q_{j}^{ \left( NU \right) } $  son fuerzas externas generalizadas (no potencial), $\lambda _{l}$ es el multiplicador de Lagrange , $ K^{ \left( h \right) }$ cantidad de restricciones holónomas y  $f_{l}^{ \left( h \right) }$  son la ecuación de restricción holónomas de forma explícita. Las fuerzas de fricción no son restricciones a pesar de que juegan un papel importante en el análisis de la dinámica, por lo que pueden tratarse por separado. Una vez que se introduce la ecuación de Lagrange para el movimiento y se establecen los parámetros necesarios para su análisis, es posible calcular el torque en los actuadores de un robot delta bajo una trayectoria específica.
     
     
     
@@ -1020,7 +1021,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
     \newpage
     
     
-    Se sabe que, si en el las ecuaciones de Lagrange la coordenada generalizada  $  q_{j} $   es un ángulo, entonces  $  Q_{j}^{ \left( NU \right) } \left( q_{j} \right)  $   representa un torque. Por lo tanto, para determinar el torque necesario en los motores para realizar una determinada trayectoria de la base móvil, se resuelven las ecuaciones de Lagrange con las coordenadas generalizadas  $ q_{j}= \left[  \theta _{1}, \theta _{2}, \theta _{3} \right]  $  . La ecuación que determina los torques de los motores $i=1,2,3$  es:
+    Se sabe que, si en el las ecuaciones de Lagrange la coordenada generalizada  $  q_{j} $   es un ángulo, entonces  $  Q_{j}^{ \left( NU \right) } \left( q_{j} \right)  $   representa un torque. Por lo tanto, para determinar el torque necesario en los motores para realizar una determinada trayectoria de la base móvil, se resuelven las ecuaciones de Lagrange con las coordenadas generalizadas  $ q_{j}= \left[  \theta _{1}, \theta _{2}, \theta _{3} \right]  $  . La ecuación que determina los torques de los motores $i\in\{1,2,3\}$  es:
     
     \begin{multline}
     \tau_{i}= \left( \frac{1}{3}m_{1}+m_{2} \right) L_{1}^{2}\ddot{ \theta }_{i}- \left( \frac{1}{2}m_{1}+m_{2} \right) gL_{1}\cos  \theta _{i}\\
@@ -1045,7 +1046,7 @@ En la siguiente tabla muestra la relación entre la numeración en la figura ant
         \label{eq:cap4_dina_ma_14}
     \end{equation}
 
-    El término $ \left( F_{px},F_{py},F_{pz} \right)$ son las fuerzas externas que se aplican a la base móvil y   $r=r_{a}-r_{b} $
+    El término $ \left( F_{px},F_{py},F_{pz} \right)$ son las fuerzas externas que se aplican a la base móvil y   $r=r_{a}-r_{b}$.
 
 
 
