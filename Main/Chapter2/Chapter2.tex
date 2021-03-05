@@ -30,9 +30,8 @@
         
         \item \textbf{Japanese Industrial Robot Association (JIRA)}: ``Un robot de un dispositivo con grados de libertad que puede ser controlado.''
         
-        \item \textbf{International Federation of Robotics (IFR)}: ``Un robot es un mecanismo actuado programable en dos o más ejes con un grado de autonomía, que se mueva en su entorno para realizar tareas previstas.''
-        \textit{Nota 1: Un robot incluye el sistema de control y la interfase con el sistema de control.}\\
-        \textit{Nota 2: La clasificación de robot industrial o robot de servicio se hace de acuerdo con la aplicación prevista.}
+        \item \textbf{International Federation of Robotics (IFR)}: ``Un robot es un mecanismo actuado programable en dos o más ejes con un grado de autonomía, que se mueva en su entorno para realizar tareas previstas.
+        \textit{Nota 1: Un robot incluye el sistema de control y la interfase con el sistema de control.}\textit{Nota 2: La clasificación de robot industrial o robot de servicio se hace de acuerdo con la aplicación prevista.}''
         
     \end{itemize}
     
@@ -100,13 +99,13 @@
     \caption{Evolución de la robótica industrial}
  \end{longtable}
  
-    El robot delta fue investigado e inventando en 1985 por el profesor Reymond Clavel (figura \eqref{f:Cap2_general_4}) y su equipo en el laboratorio de sistemas de robótica de la la École Polytechnique Fédérale de Lausanne (EPFL, Suiza). Ellos comenzaron la investigación del robot delta después de una visita a una fabrica de chocolate. El equipo de Clavel estaba buscando aplicaciones de mano de obra repetitivas para robots, y descubrieron que el empaque de bombones de chocolate era un candidato para este tipo de automatización de alta velocidad y baja carga útil. En ese mismo año se completo el prototipo de robot delta el cual fue patentado. En 1987 la compañía suiza Demareux Robotics and Microtechnology compró una licencia del robot delta y comenzó la producción de robots delta para la industria de empaquetamiento. En 1991 el Dr. Reymond Clavel presentó su tesis doctoral 'Conception d'un robot parallèle rapide à 4 degrés de liberté' y recibió el premio Golden Robot Award, patrocinado por ABB Flexible Automation, por su trabajo innovador y desarrollo del robot delta.
+    El robot delta fue investigado e inventando en 1985 por el profesor Reymond Clavel (figura \eqref{f:Cap2_general_4}) y su equipo en el laboratorio de sistemas de robótica de la la École Polytechnique Fédérale de Lausanne (EPFL, Suiza). Ellos comenzaron la investigación del robot delta después de una visita a una fabrica de chocolate. El equipo de Clavel estaba buscando aplicaciones de mano de obra repetitivas para robots, y descubrieron que el empaque de bombones de chocolate era un candidato para este tipo de automatización de alta velocidad y baja carga útil. En ese mismo año se completo el prototipo de robot delta, el cual fue patentado. En 1987 la compañía suiza Demareux Robotics and Microtechnology compró una licencia del robot delta y comenzó la producción estos para la industria de empaquetamiento. En 1991 el Dr. Reymond Clavel presentó su tesis doctoral 'Conception d'un robot parallèle rapide à 4 degrés de liberté' y recibió el premio Golden Robot, Award patrocinado por ABB Flexible Automation, por su trabajo innovador y desarrollo del robot delta.
 
 
     \begin{figure}[htb]
         \centering
         \includegraphics[width=0.36\linewidth]{Main/Chapter2/Images2/Reymond-Clavel-Robot-Delta.png}
-        \caption{Reymond Clavel y Robot Delta \cite{cap2_rey}}
+        \caption{Reymond Clavel y el robot delta \cite{cap2_rey}}
         \label{f:Cap2_general_4}
     \end{figure}
     
@@ -117,7 +116,7 @@
     
     \subsection{Clasificación por generación}
         \subsubsection{Primera generación}
-            Robots manipuladores. Se caracterizan por programas de control fijos relativamente sencillo de lazo abierto (sin retroalimentación), son capaces de repetir operaciones previamente programadas en ellos, no pueden adaptarse al entorno, por lo que no deben existir perturbaciones externas. Estos robots son los más adecuados en entornos industriales que realizan operaciones repetitivas.
+            Robots manipuladores. Se caracterizan por programas de control fijos, relativamente sencillos de lazo abierto (sin retroalimentación). Son capaces de repetir operaciones previamente programadas en ellos, no pueden adaptarse al entorno, por lo que no deben existir perturbaciones externas. Por lo tanto, estos robots son los más adecuados en entornos industriales que realizan operaciones repetitivas.
         
         \subsubsection{Segunda generación}
             Robots de aprendizaje. Son adaptativos, pueden operar en entornos variables o parcialmente desconocidos. Estos robots ejecutan una serie de operaciones predefinidas, pero también pueden tener en cuenta los cambios en el entorno y modificar su rutina para realizar sus tareas. Imitan la secuencia de movimientos que ha sido ejecutada previamente por un operador humano. El operador realiza los movimientos requeridos mientras el robot le sigue y los memoriza con ayuda de sensores que recopilan datos.
@@ -131,7 +130,7 @@
     \subsection{Clasificación por arquitectura o estructura}
         
         \subsubsection{Poli-articulados}
-        La característica principal de este tipo de robots es la de ser sedentarios, aunque algunos tienen desplazamientos limitados. Tienen un espacio de trabajo limitado según uno o más sistemas de coordenadas y tienen un número limitado de grados de libertad. En la figura \eqref{f:Cap2_general_6} se muestra uno de estos robot, el cual esta encargado de labores de soldadura.
+        La característica principal de este tipo de robots es la de ser sedentarios, aunque algunos tienen desplazamientos limitados. Tienen un espacio de trabajo limitado según uno o más sistemas de coordenadas y tienen un número limitado de grados de libertad. En la figura \eqref{f:Cap2_general_6} se muestra un ejemplo de estos robot, el cual esta encargado de labores de soldadura.
         
         \begin{figure}[htb]
             \centering
@@ -141,7 +140,7 @@
         \end{figure}
         
         \subsubsection{Zoomórficos}
-        La característica principal de este tipo de robot es que imitan los movimientos, desplazamientos y funciones de diversos tipos de seres vivos. Existen dos categorías de robots zoomórficos: no caminadores y caminadores. En la actualidad se encuentran en mayor cantidad los robots caminadores. Un ejemplo de estos ultimos es el robot que se aprecia en la figura \eqref{f:Cap2_general_7}, llamado Spot classic de Boston Dynamics. Las aplicaciones de estos robots son esencialmente áreas peligrosas tales como la exploración espacial, estudio de volcanes, fines militares e industrias nucleares. 
+        La característica principal de este tipo de robot es que imitan los movimientos, desplazamientos y funciones de diversos tipos de seres vivos. Existen dos categorías de robots zoomórficos: no caminadores y caminadores. En la actualidad se encuentran en mayor cantidad los robots caminadores. Un ejemplo de estos ultimos es el robot que se aprecia en la figura \eqref{f:Cap2_general_7}, llamado 'Spot classic de Boston Dynamics'. Las aplicaciones de estos robots son esencialmente en áreas peligrosas tales como la exploración espacial, estudio de volcanes, fines militares e industrias nucleares. 
         
         \begin{figure}[htb]
             \centering
@@ -181,7 +180,7 @@
     
         \subsubsection{Robots articulados}
         
-        El robot articulado es uno de los tipos más comentados de robots industriales. Se asemeja a un brazo humano en su configuración mecánica. El brazo está conectado a la base con una articulación giratoria. Las articulaciones pueden ser paralelas u ortogonales entre sí. Los robots articulados que tienen seis grados de libertad son los robots industriales más utilizados, ya que el diseño ofrece la máxima flexibilidad.
+        Los robots articulados son unos de los tipos más comentados de robots industriales. Se asemejan a un brazo humano en su configuración mecánica. El brazo está conectado a la base con una articulación giratoria. Las articulaciones pueden ser paralelas u ortogonales entre sí. Los robots articulados que tienen seis grados de libertad son los robots industriales más utilizados, ya que el diseño ofrece la máxima flexibilidad.
         
         \begin{figure}[htb]
             \centering
@@ -206,7 +205,7 @@
         
         \subsubsection{Robots SCARA}
         
-        Los robots SCARA son robots que pueden hacer 3 traslaciones más una rotación alrededor de un eje vertical. Los ejes rotativos se colocan verticalmente, y el efector final unido al brazo se mueve vertical. Por la configuración de los brazos de SCARA, son flexibles en los ejes XY y rígidos en el eje Z. Los robots SCARA se especializan en movimientos laterales y se utilizan principalmente para aplicaciones de ensamblaje. 
+        Los robots SCARA son los robots que pueden hacer 3 traslaciones más una rotación alrededor de un eje vertical. Los ejes rotativos se colocan verticalmente, y el efector final unido al brazo se mueve vertical. Por la configuración de los brazos de SCARA, son flexibles en los ejes XY y rígidos en el eje Z. Los robots SCARA se especializan en movimientos laterales y se utilizan principalmente para aplicaciones de ensamblaje. 
         
         \begin{figure}[htb]
             \centering
@@ -242,7 +241,7 @@
         
         \subsubsection{Robots polares}
         
-        También llamados robots esféricos, en esta configuración el brazo está conectado a la base con una junta giratoria y una combinación de dos juntas rotativas y una junta lineal. Los ejes forman un sistema de coordenadas polares y crean una envoltura de trabajo de forma esférica.
+        También llamados robots esféricos. En esta configuración el brazo está conectado a la base por una junta giratoria , una combinación de dos juntas rotativas y una junta lineal. Los ejes forman un sistema de coordenadas polares y crean una envoltura de trabajo de forma esférica.
         
         \begin{figure}[htb]
             \centering
@@ -256,7 +255,7 @@
 
 \section{Estadísticas y aplicaciones}
 
-    Muchos tipos de actividades en los sectores industriales tienen el potencial técnico para ser automatizados. Según el reporte ``El potencial técnico para la automatización en los EE. UU'' de McKinsey Company en enero del 2017, el 50\% de los trabajos realizados por humanos hoy son vulnerables al reemplazo por robots. Eso podría equivaler a una pérdida de \$15 billones dólares en salarios en todo el mundo y \$2.7 billones de dólares en el EE. UU. Esto puede ocurrir por completo entre los años 2035 -2055 aproximadamente. 
+    Muchos tipos de actividades en los sectores industriales tienen el potencial técnico para ser automatizados. Según el reporte ``El potencial técnico para la automatización en los EE. UU'' de McKinsey Company en enero del 2017, el 50\% de los trabajos realizados por humanos hoy son vulnerables al reemplazo por robots. Eso podría equivaler a una pérdida de \$15 billones dólares en salarios en todo el mundo y \$2.7 billones de dólares en los EE. UU. Esto puede ocurrir por completo entre los años 2035 -2055 aproximadamente. 
     
     En la práctica, la implementación de la automatización en nuestro mundo dependerá de más que solo la viabilidad técnica. Existen cinco factores:
 
@@ -275,7 +274,7 @@
         \label{f:Cap2_general_potencial_automatizacion_11}
     \end{figure}
     
-    Según la figura \eqref{f:Cap2_general_potencial_automatizacion}, las actividades más automatizables son las que gran parte del tiempo implican realizar actividades físicas u operar maquinaria en un entorno predecible. Los trabajadores llevan a cabo acciones específicas en entornos conocidos donde los cambios son relativamente fáciles de anticipar. Dado que las actividades físicas predecibles ocupan un lugar destacado en sectores como la fabricación, el servicio de alimentos y el alojamiento, y la venta minorista, estas son las más susceptibles a la automatización basadas solo en consideraciones técnicas.
+    Según la figura \eqref{f:Cap2_general_potencial_automatizacion}, las actividades más automatizables son las que gran parte del tiempo implican realizar actividades físicas u operar maquinaria en un entorno predecible. Los trabajadores llevan a cabo acciones específicas en entornos conocidos donde los cambios son relativamente fáciles de anticipar. Dado que las actividades físicas predecibles ocupan un lugar destacado en sectores como la fabricación, el servicio de alimentos y el alojamiento y la venta minorista, estas son las más susceptibles a la automatización basadas solo en consideraciones técnicas.
     
     
     \begin{enumerate}
@@ -305,11 +304,11 @@
         \newpage
 
 
-    Acerca del tamaño y crecimiento del mercado de robots industriales, se puede decir que pocos han mostrado un crecimiento tan fuerte y sostenido en la última década, en la figura \eqref{f:Cap2_general_envios_anuales} se puede observar este crecimiento. En los últimos años, las instalaciones anuales aumentaron en un 19\% CAGR, lo que resultó en 422,271 nuevas instalaciones globales en 2018, por un valor de USD 16,5 mil millones. Esto fue solo para el hardware robótico, mientras que el software / servicios y el hardware periférico ascendieron aproximadamente al mismo valor cada uno. A finales de 2018, el stock operativo global total de robots fue de 2.439.543. Asia es el motor de crecimiento detrás de estos números (dos de cada tres nuevas instalaciones robóticas ocurren en Asia), con China a la cabeza (aumentando el stock operativo de robots en casi un 30\% interanuales los años pasados). Europa y América se están quedando un poco atrás. 
+    Acerca del tamaño y crecimiento del mercado de robots industriales, se puede decir que pocos han mostrado un crecimiento tan fuerte y sostenido en la última década. La figura \eqref{f:Cap2_general_envios_anuales} reafirma este crecimiento. En los últimos años, las instalaciones anuales aumentaron en un 19\% CAGR, lo que resultó en 422,271 nuevas instalaciones globales en 2018, por un valor de USD 16,5 mil millones. Esto fue solo para el hardware robótico, mientras que el software / servicios y el hardware periférico ascendieron aproximadamente al mismo valor cada uno. A finales de 2018, el stock operativo global total de robots fue de 2.439.543. Asia es el motor de crecimiento detrás de estos números (dos de cada tres nuevas instalaciones robóticas ocurren en Asia), con China a la cabeza (aumentando el stock operativo de robots en casi un 30\% interanuales los años pasados). Europa y América se están quedando un poco atrás. 
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.67\linewidth]{Main/Chapter2/Images2/envios-anuales-robots.png}
-        \caption{Envíos anuales (en miles) de robots industriales en todo el mundo. Fuente: IFR , McK.\cite{growth_Insights}}
+        \caption{Envíos anuales (en miles) de robots industriales en todo el mundo \cite{growth_Insights}.}
         \label{f:Cap2_general_envios_anuales}
     \end{figure}
     Además del rápido crecimiento, lo más emocionante de la robótica es el impacto fundamental que tendrá en nuestras vidas futuras, librándonos potencialmente de la mayor parte del trabajo manual. A pesar de una percepción comúnmente diferente, incluso en industrias “altamente automatizadas” como la automotriz, el grado promedio de automatización (número de tareas automatizadas / número de tareas totales) en el ensamblaje final es solo alrededor del 8-10\%. Y la mayoría de las otras industrias están muy por debajo de eso. Por otro lado, generalmente se estima que hasta el 85\% de todas las tareas son 'automatizables'. Escalar esta curva de automatización ofrece una gran oportunidad para aumentar la productividad y el bienestar global, si nosotros, como sociedad, podemos compartir sus beneficios por igual.
