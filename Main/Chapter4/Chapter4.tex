@@ -1061,11 +1061,11 @@ En la tabla \eqref{tab:cap4_tabla_dina_ma_1} muestra la relación entre la numer
 
     \subsection{Modulación cinemática de la posición}\label{MB_MP}
     
-            Con el objetivo de modelar la cinemática del robot delta, en esta sección se implementan las ideas expuestas en la fuente \cite{Path_Planning_and_Trajectory_Optimization}, que aborda en uno de sus capítulos la problemática de cinemática directa e inversa.
+            Con el objetivo de modelar la cinemática del robot delta, en esta sección se implementan las ideas expuestas en la tesis doctoral  \cite{Path_Planning_and_Trajectory_Optimization}, que aborda en uno de sus capítulos la problemática de cinemática directa e inversa.
     
         \subsubsection{Nomenclatura de parámetros geométricos y sistema de referencia local}
 
-            En la figura \eqref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_1}, se presenta las partes mecánicas y la nomenclatura de los parámetros del robot delta simplificado para resolver el problema de cinemática con su respectivo sistema de referencia local:
+            En la figura \eqref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_1} se presenta el sistema de referencia local, las partes mecánicas y la nomenclatura de los parámetros del robot delta simplificado para resolver el problema de cinemática.
 
             \begin{figure}[htb]
                  \centering
@@ -1095,7 +1095,7 @@ En la tabla \eqref{tab:cap4_tabla_dina_ma_1} muestra la relación entre la numer
              6 & Actuador \\
              \hline
             \end{tabular}
-           \caption{Nombres de partes mecánicas del robot delta del método B}
+           \caption{Nombres de partes mecánicas del robot delta del método B.}
            \label{tab:cap4_tabla_11}
         \end{table}
         
@@ -1133,9 +1133,9 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
             \hline
              $R_B$ & Distancia entre el centro del efector a la junta que lo une con el antebrazo\\
             \hline
-             $f$ & longitud de un lado del triángulo equilátero inscribe el círculo formado por los puntos $F'_1$, $F'_2$ y $F'_3$ (base fija)\\
+             $f$ & Longitud de un lado del triángulo equilátero inscribe el círculo formado por los puntos $F'_1$, $F'_2$ y $F'_3$ (base fija)\\
             \hline
-             $e$ & longitud de un lado del equilátero triángulo inscribe el círculo formado por los puntos $P'_1$, $P'_2$ y $P'_3$ (efector final)\\
+             $e$ & Longitud de un lado del equilátero triángulo inscribe el círculo formado por los puntos $P'_1$, $P'_2$ y $P'_3$ (efector final)\\
             \hline
              $\theta_i$ & Angulo de los actuadores\\
             \hline
@@ -1143,10 +1143,10 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
             \hline            
              $F_i$ & Punto de la posición de los actuadores\\
             \hline  
-             $P_0$ & posición del final efector en el espacio cartesiano con respecto al sistema de coordenadas con origen $O$ en el centroide de la base fija\\
+             $P_0$ & Posición del final efector en el espacio cartesiano con respecto al sistema de coordenadas con origen $O$ en el centroide de la base fija\\
             \hline            
             \end{tabular}
-            \caption{Principales parámetros geométricos y puntos para la solución de la cinemática del método B}
+            \caption{Principales parámetros geométricos y puntos para la solución de la cinemática del método B.}
            \label{tab:cap4_tabla_12}
         \end{table}
         \endgroup     
@@ -1154,12 +1154,12 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
         
         \newpage
     
-        La definición de los vectores utilizados para la formulación de la solución de cinemática del robot paralelo delta se muestra en la siguiente figura: 
+        La definición de los vectores utilizados para la formulación de la solución de cinemática del robot paralelo delta se muestra en la figura \eqref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_33} y en la tabla \eqref{tab:cap4_tabla_1332}. 
     
             \begin{figure}[htb]
                  \centering
                  \includegraphics[width=0.55\linewidth]{Main/Chapter4/Images4/DIBUJO26.png}
-                  \caption{Vectorización para la solución de cinemática del metodo B  \cite{Path_Planning_and_Trajectory_Optimization}.}
+                  \caption{Vectorización para la solución de cinemática del método B  \cite{Path_Planning_and_Trajectory_Optimization}.}
                   \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_33}
             \end{figure} 
     
@@ -1169,7 +1169,7 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
             \centering
             \begin{tabular}{c m{12cm}}
                \hline
-               \textbf{Parametro}  & \multicolumn{1}{c}{\textbf{Descripción}}  \\
+               \textbf{Parámetro}  & \multicolumn{1}{c}{\textbf{Descripción}}  \\
                \hline           \hline            
              $\overrightarrow{{P}_{0}}$ & Vector con punto inicial en el centro de la base fija y con extremo en el centro del efector final \\
             \hline
@@ -1193,7 +1193,7 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
 
 \subsubsection{Cinemática directa}\label{mb_cd}
         
-        En\ la cinemática directa, se calcula la posición del efector final del manipulador robótico a partir de la información dada de los ángulos en los actuadores.
+        En\ la cinemática directa se calcula la posición del efector final del manipulador robótico a partir de la información dada de los ángulos en los actuadores.
 
 
         \begin{equation}
@@ -1201,9 +1201,9 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
         \label{eq:cap4_MB_1}
         \end{equation}
 
-        El método de solución de la cinemática directa en esta sección es el mismo que el empleado para el método A de este capitulo. Lo único que cambia es la nomenclatura de los parámetros y la orientación del sistema de referencia local.
+        El método de solución de la cinemática directa en esta sección es el mismo que el empleado para el método A. Lo único que cambia es la nomenclatura de los parámetros y el orden de numeración de los ángulos de los actuadores (figura \eqref{f:cap4_mb_cineposdirect}).
         
-        Como los ángulos   $\theta_1,\theta_2,\theta_3$  se conocen en el problema de cinemática directa, las coordenadas de los puntos $J_1,J_2,J_3$   se pueden encontrar fácilmente. Los antebrazos   $\overline{J_1P_1},\overline{J_2P_2},\overline{J_3P_3}$   pueden girar libremente alrededor de los puntos $J_1,J_2,J_3$   respectivamente. A fin de que calcular la cinemática directa, los puntos  $J_1,J_2,J_3$   se trasladan a  $J'_1,J'_2,J'_3$ , utilizando los vectores de traslación $\overrightarrow{\xi_{P_1 P_0}},\overrightarrow{\xi_{P_2P_0}},\overrightarrow{\xi_{P_3 P_0}}$    respectivamente, como se muestra en la figura \eqref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_3} (vectores color amarillo):
+        Como los ángulos   $\theta_1,\theta_2,\theta_3$  se conocen en el problema de cinemática directa, las coordenadas de los puntos $J_1,J_2,J_3$   se pueden encontrar fácilmente. Los antebrazos   $\overline{J_1P_1},\overline{J_2P_2},\overline{J_3P_3}$   pueden girar libremente alrededor de los puntos $J_1,J_2,J_3$   respectivamente. A fin de calcular la cinemática directa, los puntos  $J_1,J_2,J_3$   se trasladan a  $J'_1,J'_2,J'_3$ , utilizando los vectores de traslación $\overrightarrow{\xi_{P_1 P_0}},\overrightarrow{\xi_{P_2P_0}},\overrightarrow{\xi_{P_3 P_0}}$    respectivamente, como se muestra en la figura \eqref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_3} (vectores color amarillo).
         
             \begin{figure}[htb]
                  \centering
@@ -1212,7 +1212,7 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
                   \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_3}
             \end{figure}        
 
-        Como resultado de esta traslación se producen tres esferas con radio $L_B$ y centro en los puntos $J'_1,J'_2,J'_3$  se cruzan en el punto $P_0$.
+        Como resultado de esta traslación se producen tres esferas con radio $L_B$ y centro en los puntos $J'_1,J'_2,J'_3$  que se cruzan en el punto $P_0$.
 
 
 
@@ -1237,7 +1237,7 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
         \end{equation}            
     Por lo tanto, se dispone de un sistema de ecuaciones con 3 ecuaciones y con 3 incógnitas \( P_{0x},P_{0y},P_{0z} \) .  
     
-    Para la calcular los centros \( J'_{1},~J'_{2},J'_{3} \) ,primero se miden las magnitudes de otros vectores que son fundamentales para identificar de mejor forma estos puntos en el espacio y facilitar su cálculo. En la figura \eqref{f:cap4_mb_cineposdirect}, se muestra la vista superior del robot paralelo delta. Desde esta vista, se puede calcular la magnitud de la traslación de  $J_i$ a  $J'_i$  gracias a que la geometría de la base fija y el efector son triángulos equiláteros con lados definidos, f y e respectivamente. Esta geometría básica también permite encontrar la distancia desde el centro de la base fija y los actuadores.
+    Para la calcular los centros \( J'_{1},~J'_{2},J'_{3} \), primero se miden las magnitudes de otros vectores que son fundamentales para identificar de mejor forma estos puntos en el espacio y facilitar su cálculo. En la figura \eqref{f:cap4_mb_cineposdirect}, se muestra la vista superior del robot paralelo delta. Desde esta vista, se puede calcular la magnitud de la traslación de  $J_i$ a  $J'_i$  gracias a que la geometría de la base fija y el efector son triángulos equiláteros con lados definidos, $f$ y $e$ respectivamente. Esta geometría básica también permite encontrar la distancia desde el centro de la base fija y los actuadores.
     
             \begin{figure}[htb]
                  \centering
@@ -1278,38 +1278,40 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
         \label{eq:cap4_MB_5}
         \end{equation}    
   
-      Después de calcular todos los vectores de traslación y las coordenadas de los centros de las esferas, el sistema de ecuaciones  \eqref{eq:cap4_MB_22}, \eqref{eq:cap4_MB_23} y \eqref{eq:cap4_MB_24} se puede resolver para obtener la posición del efector final \( P_{0x},P_{0y},P_{0z} \) .El método algebraico para resolver el sistema de ecuaciones, en otras palabras, la intersección de las 3 esferas trasladadas, es el mismo que en el metodo A, específicamente el de la ecuacion \eqref{eq:cap4_eq_2}.
+      Después de calcular todos los vectores de traslación y las coordenadas de los centros de las esferas, el sistema de ecuaciones  \eqref{eq:cap4_MB_22}, \eqref{eq:cap4_MB_23} y \eqref{eq:cap4_MB_24} se puede resolver para obtener la posición del efector final \( P_{0x},P_{0y},P_{0z} \) .El método algebraico para resolver el sistema de ecuaciones, en otras palabras, la intersección de las 3 esferas trasladadas, es el mismo que en el metodo A, específicamente el de la ecuación \eqref{eq:cap4_eq_2}.
   
  \newpage
         
         
-
+{\hypersetup{colorlinks=true,        
+    linkcolor=blue,         
+    filecolor=magenta,       
+    urlcolor=russet,           
+    citecolor=blue}
 \subsubsection{Cinemática inversa}\label{mb_ci}
 
-      En la cinemática inversa, se calculan los ángulos de las articulaciones, en este caso, los actuadores gracias a la posición dada de efector final en el espacio cartesiano. 
+      En la cinemática inversa, se calculan los ángulos de los actuadores gracias a la posición dada de efector final en el espacio cartesiano. 
       
         \begin{equation}
               P_{0} \left( P_{0x},P_{0y},P_{0z} \right) ~~ \rightarrow    \theta _{1},~ \theta _{2}, \theta _{3} 
         \label{eq:cap4_MB_6}
         \end{equation}\par      
       
-     En esta sección, el método de solución de la cinemática inversa es el mismo que el empleado para EL método A de este capitulo. Lo único que cambia es la nomenclatura de los parámetros y la orientación del sistema de referencia local.
+        El método de solución de la cinemática inversa en esta sección es el mismo que el empleado para el método A. Lo único que cambia es la nomenclatura de los parámetros y el orden de numeración de los ángulos de los actuadores (figura \eqref{f:Cinematica_Posicion_4}).
   
            \begin{figure}[htb]
              \centering
-              \subfloat[Intersección de círculos en punto $J_i$]{
-             \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_4a}
-                %\includegraphics[width=0.5\textwidth]{Main/Chapter4/Images4/Metodo_B_Modelacion_Cinematica_Posicion_4a.png}
-                \includegraphics[width=0.52\textwidth]{Main/Chapter4/Images4/DIBUJO27.png}
-                }
-              \subfloat[Vista frontal efector final]{
-             \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_4b}
-                \includegraphics[width=0.45\textwidth]{Main/Chapter4/Images4/DIBUJO30}}
-             \caption{Solución de la cinemática directa de posición del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
-             \label{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_4}
+            \subfloat[Intersección de círculos en punto $J_i$]{
+                      \includegraphics[width=0.52\textwidth]{Main/Chapter4/Images4/DIBUJO27.png}
+                        \label{f:Cinematica_Posicion_4a}}
+            \subfloat[Vista frontal efector final]{
+                      \includegraphics[width=0.4\textwidth]{Main/Chapter4/Images4/DIBUJO30.png}
+                        \label{f:Cinematica_Posicion_4B}}
+            \caption{Solución de la cinemática directa de posición del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
+            \label{f:Cinematica_Posicion_4}
         \end{figure}
   
-      Primero se empieza por calcular en ángulo $\theta_2$. Se trabaja sobre el marco de referencia $YZ$ ya que el brazo  \overline{\( F_{2}J_{2}  \)} solo puede moverse en ese plano como se muestra en la figura \eqref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_4a}. De la figura \eqref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_4b} se desprenden las coordenadas de punto $F_2=\left[0,\frac{-f}{(2\sqrt{3})},0\right]$ .Sobre el plano $ YZ $ se proyecta el antebrazo para obtener una segunda restricción geométrica relacionada con la junta  \( J_{2} \) . En consecuencia, la posición de la junta esférica  \( J_{2} \)  está restringida por 2 circunferencias en el plano $YZ$. Se dibuja el primer círculo con centro  \( F_{2} \)  y radio  \( L_{A} \) . El segundo círculo se dibuja con el centro en el punto  \( P'_{2} \)  y radio  \( \sqrt[]{L_{B}^{2}-P_{0x}^{2}} \), donde el punto $P'_{2}=\left[0,P_{0y}-\frac{e}{2\sqrt{3}},P_{0z}\right]^T$ es la proyección del punto $P_{2}=\left[P_{0x},P_{0y}-\frac{e}{2\sqrt{3}},P_{0z}\right]^T$ sobre plano $YZ$ y el radio de la circunferencia es calculado de la expresión  $\Vert \overrightarrow{\xi}_{P'_2J_2} \Vert = \sqrt{\Vert \overrightarrow{\xi}_{P_2J_2}\Vert^2-\Vert \overrightarrow{\xi}_{P'_2P_2}\Vert^2 }=\sqrt[]{L_{B}^{2}-P_{0x}^{2}}$       como se aprecia en la figura \eqref{f:f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_44}.
+      Primero se empieza por calcular en ángulo $\theta_2$. Se trabaja sobre el marco de referencia $YZ$ ya que el brazo  \overline{\( F_{2}J_{2}  \)} solo puede moverse en ese plano como se muestra en la figura a \eqref{f:Cinematica_Posicion_4a}. De la figura b \eqref{f:Cinematica_Posicion_4B} se desprenden las coordenadas de punto $F_2=\left[0,\frac{-f}{(2\sqrt{3})},0\right]$. Sobre el plano $ YZ $ se proyecta el antebrazo para obtener una segunda restricción geométrica relacionada con la junta  \( J_{2} \) . En consecuencia, la posición de la junta esférica  \( J_{2} \)  está restringida por 2 circunferencias en el plano $YZ$. Se dibuja el primer círculo con centro  \( F_{2} \)  y radio  \( L_{A} \) . El segundo círculo se dibuja con el centro en el punto  \( P'_{2} \)  y radio  \( \sqrt[]{L_{B}^{2}-P_{0x}^{2}} \), donde el punto $P'_{2}=\left[0,P_{0y}-\frac{e}{2\sqrt{3}},P_{0z}\right]^T$ es la proyección del punto $P_{2}=\left[P_{0x},P_{0y}-\frac{e}{2\sqrt{3}},P_{0z}\right]^T$ sobre plano $YZ$ y el radio de la circunferencia es calculado de la expresión  $\Vert \overrightarrow{\xi}_{P'_2J_2} \Vert = \sqrt{\Vert \overrightarrow{\xi}_{P_2J_2}\Vert^2-\Vert \overrightarrow{\xi}_{P'_2P_2}\Vert^2 }=\sqrt[]{L_{B}^{2}-P_{0x}^{2}}$       como se aprecia en la figura \eqref{f:f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_44}.
       
      \newpage
 
@@ -1340,7 +1342,7 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
         \end{equation}  
     
     
-        El valor de  \( J_{2y} \)  y  \( J_{2z} \)  se puede calcular resolviendo simultáneamente la ecuación \eqref{eq:cap4_MB_7} y \eqref{eq:cap4_MB_8} al igual que en el metodo A. Todas las demás variables en este sistema de ecuaciones se asumen como conocidas o se miden a partir de la estructura geométrica del robot paralelo delta. Una vez que se conocen estos valores, se puede usar trigonometría simple para calcular el  \(  \theta _{2} \)  como se indica en la siguiente ecuación:
+        El valor de  \( J_{2y} \)  y  \( J_{2z} \)  se puede calcular resolviendo simultáneamente la ecuación \eqref{eq:cap4_MB_7} y \eqref{eq:cap4_MB_8} al igual que en el método A. Todas las demás variables en este sistema de ecuaciones se asumen como conocidas o se miden a partir de la estructura geométrica del robot paralelo delta. Una vez que se conocen estos valores, se puede usar trigonometría simple para calcular el  \(  \theta _{2} \)  como se indica en la siguiente ecuación:
         
         \begin{equation} 
             \theta_2=tan^{-1} \left(\frac{J_{2z}}{{F}_{2y}-{J}_{2y}}\right)
@@ -1353,15 +1355,14 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
         \begin{figure}[htb]
                  \centering
                \includegraphics[width=1\linewidth]{Main/Chapter4/Images4/DIBUJO32.jpg}
-               \caption{Rotación del sistema de referencia local para la solución de la cinemática
-inversa del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
-               \label{f:f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_44}
+               \caption{Rotación del sistema de referencia local para la solución de la cinemática inversa del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
+               \label{f:f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_444}
             \end{figure}
         \newpage
 
 \subsection{Modelación cinemática de la velocidad}\label{mb_cvel}
     
-        Con el objetivo de modelar la cinemática de velocidad del robot delta, en esta sección se implementa las ideas expuestas en la fuente \cite{Path_Planning_and_Trajectory_Optimization},  con los mismos parámetros, jerga y nomenclatura de la seccion  \eqref{MB_MP}
+        Con el objetivo de modelar la cinemática de velocidad del robot delta, en esta sección se implementa las ideas expuestas en el paper \cite{Path_Planning_and_Trajectory_Optimization},  con los mismos parámetros, jerga y nomenclatura de la seccion  \eqref{MB_MP}
         La base de la modelacion cinematica de velocidad es determinar la matriz jacobiana  \( J \) . Esta juega un papel importante en el modelo dinámico del manipulador robótico como se aprecia en secciones posteriores.\par
         
         La matriz jacobiana para el robot paralelo delta fue calculada por primera vez por Codourey \cite{Codourey:31400}. En este método, las derivadas parciales se calcularon numéricamente. La matriz jacobiana para robots paralelos también se puede calcular vinculando la variable de espacio cartesiano con las variables de espacio de articulación mediante un conjunto de ecuaciones restringidas. Guglielmetti \cite{Guglielmetti:31706} fue la primera persona que aplicó este enfoque para calcular la matriz jacobiana para el robot paralelo Delta. Codourey \cite{DynamicCodourey} aborda una versión simplificada de la formulación de Guglielmetti. En esta tesis, se adopta el método de Codourey para calcular la matriz jacobiana.
@@ -1392,7 +1393,7 @@ inversa del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
                     \newpage
 
         
-        Definiendo en términos de $\overrightarrow{s_i}$ el vector $\overrightarrow{\xi}_{J_iP_i}$ , la ecuación \eqref{eq:cap4_MB_1111} se puede escribir como
+        Definiendo en términos de $\overrightarrow{s_i}$ el vector $\overrightarrow{\xi}_{J_iP_i}$ , la ecuación \eqref{eq:cap4_MB_1111} se puede escribir como:
         \begin{equation} 
             \overrightarrow{s_{i}}^T \cdot \overrightarrow{s_{i}} - L_{B}^{2} = 0
             \label{eq:cap4_MB_11}
@@ -1423,7 +1424,7 @@ inversa del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
 
 
     En la ecuación \eqref{eq:cap4_MB_12}, $[P_{0x},P_{0y},P_{0z}]$ es la posición del efector final $\overrightarrow{P_{0}}$ , y el superíndice $R$ es el marco de referencia local $O-xyz$ como se muestra en la figura \eqref{f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_5}. $R$ es la diferencia entre ${R}_{A}$ y ${R}_{B}$.
-    Debido a la simetría en la estructura del robot paralelo delta, cada brazo se puede tratar por separado. Cada brazo está separado por un ángulo de 120° grados y la posición del sistema de referencia correspondiente para cada brazo $O_i - x_i y_i z_i$  es el mismo que el superindice $R$ pero girado en un ángulo para cada brazo $i={1,2 ,3}$, respectivamente. 
+    Debido a la simetría en la estructura del robot paralelo delta, cada brazo se puede tratar por separado. Cada brazo está separado por un ángulo de 120° grados y la posición del sistema de referencia correspondiente para cada brazo $O_i - x_i y_i z_i$  es el mismo que el superindice $R$ pero girado en un ángulo para cada brazo $i\in\{1,2 ,3\}$, respectivamente. 
     La matriz de transformación  o  la  matriz de rotación se indica en la ecuacion \eqref{eq:cap4_MB_13}.
     
        \begin{equation}
@@ -1490,7 +1491,7 @@ inversa del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
         \label{eq:cap4_MB_12112234}
     \end{equation}
     
-   Reordenando con la finalidad de separar los términos de velocidad lineal del efector con los de velocidad angular de los actuadores y usando la definición de \eqref{eq:cap4_MB_10}, el Jacobiano $J$ es:
+   Reordenando con la finalidad de separar los términos de velocidad lineal del efector con los de velocidad angular de los actuadores y usando la definición de \eqref{eq:cap4_MB_10}, el jacobiano $J$ es:
     \begin{equation}
         J = -J_{1}J_{2}=-
         {\begin{bmatrix}
@@ -1645,7 +1646,7 @@ inversa del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
             \item Se ignoran los efectos de fricción y la elasticidad.
             \item Para fines analíticos, las masas del antebrazo se dividen equitativamente y se colocan en las extremidades. Por lo tanto, la mitad de la masa de la barra está centrada en la extremidad superior (es decir, la junta que una el brazo con el antebrazo), mientras que la otra mitad está centrada en la extremidad inferior (es decir, la junta que une los antebrazos con el efector final).
         \end{itemize}
-        Debido a estas hipótesis, el robot paralelo Delta se reduce a: los tres brazos y el efector final.
+        Debido a estas hipótesis, el robot paralelo delta se reduce a: los tres brazos y el efector final.
      
         \begin{figure}[H]
               \centering
@@ -1657,7 +1658,7 @@ inversa del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
                 \newpage
 
 
-        \subsubsection{Nomenclatura de parámetros geométricos, simplificación de masas y sistema de referencia global }
+        \subsubsection{Nomenclatura de parámetros geométricos, simplificación de masas y sistema de referencia local }
 
         En la tabla \eqref{tab:cap4_tabla_13} y figura \eqref{f:Cap4_Metodo_B_Modelacion_Dinamica_2} representa la nomenclatura de los parámetros principales para resolver el problema dinámico del robot delta y la simplificación de masas:
         
@@ -2324,6 +2325,7 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
     \end{itemize}
         
     Esta misma representación del perfil trapezoidal en esta sección tambien se puede encontrar en el libro \cite{tray_trape}.
-        
+    
+    }    
         
                 \newpage
