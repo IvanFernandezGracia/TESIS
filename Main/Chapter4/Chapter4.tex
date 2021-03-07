@@ -1057,7 +1057,7 @@ En la tabla \eqref{tab:cap4_tabla_dina_ma_1} muestra la relación entre la numer
     \newpage
 
 
-\section{Metodo B}
+\section{Método B}
 
     \subsection{Modulación cinemática de la posición}\label{MB_MP}
     
@@ -1102,7 +1102,7 @@ En la tabla \eqref{tab:cap4_tabla_dina_ma_1} muestra la relación entre la numer
         
         \newpage
 
-        Antes de empezar los cálculos de cinemática, es mejor explicar algunos términos que se utilizará ampliamente en la formulación cinemática.
+        Antes de empezar los cálculos de cinemática, es mejor explicar algunos términos que se utilizan ampliamente en la formulación cinemática.
         
 
             \begin{figure}[htb]
@@ -1183,7 +1183,7 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
  \\
             \hline
             \end{tabular}
-            \caption{Vectorización para la solución de cinemática del metodo B}
+            \caption{Vectorización para la solución de cinemática del método B}
            \label{tab:cap4_tabla_1332}
         \end{table}
         \endgroup     
@@ -1237,7 +1237,7 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
         \end{equation}            
     Por lo tanto, se dispone de un sistema de ecuaciones con 3 ecuaciones y con 3 incógnitas \( P_{0x},P_{0y},P_{0z} \) .  
     
-    Para la calcular los centros \( J'_{1},~J'_{2},J'_{3} \), primero se miden las magnitudes de otros vectores que son fundamentales para identificar de mejor forma estos puntos en el espacio y facilitar su cálculo. En la figura \eqref{f:cap4_mb_cineposdirect}, se muestra la vista superior del robot paralelo delta. Desde esta vista, se puede calcular la magnitud de la traslación de  $J_i$ a  $J'_i$  gracias a que la geometría de la base fija y el efector son triángulos equiláteros con lados definidos, $f$ y $e$ respectivamente. Esta geometría básica también permite encontrar la distancia desde el centro de la base fija y los actuadores.
+    Para la calcular los centros \( J'_{1},~J'_{2},J'_{3} \)  primero se miden las magnitudes de otros vectores que son fundamentales para identificar de mejor forma estos puntos en el espacio y facilitar su cálculo. En las figuras \eqref{f:cap4_mb_cineposdirect} y \eqref{f:Cinematica_Posicion_4B} se muestra la vista superior del robot paralelo delta. Desde esta vista, se puede calcular la magnitud de la traslación de  $J_i$ a  $J'_i$  gracias a que la geometría del efector final es un triangulo equilátero con lados definidos $e$. Esta geometría básica también permite encontrar la distancia desde el centro de la base fija y los actuadores..
     
             \begin{figure}[htb]
                  \centering
@@ -1247,38 +1247,38 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
             \end{figure}
             
     \begin{equation}
-        \Vert \overrightarrow{\xi_{OF_i}} \Vert=\frac{f}{2}tan(30)=\frac{f}{2\sqrt{3}} , i \in \{1,2,3\}
+        \Vert \overrightarrow{\xi_{OF_i}} \Vert=\frac{f}{2}\tan(30)=\frac{f}{2\sqrt{3}} , i \in \{1,2,3\}
     \end{equation}
     \begin{equation}
-        \Vert \overrightarrow{\xi_{J_iJ'_i}} \Vert=\frac{e}{2}tan(30)=\frac{e}{2\sqrt{3}} , i \in \{1,2,3\}
+        \Vert \overrightarrow{\xi_{J_iJ'_i}} \Vert=\frac{e}{2}\tan(30)=\frac{e}{2\sqrt{3}} , i \in \{1,2,3\}
     \end{equation}
     
         \newpage
 
     El movimiento de los brazos está restringido por una junta tipo revoluta, por ende, es fácil calcular la distancia entre el punto $F_i$ y la proyección del punto $J_i$ en el plano que contiene a la base fija:
     \begin{equation}
-        \Vert \overrightarrow{\xi_{F_iJ_i}} \Vert=L_a cos(\theta_i) , i \in \{1,2,3\}
+        \Vert \overrightarrow{\xi_{F_iJ_i}} \Vert=L_a           \cos(\theta_i) , i \in \{1,2,3\}
     \end{equation}
     
-    Según las ecuaciones \eqref{eq:cap4_MB_22}, \eqref{eq:cap4_MB_23} y \eqref{eq:cap4_MB_24}, se dibujan tres esferas con centros en los puntos \( J'_{1},~J'_{2},J'_{3} \). Las coordenadas de los centros de las esferas se pueden calcular utilizando los vectores de traslación antes mencionados. Las coordenadas de los puntos \( J'_{1},~J'_{2},J'_{3} \) se dan en las ecuaciones \eqref{eq:cap4_MB_3}, \eqref{eq:cap4_MB_4} y \eqref{eq:cap4_MB_5} respectivamente:
+    Según las ecuaciones \eqref{eq:cap4_MB_22}, \eqref{eq:cap4_MB_23} y \eqref{eq:cap4_MB_24}, se forman tres esferas con centros en los puntos \( J'_{1},~J'_{2},J'_{3} \). Las coordenadas de los centros de las esferas se pueden calcular utilizando los vectores de traslación antes mencionados. Las coordenadas de los puntos \( J'_{1},~J'_{2},J'_{3} \) se dan en las ecuaciones \eqref{eq:cap4_MB_3}, \eqref{eq:cap4_MB_4} y \eqref{eq:cap4_MB_5} respectivamente:
 
   
           \begin{equation}
-                \overrightarrow{J'_{1}}= \left [\left( \frac{(f-e)}{2\sqrt{3}}+{L}_{A}cos(\theta_1)\right) cos(30^\circ), \left(\frac{(f-e)}{2\sqrt{3}} + {L}_{A}cos(\theta_1)\right) sin(30^\circ), -L_{A}sin(\theta_1)\right]
+                \overrightarrow{J'_{1}}= \left [\left( \frac{(f-e)}{2\sqrt{3}}+{L}_{A}\cos(\theta_1)\right) \cos(30^\circ), \left(\frac{(f-e)}{2\sqrt{3}} + {L}_{A}\cos(\theta_1)\right) \sin(30^\circ), -L_{A}\sin(\theta_1)\right]
         \label{eq:cap4_MB_3}
         \end{equation}    
         
         \begin{equation}
-                \overrightarrow{J'_{2}}= \left [  0,-\frac{(f-e)}{2\sqrt{3}}-L_{A}cos(\theta_2),-L_{A}sin(\theta_2)\right]
+                \overrightarrow{J'_{2}}= \left [  0,-\frac{(f-e)}{2\sqrt{3}}-L_{A}\cos(\theta_2),-L_{A}\sin(\theta_2)\right]
         \label{eq:cap4_MB_4}
         \end{equation}    
         
         \begin{equation}
-                \overrightarrow{J'_{3}}= \left [\left( \frac{(f-e)}{2\sqrt{3}}+{L}_{A}cos(\theta_3)\right) cos(30^\circ), \left(\frac{(f-e)}{2\sqrt{3}} + {L}_{A}cos(\theta_3)\right) sin(30^\circ), -L_{A}sin(\theta_3)\right]
+                \overrightarrow{J'_{3}}= \left [\left( \frac{(f-e)}{2\sqrt{3}}+{L}_{A}\cos(\theta_3)\right) \cos(30^\circ), \left(\frac{(f-e)}{2\sqrt{3}} + {L}_{A}\cos(\theta_3)\right) \sin(30^\circ), -L_{A}\sin(\theta_3)\right]
         \label{eq:cap4_MB_5}
         \end{equation}    
   
-      Después de calcular todos los vectores de traslación y las coordenadas de los centros de las esferas, el sistema de ecuaciones  \eqref{eq:cap4_MB_22}, \eqref{eq:cap4_MB_23} y \eqref{eq:cap4_MB_24} se puede resolver para obtener la posición del efector final \( P_{0x},P_{0y},P_{0z} \) .El método algebraico para resolver el sistema de ecuaciones, en otras palabras, la intersección de las 3 esferas trasladadas, es el mismo que en el metodo A, específicamente el de la ecuación \eqref{eq:cap4_eq_2}.
+      Después de calcular todos los vectores de traslación y las coordenadas de los centros de las esferas, el sistema de ecuaciones  \eqref{eq:cap4_MB_22}, \eqref{eq:cap4_MB_23} y \eqref{eq:cap4_MB_24} se puede resolver para obtener la posición del efector final \( P_{0x},P_{0y},P_{0z} \) .El método algebraico para resolver el sistema de ecuaciones, en otras palabras, la intersección de las 3 esferas trasladadas, es el mismo que en el método A, específicamente el sistema de ecuaciones de la ecuación \eqref{eq:cap4_eq_2}.
   
  \newpage
         
@@ -1288,6 +1288,7 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
     filecolor=magenta,       
     urlcolor=russet,           
     citecolor=blue}
+    
 \subsubsection{Cinemática inversa}\label{mb_ci}
 
       En la cinemática inversa, se calculan los ángulos de los actuadores gracias a la posición dada de efector final en el espacio cartesiano. 
@@ -1311,7 +1312,7 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
             \label{f:Cinematica_Posicion_4}
         \end{figure}
   
-      Primero se empieza por calcular en ángulo $\theta_2$. Se trabaja sobre el marco de referencia $YZ$ ya que el brazo  \overline{\( F_{2}J_{2}  \)} solo puede moverse en ese plano como se muestra en la figura a \eqref{f:Cinematica_Posicion_4a}. De la figura b \eqref{f:Cinematica_Posicion_4B} se desprenden las coordenadas de punto $F_2=\left[0,\frac{-f}{(2\sqrt{3})},0\right]$. Sobre el plano $ YZ $ se proyecta el antebrazo para obtener una segunda restricción geométrica relacionada con la junta  \( J_{2} \) . En consecuencia, la posición de la junta esférica  \( J_{2} \)  está restringida por 2 circunferencias en el plano $YZ$. Se dibuja el primer círculo con centro  \( F_{2} \)  y radio  \( L_{A} \) . El segundo círculo se dibuja con el centro en el punto  \( P'_{2} \)  y radio  \( \sqrt[]{L_{B}^{2}-P_{0x}^{2}} \), donde el punto $P'_{2}=\left[0,P_{0y}-\frac{e}{2\sqrt{3}},P_{0z}\right]^T$ es la proyección del punto $P_{2}=\left[P_{0x},P_{0y}-\frac{e}{2\sqrt{3}},P_{0z}\right]^T$ sobre plano $YZ$ y el radio de la circunferencia es calculado de la expresión  $\Vert \overrightarrow{\xi}_{P'_2J_2} \Vert = \sqrt{\Vert \overrightarrow{\xi}_{P_2J_2}\Vert^2-\Vert \overrightarrow{\xi}_{P'_2P_2}\Vert^2 }=\sqrt[]{L_{B}^{2}-P_{0x}^{2}}$       como se aprecia en la figura \eqref{f:f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_44}.
+      Primero se empieza por calcular en ángulo $\theta_2$. Se trabaja sobre el marco de referencia $YZ$, ya que el brazo  \overline{\( F_{2}J_{2}  \)} solo puede moverse en ese plano como se muestra en la figura \eqref{f:Cinematica_Posicion_4a}. Desde la figura \eqref{f:Cinematica_Posicion_4B} se desprenden las coordenadas de punto $F_2=\left[0,\frac{-f}{(2\sqrt{3})},0\right]$. Sobre el plano $ YZ $ se proyecta el antebrazo para obtener una segunda restricción geométrica relacionada con la junta  \( J_{2} \) . En consecuencia, la posición de la junta esférica  \( J_{2} \)  está restringida por 2 circunferencias en el plano $YZ$. Se dibuja el primer círculo con centro  \( F_{2} \)  y radio  \( L_{A} \) . El segundo círculo se dibuja con el centro en el punto  \( P'_{2} \)  y radio  \( \sqrt[]{L_{B}^{2}-P_{0x}^{2}} \), donde el punto $P'_{2}=\left[0,P_{0y}-\frac{e}{2\sqrt{3}},P_{0z}\right]^T$ es la proyección del punto $P_{2}=\left[P_{0x},P_{0y}-\frac{e}{2\sqrt{3}},P_{0z}\right]^T$ sobre plano $YZ$ y el radio de la circunferencia es calculado de la expresión  $\Vert \overrightarrow{\xi}_{P'_2J_2} \Vert = \sqrt{\Vert \overrightarrow{\xi}_{P_2J_2}\Vert^2-\Vert \overrightarrow{\xi}_{P'_2P_2}\Vert^2 }=\sqrt[]{L_{B}^{2}-P_{0x}^{2}}$       como se aprecia en la figura \eqref{f:f:Cap4_Metodo_B_Modelacion_Cinematica_Posicion_44}.
       
      \newpage
 
@@ -1342,15 +1343,15 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
         \end{equation}  
     
     
-        El valor de  \( J_{2y} \)  y  \( J_{2z} \)  se puede calcular resolviendo simultáneamente la ecuación \eqref{eq:cap4_MB_7} y \eqref{eq:cap4_MB_8} al igual que en el método A. Todas las demás variables en este sistema de ecuaciones se asumen como conocidas o se miden a partir de la estructura geométrica del robot paralelo delta. Una vez que se conocen estos valores, se puede usar trigonometría simple para calcular el  \(  \theta _{2} \)  como se indica en la siguiente ecuación:
+        El valor de  \( J_{2y} \)  y  \( J_{2z} \)  se puede calcular resolviendo simultáneamente la ecuación \eqref{eq:cap4_MB_7} y \eqref{eq:cap4_MB_8} al igual que en el método A. Todas las demás parámetros en este sistema de ecuaciones se asumen como conocidos o se obtienen a partir de la estructura geométrica del robot paralelo delta. Una vez que se conocen estos valores, se puede usar trigonometría simple para calcular el  \(  \theta _{2} \)  como se indica en la siguiente ecuación:
         
         \begin{equation} 
-            \theta_2=tan^{-1} \left(\frac{J_{2z}}{{F}_{2y}-{J}_{2y}}\right)
+            \theta_2=\tan^{-1} \left(\frac{J_{2z}}{{F}_{2y}-{J}_{2y}}\right)
         \label{eq:cap4_MB_9}
         \end{equation}  
         \newpage
 
-        La estructura simétrica del robot paralelo delta da la ventaja de calcular los ángulos  \(  \theta _{1} \)  y  \(  \theta _{3} \)  faltantes aplicando el mismo procedimiento para  \(  \theta _{2} \) . Para ello, se rotar el marco de referencia local en un ángulo de 120º en sentido antihorario y horario, respectivamente.   
+        La estructura simétrica del robot paralelo delta da la ventaja de calcular los ángulos  \(  \theta _{1} \)  y  \(  \theta _{3} \)  faltantes aplicando el mismo procedimiento para el ángulo \(  \theta _{2} \) . Para ello, se rotar el marco de referencia local en un ángulo de 120º en sentido antihorario y horario para  \(  \theta _{3} \) y  \(  \theta _{1} \) respectivamente.   
            
         \begin{figure}[htb]
                  \centering
@@ -1365,20 +1366,20 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
         Con el objetivo de modelar la cinemática de velocidad del robot delta, en esta sección se implementa las ideas expuestas en el paper \cite{Path_Planning_and_Trajectory_Optimization},  con los mismos parámetros, jerga y nomenclatura de la seccion  \eqref{MB_MP}
         La base de la modelacion cinematica de velocidad es determinar la matriz jacobiana  \( J \) . Esta juega un papel importante en el modelo dinámico del manipulador robótico como se aprecia en secciones posteriores.\par
         
-        La matriz jacobiana para el robot paralelo delta fue calculada por primera vez por Codourey \cite{Codourey:31400}. En este método, las derivadas parciales se calcularon numéricamente. La matriz jacobiana para robots paralelos también se puede calcular vinculando la variable de espacio cartesiano con las variables de espacio de articulación mediante un conjunto de ecuaciones restringidas. Guglielmetti \cite{Guglielmetti:31706} fue la primera persona que aplicó este enfoque para calcular la matriz jacobiana para el robot paralelo Delta. Codourey \cite{DynamicCodourey} aborda una versión simplificada de la formulación de Guglielmetti. En esta tesis, se adopta el método de Codourey para calcular la matriz jacobiana.
+        La matriz jacobiana para el robot paralelo delta fue calculada por primera vez por Codourey \cite{Codourey:31400}. En este método, las derivadas parciales se calcularon numéricamente. La matriz jacobiana para robots paralelos también se puede calcular vinculando la variable de espacio cartesiano con las variables de espacio de articulación mediante un conjunto de ecuaciones restringidas. Guglielmetti \cite{Guglielmetti:31706} fue la primera persona que aplicó este enfoque para calcular la matriz jacobiana para el robot paralelo Delta. Codourey \cite{DynamicCodourey} aborda una versión simplificada de la formulación de Guglielmetti. En esta tesis, se adopta el método de Codourey para calcular la matriz jacobiana del método B.
 
         \subsubsection{Jacobiano}
 
-        La matriz jacobiana $J$ describe la relación entre las velocidades espaciales cartesianas y las velocidades articulares como se indica en la ecuación \eqref{eq:cap4_MB_10}.
+        La matriz jacobiana $J$ describe la relación entre las velocidades cartesianas y las velocidades articulares como se indica en la ecuación \eqref{eq:cap4_MB_10}.
 
         \begin{equation} 
             \overrightarrow{\dot{P_{0}}}=J\overrightarrow{\dot{ \theta }}~ 
             \label{eq:cap4_MB_10}
         \end{equation}  
    
-        Para encontrar una expresión de la matriz jacobiana, se utilizar la longitud del antebrazo de un robot paralelo delta como una ecuación de restricción.
+        Para encontrar una expresión de la matriz jacobiana, se utiliza la longitud de los antebrazos de un robot paralelo delta como ecuaciones de restricción.
         \begin{equation} 
-            \Vert {\overrightarrow{\xi}}_{J_iP_i}\Vert^2 - L_B^2=0 , ~i \in \{1,2,3\}
+            \Vert {\overrightarrow{\xi}}_{J_iP_i}\Vert^2 - L_B^2=0 ~~; i \in \{1,2,3\}
             \label{eq:cap4_MB_1111}
         \end{equation}
         
@@ -1414,9 +1415,9 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
                 0
             \end{bmatrix} + 
             \begin{bmatrix}
-                L_{A} cos(\theta_i) \\
+                L_{A} \cos(\theta_i) \\
                 0\\
-                -L_{A} sin(\theta_i) 
+                -L_{A} \sin(\theta_i) 
             \end{bmatrix}
             \right)
         \label{eq:cap4_MB_12}
@@ -1430,8 +1431,8 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
        \begin{equation}
          R_{i}^{R} =
         \begin{bmatrix}
-                cos(\varphi_i)&-sin(\varphi_i)&0 \\
-                sin(\varphi_i)&cos(\varphi_i)&0 \\
+                \cos(\varphi_i)&-\sin(\varphi_i)&0 \\
+                \sin(\varphi_i)&\cos(\varphi_i)&0 \\
                 0&0&1
             \end{bmatrix}
         \label{eq:cap4_MB_13}
@@ -1465,14 +1466,14 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
                 \dot{P}_{0z}
             \end{bmatrix} +  R_{i}^{R}
             \begin{bmatrix}
-                L_{A} sin(\theta_i) \\
+                L_{A} \sin(\theta_i) \\
                 0\\
-                L_{A} cos(\theta_i) 
+                L_{A} \cos(\theta_i) 
             \end{bmatrix} \dot{\theta}_i = \overrightarrow{\dot{P}_0}+\overrightarrow{b_i}\dot{\theta}_i ~~; i \in \{1,2,3\}
         \label{eq:cap4_MB_12112}
     \end{equation}
     
-    Remplazando \eqref{eq:cap4_MB_12112} en \eqref{eq:cap4_MB_1141}:
+    Remplazando la ecuación \eqref{eq:cap4_MB_12112} en la ecuación  \eqref{eq:cap4_MB_1141}:
     
         \begin{equation}
          \begin{bmatrix}
@@ -1491,7 +1492,7 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
         \label{eq:cap4_MB_12112234}
     \end{equation}
     
-   Reordenando con la finalidad de separar los términos de velocidad lineal del efector con los de velocidad angular de los actuadores y usando la definición de \eqref{eq:cap4_MB_10}, el jacobiano $J$ es:
+   Reordenando con la finalidad de separar los términos de velocidad lineal del efector con los de velocidad angular de los actuadores y usando la definición de la ecuación \eqref{eq:cap4_MB_10}, el jacobiano $J$ es:
     \begin{equation}
         J = -J_{1}J_{2}=-
         {\begin{bmatrix}
@@ -1511,14 +1512,15 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
     \begin{equation}
         \overrightarrow{b_{i}} = R_{i}^{R}             
         \begin{bmatrix}
-                L_{A} sin(\theta_i) \\
+                L_{A} \sin(\theta_i) \\
                 0\\
-                L_{A} cos(\theta_i) 
+                L_{A} \cos(\theta_i) 
             \end{bmatrix}
+             ~~; i \in \{1,2,3\}
         \label{eq:cap4_MB_15}
     \end{equation}  
     
-    En el caso de los robots en serie, la matriz jacobiana es solo una función de $\overrightarrow{\theta}$   , pero para los robots paralelos, la matriz jacobiana depende de la información del espacio articular $\overrightarrow{\theta}$   así como de la posición del efector final $\overrightarrow{P_0}$   .
+    En el caso de los robots en serie, la matriz jacobiana es solo una función de los angulos $\overrightarrow{\theta}$   , pero para los robots paralelos, la matriz jacobiana depende de la información del espacio articular $\overrightarrow{\theta}$   así como de la posición cartesiana del efector final $\overrightarrow{P_0}$   .
         \newpage
 
     \subsection{Modelación cinemática de aceleración}\label{cap4_mb_subsection_acel}
@@ -1557,7 +1559,7 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
         
         \begin{equation}
                   \overrightarrow{\dot{b}_{i}}= \left[ \begin{matrix}
-                L_{A} cos⁡ \left(  \theta _{i} \right) \\
+                L_{A} \cos⁡ \left(  \theta _{i} \right) \\
                 0\\
                 - L_{A}\sin ⁡ \left(  \theta _{i} \right) \\
                 \end{matrix}
@@ -1602,15 +1604,22 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
         
         \subsubsection{Introducción a modelos dinámicos}
     
-        El modelo dinámico de manipuladores robóticos juega un papel importante en la optimización de la trayectoria. La principal dificultad para calcular el modelo dinámico es que debe ser realizable y se puede calcular en tiempo real. Una forma sencilla de resolver el modelo dinámico de manipuladores paralelos es la cadena cerrada en uniones pasivas. Esta simplificación proporciona relajación en las condiciones de cierre. El modelo dinámico final será la suma de todos los robots individuales así creados. Kleinfinger \cite{kleinfinger1986modelisation} utiliza esta técnica y aplicó los multiplicadores de Lagrange para calcular el modelo dinámico. Otra forma de derivar el modelo dinámico es utilizar el principio de trabajo virtual de Lagrange-d’Alembert. Kokkinis y Stoughton \cite{kokkinis1991dynamics}, Nakamura \cite{NakamuraYoshihiko1991Ar} y Wang y Chen \cite{wang1994dynamic} han obtenido con éxito un modelo dinámico que utiliza el principio de trabajo virtual de Lagrange-d’Alembert.
+        El modelo dinámico de manipuladores robóticos juega un papel importante en la optimización de la trayectoria. La principal dificultad para calcular el modelo dinámico es que debe ser realizable y que se pueda calcular en tiempo real. Una forma sencilla de resolver el modelo dinámico de manipuladores paralelos es la cadena cerrada en uniones pasivas. Esta simplificación proporciona relajación en las condiciones de cierre. El modelo dinámico final será la suma de todos los robots individuales así creados. Kleinfinger \cite{kleinfinger1986modelisation} utiliza esta técnica y aplicó los multiplicadores de Lagrange para calcular el modelo dinámico. 
         
-        Otro método muy útil para derivar el modelo dinámico de robótica se basa en el principio de trabajo virtual. Según este principio, la contribución de todas las fuerzas inerciales debe ser igual a la contribución de todas las fuerzas no inerciales. Este método simplifica el problema y es igualmente eficiente tanto para robots en serie como en paralelo \cite{Codourey:31400}, \cite{bodyoriente}, \cite{zhang1993efficient}. Al incorporar todas las masas, la inercia y las no linealidades, el modelo dinámico se vuelve muy complicado y computacionalmente costoso y como consecuencia no puede usarse para aplicaciones en tiempo real. Se puede derivar un modelo dinámico practicable para aplicaciones en tiempo real despreciando las masas y la inercia de los antebrazos, propuesto por Ji \cite{StudyinertiaStewart}. En esta tesis, se deriva el modelo dinámico utilizando el principio de trabajo virtual presentado por Codourey \cite{Codourey_decoupling}.      
+        Otro método muy útil para derivar el modelo dinámico de robótica se basa en el principio de trabajo virtual. Según este principio, la contribución de todas las fuerzas inerciales debe ser igual a la contribución de todas las fuerzas no inerciales. Este método simplifica el problema y es igualmente eficiente tanto para robots en serie como en paralelo \cite{Codourey:31400}, \cite{bodyoriente}, \cite{zhang1993efficient}. 
+        
+        Otra forma de derivar el modelo dinámico es utilizar el principio de trabajo virtual de Lagrange-d’Alembert. Kokkinis y Stoughton \cite{kokkinis1991dynamics}, Nakamura \cite{NakamuraYoshihiko1991Ar} y Wang y Chen \cite{wang1994dynamic} han obtenido con éxito un modelo dinámico que utiliza el principio de trabajo virtual de Lagrange-d’Alembert.
+        
+        
+        Al incorporar todas las masas, la inercia y no linealidades, el modelo dinámico se vuelve muy complicado y computacionalmente costoso, como consecuencia no puede usarse para aplicaciones en tiempo real. Se puede derivar un modelo dinámico practicable para aplicaciones en tiempo real despreciando las masas y la inercia de los antebrazos, propuesto por Ji \cite{StudyinertiaStewart}.
+        
+       Esta tesis se deriva el modelo dinámico utilizando el principio de trabajo virtual presentado por Codourey \cite{Codourey_decoupling}.      
         \newpage
 
 
         \subsubsection{Principio de trabajo virtual}
 
-        Para obtener el torque de los actuadores se emplea el principio del trabajo virtual. El principio establece que, en el equilibrio, el trabajo virtual,  $\delta W$  , realizado por todas las fuerzas externas, $F$ , que actúan sobre un cuerpo durante cualquier desplazamiento virtual,  $\delta r $  , consistente con las restricciones estructurales impuestas al cuerpo, es igual a cero. Este principio se ilustra matemáticamente a continuación:
+        Para obtener el torque de los actuadores se emplea el principio del trabajo virtual. El principio establece que, en el equilibrio, el trabajo virtual $\delta W$, realizado por todas las fuerzas externas $F$ que actúan sobre un cuerpo durante cualquier desplazamiento virtual  $\delta r $, consistente con las restricciones estructurales impuestas al cuerpo, es igual a cero. Este principio se ilustra matemáticamente en la ecuacion \eqref{eq:cap4_MB_20}.
         
         \begin{equation}
             \delta W= \sum _{i=1}^{N}F_{i} \ast \delta r_{i}=0\\
@@ -1618,7 +1627,7 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
         \end{equation}
 
         
-        En la ecuación \eqref{eq:cap4_MB_20}, solo se consideran las fuerzas externas, todas las fuerzas internas, es decir, las fuerzas de restricción y reacción se ignoran porque estas fuerzas no realizan ningún trabajo virtual. El principio de trabajo virtual se utiliza tradicionalmente para resolver problemas estáticos. Sin embargo, para un sistema que no está en reposo, la fuerza (fuerza de inercia) como resultado de la masa del cuerpo,  \( m \) , que acelera a una tasa,  \( a \) , se incluye en la ecuación \eqref{eq:cap4_MB_20}. Esta extensión del principio de trabajo virtual para casos dinámicos se conoce como principio de D'Alembert \cite{dynamic_omega3}. La ecuación \eqref{eq:cap4_MB_21} es una extensión de  la ecuación \eqref{eq:cap4_MB_20} con la fuerza de inercia incluida:
+        En la ecuación \eqref{eq:cap4_MB_20} solo se consideran las fuerzas externas, todas las fuerzas internas, es decir, las fuerzas de restricción y reacción se ignoran porque estas fuerzas no realizan ningún trabajo virtual. El principio de trabajo virtual se utiliza tradicionalmente para resolver problemas estáticos. Sin embargo, para un sistema que no está en reposo, la fuerza (fuerza de inercia) como resultado de la masa del cuerpo \(m\), que acelera a una tasa \(a\), se incluye en la ecuación \eqref{eq:cap4_MB_20}. Esta extensión del principio de trabajo virtual para casos dinámicos se conoce como principio de D'Alembert \cite{dynamic_omega3}. La ecuación \eqref{eq:cap4_MB_21} es una extensión de  la ecuación \eqref{eq:cap4_MB_20} con la fuerza de inercia incluida:
         
         \begin{equation}
           \delta W= \sum _{i=1}^{N} \left( F_{i}-m_{i}a_{i} \right) \ast \delta r_{i}=0 \\
@@ -1643,10 +1652,10 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
         
         \begin{itemize}
             \item Debido a que los antebrazos se construyen con materiales ligeros, es posible simplificar el problema dinámico ignorando la inercia rotacional de las varillas paralelas, es decir, se desprecia la inercia rotacional del antebrazo.
-            \item Se ignoran los efectos de fricción y la elasticidad.
-            \item Para fines analíticos, las masas del antebrazo se dividen equitativamente y se colocan en las extremidades. Por lo tanto, la mitad de la masa de la barra está centrada en la extremidad superior (es decir, la junta que una el brazo con el antebrazo), mientras que la otra mitad está centrada en la extremidad inferior (es decir, la junta que une los antebrazos con el efector final).
+            \item Se ignoran los efectos de fricción entra las piezas y la elasticidad de los materiales.
+            \item Para fines analíticos, las masas del antebrazo se dividen equitativamente y se colocan en las extremidades. Por lo tanto, la mitad de la masa de la barra está centrada en la extremidad superior (es decir, la junta que una el brazo con el antebrazo), mientras que la otra mitad está centrada en la extremidad inferior (es decir, la junta que une los antebrazos con el efector final). Esta simplificación se muestra en la figura \eqref{f:Cap4_Metodo_B_Modelacion_Dinamica_1}.
         \end{itemize}
-        Debido a estas hipótesis, el robot paralelo delta se reduce a: los tres brazos y el efector final.
+        Debido a estas hipótesis, el robot paralelo delta se reduce a los tres brazos y al efector final.
      
         \begin{figure}[H]
               \centering
@@ -1660,7 +1669,7 @@ del método B \cite{Path_Planning_and_Trajectory_Optimization}.}
 
         \subsubsection{Nomenclatura de parámetros geométricos, simplificación de masas y sistema de referencia local }
 
-        En la tabla \eqref{tab:cap4_tabla_13} y figura \eqref{f:Cap4_Metodo_B_Modelacion_Dinamica_2} representa la nomenclatura de los parámetros principales para resolver el problema dinámico del robot delta y la simplificación de masas:
+        En la tabla \eqref{tab:cap4_tabla_13}, la figura \eqref{f:Cap4_Metodo_B_Modelacion_Dinamica_2} y la figura \eqref{f:Cap4_Metodo_B_Modelacion_Dinamica_22} representa la nomenclatura de los parámetros principales para resolver el problema dinámico del robot delta y la simplificación de masas:
         
         \begin{figure}[H]
               \centering
@@ -1671,7 +1680,7 @@ de la dinámica inversa del método B.}
         \end{figure}
 
         \begingroup
-            \renewcommand{\arraystretch}{1.5}
+            \renewcommand{\arraystretch}{1.3}
             \begin{table}[H]
             \centering
             \begin{tabular}{c m{12cm}}
@@ -1706,7 +1715,7 @@ de la dinámica inversa del método B.}
 	          \includegraphics[width=0.63\linewidth]{Main/Chapter4/Images4/DIBUJO37.jpg}
               \caption{Sistema de referencia local y masas para la solución
 de la dinámica inversa del método B.}
-              \label{f:Cap4_Metodo_B_Modelacion_Dinamica_2}
+              \label{f:Cap4_Metodo_B_Modelacion_Dinamica_22}
         \end{figure}
 
         \begingroup
@@ -1739,7 +1748,7 @@ de la dinámica inversa del método B.}
 \newpage
 
 
-        \subsubsection{Dinámica Inversa}
+        \subsubsection{Dinámica inversa}
 
         Aplicando el principio de trabajo virtual a la simplificación del robot delta, se determinan los torques de los actuadores  $ \overrightarrow{ \tau}= \left[  \tau_{1}, \tau_{2}, \tau_{3} \right] ^{T} $  con la siguiente expresión:
         
@@ -1764,7 +1773,7 @@ de la dinámica inversa del método B.}
         \end{equation}
         
         
-        Dónde
+        Dónde:
         \begin{gather}
                  M \left(  \theta  \right) =I_{b}+J^{T} m_{nt} J 
                 \label{eq:cap4_MB_26}\\

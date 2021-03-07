@@ -1036,12 +1036,53 @@ Para definir y almacenar la relación entre los marcos ''base\_link'' y ''base\_
             
             
             
-    \subsection{Modelo y estructura de los datos en ADAMS}
+    \subsection{Modelo y jerarquía de los datos en ADAMS}
+    
+        Una base de datos de modelado almacena toda la información sobre cualquier cosa que uno hace en el entorno de ADAMS. La base de datos de modelado ADAMS es una base de datos jerárquica. Cada objeto en la base de datos tiene un objeto que lo posee, llamado su padre, y muchos objetos poseen otros objetos, llamados sus hijos. El nivel superior de los objetos de la base de datos son modelos, vistas, gráficos y bibliotecas que contienen elementos tales como cuadros de diálogo. 
+        
+        En la figura \ref{f:Cap3-adams_jerarquia_datos} se muestra la jerarquía de una base de datos llamada ejemplo\_1 que contiene un modelo y una gráfica del modelo:
+    
+    
+        \begin{figure}[H]
+            \centering
+            \includesvg[width=1\linewidth]{Main/Chapter3/Images3/adams/jerarquia_datos_adams.svg}
+            \caption{Jerarquía de datos en ADAMS}
+            \label{f:Cap3-adams_jerarquia_datos}
+        \end{figure} 
         
         
         \subsubsection{Convención de nombres en ADAMS}
         
+        Los nombres para cada uno de los objetos en la base de datos, siguen la misma estructura jerárquica de los datos, en la figura \ref{f:Cap3-adams_jerarquia_nombres} se observan los nombres otorgados por adams a un modelo como el del ejemplo anterior \ref{f:Cap3-adams_jerarquia_datos}.
+        
+        \begin{figure}[H]
+            \centering
+            \includesvg[width=0.8\linewidth]{Main/Chapter3/Images3/adams/jerarquia_nombres_adams.svg}
+            \caption{Jerarquía de nombres en ADAMS}
+            \label{f:Cap3-adams_jerarquia_nombres}
+        \end{figure} 
+        
         \subsubsection{Sistemas de coordenadas}
+        
+        Un sistema de coordenadas es esencial para medir y definir la cinemática y dinámica de cualquier objeto, ADAMS inicia por defecto con un sistema cartesiano, pero es posible elegir otros sistemas como cilíndrico y esférico.
+        
+        En ADAMS encontramos dos tipos de sistemas de coordenadas:
+        
+        \begin{enumerate}
+            \item \textbf{Global coordinate system (GCS) }
+            \begin{itemize}
+                \item Unido de forma rígida a la tierra (ground part).
+                \item Define de forma absoluta el punto (0,0,0) del modelo y provee los ejes de referencia para crear futuros sistema locales de coordendas.
+            \end{itemize}
+            \item \textbf{Local coordinate system (LCS)} existen dos tipos:
+            \begin{itemize}
+                \item Sistema de coordenadas de una pieza (PCS).
+                \item Los Markers que generemos.
+            \end{itemize}
+        \end{enumerate}
+        
+        \paragraph{Sistema de coordendas de una Pieza (PSC)}
+        \paragraph{Sistema de coordendas de un Marker}
         
         \subsubsection{Parts}
         % \paragraph{Geometria}
