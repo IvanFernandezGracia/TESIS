@@ -1,49 +1,49 @@
 \chapter{Desarrollo de la solución}\label{CAP6}
     
     
-    En este capitulo se explica la solución adoptada para validar la cinemática y dinámica de un robot delta. Para ello implementan 3 herramientas a este trabajo: ROS, RVIZ y ADAMS. Se utiliza la version de ROS Melodic y Python 2.7.
+    En este capitulo se explica la solución adoptada para validar la cinemática y dinámica de un robot delta. Para ello se implementan 3 herramientas a este trabajo: ROS, RViz y ADAMS. Se utiliza la versión de ROS es Melodic y Python 2.7.
     
     \begin{figure}[h]
         \centering
-        \smartdiagram[bubble diagram]{Solucion,ROS,RVIZ,ADAMS}
-        \caption{Elementos principales para la solucion de la dinamica y cinematica del robot delta}
+        \smartdiagram[bubble diagram]{\textbf{Solución},\textbf{ROS},\textbf{RViz},\textbf{ADAMS}}
+        \caption{Herramientas principales para la solución de la dinámica y cinemática del robot delta.}
         \label{fig:cap6_intro_1}
     \end{figure}
 
-    Se sigue una serie de pasos para validad la cinemática y dinamica del robot delta:
+    Se siguen una serie de pasos para validad la cinemática y dinámica del robot delta:
     
-        \item \textbf{1. ROS y RVIZ}
+        \item \textbf{1. \textcolor{red}{ROS} y \textcolor{cyan}{RViz}}
             \begin{itemize}
-                \item {Trayectoria: Se crear trayectoria lineal (trapezoidal) en el espacio cartesiano $XYZ$ , velocidad $\dot{X}\dot{Y}\dot{Z}$ y aceleración $\ddot{X}\ddot{Y}\ddot{Z}$ del centroide del efector a partir de un punto inicial $P_i(x,y,z)$, un punto final $P_f(x,y,z)$, velocidad maxima $v_{max}$ y aceleración maxima $a_{max}$ deseada}
-                \item {Cinemática inversa: Se calcular la trayectoria en el espacio articular $\theta_{i=1,2,3}$ de los motores del robot delta.}
-                \item {Visualización: En Rviz se inicia la simulación de la trayectoria creada en los puntos anteriores. Esta visualización es una primera aproximación (a simple vista) de la validación cinemática del robot delta. Específicamente valida la cinemática inversa.}
-                \item {Guardar trayectoria: Se guarda en un archivo .txt los caminos geométricos  $XYZ$, $\theta_{i=1,2,3}$ y la escala de tiempo.
+                \item {\textbf{Trayectoria:} Se crear una  trayectoria lineal (perfil de velocidad trapezoidal trapezoidal) en el espacio cartesiano del centroide del efector a partir de un punto inicial $P_i(x,y,z)$, un punto final $P_f(x,y,z)$, velocidad maxima $v_{max}$ y aceleración maxima $a_{max}$ deseada. Se obtienen los datos de la trayectoria $XYZ$ , escala de tiempo $s(t)$, velocidad $\dot{X}\dot{Y}\dot{Z}$ y aceleración $\ddot{X}\ddot{Y}\ddot{Z}$.}
+                \item {\textbf{Cinemática inversa:} Se calcular la trayectoria en el espacio articular $\theta_{i\in\{1,2,3\}}$ de los motores del robot delta.}
+                \item {\textbf{Visualización:} En RViz se inicia la simulación de la trayectoria creada en los puntos anteriores. Esta visualización es una primera aproximación (a simple vista) de la validación cinemática del robot delta. Específicamente se valida la cinemática inversa.}
+                \item {\textbf{Guardar trayectoria:} Se guarda en un archivo .txt los caminos geométricos  $XYZ$, $\theta_{i\in\{1,2,3\}}$ y la escala de tiempo $s(t)$.
                 }
-                \item {Velocidad y aceleración de los actuadores: Por medio de la cinemática de velocidad (Jacobiano) y la cinemática de aceleración se calculan las velocidades $\dot{\theta}_{i=1,2,3}$ y las aceleraciones $\ddot{\theta}_{i=1,2,3}$ de la trayectoria en el espacio articular}
-                \item{ Torque Motores: Como ya se saben los datos de posición, velocidad y aceleración le los motores de los motores se calcula el torque de ellos $\tau_{i=1,2,3}$.}
-                \item {Guardar torque: Se guarda en un archivo .txt el torque calculado por los motores (actuadores) con los algoritmos compilados en ROS.
+                \item {\textbf{Velocidad y aceleración de los actuadores:} Por medio de la cinemática de velocidad (Jacobiano) y la cinemática de aceleración se calculan las velocidades $\dot{\theta}_{i\in\{1,2,3\}}$ y las aceleraciones. $\ddot{\theta}_{i\in\{1,2,3\}}$ de la trayectoria en el espacio articular.}
+                \item{ \textbf{Torque de motores:} A partir de los datos de posición, velocidad y aceleración de los motores se calculan los torques de ellos $\tau_{i\in\{1,2,3\}}$.}
+                \item {\textbf{Guardar torques:} Se guarda en un archivo .txt los torques calculados de los motores (actuadores) con los algoritmos compilados en ROS.
                 }
             \end{itemize}
-        \item \textbf{2. ADAMS}
+        \item \textbf{2. \textcolor{blue}{ADAMS}}
         \begin{itemize}
-            \item {Importación de la trayectoria: Se importan los datos de la trayectoria en el espacio articular $\theta_{i=1,2,3}$ , espacio cartesiano $XYZ$ y la escala de tiempo desde ROS}
-            \item {Dibujar trayectoria: Se dibuja la trayectoria cartesiana $XYZ$ importada desde ROS en el espacio de simulación de ADAMS para comprobar a simple vista que la trayectoria articular (impuesta a los motores) sea la correcta al momento de la simulación. El efector debe seguir dicha trayectoria cartesiana lineal si es que el robot delta esta bien configurado en ADAMS}
-            \item {Trayectoria articular y escala de tiempo: Se simula la trayectoria creada en ROS en el robot delta configurado en ADAMS, imponiendo a los motores (o sensores tipo junta) la trayectoria articular $\theta_{i=1,2,3}$ y su respectiva escala de tiempo exportada desde ROS.}
-            \item {Guardar torque: Se guarda en un archivo .txt el torque producido por los motores en simulación en ADAMS.  }
+            \item {\textbf{Importación de la trayectoria:} Se importan los datos de la trayectoria en el espacio articular $\theta_{i\in\{1,2,3\}}$ , espacio cartesiano $XYZ$ y la escala de tiempo $s(t)$ desde ROS.}
+            \item {\textbf{Dibujar trayectoria:} Se dibuja la trayectoria cartesiana $XYZ$ importada desde ROS en el espacio de simulación de ADAMS para comprobar a simple vista que la trayectoria articular (impuesta a los motores de ADAMS) sea la correcta al momento de la simulación. El centro del efector final debe seguir dicha trayectoria cartesiana lineal si es que el robot delta esta bien configurado en ADAMS.}
+            \item {\textbf{Trayectoria articular y escala de tiempo:} Se simula la trayectoria creada en ROS en el robot delta configurado en ADAMS, imponiendo a los motores (o sensores tipo junta) la trayectoria articular $\theta_{i\in\{1,2,3\}}$ y su respectiva escala de tiempo $s(t)$ exportada desde ROS.}
+            \item {\textbf{Guardar torque:} Se guarda en un archivo .txt el torque producido por los motores en simulación de ADAMS.  }
         \end{itemize}
-        \item \textbf{3. Validación 
-        cinemática y dinámica}
+        \item \textbf{3. \textcolor[gray]{0.3}{Validación 
+        cinemática y dinámica}}
         \begin{itemize}
-            \item {Se comparan los resultados de torque de ROS y ADAMS. Si estos tienen errores relativamente bajos se asume que los algoritmos de cinemática y dinámica creados y compilados en ROS y la configuración del robot delta en ADAMS son correctas.}
+            \item {Se comparan los resultados de los torques por ROS y ADAMS. Si estos tienen errores relativamente bajos se asume que los algoritmos de cinemática y dinámica compilados en ROS y la configuración del robot delta en ADAMS son correctas.}
         \end{itemize}  
 
         \newpage
         
-    \tikzstyle{process} = [rectangle, minimum width=2em, minimum height=1em,text width=25em,text height=1em, text centered, draw=blue, fill=gray!10]
-    \tikzstyle{startend} = [ellipse, minimum width=2em, minimum height=1em,text width=15em,text height=0.5em, text centered, draw=red, fill=red!20]
-    \tikzstyle{process_final} = [rectangle,minimum width=2em, minimum height=1em,text width=13em,text height=1em, text centered, draw=cyan, fill=cyan!30]
-    \tikzstyle{startend1} = [ellipse, minimum width=2em, minimum height=1em,text width=7em,text height=0.5em, text centered, draw=red, fill=red!20]
-
+    \tikzstyle{process} = [rectangle, minimum width=2em, minimum height=1em,text width=27em,text height=1em, text centered, draw=blue, fill=gray!10]
+    \tikzstyle{startend} = [ellipse, minimum width=2em, minimum height=1em,text width=12em,text height=0.5em, text centered, draw=red, fill=red!20]
+    \tikzstyle{process_final} = [rectangle,minimum width=2em, minimum height=1em,text width=9em,text height=1em, text centered, draw=cyan, fill=cyan!30]
+    \tikzstyle{startend1} = [ellipse, minimum width=2em, minimum height=1em,text width=4em,text height=0.5em, text centered, draw=red, fill=red!20]
+    \tikzstyle{startend111} = [ellipse, minimum width=2em, minimum height=1em,text width=6em,text height=0.5em, text centered, draw=red, fill=red!20]
     \tikzstyle{everynode}=[trapezium, draw=green!99, minimum width=1cm,trapezium left angle=120, trapezium right angle=60,fill=green!20,text centered, text width=30em]
     \tikzstyle{line} = [draw, -latex']
     \begin{center}
@@ -51,22 +51,21 @@
     \centering
     \hfill\\
     \begin{tikzpicture}[node distance=2em]
-        \node [startend1] (S) {\textbf{ROS y RVIZ}};
-        \node [process, below of=S, yshift= -1.9em](S1){Crear trayectoria lineal espacio cartesiano \\ $XYZ$ , $\dot{X}\dot{Y}\dot{Z}$ y $\ddot{X}\ddot{Y}\ddot{Z}$};
-        \node [process, below of=S1, yshift=-1.9em](S2){Calcular trayectoria en espacio articular \\ $\theta_{i\in\{1,2,3\}}$ (cinematica inversa)};
-        \node [process, below of=S2, yshift=-1.9em](S3){Visualización de trayectoria  a partir de $XYZ$ y \\ $\theta_{i\in\{1,2,3\}}$ configurando el robot delta en Rviz };
-        
+        \node [startend111] (S) {\textbf{ROS y RViz}};
+        \node [process, below of=S, yshift= -1.9em](S1){Crear trayectoria lineal en el espacio cartesiano \\ $XYZ$ , $\dot{X}\dot{Y}\dot{Z}$ y $\ddot{X}\ddot{Y}\ddot{Z}$ con perfil de velocidad trapezoidal};
+        \node [process, below of=S1, yshift=-1.9em](S2){Calcular trayectoria en espacio articular $\theta_{i\in\{1,2,3\}}$ \\ por medio de la cinemática inversa};
+        \node [process, below of=S2, yshift=-1.9em](S3){Visualización de trayectoria del robot delta en RViz\\ a partir de $XYZ$, $\theta_{i\in\{1,2,3\}}$ y escala de tiempo $s(t)$};
         \node (S4) [process, below of=S3, yshift=-1.9em]{Guardar trayectoria  $XYZ$, $\theta_{i\in\{1,2,3\}}$ \\ y la escala de tiempos $s(t)$ en archivo .txt};
-        \node (S5) [process, below of=S4, yshift=-1.9em]{Calcular la velocidad angular  $\dot{\theta}_{i\in\{1,2,3\}}$ y aceleración angular  $\ddot{\theta}_{i\in1,2,3\}}$ de los actuadores};
-        \node (S6) [process, below of=S5, yshift=-1.9em,]{Calcular torque de los motores  $\tau_{i\in\{1,2,3\}}$ a partir de los datos adquiridos en los pasos anteriores.};
-        \node (S7) [process, below of=S6, yshift=-1.9em,]{Guardar torque $\tau_{i\in\{1,2,3\}}$ en archivo .txt};
-        \node (S8) [startend1, below of=S7, yshift=-1.9em]{\textbf{ADAMS}};
-        \node (S9) [process, below of=S8, yshift=-1.9em]{Importación de la trayectoria $\theta_{i\in\{1,2,3\}}$, $XYZ$ y la escala de tiempo $s(t)$ desde ROS};
+        \node (S5) [process, below of=S4, yshift=-1.9em]{Calcular la velocidad angular  $\dot{\theta}_{i\in\{1,2,3\}}$ y aceleración angular  $\ddot{\theta}_{i\in\{1,2,3\}}$ de los actuadores};
+        \node (S6) [process, below of=S5, yshift=-1.9em,]{Calcular torques de los motores  $\tau_{i\in\{1,2,3\}}$ a partir de los datos adquiridos en los pasos anteriores.};
+        \node (S7) [process, below of=S6, yshift=-1.9em,]{Guardar torques $\tau_{i\in\{1,2,3\}}$ (ROS) en archivo .txt};
+        \node (S8) [startend1, below of=S7, yshift=-1.4em]{\textbf{ADAMS}};
+        \node (S9) [process, below of=S8, yshift=-1.8em]{Importación de la trayectoria $\theta_{i\in\{1,2,3\}}$, $XYZ$ y la escala de tiempo $s(t)$ desde ROS};
         \node (S10) [process, below of=S9, yshift=-1.9em,]{Dibujar $XYZ$ en el espacio de simulacion de ADAMS};
         \node (S11) [process, below of=S10, yshift=-1.9em,]{Insertar trayectoria $\theta_{i\in\{1,2,3\}}$ y escala de tiempo $s(t)$ a los motores o juntas creadas en ADAMS};    
-        \node (S12) [process, below of=S11, yshift=-1.9em,]{Guardar Torque $\tau_{i\in\{1,2,3\}}$ en archivo .txt};
-        \node [startend, below of=S12, yshift=-1.9em](S13){\textbf{Validación} \\ \textbf{Cinemática y Dinámica}};
-        \node (S14) [process_final, right of=S13, xshift=18em,]{\textbf{Comparar Torques} $\tau_{i\in\{1,2,3\}}$\\Metodo A\\Metodo B\\ADAMS};
+        \node (S12) [process, below of=S11, yshift=-1.9em,]{Guardar torques  $\tau_{i\in\{1,2,3\}}$ (ADAMS) en archivo .txt};
+        \node [startend, below of=S12, yshift=-2.5em](S13){\textbf{Validación} \\ \textbf{Cinemática y Dinámica}};
+        \node (S14) [process_final, right of=S13, xshift=18em,]{\textbf{Comparar Torques\\} $\tau_{i\in\{1,2,3\}}$\\Metodo A\\Metodo B\\ADAMS};
         \draw [line] (S) -- (S1);
         \draw [line] (S1) -- (S2);
         \draw [line] (S2) -- (S3);
@@ -84,11 +83,10 @@
         \draw [line,dotted] (S7) -| (S14);
         \draw [line,dotted] (S12) -| (S14);
         \end{tikzpicture}
-    \caption{Flujo de trabajo para la validación dinámica y cinemática del robot delta }
+    \caption{Flujo de trabajo para la validación dinámica y cinemática del robot delta.}
     \label{fig:cap6_intro_2}
     \end{figure}
     \end{center}
-
      \newpage
 
 
@@ -260,7 +258,7 @@
             
                 \tcc{Metodo A}
                 $[\theta_{1},\theta_{2},\theta_{3}]=cinematica.inversa(XYZ)$\;
-                $visualizacion.trayectoria.(XYZ,\theta_{1}\theta_{2}\theta_{3},s(t))$ \tcp*{RVIZ}       
+                $visualizacion.trayectoria.(XYZ,\theta_{1}\theta_{2}\theta_{3},s(t))$ \tcp*{RViz}       
                 $guardar.trayectoria (XYZ,\theta_{1}\theta_{2}\theta_{3},s(t))$\;
                 $( \dot{\theta}_{i=1,2,3} \ddot{\theta}_{i=1,2,3})=velocidad.y.aceleracion.angular(XYZ ; \dot{X}\dot{Y}\dot{Z} ; \ddot{X}\ddot{Y}\ddot{Z})$ \; 
                 $\tau_{A,i=1,2,3} =torque.A(XYZ ; \dot{X}\dot{Y}\dot{Z} ; \ddot{X}\ddot{Y}\ddot{Z},{\theta}_{i=1,2,3},\dot{\theta}_{i=1,2,3} \ddot{\theta}_{i=1,2,3})$\;
@@ -1930,11 +1928,11 @@
 
     \newpage
 
-\section{Interfaz de visualización Rviz}
+\section{Interfaz de visualización RViz}
 
-    Rviz da la posibilidad de visualizar los componentes mecánicos de un robot de una forma mas simple. En esta tesis se desea simular una trayectoria lineal de la plataforma móvil de un robot delta. Para cumplir con dicho objetivo se necesitan en cada momento de la trayectoria los ángulos de las juntas que unen los componentes y la posición xyz del centroide de la plataforma móvil. La posición en el espacio de los brazos y antebrazos se determinan a partir de los ángulos de cada junta relativos a otras partes mecánicas y la posición de la plataforma móvil se determina mediante las coordenadas de su centroide xyz relativo al sistema de referencia global. Por lo tanto, como se configura la visualización de las partes mecánicas en 2 grupos por separado, si la cinemática inversa es correcta, entonces la plataforma móvil debe calzar perfectamente entre las rotulas (final de los antebrazos) que unen los antebrazos con la plataforma móvil.
+    RViz da la posibilidad de visualizar los componentes mecánicos de un robot de una forma mas simple. En esta tesis se desea simular una trayectoria lineal de la plataforma móvil de un robot delta. Para cumplir con dicho objetivo se necesitan en cada momento de la trayectoria los ángulos de las juntas que unen los componentes y la posición xyz del centroide de la plataforma móvil. La posición en el espacio de los brazos y antebrazos se determinan a partir de los ángulos de cada junta relativos a otras partes mecánicas y la posición de la plataforma móvil se determina mediante las coordenadas de su centroide xyz relativo al sistema de referencia global. Por lo tanto, como se configura la visualización de las partes mecánicas en 2 grupos por separado, si la cinemática inversa es correcta, entonces la plataforma móvil debe calzar perfectamente entre las rotulas (final de los antebrazos) que unen los antebrazos con la plataforma móvil.
      
-   \subsection{Conexión entre ROS y RVIZ}
+   \subsection{Conexión entre ROS y RViz}
    
            Básicamente se puede obtener la visualización de la trayectoria del robot delta en 3 pasos:
 
@@ -1951,7 +1949,7 @@
                 % Place nodes
                     \node [block1] (funcion) {\textbf{TF \\ $Nombre$  $Juntas$  $URDF$}};
                 \node [block2, left of=funcion] (input) {\textbf{Trayectoria ROS \\ $\theta_{i=1,2,3}$\\$XYZ$\\ $   s(t)$\\ $\theta_{2i}$ \\ $\theta_{3i}$\\$Nombre$  $Juntas$  $URDF$ }};
-                \node [block3, right of=funcion] (ouput) {\textbf{URDF y Rviz}};
+                \node [block3, right of=funcion] (ouput) {\textbf{URDF y RViz}};
                 % Draw edges
                 \path [line] (funcion) -- node {}(ouput);
                 \path [line] (input) -- node { }(funcion);
@@ -1965,7 +1963,7 @@
         
         \begin{itemize}
             \item {\textbf{Paso 1}: Exportar de la trayectoria creada en ROS los siguientes datos: las posiciones de los motores $\theta_{i\in\{1,2,3\}}$ , la posiciones del centroide de la plataforma móvil $XYZ$ y la escala de tiempo utilizada $s(t)$. Luego se determinan los ángulos interiores $\theta_{2i}$ y $\theta_{3i}$ (vistos en la sección \eqref{cap4_angulosinteriores}) de las 3 cadenas cinemáticas. Esto es posible creando un nodo llamado $posicionador\_rviz\_realtime\_tm1\_adams$ que espera como datos de entrada los datos de la trayectoria  $\theta_{i\in\{1,2,3\}}$, $XYZ$ y $s(t)$ y como salida da como resultado un objeto de tipo $JointState()$. Este ultimo objeto contiene los datos de los ángulos interiores en radianes, ángulo de los motores en radianes y la posición xyz de la plataforma móvil en metros. Además, cada ángulo y coordenada se le asigna un nombre único de tipo string, los cuales son usados para relacionar las juntas configuradas para el visualizador con respecto al valor de cada una de ellas a través de la trayectoria.}
-            \item {\textbf{Paso 2}: Pasar a valores TF cada junta y coordenada adquirida del paso 1. Rviz tiene un nodo integrado llamada $estados\_robot\_pub.py$ que tiene como requisito de entrada los valores de cada junta con cada nombre único respectivamente y como salida da como resultado los valores TF con cada nombre unico respectivamente}
+            \item {\textbf{Paso 2}: Pasar a valores TF cada junta y coordenada adquirida del paso 1. RViz tiene un nodo integrado llamada $estados\_robot\_pub.py$ que tiene como requisito de entrada los valores de cada junta con cada nombre único respectivamente y como salida da como resultado los valores TF con cada nombre unico respectivamente}
             \item {\textbf{Paso 3}: Anterior a crear una trayectoria en ROS se debe configurar el robot delta en formato URDF. Los nombres de cada juntas en el archivo urdf en formato xml deben ser exactamente los mismo que en los pasos 1 y 2}
         \end{itemize}
         
@@ -2011,7 +2009,7 @@
              \begin{figure}[h]
                 \centering
                 \includegraphics[width=0.6\linewidth]{Main/Chapter6/Images6/cap6_basefija.png}
-                \caption{Base fija en Rviz}
+                \caption{Base fija en RViz}
                 \label{f:Cap6_urdf_1}
             \end{figure}  
 
@@ -2040,7 +2038,7 @@
              \begin{figure}[h]
                 \centering
                 \includegraphics[width=0.4\linewidth]{Main/Chapter6/Images6/cap6_brazo.png}
-                \caption{Brazo en Rviz}
+                \caption{Brazo en RViz}
                 \label{f:Cap6_urdf_2}
             \end{figure}  
             
@@ -2116,7 +2114,7 @@
         \begin{figure}[h]
                 \centering
                 \includegraphics[width=0.4\linewidth]{Main/Chapter6/Images6/cap6_antebrazo.png}
-                \caption{Antebrazo en Rviz}
+                \caption{Antebrazo en RViz}
                 \label{f:Cap6_urdf_3}
             \end{figure}
         
@@ -2212,7 +2210,7 @@
         \begin{figure}[h]
                 \centering
                 \includegraphics[width=0.4\linewidth]{Main/Chapter6/Images6/cap6_basemovil.png}
-                \caption{Base movil en Rviz}
+                \caption{Base movil en RViz}
                 \label{f:Cap6_urdf_4}
             \end{figure}
 
