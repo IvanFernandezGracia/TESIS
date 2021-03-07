@@ -1896,7 +1896,7 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
         \label{eq:cap4_tray_1}
     \end{equation}  
     
-    Una trayectoria es un camino geométrico $p(s)$  más consideraciones temporales $s(t)$ . Estas consideraciones temporales pueden estar restringidas por velocidades o aceleraciones impuestas a lo largo del camino. Usualmente se escoge un camino y luego se escoge la ley temporal para la trayectoria.
+    Una trayectoria es un camino geométrico $p(s)$  más consideraciones temporales $s(t)$. Estas consideraciones temporales pueden estar restringidas por velocidades o aceleraciones impuestas a lo largo del camino. Usualmente se escoge un camino y luego se escoge la ley temporal para la trayectoria.
     
     \begin{equation}
             p(s(t)) = [x(s(t)), y(s(t)), z(s(t))]^T
@@ -1985,7 +1985,7 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
         \newpage
 
     \subsection{Clasificación de trayectorias}
-        En esta sección se presentan 5 clasificaciones mas utilizadas para agrupar las trayectorias todo tipo de robots:
+        En esta sección se presentan 5 clasificaciones mas utilizadas para agrupar las trayectorias de todo tipo de robots.
         
         \subsubsection{Según el espacio }
             Según la importancia que se le asigna al camino de la trayectoria de un brazo robótico o un efector final de un punto inicial a un punto final en una tarea específica, se pueden dividir en 2 grupos: trayectorias cartesianas y trayectorias articulares. Las trayectorias cartesianas se utilizan cuando es necesario que el robot siga una determinada trayectoria geométrica. Acerca de estas trayectorias, es importante recalcar que sirven para evitar obstáculos, la visualización del camino generado es más fácil y requiere de cinemática inversa. Por el contrario, las trayectorias articulares se ocupan cuando se requiere ir de un punto a otro sin importar la trayectoria. 
@@ -2043,7 +2043,7 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
               \subfloat[Velocidad]{
              \label{f:cap4_tray_6b}
                 \includegraphics[width=0.5\textwidth]{Main/Chapter4/Images4/cap4_tray_6b.png}}
-             \caption{Trayectorias Punto a Punto
+             \caption{Trayectorias punto a punto
 : Interpolador de Velocidad Trapezoidal \cite{tray_utec}}
              \label{f:cap4_tray_6}
         \end{figure}            
@@ -2062,9 +2062,9 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
             Dependiendo de la tarea que se quiera realizar, se pueden subdividir en 3 tipos las trayectorias según los puntos por los que debe recorrer el efector final o el ultimo brazo del robot en el espacio cartesiano o articular:
 
             \begin{itemize}
-                \item 	 Trayectorias punto a punto: ir de un punto a otro sin importar la trayectoria 
-                \item 	 Trayectorias de puntos vías: ir de un punto a otro, pero pasando por puntos intermedios
-                \item 	 Trayectorias continuas (continuidad de velocidad, aceleración): ir de un punto a otro por una trayectoria especifica teóricamente de puntos infinitos
+                \item 	 Trayectorias punto a punto: ir de un punto a otro sin importar la trayectoria. 
+                \item 	 Trayectorias de puntos vías: ir de un punto a otro, pero pasando por puntos intermedios.
+                \item 	 Trayectorias continuas (continuidad de velocidad, aceleración): ir de un punto a otro por una trayectoria especifica teóricamente de puntos infinitos.
             \end{itemize}
         
 
@@ -2107,7 +2107,7 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
         En comparación con el caso en el que se utilizan coordenadas articuladas, se deben abordar las siguientes cuestiones:
         \begin{itemize}
                 \item Si el camino pasa cerca de una singularidad cinemática, las velocidades de las articulaciones pueden volverse excesivamente grandes para la mayoría de las escalas de tiempo del camino.
-                \item Dado que el espacio de trabajo en el que se desenvuelve el efector final de un robot puede no ser convexo en coordenadas X, algunos puntos en una línea recta entre dos puntos finales alcanzables pueden no ser accesibles. 
+                \item Dado que el espacio de trabajo en el que se desenvuelve el efector final de un robot puede no ser convexo en coordenadas $X$, algunos puntos en una línea recta entre dos puntos finales alcanzables pueden no ser accesibles. 
         \end{itemize}
 
         \newpage
@@ -2120,16 +2120,16 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
         
         
             \begin{equation}
-                \dot{\theta}=\dot{s} (\theta_{fin}-\theta_{inicio})
+                \dot{\theta}=\dot{s}~(\theta_{fin}-\theta_{inicio})
                 \label{eq:cap4_tray_13}
              \end{equation}      
              
             \begin{equation}
-                \ddot{\theta}=\ddot{s} (\theta_{fin}-\theta_{inicio})
+                \ddot{\theta}=\ddot{s}~ (\theta_{fin}-\theta_{inicio})
                 \label{eq:cap4_tray_14}
              \end{equation}  
         
-    Para un camino en línea recta en el espacio cartesiano parametrizado por un conjunto mínimo de coordenadas $X\in{\Re}^m$, simplemente se reemplaza $\theta$, $\dot{\theta}$,$\ddot{\theta}$ por $X$, $\dot{X}$,$\ddot{X}$ .        
+    Para un camino en línea recta en el espacio cartesiano parametrizado por un conjunto mínimo de coordenadas $X\in{\Re}^m$, simplemente se reemplaza $\theta$, $\dot{\theta}$, $\ddot{\theta}$ por $X$, $\dot{X}$, $\ddot{X}$.        
         
         \paragraph{Escala de tiempo polinomial}
         
@@ -2167,14 +2167,14 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
         Evaluando la ecuación \eqref{eq:cap4_tray_19} en  $t = 0$ , $t = T$ y resolviendo las cuatro restricciones representadas por las ecuaciones  \eqref{eq:cap4_tray_16},\eqref{eq:cap4_tray_17} y \eqref{eq:cap4_tray_18} :
         
             \begin{equation}
-                 a_{0}=0;a_{1}=0;a_{2}=\frac{3}{T^2};a_{3}=-\frac{2}{T^3}
+                 a_{0}=0~;~a_{1}=0~;~a_{2}=\frac{3}{T^2}~;~a_{3}=-\frac{2}{T^3}
                 \label{eq:cap4_tray_20}
              \end{equation}     
         
         Reemplazando los coeficientes $a_i$ en la ecuación \eqref{eq:cap4_tray_15}: 
         
             \begin{equation}
-                s(t)=a_{2}t^{2}+a_{3}t^{3} = (\frac{3}{T^2})t^{2}+(-\frac{2}{T^3})t^{3}
+                s(t)=a_{2}t^{2}+a_{3}t^{3} = \left(\frac{3}{T^2}\right) t^{2}+\left(-\frac{2}{T^3}\right)t^{3}
                 \label{eq:cap4_tray_21}
              \end{equation}  
              
@@ -2199,7 +2199,7 @@ En esta sección se da a conocer la definición de espacio de trabajo por alguno
              \begin{figure}[htb]
                 \centering
                 \includegraphics[width=0.8\linewidth]{Main/Chapter4/Images4/cap4_tray_8.png}
-                \caption{Gráficas de $s(t)$, $\dot{s}(t)$ y $\ddot{s}(t)$ para una escala de tiempo polinomial de tercer orden \cite{moder_robot} }
+                \caption{Gráficas de $s(t)$, $\dot{s}(t)$ y $\ddot{s}(t)$ para una escala de tiempo polinomial de tercer orden \cite{moder_robot}. }
                 \label{f:Cap4_tray_8}
             \end{figure}  
              
