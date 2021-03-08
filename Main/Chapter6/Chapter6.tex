@@ -92,7 +92,7 @@
 
 \section{Software ROS}
 
-    Robot Operating Processing es una herramienta que sirve para ordenar y dividir en tareas especificas un robot complejo simplificando a los ingenieros la creación de estos. Estas tareas se representan en nodos, funciones y subfunciones que son escritos en lenguaje de programación python. En esta sección, estos algoritmos son explicados brevemente como una función con entradas y salidas definidas como se muestra en la figura \eqref{f:Cap6_funtion_1} y explicados detalladamente en pseudocódigos como se puede visualizar en el algoritmo \eqref{algo:cap6_1}. Los algoritmos se dividen en una función principal y en sus subfunciones.
+    Robot Operating Processing es una herramienta que sirve para ordenar y dividir en tareas especificas un robot complejo simplificando a los ingenieros la creación de estos. Estas tareas se representan en nodos, funciones y subfunciones que son escritos en lenguaje de programación python. En esta sección, estos algoritmos son explicados brevemente como una función, con entradas y salidas definidas como se muestra en la figura \eqref{f:Cap6_funtion_1} y explicados detalladamente en pseudocódigos como se puede visualizar en el algoritmo \eqref{algo:cap6_1}. Los algoritmos se dividen en una función principal y en subfunciones.
     
         % Define block styles
         \tikzstyle{block1} = [rectangle, draw=blue,fill=blue!20, text width=10em, text centered, minimum height=7em, minimum width=2.5em , text=black]
@@ -109,14 +109,14 @@
                 \path [line] (funcion) -- node {}(ouput);
                 \path [line] (input) -- node { }(funcion);
             \end{tikzpicture}
-                \caption{Ejemplo representación gráfica de funciones o nodos}
+                \caption{Ejemplo representación gráfica de funciones o nodos.}
                 \label{f:Cap6_funtion_1}
          \end{figure}
          \end{center}
 
      \begin{algorithm}[H]
-            \caption{Nombre del Algoritmo} 
-            \label{algo:cap6_1}
+            %\caption{Nombre del Algoritmo} 
+            %\label{algo:cap6_1}
             \SetKwInput{KwInput}{Input}                % Set the Input
             \SetKwInput{KwOutput}{Output}              % set the Output
             \SetKwInput{KwObjetivo}{Objetivo}                % Set the Input
@@ -144,6 +144,8 @@
               \tcc{Algoritmo de subfunciones*}
                 \KwRet$Output$\;
           }
+            \caption{Nombre del Algoritmo} 
+            \label{algo:cap6_1}
     \end{algorithm}
     
     
@@ -201,7 +203,7 @@
                 
             \end{tikzpicture}
             
-                \caption{Conceptos programados en ROS}
+                \caption{Conceptos programados en ROS.}
                 \label{fig:my_label}
         \end{figure}
  \end{center}
@@ -209,7 +211,7 @@
     \newpage
     
     \subsection{Nodo principal}\label{nodoprincipal_tray}
-    Los algoritmos de los métodos A y B son utilizados finalmente para obtener el toque de los motores de un robot delta a partir de una trayectoria lineal especifica del efector final. Estos algoritmos son compilados en un nodo llamado: nodo principal. 
+    Los algoritmos de los métodos A y B son utilizados finalmente para obtener el toque de los motores de un robot delta a partir de una trayectoria lineal especifica del efector final. Estos algoritmos son compilados en un nodo llamado nodo principal. 
     
     % Define block styles
         \tikzstyle{block1} = [rectangle, draw=blue,fill=blue!20, text width=7em, text centered, minimum height=7em, minimum width=2.5em , text=black]
@@ -227,7 +229,7 @@
                 \path [line] (input) -- node { }(funcion);
             \end{tikzpicture}
                 \caption{Entradas y salidas del nodo principal}
-                \label{f:Cap6_funtion_1}
+                \label{f:Cap6_funtion_1333}
          \end{figure}
          \end{center}
          
@@ -252,7 +254,7 @@
           \SetKwFunction{FSub}{nodo}
            \SetKwProg{Fn}{}{:}{}
             \Fn{\FSub{$P_i(x,y,z),P_f(x,y,z),v_{max} ,a_{max}$}}{
-                            \tcc{Nota: El nombre de las funciones en este pseudocodigo no son los nombres de las funciones en el archivo .py , sino son nombres de referencia en base al objetivo de cada función para explicar el flujo de trabajo que tiene como finalidad obtener el torque de los motores}
+                            \tcc{Nota: El nombre de las funciones en este pseudocodigo no son los nombres de las funciones en el archivo .py , sino son nombres de referencia en base al objetivo de cada función para explicar el flujo de trabajo que tiene como finalidad obtener el torque de los motores.}
                 \tcc{Crear Trayectoria}
                 $[XYZ ; \dot{X}\dot{Y}\dot{Z} ; \ddot{X}\ddot{Y}\ddot{Z},s(t))]=trayectoria(P_i(x,y,z),P_f(x,y,z),v_{max} ,a_{max})$\;            
             
@@ -260,7 +262,7 @@
                 $[\theta_{1},\theta_{2},\theta_{3}]=cinematica.inversa(XYZ)$\;
                 $visualizacion.trayectoria.(XYZ,\theta_{1}\theta_{2}\theta_{3},s(t))$ \tcp*{RViz}       
                 $guardar.trayectoria (XYZ,\theta_{1}\theta_{2}\theta_{3},s(t))$\;
-                $( \dot{\theta}_{i=1,2,3} \ddot{\theta}_{i=1,2,3})=velocidad.y.aceleracion.angular(XYZ ; \dot{X}\dot{Y}\dot{Z} ; \ddot{X}\ddot{Y}\ddot{Z})$ \; 
+                $( \dot{\theta}_{i=1,2,3}, \ddot{\theta}_{i=1,2,3})=velocidad.y.aceleracion.angular(XYZ ; \dot{X}\dot{Y}\dot{Z} ; \ddot{X}\ddot{Y}\ddot{Z})$ \; 
                 $\tau_{A,i=1,2,3} =torque.A(XYZ ; \dot{X}\dot{Y}\dot{Z} ; \ddot{X}\ddot{Y}\ddot{Z},{\theta}_{i=1,2,3},\dot{\theta}_{i=1,2,3} \ddot{\theta}_{i=1,2,3})$\;
 
                 \tcc{Metodo B}
@@ -304,9 +306,8 @@
     \newpage
     \subsection{Método A}
     
-    Las figuras de la \eqref{f:Cap6_funtion_2} a la \eqref{f:Cap6_funtion_6} representan de forma visual los algoritmos, tareas o funciones planteadas en esta sección con respecto a la  metodología A del capitulo \eqref{CAP4}, de igual forma que en la figura \eqref{f:Cap6_funtion_1}. Las entradas y las salidas de cada función son escritas con las misma nomenclatura de cada sección con que fue inspirado el algoritmo respectivamente. Es notorio recalcar que cada algoritmo es obtenido de diferentes referencias bibliográficas, por lo que los sistemas de referencia y el orden numérico de los ángulos de los actuadores son diferentes. Por ende, las entradas y las salidas en cada algoritmo son transformadas del sistema global al sistema de referencia local y viceversa.     
+    Las figuras de la \eqref{f:Cap6_funtion_2} a la \eqref{f:Cap6_funtion_6} representan de forma visual los algoritmos, tareas o funciones planteadas en esta sección con respecto al método A del capitulo \eqref{CAP4}, de igual forma que en la figura \eqref{f:Cap6_funtion_1}. Las entradas y las salidas de cada función son escritas con las misma nomenclatura de cada sección con que fue inspirado cada algoritmo respectivamente. Es notorio recalcar que cada algoritmo es obtenido de diferentes referencias bibliográficas, por lo que los sistemas de referencia y el orden numérico de los ángulos de los actuadores son diferentes. Por ende, las entradas y las salidas en cada algoritmo son transformadas del sistema global al sistema de referencia local y viceversa.     
     
-
             \hspace{1cm}
 
 
@@ -328,7 +329,7 @@
                     \path [line] (funcion) -- node {}(ouput);
                     \path [line] (input) -- node { }(funcion);
                 \end{tikzpicture}
-                    \caption{Entradas y salidas de la función de cinemática directa del metodo A}
+                    \caption{Función cinemática directa del método A}
                     \label{f:Cap6_funtion_2}
         \end{subfigure}
         
@@ -345,7 +346,7 @@
                     \path [line] (funcion) -- node {}(ouput);
                     \path [line] (input) -- node { }(funcion);
                 \end{tikzpicture}
-                    \caption{Entradas y salidas de la función de cinemática inversa del método A}
+                    \caption{Función cinemática inversa del método A}
                     \label{f:Cap6_funtion_3}
         \end{subfigure}
         
@@ -362,7 +363,7 @@
                     \path [line] (funcion) -- node {}(ouput);
                     \path [line] (input) -- node { }(funcion);
                 \end{tikzpicture}
-                    \caption{Entradas y salidas de la función del jacobiano del método A}
+                    \caption{Función jacobiano del método A}
                     \label{f:Cap6_funtion_4}
          \end{subfigure}
          
@@ -380,7 +381,7 @@
                     \path [line] (funcion) -- node {}(ouput);
                     \path [line] (input) -- node { }(funcion);
                 \end{tikzpicture}
-                    \caption{Entradas y salidas de la función de cinemática de aceleración del método A}
+                    \caption{Función cinemática de aceleración del método A}
                     \label{f:Cap6_funtion_5}
          \end{subfigure}
          
@@ -397,7 +398,7 @@
                     \path [line] (funcion) -- node {}(ouput);
                     \path [line] (input) -- node { }(funcion);
                 \end{tikzpicture}
-                    \caption{Entradas y salidas de la función de dinámica inversa del método A}
+                    \caption{Función dinámica inversa del método A}
                     \label{f:Cap6_funtion_6}
          \end{subfigure}
                 \hspace{1cm}
@@ -414,7 +415,7 @@
 
  \subsubsection{Cinemática directa}
     \begin{algorithm}[H]
-        \caption{Cinemática Directa Metodología A} 
+        \caption{Cinemática Directa método A} 
         \label{algo:cap6_2}
         \SetKwInput{KwInput}{Input}                % Set the Input
         \SetKwInput{KwOutput}{Output}              % set the Output
@@ -459,7 +460,7 @@
  
  \subsubsection{Cinemática inversa}
      \begin{algorithm}[H]
-            \caption{Cinemática Inversa Metodología A} 
+            \caption{Cinemática Inversa método A} 
             \SetKwInput{KwInput}{Input}                % Set the Input
             \SetKwInput{KwOutput}{Output}              % set the Output
             \SetKwInput{KwObjetivo}{Objetivo}                % Set the Input
@@ -505,7 +506,7 @@
 
     \begin{algorithm}
           \ContinuedFloat
-          \caption{Cinemática Inversa Metodología A (Continuacion...)}
+          \caption{Cinemática Inversa método A (Continuacion...)}
           \tcc{SUBFUNCIONES}
           \SetKwProg{Fn}{}{:}{}
           \Fn{\FSub{${x}_{{ \phi }_i} , {y}_{{ \phi }_i} , {z}_{{ \phi }_i}$, { \phi }_i}}{
@@ -534,7 +535,7 @@
     \subsubsection{Jacobiano}
             
         \begin{algorithm}[H]
-            \caption{Jacobiano Metodología A} 
+            \caption{Jacobiano método A} 
             \SetKwInput{KwInput}{Input}                % Set the Input
             \SetKwInput{KwOutput}{Output}              % set the Output
             \SetKwInput{KwObjetivo}{Objetivo}                % Set the Input
@@ -588,7 +589,7 @@
 
 \begin{algorithm}
           \ContinuedFloat
-          \caption{Jacobiano Metodología A (Continuacion...)}
+          \caption{Jacobiano método A (Continuacion...)}
           \tcc{SUBFUNCIONES}
           
           \tcc{Calcular angulo ${\theta }_{3i}$ ecuación \eqref{eq:cap4_eq_23} }  
@@ -644,7 +645,7 @@
         \subsubsection{Modelacion cinematica de Aceleración}
 
         \begin{algorithm}[H]
-            \caption{Aceleración Metodología A} 
+            \caption{Aceleración método A} 
             \SetKwInput{KwInput}{Input}                % Set the Input
             \SetKwInput{KwOutput}{Output}              % set the Output
             \SetKwInput{KwObjetivo}{Objetivo}                % Set the Input
@@ -675,21 +676,21 @@
                 v_{py}\\
                 v_{pz}\\
                 \end{matrix}\right]$\;
-                \tcc{$\dot{\theta}_{3i}$}
+                \tcc{Velocidad angular $\dot{\theta}_{3i}$}
                 $\dot{\theta}_{31}= calculo\_theta3i\_der(P_x,P_y, {\phi}_{0 ^{\circ}},v_{px},v_{py})$\;
                 $\dot{\theta}_{32}= calculo\_theta3i\_der(P_x,P_y, {\phi}_{120 ^{\circ}},v_{px},v_{py})$\;
                 $\dot{\theta}_{33}= calculo\_theta3i\_der(P_x,P_y, {\phi}_{240 ^{\circ}},v_{px},v_{py})$\;
-                \tcc{$\dot{\theta}_{2i}$}
+                \tcc{Velocidad angular $\dot{\theta}_{2i}$}
                 $\dot{\theta}_{21}= calculo\_theta2i\_der(P_x,P_y,P_z, {\phi}_{0 ^{\circ}},v_{px},v_{py},v_{pz},{\theta}_{31},\dot{\theta}_{31})$\;
                 $\dot{\theta}_{22}= calculo\_theta2i\_der(P_x,P_y,P_z, {\phi}_{120 ^{\circ}},v_{px},v_{py},v_{pz},{\theta}_{32},\dot{\theta}_{32})$\;
                 $\dot{\theta}_{23}= calculo\_theta2i\_der(P_x,P_y,P_z, {\phi}_{240 ^{\circ}},v_{px},v_{py},v_{pz},{\theta}_{33},\dot{\theta}_{33})$\;
-                \tcc{$\dot{J}_{ix}$  para i=1,2,3}
+                \tcc{$\dot{J}_{ix}$  para $i\in\{1,2,3\}$}
                 $\dot{J}_{ix}=calculo\_jix\_der({\phi}_{i },\theta_{1i},\theta_{2i},\theta_{3i},\dot{ \theta _{1i}},\dot{\theta_{2i}},\dot{\theta_{3i}})$\;
-                \tcc{$\dot{J}_{iy}$  para i=1,2,3}
+                \tcc{$\dot{J}_{iy}$  para $i\in\{1,2,3\}$}
                 $\dot{J}_{iy}=calculo\_jiy\_der({\phi}_{i },\theta_{1i},\theta_{2i},\theta_{3i},\dot{ \theta _{1i}},\dot{\theta_{2i}},\dot{\theta_{3i}})$\;    
-                \tcc{$\dot{J}_{iz}$  para i=1,2,3}
+                \tcc{$\dot{J}_{iz}$  para $i\in\{1,2,3\}$}
                 $\dot{J}_{iz}=calculo\_jiz\_der({\phi}_{i },\theta_{1i},\theta_{2i},\theta_{3i},\dot{ \theta _{1i}},\dot{\theta_{2i}},\dot{\theta_{3i}})$\;         
-                \tcc{$\dot{J}_{i \theta }$  para i=1,2,3}
+                \tcc{$\dot{J}_{i \theta }$  para $i\in\{1,2,3\}$}
                 $\dot{J}_{i \theta }=calculo\_jthetai\_der({\phi}_{i },\theta_{2i},\theta_{3i},\dot{\theta_{2i}},\dot{\theta_{3i}})$\;
                 \tcc{Cambiar al sistema Referencia Global al operar}
                   \KwRet $[J_{\theta }, J_{x},\dot{J}_{\theta }, \dot{J}_{x},\theta_{31},\theta_{32},\theta_{33},\theta_{21},\theta_{22},\theta_{23}]$\;}
@@ -698,7 +699,7 @@
 
 \begin{algorithm}[H]
           \ContinuedFloat
-          \caption{Aceleración Metodología A (Continuacion...)}
+          \caption{Aceleración método A (Continuacion...)}
           \tcc{SUBFUNCIONES}
           
           \tcc{Calcular $\dot{\theta }_{3i}$ ecuacion \eqref{eq:cap4_eq_44}}  
@@ -752,7 +753,7 @@
         
  \begin{algorithm}[H]
           \ContinuedFloat
-          \caption{Aceleración Metodología A (Continuacion...)}
+          \caption{Aceleración método A (Continuacion...)}
           \tcc{SUBFUNCIONES}
 
           \tcc{Calcular $\dot{J}_{iy}$ ecuacion \eqref{eq:cap4_eq_39}}
@@ -796,7 +797,7 @@
         \subsubsection{Dinámica Inversa}
         
         \begin{algorithm}[H]
-            \caption{Dinámica Inversa Metodología A} 
+            \caption{Dinámica Inversa método A} 
             \SetKwInput{KwInput}{Input}                % Set the Input
             \SetKwInput{KwOutput}{Output}              % set the Output
             \SetKwInput{KwObjetivo}{Objetivo}                % Set the Input
@@ -816,12 +817,12 @@
               \Fn{\FSum{$\ddot{\theta}_{1}$,$\ddot{\theta}_{2}$,$\ddot{\theta}_{3}$,$        {\theta}_{1}$,${\theta}_{2}$,${\theta}_{3}$,$X_p$,$Y_p$,$Z_p$,$\ddot{X}_{p}$,$\ddot{Y}_{p}$,$\ddot{Z}_{p}$,$F_{px}$,$F_{py}$,$F_{pz}$,$m_{playload}$ }}{
                 \tcc{Cambiar velocidades, aceleraciones, fuerzas y ordenar de ángulos según sistema de referencia local}
                 \tcc{Cambiar unidades a SI}
-                \tcc{Calcular multiplicadores de Lagrange $\lambda_i$ $i=1,2,3$}
+                \tcc{Calcular multiplicadores de Lagrange $\lambda_i$ $i\in\{1,2,3\}$}
 
                $[\lambda_1,\lambda_2,\lambda_3]^T=system\_tq(\phi_{0^\circ},\phi_{120^\circ},\phi_{240^\circ},\theta_1,\theta_2,\theta_3,X_p,Y_p,Z_p,F_{px},F_{py},F_{pz},$\;
                $\ddot{X}_p,\ddot{Y}_p,\ddot{Z}_p,m_{playload})$\;
 
-                \tcc{Calcular torques $\tau_{i}$ para i=1,2,3}
+                \tcc{Calcular torques $\tau_{i}$ para $i\in\{1,2,3\}$}
                 $\tau_{1}= ti\_puntual(\phi_{0^\circ},\ddot{\theta}_{1},\theta_{1},X_p,Y_p,Z_p,\lambda_1)$\;
                 $\tau_{2}= ti\_puntual(\phi_{120^\circ},\ddot{\theta}_{2},\theta_{2},X_p,Y_p,Z_p,\lambda_2)$\;
                 $\tau_{3}= ti\_puntual(\phi_{240^\circ},\ddot{\theta}_{3},\theta_{3},X_p,Y_p,Z_p,\lambda_3)$\;
@@ -832,7 +833,7 @@
                   
           \tcc{SUBFUNCIONES}
 
-          \tcc{Calcular torques $\tau_{i}$ para i=1,2,3}
+          \tcc{Calcular torques $\tau_{i}$ para $i\in\{1,2,3\}$}
           \SetKwProg{Fn}{}{:}{}
           \SetKwFunction{FSub}{ ti\_puntual}
           \Fn{\FSub{$\phi_{i^\circ},\ddot{\theta}_{i},\theta_{i},X_p,Y_p,Z_p,\lambda_i$}}
@@ -852,10 +853,10 @@
 
          \begin{algorithm}[H]
                   \ContinuedFloat
-                  \caption{Dinámica Inversa Metodología A (Continuación...)}
+                  \caption{Dinámica Inversa método A (Continuación...)}
                   \tcc{SUBFUNCIONES}
       
-                  \tcc{Calcular multiplicadores de Lagrange $\lambda_i$ $i=1,2,3$}
+                  \tcc{Calcular multiplicadores de Lagrange $\lambda_i$ $i\in\{1,2,3\}$}
                   \SetKwProg{Fn}{}{:}{}
                   \SetKwFunction{FSub}{system\_tq}
                   \Fn{\FSub{\phi_{0^\circ},\phi_{120^\circ},\phi_{240^\circ},\theta_1,\theta_2,\theta_3,X_p,Y_p,Z_p,F_{px},F_{py},F_{pz},\ddot{X}_p,\ddot{Y}_p,\ddot{Z}_p,m_{playload}}}{
@@ -890,7 +891,7 @@
       
     \subsection{Método B}
     
-       Al igual que la sección anterior, se presentan en las figuras \eqref{f:Cap6_funtion_7} a la \eqref{f:Cap6_funtion_11} las tareas con respecto a la  metodología B del capitulo \eqref{CAP4}. 
+       Al igual que la sección anterior, se presentan en las figuras \eqref{f:Cap6_funtion_7} a la \eqref{f:Cap6_funtion_11} las tareas con respecto al metodo B del capitulo \eqref{CAP4}. 
     
             \hspace{1cm}
 
@@ -913,7 +914,7 @@
                     \path [line] (funcion) -- node {}(ouput);
                     \path [line] (input) -- node { }(funcion);
                 \end{tikzpicture}
-                    \caption{Entradas y salidas de la función de cinemática directa del metodo B}
+                    \caption{Función cinemática directa del método B}
                     \label{f:Cap6_funtion_7}
         \end{subfigure}
         
@@ -930,7 +931,7 @@
                     \path [line] (funcion) -- node {}(ouput);
                     \path [line] (input) -- node { }(funcion);
                 \end{tikzpicture}
-                    \caption{Entradas y salidas de la función de cinemática inversa del método B}
+                    \caption{Función cinemática inversa del método B}
                     \label{f:Cap6_funtion_8}
         \end{subfigure}
         
@@ -947,7 +948,7 @@
                     \path [line] (funcion) -- node {}(ouput);
                     \path [line] (input) -- node { }(funcion);
                 \end{tikzpicture}
-                    \caption{Entradas y salidas de la función del Jacobiano del método B}
+                    \caption{Función jacobiano del método B}
                     \label{f:Cap6_funtion_9}
          \end{subfigure}
          
@@ -965,7 +966,8 @@
                     \path [line] (funcion) -- node {}(ouput);
                     \path [line] (input) -- node { }(funcion);
                 \end{tikzpicture}
-                    \caption{Entradas y salidas de la función de cinemática de aceleración del método B}                    \label{f:Cap6_funtion_10}
+                    \caption{Función cinemática de aceleración del método B}
+                \label{f:Cap6_funtion_10}
          \end{subfigure}
          
                  \hspace{1cm}
@@ -981,7 +983,8 @@
                     \path [line] (funcion) -- node {}(ouput);
                     \path [line] (input) -- node { }(funcion);
                 \end{tikzpicture}
-                    \caption{Entradas y salidas de la función de dinámica inversa del método B}                    \label{f:Cap6_funtion_11}
+                    \caption{Función dinámica inversa del método B}
+                  \label{f:Cap6_funtion_11}
          \end{subfigure}
                 \hspace{1cm}
     \end{figure}
@@ -992,7 +995,7 @@
         \subsubsection{Cinemática directa}
         
 \begin{algorithm}[H]
-    \caption{Cinemática Directa Metodología B} 
+    \caption{Cinemática Directa método B} 
     \SetKwInput{KwInput}{Input}                % Set the Input
     \SetKwInput{KwOutput}{Output}              % set the Output
     \SetKwInput{KwObjetivo}{Objetivo}                % Set the Input
@@ -1046,7 +1049,7 @@
 \subsubsection{Cinemática inversa}
         
     \begin{algorithm}[H]
-            \caption{Cinemática Inversa Metodología B} 
+            \caption{Cinemática Inversa método B} 
             \SetKwInput{KwInput}{Input}                % Set the Input
             \SetKwInput{KwOutput}{Output}              % set the Output
             \SetKwInput{KwObjetivo}{Objetivo}                % Set the Input
@@ -1092,7 +1095,7 @@
         
 \begin{algorithm}
       \ContinuedFloat
-      \caption{Cinemática Inversa Metodología B (Continuacion...)}
+      \caption{Cinemática Inversa método B (Continuacion...)}
       \tcc{SUBFUNCIONES}
       \SetKwProg{Fn}{}{:}{}
       \Fn{\FSub{${x}_{{ \varphi }_i} , {y}_{{ \varphi }_i} , {z}_{{ \varphi }_i}$, { \varphi }_i}}{
@@ -1119,7 +1122,7 @@
  \subsubsection{Jacobiano}
      
          \begin{algorithm}[H]
-            \caption{Jacobiano Metodología B} 
+            \caption{Jacobiano método B} 
             \SetKwInput{KwInput}{Input}                % Set the Input
             \SetKwInput{KwOutput}{Output}              % set the Output
             \SetKwInput{KwObjetivo}{Objetivo}                % Set the Input
@@ -1179,7 +1182,7 @@
 
 \begin{algorithm}
           \ContinuedFloat
-          \caption{Jacobiano Metodología B (Continuacion...)}
+          \caption{Jacobiano método B (Continuacion...)}
           \tcc{SUBFUNCIONES}
           
           \tcc{Calcular $\overrightarrow{s_{i}}$ }
@@ -1252,7 +1255,7 @@
 
 
          \begin{algorithm}[H]
-            \caption{Modelacion Cinematica de Aceleracion Metodología B} 
+            \caption{Modelacion Cinematica de Aceleracion método B} 
             \SetKwInput{KwInput}{Input}                % Set the Input
             \SetKwInput{KwOutput}{Output}              % set the Output
             \SetKwInput{KwObjetivo}{Objetivo}                % Set the Input
@@ -1320,7 +1323,7 @@
 
         \begin{algorithm}
                   \ContinuedFloat
-                  \caption{Modelacion Cinematica de Aceleracion Metodología B (Continuacion...)}
+                  \caption{Modelacion Cinematica de Aceleracion método B (Continuacion...)}
                   \tcc{SUBFUNCIONES}
                   
                   \tcc{Calcular Transpose $\overrightarrow{{\dot{s}}_i}$  $para$ $i=1,2,3$ $(1x3)$ }
@@ -1365,7 +1368,7 @@
 \subsubsection{Dinámica Inversa}\label{metodoB_dinamica_inv}
 
         \begin{algorithm}[H]
-            \caption{Dinámica Inversa Metodología B} 
+            \caption{Dinámica Inversa método B} 
             \SetKwInput{KwInput}{Input}                % Set the Input
             \SetKwInput{KwOutput}{Output}              % set the Output
             \SetKwInput{KwObjetivo}{Objetivo}                % Set the Input
@@ -1423,7 +1426,7 @@
 
          \begin{algorithm}[H]
                   \ContinuedFloat
-                  \caption{Dinámica Inversa Metodología B (Continuación...)}
+                  \caption{Dinámica Inversa método B (Continuación...)}
                   \tcc{SUBFUNCIONES}
       
                   \tcc{Calcular masa total del efector final}
@@ -1474,15 +1477,15 @@
     \centering
     \begin{tikzpicture}[node distance = 2cm, auto]
         % Place nodes
-        \node [everynode] (input) {Dimensiones del robot y parámetros de restricciones modelo};
+        \node [everynode] (input) {Dimensiones del robot y parámetros de restricciones};
         \node [block, below of=input,node distance=1.5cm] (theta11) {Variar $\theta_{11}$ \\ $[\theta_{11min}$ - $\theta_{11max}  ]$};
         \node [block, below of=theta11,node distance=2.5cm] (theta12) {Variar $\theta_{12}$ \\ $[\theta_{12min}$ - $\theta_{12max}  ]$};
         \node [block, below of=theta12,node distance=2.5cm] (theta13) {Variar $\theta_{13}$ \\ $[\theta_{13min}$ - $\theta_{13max}  ]$};
-        \node [block2, below of=theta13,node distance=3cm] (restri) {1. Posición efector$[P_XP_YP_Z]$ a través de cinemática directa\\$[P_XP_YP_Z]=f(\theta_{11},\theta_{12},\theta_{13})$\\2. Ángulos interiores $\theta_{2i}$ y $\theta_{3i}$
-           \\3. Jacobiano y sus Determinantes};
-        \node [decision, below of=restri] (cumple) {¿Cumple con restricciones? Figura \eqref{fig:my_label_ws_cap6_1}};
-        \node [block1, left of=cumple,node distance=5cm] (guardar) {El punto $[P_XP_YP_Z]$ \\ SI pertenece al \\ espacio de trabajo.\\Guardar punto};
-        \node [block1, right of=cumple, node distance=5cm] (noguardar) {El punto $[P_XP_YP_Z]$ \\ NO pertenece al \\ espacio de trabajo};
+        \node [block2, below of=theta13,node distance=3cm] (restri) {1. Posición efector $[P_XP_YP_Z]$ a través de cinemática directa\\$[P_XP_YP_Z]=f(\theta_{11},\theta_{12},\theta_{13})$\\2. Ángulos interiores $\theta_{2i}$ y $\theta_{3i}$
+           \\3. Jacobiano y sus determinantes};
+        \node [decision, below of=restri] (cumple) {¿Cumple con restricciones? Figura \textcolor{white}{\eqref{fig:my_label_ws_cap6_1}}};
+        \node [block1, left of=cumple,node distance=5cm] (guardar) {El punto $[P_XP_YP_Z]$ \\ \textbf{SI} pertenece al \\ espacio de trabajo.\\Guardar punto};
+        \node [block1, right of=cumple, node distance=5cm] (noguardar) {El punto $[P_XP_YP_Z]$ \\ \textbf{NO} pertenece al \\ espacio de trabajo};
         % Draw edges
         \path [line] (guardar) |-  (theta11);
         \path [line] (guardar) |-  (theta12);
@@ -1525,9 +1528,9 @@
         \node [decision] (theta2i) {¿Cumple restricción de $\theta_{2i}$?};
         \node [decision, below of=theta2i] (theta3i) {¿Cumple restricción de $\theta_{3i}$?};
         \node [decision, below of=theta3i] (J) {¿Cumple restricción de $\Vert J \Vert$?};
-        \node [decision, below of=J] (limxyz) {¿Cumple restricción de limites XYZ?};
-        \node [block1, left of=limxyz,node distance=5cm] (guardar) {El punto $[P_XP_YP_Z]$ \\SI pertenece al\\ espacio de trabajo.\\ Guardar punto};
-        \node [block1, right of=theta2i,node distance=5cm] (noguardar) {El punto $[P_XP_YP_Z]$ \\ NO pertenece al \\ espacio de trabajo};
+        \node [decision, below of=J] (limxyz) {¿Cumple restricción de limites $XYZ$?};
+        \node [block1, left of=limxyz,node distance=5cm] (guardar) {El punto $[P_XP_YP_Z]$ \\\textbf{SI} pertenece al\\ espacio de trabajo.\\ Guardar punto};
+        \node [block1, right of=theta2i,node distance=5cm] (noguardar) {El punto $[P_XP_YP_Z]$ \\ \textbf{NO} pertenece al \\ espacio de trabajo};
         % Draw edges
         \path [line] (theta2i) -- node {\Large Si} (theta3i);
         \path [line] (theta3i) -- node {\Large Si} (J);
@@ -1573,9 +1576,9 @@
          
         \vspace{-1cm}         
     
-    En este nodo, las dimensiones del robot y las restricciones son establecidas antes de calcular el espacio de trabajo. La única entrada es el paso de la discretizacion de los rangos \(  \Delta  \theta _{1i} \). La cinematica directa y el jacobiano se calculan a partir del método A, específicamente los desarrollados en las secciones \eqref{ma_cd} y \eqref{ma_jac} respectivamente. Se emplea este método por la razón de que el jacobiano $J$ se puede bipartir en dos matrices $(J_{x}$  y  $J_{ \theta })$, donde cada una de ellas representa una singularidad especifica . Ademas, el metodo A tiene la ventaja de tener las ecuaciones de los ángulos interiores $\theta_{2i}$ y $\theta_{3i}$.
+    En este nodo, las dimensiones del robot y las restricciones son establecidas antes de calcular el espacio de trabajo. La única entrada es el paso de la discretizacion de los rangos \(  \Delta  \theta _{1i} \). La cinemática directa y el jacobiano se calculan a partir del método A, específicamente los desarrollados en las secciones \eqref{ma_cd} y \eqref{ma_jac} respectivamente. Se emplea este método por la razón de que el jacobiano $J$ se puede bipartir en dos matrices $(J_{x}$  y  $J_{ \theta })$, donde cada una de ellas representa una singularidad especifica. Además, el metodo A tiene la ventaja de tener las ecuaciones de los ángulos interiores $\theta_{2i}$ y $\theta_{3i}$.
     
-    El valor de las restricciones en este trabajo de grado se encuentran en la tabla \eqref{t:cap6_ws_1}: 
+    El valor de las restricciones en este trabajo de grado se encuentran en la tabla \eqref{t:cap6_ws_1}.
     
             \begingroup
             \renewcommand{\arraystretch}{1.2}
@@ -1680,7 +1683,7 @@
 
     \subsection{Trayectoria}
     
-    En esta sección se explica el desarrollo para determinar la trayectoria en el espacio articular del robot delta, es decir, la trayectoria angular de los actuadores, a partir de una trayectoria lineal interpolada en el espacio cartesiano XYZ que recorre el efector final de un punto inicial $P_i$ a un punto final $P_f$ con restricciones de velocidad trapezoidal en dirección del camino geometrico.
+    En esta sección se explica el desarrollo para determinar la trayectoria en el espacio articular del robot delta, es decir, la trayectoria angular de los actuadores a partir de una trayectoria lineal interpolada en el espacio cartesiano $XYZ$ que recorre el efector final de un punto inicial $P_i$ a un punto final $P_f$ con restricciones impuestas por el perfil de velocidad trapezoidal en dirección del camino geométrico.
 
         % Define block styles
         \tikzstyle{block1} = [rectangle, draw=blue,fill=blue!20, text width=10em, text centered, minimum height=2em, minimum width=2.5em , text=black]
@@ -1710,7 +1713,7 @@
     Esta trayectoria se compone de un camino geométrico lineal en el espacio cartesiano $XYZ$ llamado 'punto a punto en linea recta' y la escala temporal es 'perfil de movimiento trapezoidal respecto a la Velocidad' o 'linear segment with parabolic blends (LSPB)', visto en la sección \eqref{cap4_tray}. 
     
     
-        El diagrama de flujo para el desarrollo de la trayectoria se presenta en la figura \eqref{f:cap6_trayectory_112129}:
+        El diagrama de flujo para el desarrollo de la trayectoria se presenta en la figura \eqref{f:cap6_trayectory_112129}.
     
         % Define block styles
         \tikzstyle{block1} = [rectangle, draw=green!50,fill=green!20, text width=5em, text centered, minimum height=2em, minimum width=2.5em ]
@@ -1740,12 +1743,12 @@
          \end{center}
         \vspace{-1.3cm}   
 
-    A partir de de el punto inicial $P_i$ y el punto final $P_f$, se realiza una traslación y dos rotaciones del marco de referencia general para aplicar la escala temporal de perfil trapezoidal y la interpolación del camino geométrico lineal. Luego se aplica traslación y rotaciones inversas para obtener la trayectoria en el espacio cartesiano respecto al sistema de referencia general. Finalmente se emplea la cinemática inversa para conseguir las trayectorias en el espacio articular de los actuadores.     
+    A partir del punto inicial $P_i$ y el punto final $P_f$, se realiza una traslación y dos rotaciones del marco de referencia global para aplicar la escala temporal de perfil trapezoidal y la interpolación del camino geométrico lineal. Luego se aplica traslación y rotaciones inversas para obtener la trayectoria en el espacio cartesiano respecto al sistema de referencia global. Finalmente se emplea la cinemática inversa para conseguir las trayectorias en el espacio articular de los actuadores.     
     
          \begin{figure}[htb]
             \centering
             \includegraphics[width=0.9\linewidth]{Main/Chapter6/Images6/cap6_trayectory_1.png}
-            \caption{Ejemplo gráfico del diagrama de flujo para la creación de trayectoria lineal con perfil trapezoidal}
+            \caption{Ejemplo gráfico del diagrama de flujo para la creación de trayectoria lineal con perfil trapezoidal.}
             \label{f:cap6_trayectory_5}
         \end{figure}    
     \newpage
@@ -1765,7 +1768,7 @@
             \label{eq:cap6_tray_1}
         \end{equation}
 
-    Donde $q_0$ es el punto inicial ,$q_1$ es el punto final, $V$ es la velocidad máxima permitida y $a$ es la aceleración máxima permitida.
+    Donde $q_0$ es el punto inicial, $q_1$ es el punto final, $V$ es la velocidad máxima permitida y $a$ es la aceleración máxima permitida.
 
 
     \begin{equation}
@@ -1785,14 +1788,14 @@
      \begin{figure}[htb]
             \centering
             \includegraphics[width=0.5\linewidth]{Main/Chapter6/Images6/cap6_trayectory_2.png}
-            \caption{Interpolador Trapezoidal \cite{tray_trape}}
+            \caption{Interpolador trapezoidal \cite{tray_trape}.}
             \label{f:cap6_trayectory_2}
         \end{figure} 
     \newpage
 
     Para utilizar el perfil de velocidad trapezoidal en el camino geométrico lineal interpolado desde el punto inicial $P_i$ al punto final $P_f$ se aplican matrices de rotaciones. 
     
-       Primero se traslada el sistema de referencia general $O$-$X_0Y_0Z_0$ al punto inicial $P_i$ generando un nuevo sistema de referencia $X_{trans}Y_{trans}Z_{trans}$ .
+       Primero se traslada el sistema de referencia global $O$-$X_0Y_0Z_0$ al punto inicial $P_i$ generando un nuevo sistema de referencia $X_{trans}Y_{trans}Z_{trans}$ .
         
         \begin{figure}[htb]
                 \centering
@@ -1800,28 +1803,28 @@
                 \caption{Traslacion marco de referencia $X_0Y_0Z_0$ hasta punto $P_i$}
         \end{figure}
 
-        Luego se rota $X_{trans}Y_{trans}Z_{trans}$ sobre el eje $Z_{trans}$ en un angulo de $\theta_z$ generando un nuevo sistema de referencia $X_{rot_{\theta_z}}Y_{rot_{\theta_z}}Z_{rot_{\theta_z}}$. $\theta_z$  es el angulo interno entre el eje $X_{trans}$ y el vector   $\overrightarrow{O_{X_{trans}Y_{trans}Z_{trans}}{P'}_f}$ donde ${P'}_f$ es la  proyeccion de $P_f$ sobre el plano  $Y_{trans}Z_{trans}$.
+        Luego se rota $X_{trans}Y_{trans}Z_{trans}$ sobre el eje $Z_{trans}$ en un ángulo $\theta_z$ generando un nuevo sistema de referencia $X_{rot_{\theta_z}}Y_{rot_{\theta_z}}Z_{rot_{\theta_z}}$. $\theta_z$  es el angulo interno entre el eje $X_{trans}$ y el vector   $\overrightarrow{O_{X_{trans}Y_{trans}Z_{trans}}{P'}_f}$ donde ${P'}_f$ es la  proyeccion de $P_f$ sobre el plano  $Y_{trans}Z_{trans}$.
 
         \begin{figure}[htb]
                 \centering
                 \includegraphics[width=0.56\textwidth]{Main/Chapter6/Images6/DIBUJO532.jpg}
-                \caption{Rotación marco de referencia $X_{trans}Y_{trans}Z_{trans}$ sobre eje $Z_{trans}$ en un angulo de $\theta_z$  }
+                \caption{Rotación marco de referencia $X_{trans}Y_{trans}Z_{trans}$ sobre eje $Z_{trans}$ en un angulo de $\theta_z$.}
         \end{figure}
     \newpage
         Finalmente el marco de referencia $X_{rot_{\theta_z}}Y_{rot_{\theta_z}}Z_{rot_{\theta_z}}$ se rota sobre el eje  $Y_{rot_{\theta_z}}$ en un angulo de $\theta_y$ generando el ultimo sistema de referencia $X_{rot_{\theta_y}}Y_{rot_{\theta_y}}Z_{rot_{\theta_y}}$.
         $\theta_y$  es el angulo interno entre el eje $X_{rot_{\theta_z}}$ y el vector   $\overrightarrow{O_{X_{rot_{\theta_z}}Y_{rot_{\theta_z}}Z_{rot_{\theta_z}}}{P''}_f}$ donde ${P''}_f$ es el punto  ${P}_f$ con respecto al sistema de referencia  $X_{rot_{\theta_z}}Y_{rot_{\theta_z}}Z_{rot_{\theta_z}}$ .
-         En el marco de referencia $X_{rot_{\theta_y}}Y_{rot_{\theta_y}}Z_{rot_{\theta_y}}$ se aplica el perfil de velocidad trapezoidal para que define la escala temporal de la trayectoria y la interpolación lineal en el espacio cartesiano del camino geométrico.
+         En el marco de referencia $X_{rot_{\theta_y}}Y_{rot_{\theta_y}}Z_{rot_{\theta_y}}$ se aplica el perfil de velocidad trapezoidal que define la escala temporal de la trayectoria y la interpolación en el espacio cartesiano del camino geométrico lineal.
          
                  \begin{figure}[htb]
                 \centering
                 \includegraphics[width=0.65\textwidth]{Main/Chapter6/Images6/DIBUJO533.jpg}
-                \caption{Rotación marco de referencia $X_{rot_{\theta_z}}Y_{rot_{\theta_z}}Z_{rot_{\theta_z}}$ sobre eje $Y_{rot_{\theta_z}}$ en un angulo de $\theta_y$}
+                \caption{Rotación marco de referencia $X_{rot_{\theta_z}}Y_{rot_{\theta_z}}Z_{rot_{\theta_z}}$ sobre eje $Y_{rot_{\theta_z}}$ en un angulo de $\theta_y$.}
         \end{figure}
         
                 \begin{figure}[htb]
                 \centering
                 \includegraphics[width=0.48\textwidth]{Main/Chapter6/Images6/DIBUJO534.jpg}
-                \caption{Marco de referencia $X_{rot_{\theta_y}}Y_{rot_{\theta_y}}Z_{rot_{\theta_y}}$ en donde se aplica LSPB}
+                \caption{Marco de referencia $X_{rot_{\theta_y}}Y_{rot_{\theta_y}}Z_{rot_{\theta_y}}$ en donde se aplica LSPB.}
         \end{figure}
 
 
@@ -1835,7 +1838,7 @@
             \SetKwInput{Kwfile}{Nombre archivo}                % Set the Input
             
             \DontPrintSemicolon
-              \KwObjetivo {Escala de tiempo perfil de velocidad Trapezoidal LSPB e interpolación de camino geometrico lineal }
+              \KwObjetivo {Escala de tiempo perfil de velocidad trapezoidal (LSPB) e interpolación de camino geométrico lineal }
               \Kwfile{$linear\_speed\_f\_adams.py$}
               \KwInput{$q_0,q_1,v_{max},a_{max},{n}_{\Delta Tramo1},{n}_{\Delta Tramo2}$}
               \KwOutput{$tiempo,{X}_{rot_{\theta_y}},{\dot{X}}_{rot_{\theta_y}},{\ddot{X}}_{rot_{\theta_y}}$}
@@ -1930,11 +1933,11 @@
 
 \section{Interfaz de visualización RViz}
 
-    RViz da la posibilidad de visualizar los componentes mecánicos de un robot de una forma mas simple. En esta tesis se desea simular una trayectoria lineal de la plataforma móvil de un robot delta. Para cumplir con dicho objetivo se necesitan en cada momento de la trayectoria los ángulos de las juntas que unen los componentes y la posición xyz del centroide de la plataforma móvil. La posición en el espacio de los brazos y antebrazos se determinan a partir de los ángulos de cada junta relativos a otras partes mecánicas y la posición de la plataforma móvil se determina mediante las coordenadas de su centroide xyz relativo al sistema de referencia global. Por lo tanto, como se configura la visualización de las partes mecánicas en 2 grupos por separado, si la cinemática inversa es correcta, entonces la plataforma móvil debe calzar perfectamente entre las rotulas (final de los antebrazos) que unen los antebrazos con la plataforma móvil.
+    RViz da la posibilidad de visualizar los componentes mecánicos de un robot de una forma mas simple. En esta tesis se desea simular una trayectoria lineal de la plataforma móvil de un robot delta. Para cumplir con dicho objetivo se necesitan en cada momento de la trayectoria el valor de los ángulos de las juntas que unen los componentes y la posición $xyz$ del centroide de la plataforma móvil. La posición en el espacio de los brazos y antebrazos se determinan a partir de los ángulos de cada junta relativos a otras partes mecánicas y la posición de la plataforma móvil se determina mediante las coordenadas de su centroide $xyz$ relativo al sistema de referencia global. Por lo tanto, se configura la visualización de las partes mecánicas en 2 grupos por separado (las 3 cadenas cinemáticas y la plataforma móvil). Si la cinemática inversa es correcta, entonces la plataforma móvil debe calzar perfectamente entre las rotulas (final de los antebrazos) que unen los antebrazos con la plataforma móvil.
      
    \subsection{Conexión entre ROS y RViz}
    
-           Básicamente se puede obtener la visualización de la trayectoria del robot delta en 3 pasos:
+           Básicamente, se puede obtener la visualización de la trayectoria del robot delta en 3 pasos:
 
 
             % Define block styles
@@ -1947,9 +1950,9 @@
          \begin{figure}[htb]
              \begin{tikzpicture}[node distance = 5cm, auto]
                 % Place nodes
-                    \node [block1] (funcion) {\textbf{TF \\ $Nombre$  $Juntas$  $URDF$}};
-                \node [block2, left of=funcion] (input) {\textbf{Trayectoria ROS \\ $\theta_{i=1,2,3}$\\$XYZ$\\ $   s(t)$\\ $\theta_{2i}$ \\ $\theta_{3i}$\\$Nombre$  $Juntas$  $URDF$ }};
-                \node [block3, right of=funcion] (ouput) {\textbf{URDF y RViz}};
+                    \node [block1] (funcion) {\textbf{TF} \\ {Nombres de juntas  URDF}};
+                \node [block2, left of=funcion] (input) {\textbf{Trayectoria ROS} \\ Trayectoria $\theta_{i\in\{1,2,3\}}$\\Trayectoria $XYZ$\\Escala de tiempo $s(t)$\\Ángulo $\theta_{2i}$ \\ Ángulo $\theta_{3i}$\\{Nombres de juntas URDF}};
+                \node [block3, right of=funcion] (ouput) {\textbf{Insertar modelo del robot (URDF) en RViz}};
                 % Draw edges
                 \path [line] (funcion) -- node {}(ouput);
                 \path [line] (input) -- node { }(funcion);
@@ -1962,16 +1965,15 @@
         \vspace{-1cm}   
         
         \begin{itemize}
-            \item {\textbf{Paso 1}: Exportar de la trayectoria creada en ROS los siguientes datos: las posiciones de los motores $\theta_{i\in\{1,2,3\}}$ , la posiciones del centroide de la plataforma móvil $XYZ$ y la escala de tiempo utilizada $s(t)$. Luego se determinan los ángulos interiores $\theta_{2i}$ y $\theta_{3i}$ (vistos en la sección \eqref{cap4_angulosinteriores}) de las 3 cadenas cinemáticas. Esto es posible creando un nodo llamado $posicionador\_rviz\_realtime\_tm1\_adams$ que espera como datos de entrada los datos de la trayectoria  $\theta_{i\in\{1,2,3\}}$, $XYZ$ y $s(t)$ y como salida da como resultado un objeto de tipo $JointState()$. Este ultimo objeto contiene los datos de los ángulos interiores en radianes, ángulo de los motores en radianes y la posición xyz de la plataforma móvil en metros. Además, cada ángulo y coordenada se le asigna un nombre único de tipo string, los cuales son usados para relacionar las juntas configuradas para el visualizador con respecto al valor de cada una de ellas a través de la trayectoria.}
-            \item {\textbf{Paso 2}: Pasar a valores TF cada junta y coordenada adquirida del paso 1. RViz tiene un nodo integrado llamada $estados\_robot\_pub.py$ que tiene como requisito de entrada los valores de cada junta con cada nombre único respectivamente y como salida da como resultado los valores TF con cada nombre unico respectivamente}
-            \item {\textbf{Paso 3}: Anterior a crear una trayectoria en ROS se debe configurar el robot delta en formato URDF. Los nombres de cada juntas en el archivo urdf en formato xml deben ser exactamente los mismo que en los pasos 1 y 2}
+            \item {\textbf{Paso 1:} Se exportan de la trayectoria creada en ROS los siguientes datos: las trayectoria en el espacio angular de los motores $\theta_{i\in\{1,2,3\}}$ , la trayectoria en el espacio cartesiano del centroide de la plataforma móvil $XYZ$ y la escala de tiempo utilizada $s(t)$. Luego se determinan los ángulos interiores $\theta_{2i}$ y $\theta_{3i}$ (vistos en la sección \eqref{cap4_angulosinteriores}) de las 3 cadenas cinemáticas. Esto es posible creando un nodo llamado $posicionador\_rviz\_realtime\_tm1\_adams.py$ que espera como datos de entrada los datos de la trayectoria  $\theta_{i\in\{1,2,3\}}$, $XYZ$ y $s(t)$ y como salida un objeto de tipo $JointState()$. Este ultimo objeto contiene los datos de los ángulos interiores en radianes, ángulo de los motores en radianes y la posición $xyz$ de la plataforma móvil en metros. Además, a cada ángulo y coordenada se le asigna un nombre único de tipo string, los cuales son usados para relacionar las juntas configuradas para en RViz y el modelo URDF con respecto al valor numérico de cada una de ellas.}
+            \item {\textbf{Paso 2:} Transformar los valores de cada junta y coordenada adquirida del paso 1 a tf. RViz tiene un nodo integrado llamado $estados\_robot\_pub.py$ que tiene como requisito de entrada los valores de cada junta con cada nombre único respectivamente y como salida los valores tf con cada nombre único respectivamente. La configuración de los tf del robot delta es gracias al modelo URDF.}
+            \item {\textbf{Paso 3:} Anterior a crear una trayectoria en ROS se debe configurar el robot delta en formato URDF. Los nombres de cada juntas y coordenadas del efector en el archivo URDF en formato .xml son exactamente los mismo que en los pasos 1 y 2. Se inserta el modelo del robot URDF a RViz para que los valores tf calculados en el paso 2 sean usados para dar movimiento a las piezas creadas por el archivo URDF.}
         \end{itemize}
         
-
             Los nombres de cada junta se muestran en la siguiente tabla: 
             
         \begingroup
-            \renewcommand{\arraystretch}{2.0}
+            \renewcommand{\arraystretch}{1.6}
             \begin{table}[H]
                 \centering
                 \begin{tabular}{c m{2.5cm} m{8cm}}
@@ -2001,14 +2003,14 @@
        
        
     \subsection{Modelo URDF}
-        Para visualizar un modelo de un robot se usa un archivos de formato de descripción de robot unificado (URDF) basados en XML. En esta sección se presenta la configuración del modelo del robot delta mostrando el código para los enlaces, juntas y la respectiva unión padre-hijo para cada uno de ellos. La nomenclatura utilizada es la del capitulo \eqref{CAP5}. El nombre del archivo donde estan contenidos todos estos codigos es robot.urdfm1.adams.urdf.  
+        Para visualizar un modelo de un robot se usa un archivos de formato de descripción de robot unificado (URDF) basados en xml. En esta sección se presenta la configuración del modelo del robot delta mostrando el código para los enlaces, juntas y sus respectivas uniónes padre-hijo para cada uno de ellos. La nomenclatura utilizada es la del capitulo \eqref{CAP5}. El nombre del archivo donde están contenidos todos estos códigos es robot.urdfm1.adams.urdf.  
         
        \subsubsection{Base Fija}
-        La base fija es un enlace que se le nombra \textbf{"base\_link"} y se representa como un cilindro de radio \textbf{$R_a$}.
+        La base fija es un enlace que se le llama \textbf{"base\_link"} y se representa como un cilindro de radio \textbf{$R_a$}.
 
              \begin{figure}[h]
                 \centering
-                \includegraphics[width=0.6\linewidth]{Main/Chapter6/Images6/cap6_basefija.png}
+                \includegraphics[width=0.55\linewidth]{Main/Chapter6/Images6/cap6_basefija.png}
                 \caption{Base fija en RViz}
                 \label{f:Cap6_urdf_1}
             \end{figure}  
@@ -2032,7 +2034,7 @@
       \newpage
 
        \subsubsection{Brazos}
-        Los brazos son enlaces que se le nombra \textbf{"brazo1 , brazo2} y \textbf{brazo3"} y se representan como un paralelepípedo tipo box de largo \textbf{$L_a$}. Estos brazos se unen a la base fija a través de una junta tipo revoluta que representan los motores o actuadores del robot delta. Las juntas se les asignan los nombres \textbf{"base\_brazo1 , base\_brazo2} y \textbf{base\_brazo3"} para cada brazo respectivamente. En el código de las juntas se configura las conexiones padre-hijo.
+        Los brazos son enlaces que se les nombra \textbf{"brazo1 , brazo2} y \textbf{brazo3"} y se representan como un paralelepípedo tipo box de largo \textbf{$L_a$}. Estos brazos se unen a la base fija a través de una junta tipo revoluta que representan los motores o actuadores del robot delta. Las juntas se les asignan los nombres \textbf{"base\_brazo1 , base\_brazo2} y \textbf{base\_brazo3"} para cada brazo respectivamente. En el código de las juntas se configura las conexiones padre-hijo de los enlaces.
         
         
              \begin{figure}[h]
@@ -2109,7 +2111,7 @@
        
        \subsubsection{Antebrazos}
        
-        Los antebrazos son enlaces que se le nombra \textbf{"barra1\_b , barra2\_b y barra3\_b"} y se representan como un paralelepípedo tipo box de largo \textbf{$L_b$}. Estos antebrazos se unen cada uno a su respectivo brazo través de 2 junta tipo revoluta que representan rotulas. Las juntas se les asignan los nombres \textbf{' codo1\_a , codo1\_b , codo2\_a , codo2\_b , codo3\_a , codo3\_b'} para cada brazo respectivamente. En el código de las juntas se configura las conexiones padre-hijo que determina al fin y al cabo la posición de los antebrazos respecto al brazo.
+        Los antebrazos son enlaces que se les nombra \textbf{"barra1\_b , barra2\_b y barra3\_b"} y se representan como un paralelepípedo tipo box de largo \textbf{$L_b$}. Estos antebrazos se unen cada uno a su respectivo brazo través de dos juntas tipo revoluta que representan rotulas. Las juntas se les asignan los nombres \textbf{' codo1\_a , codo1\_b , codo2\_a , codo2\_b , codo3\_a , codo3\_b'} para cada brazo respectivamente. En el código de las juntas se configura las conexiones padre-hijo que determina al fin y al cabo la posición de los antebrazos respecto al brazo.
         
         \begin{figure}[h]
                 \centering
@@ -2259,3 +2261,71 @@
 
 
 \section{ADAMS}
+
+    En esta sección se detalla el desarrollo del prototipo en ADAMS y su simulación, presentando todas las consideraciones tomadas en su elaboración, para el posterior análisis de los datos obtenidos.
+
+    El diseño de un prototipo en ADAMS puede ser tan complejo como se quiera, en la figura \ref{f:Cap6_adams_fases_desarrollo} se observa el proceso de desarrollo para un prototipo en ADAMS, en nuestro caso, el modelo busca validar la cinemática y dinámica del robot delta en estudio por lo que trabajaremos solo en las fases de \textbf{construcción} ("build") y \textbf{prueba}. ("test").
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.8\linewidth]{Main/Chapter6/Images6/adams/proceso_prototipo_virtual.png}
+        \caption{Fases de desarrollo para prototipo virtual REFERENCIA}
+        \label{f:Cap6_adams_fases_desarrollo}
+    \end{figure}
+    
+    Un robot delta se compone principalmente de una base fija en la parte superior, una base móvil en la parte inferior y tres cadenas cinemáticas compuestas por un antebrazo unido a la base fija y un brazo unido a la base móvil como se observa en la figura \ref{f:ref1}. Desarrollaremos el modelo desde arriba hacia abajo, basándonos en las medidas del robot especificadas en el capitulo \ref{CAP5}.
+    
+    
+    Siguiendo la introducción de ADAMS presentada en el capitulo \ref{CAP3} abrimos ADAMS y generamos un nuevo modelo con la siguiente configuración:
+
+
+    \begin{scope}
+        \renewcommand{\labelitemi}{\blacklozenge}
+        \renewcommand{\labelitemii}{\checkmark}
+        \begin{itemize}
+            \item New Model
+            \begin{itemize}
+                \item \textbf{Model Name:} RobotDelta
+                \item \textbf{Gravity:} Other
+                \item \textbf{Units:} MMKS
+                \item \textbf{Workin Directory} A elección del usuario
+            \end{itemize}
+        \end{itemize}
+        
+        \begin{itemize}
+            \item Gravity Settings
+            \begin{itemize}
+                \item \textbf{X:} 0.0
+                \item \textbf{Y:} -9806.65
+                \item \textbf{Z:} 0.0
+            \end{itemize}
+        \end{itemize}
+    \end{scope}
+    
+    Luego de terminar la configuración inicial se debería desplegar el GUI de ADAMS, similar a la figura \ref{f:Cap3-adams_window_GUI}, con la diferencia de que el nombre del modelo sera RobotDelta.
+
+
+    
+    \subsection{ Base Fija}
+    
+    \subsection{Antebrazo}
+    
+    \subsection{Brazo}
+    
+    \subsection{Base Móvil}
+    
+    
+    
+
+    
+   
+   
+    
+
+
+    % \begin{figure}[H]
+    %     \centering
+    %     \includesvg[width=1\linewidth]{Main/Chapter6/Images6/adams/proceso_prototipo_virtual.svg}
+    %     \caption{Jerarquía de datos en ADAMS}
+    %     \label{f:Cap6-adams_proceso_prototipo}
+    % \end{figure} 

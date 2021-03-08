@@ -237,13 +237,14 @@ breaklines=true,
 \phantomsection  
 \include{Front/acknowledgment}
 
+%-------------{List Caps}----------------------------
 \addtocontents{toc}{\protect\thispagestyle{fancy}} 
 {\hypersetup{colorlinks=black,        
     linkcolor=black}
 \tableofcontents
 }
 \newpage
-
+%------------------{List Tables}----------------------
 \addtocontents{lot}{\protect\thispagestyle{fancy}} 
 %\listoftables
 {
@@ -252,9 +253,9 @@ breaklines=true,
 \listoftables
 }
 \addcontentsline{toc}{chapter}{Índice de Tablas}%\newpage
-
+\newpage
+%-------------{List of Figure}----------------------------
 \addtocontents{lof}{\protect\thispagestyle{fancy}} 
-%\listoffigures
 {
 \let\oldnumberline\numberline
 \renewcommand{\numberline}{\figurename~\oldnumberline}
@@ -264,14 +265,21 @@ breaklines=true,
 
 \onehalfspacing
 \mainmatter 
+\newpage
+%-------------{List of Algorithms}----------------------------
+%\addtocontents{lof}{\protect\thispagestyle{fancy}} 
+%\addcontentsline{toc}{chapter}{Índice de Algoritmos}
+%\listofalgorithms
+%\newpage
 
+%---------------{Incluir Capitulos}-------------------------
 {\hypersetup{colorlinks=true,        
     linkcolor=blue,         
     filecolor=magenta,       
     urlcolor=russet,           
     citecolor=blue}
  \include{Main/Chapter1/Chapter1}    % iontroduccion hipotesis objetivos
-\include{Main/Chapter2/Chapter2}    %  arte
+ \include{Main/Chapter2/Chapter2}    %  arte
 \include{Main/Chapter3/Chapter3}    % Teoria herramientas
 }
 {\hypersetup{colorlinks=true,        
