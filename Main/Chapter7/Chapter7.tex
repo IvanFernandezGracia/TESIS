@@ -1,28 +1,28 @@
 \chapter{Resultados}\label{CAP7}
 
 \section{Visualizador}
-        En esta sección se presentan los resultados de la visualización del robot delta en Rviz. Primero se muestra la explicación gráfica de la conexión de los nodos y temas creados en ROS. Luego se muestran los enlaces y los marcos referencia de cada enlace en coordenadas TF. 
+        En esta sección se presentan los resultados de la visualización del robot delta en RViz. Primero se muestra la explicación gráfica de la conexión de los nodos y temas creados en ROS. Luego se muestran los enlaces y los marcos referencia de cada enlace en tf. 
 
     \subsection{Temas y Nodo}
     
     \begin{figure}[h]
             \centering
             \includegraphics[width=1.0\linewidth]{Main/Chapter7/Images7/nodo_1.png}
-            \caption{Temas y nodos en ROS para la visualización del robot delta}
+            \caption{Temas y nodos en ROS para la visualización del robot delta.}
             \label{f:cap7_rviz1111}
         \end{figure} 
         
     \begin{itemize}
-        \item {\textbf{Subscriber:} el tema \textit{m\_txyzth123} esta configurado por un mensaje escrito en el archivo llamado \textit{matriz\_path\_ls.msg}, compuesto por los datos de la tabla \eqref{tab:cap6_rviz_1_msg}. Las matrices \textit{x,y,z} son los puntos de la trayectoria lineal  en el espacio cartesiano de la base móvil. Las matrices \textit{th1,th2,th3} son la trayectoria en el espacio articular de los actuadores. La matriz de \textit{tiempo} es la escala de tiempo de la trayectoria a simular.}
-        \item {\textbf{Nodo:} el nodo con el nombre \textit{posicionador\_rviz\_realtime\_tm1} es el encargado de calcular los ángulos de las articulación o juntas del robot delta a partir de las coordenadas en el espacio cartesiano xyz  de la trayectoria de la base móvil. Los puntos \textit{xyz} son utilizados para simular el movimiento la base móvil y los ángulos de cada junta para el movimiento de 3 cadenas cinemáticas.}
-        \item {\textbf{Publisher:}  el tema \textit{joint\_states} esta configurado por un mensaje escrito en el archivo llamado \textit{JointState.msg}, compuesto por los datos mostrados en la tabla \eqref{tab:cap6_rviz_2_msg}. Este es un mensaje que contiene datos para describir el estado de un conjunto de juntas controladas por torque. Cada articulación (revoluta o prismática) se identifica de forma única por su nombre. \textit{Name} es el nombre de cada articulación, \textit{position} es la posición de la articulación (rad o m), \textit{velocity} es la velocidad de la articulación (rad/s o m/s) y \textit{effort} es el esfuerzo que se aplica en la articulación (Nm o N). En esta tesis solo se utilizan las matrices de los nombres y posición de cada junta.}
+        \item {\textbf{Subscriber:} El tema \textit{m\_txyzth123} esta configurado por un mensaje escrito en el archivo llamado \textit{matriz\_path\_ls.msg}, compuesto por los datos de la tabla \eqref{tab:cap6_rviz_1_msg}. Las matrices \textit{x,y,z} son los puntos de la trayectoria lineal  en el espacio cartesiano de la base móvil. Las matrices \textit{th1,th2,th3} son la trayectoria en el espacio articular de los actuadores. La matriz de \textit{tiempo} es la escala de tiempo de la trayectoria a simular.}
+        \item {\textbf{Nodo:} El nodo con el nombre \textit{posicionador\_rviz\_realtime\_tm1} es el encargado de calcular los ángulos de las articulación o juntas del robot delta a partir de las coordenadas en el espacio cartesiano xyz  de la trayectoria de la base móvil. Los puntos \textit{xyz} son utilizados para simular el movimiento la base móvil y los ángulos de cada junta para el movimiento de las 3 cadenas cinemáticas.}
+        \item {\textbf{Publisher:}  El tema \textit{joint\_states} esta configurado por un mensaje escrito en el archivo llamado \textit{JointState.msg}, compuesto por los datos mostrados en la tabla \eqref{tab:cap6_rviz_2_msg}. Este es un mensaje que contiene datos para describir el estado de un conjunto de juntas controladas por torque. Cada articulación (revoluta o prismática) se identifica de forma única por su nombre. \textit{Name} es el nombre de cada articulación, \textit{position} es la posición de la articulación (rad o m), \textit{velocity} es la velocidad de la articulación (rad/s o m/s) y \textit{effort} es el esfuerzo que se aplica en la articulación (Nm o N). En esta tesis solo se utilizan las matrices de los nombres y posición de cada junta.}
     \end{itemize} 
     
         \begingroup
             \renewcommand{\arraystretch}{1.5}
             \begin{table}[H]
                 \centering
-                \begin{tabular}{c m{2.5cm}}
+                \begin{tabular}{c m{1.5cm}}
                    \hline                   
                    \textbf{Tipo de dato}  & \textbf{Nombre}    \\\hline \hline 
                    bool &  permiso
@@ -44,7 +44,7 @@
                    float32[] &  tiempo
                       \\\hline                   
                 \end{tabular}
-                \caption{Mensaje matriz\_path\_ls.msg utilizado por tema m\_txyzth12}
+                \caption{Mensaje matriz\_path\_ls.msg utilizado por tema m\_txyzth12.}
                 \label{tab:cap6_rviz_1_msg}
             \end{table}
         \endgroup
@@ -53,7 +53,7 @@
             \renewcommand{\arraystretch}{1.5}
             \begin{table}[H]
                 \centering
-                \begin{tabular}{c m{2.5cm}}
+                \begin{tabular}{c m{1.5cm}}
                    \hline                   
                    \textbf{Tipo de dato}  & \textbf{Nombre}    \\\hline \hline 
                     string[]  & name
@@ -65,7 +65,7 @@
                     float64[] &  effort
                     \\\hline                   
                 \end{tabular}
-                \caption{Mensaje joint\_state.msg utilizado por tema joint\_state}
+                \caption{Mensaje joint\_state.msg utilizado por tema joint\_state.}
                 \label{tab:cap6_rviz_2_msg}
             \end{table}
         \endgroup
@@ -73,11 +73,11 @@
 \newpage
 
     \subsection{Enlaces y Juntas}\label{enalcesyjuntas_cap7}
-        La figura \eqref{f:cap7_rviz_2} representa la visualización de los enlaces del robot delta. La base fija es un cilindro de color gris, la base móvil es un cilindro de color azul y tanto los brazos como los antebrazos son cajas alargadas de color blanco. Además, se muestra los nombres de cada enlace con sus marcos de referencia TF respectivos.
+        La figura \eqref{f:cap7_rviz_2} representa la visualización de los enlaces del robot delta. La base fija es un cilindro de color gris, la base móvil es un cilindro de color azul y tanto los brazos como los antebrazos son cajas alargadas de color blanco. Además, se muestra los nombres de cada enlace con sus marcos de referencia tf respectivos.
         \begin{figure}[h]
             \centering
             \includegraphics[width=0.8\linewidth]{Main/Chapter7/Images7/rviz_2.png}
-            \caption{Visualización de links y joints del robot delta en Rviz}
+            \caption{Visualización de links y joints del robot delta en RViz}
             \label{f:cap7_rviz_2}
         \end{figure}  
         
@@ -85,19 +85,19 @@
     \begin{figure}[h]
             \centering
             \includegraphics[width=0.8\linewidth]{Main/Chapter7/Images7/rviz_3.png}
-            \caption{Conexión entre los links y joints del robot delta en Rviz}
+            \caption{Conexión entre los links y joints del robot delta en RViz}
             \label{f:cap7_rviz_3}
         \end{figure}  
 
 \newpage
 
     \subsection{Estructura de arbol URDF}
-    La estructura de árbol URDF es una representación gráfica de la relación padre-hijo entre los enlaces y sus marcos de referencia. En la figura \eqref{f:cap7_rviz_12341} los nombre de los enlaces son los en rectángulos blancos y las juntas en círculos azules. Las juntas son las encargadas de configurar la relación padre-hijo. En la figura ,\textit{xyz} se refiere a la traslación del marco de referencia de los hijos respecto al marco de referencia del padre, de modo similar, \textit{rpy} es la rotación del marco de referencia de los hijos respecto a los de los padres. Al igual que en la sección \eqref{enalcesyjuntas_cap7}, se aprecian 4 cadenas cinemáticas.
+    La estructura de árbol URDF es una representación gráfica de la relación padre-hijo entre los enlaces y sus marcos de referencia. En la figura \eqref{f:cap7_rviz_12341}, los nombre de los enlaces son los en rectángulos negros y las juntas en círculos azules. Las juntas son las encargadas de configurar la relación padre-hijo. En la figura  \textit{xyz} se refiere a la traslación del marco de referencia de los hijos respecto al marco de referencia del padre y, de modo similar, \textit{rpy} es la rotación del marco de referencia de los hijos respecto a los de los padres. Al igual que en la sección \eqref{enalcesyjuntas_cap7}, se aprecian 4 cadenas cinemáticas.
 
         \begin{figure}[h]
             \centering
             \includegraphics[width=1.0\linewidth]{Main/Chapter7/Images7/rviz_1.png}
-            \caption{Representacion grafica de la relacion padre-hijo del robot delta en Rviz}
+            \caption{Representación gráfica de la relación padre-hijo del robot delta en RViz.}
             \label{f:cap7_rviz_12341}
         \end{figure}  
     
@@ -105,7 +105,7 @@
 
 
 \section{Espacio de Trabajo}
-        En esta sección se presentan los resultados del espacio de trabajo del robot delta del capitulo \eqref{CAP6} con las restricciones impuestas en la tabla \eqref{t:cap6_ws_1}
+        En esta sección se presentan los resultados del espacio de trabajo del robot delta del capitulo \eqref{CAP6} con las restricciones impuestas en la tabla \eqref{t:cap6_ws_1}.
         
     \subsection{Temas y Nodo}
     
