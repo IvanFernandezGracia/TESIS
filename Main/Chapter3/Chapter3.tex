@@ -1082,32 +1082,133 @@ Para definir y almacenar la relación entre los marcos ''base\_link'' y ''base\_
         \end{enumerate}
         
         \paragraph{Sistema de coordendas de una Pieza (PSC)}
+        
+        Estos sistemas de coordenadas se generan automáticamente al crear una pieza, y solo existe uno por parte. La orientación y posición se definen respecto del marco de referencia global (GCS).
+        
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.5\linewidth]{Main/Chapter3/Images3/papeo/pcs.png}
+            \caption{Sistema de coordendas de una Pieza (PSC) \cite{adams-basic}}
+            \label{f:Cap3-adams_psc}
+        \end{figure} 
+        
         \paragraph{Sistema de coordendas de un Marker}
         
+        Estos sistemas de coordenadas se adhieren a una pieza y se desplazan con ella. Pueden existir muchos para una misma pieza y su posición y orientación se definen por defecto respecto al GSC, pero es posible cambiarla a un PSC.
+        
+        Se usan generalmente para definir posiciones o direcciones en las cuales queremos general algo, ya sea una restricción o una medición entre otros.
+        
+        \begin{figure}[H]
+            \centering
+           \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/papeo/marker.png}
+            \caption{Sistema de coordendas de un Marker\cite{adams-basic}}
+            \label{f:Cap3-adams_marker}
+        \end{figure} 
+        
         \subsubsection{Parts}
-        % \paragraph{Geometria}
+        
+        Definen un cuerpo que puede moverse relativo a otro y ademas tiene las siguientes propiedades:
         
         \begin{itemize}
-            \item \textbf{Geometry:} asd
-            \item \textbf{Markers:} asd
-            \item \textbf{Construction Points:} asd
+            \item Masa
+            \item Inercia
+            \item Posición y orientación inicial
+            \item Velocidad inicial
         \end{itemize}
+        
+        Se utiliza para agregar gráficos y mejorar la visualización de una pieza usando propiedades como:
+        
+        \begin{itemize}
+            \item Largo
+            \item Radio
+            \item Ancho
+        \end{itemize}
+        
+        \begin{figure}[H]
+            \centering
+           \includegraphics[width=0.7\linewidth]{Main/Chapter3/Images3/papeo/pieza.png}
+            \caption{Pieza con varias geometrias en ADAMS \cite{adams-basic}}
+            \label{f:Cap3-adams_pieza}
+        \end{figure} 
+        
+        
+        Existen dos tipos de piezas en adams:
+        
+        \begin{enumerate}
+            \item Cuerpos rígidos
+                \begin{itemize}
+                    \item Son partes moviles
+                    \item Poseen masa e inercia
+                    \item No se pueden deformar
+                \end{itemize}
+            \item Cuerpos flexibles
+                \begin{itemize}
+                    \item Son partes moviles
+                    \item Poseen masa e inercia
+                    \item Puede doblarse cuando se aplican fuerzas a ellas
+                \end{itemize}
+        \end{enumerate}
+        
+        La pieza \textbf{ground} es la única parte del modelo que debe permanecer estacionaria en todo momento.
+        Adams / View crea la parte del suelo automáticamente cuando se crea un modelo. El usuario también puede definir un nuevo o existente parte como parte de tierra. La parte del suelo no tiene propiedades de masa ni velocidades iniciales y no suma grados de libertad en el modelo.
+        
+        
+        % \paragraph{Geometria}
+        
 
         
-        \subsubsection{Constrains}
+        \subsubsection{Constrains / Joints}
+        
+        Son restricciones relativas al movimiento entre dos piezas y se representan en ADAMS como conexiones ideales. Estas restricciones disminuyen los grados de libertad en rotación y traslación de una pieza, la figura \eqref{f:Cap3-adams_contrain} presenta el ejemplo de una union de revoluta.
+        
+        \begin{figure}[H]
+            \centering
+           \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/papeo/constrain.png}
+            \caption{Unión revoluta, de una puerta con su marco \cite{adams-basic}}
+            \label{f:Cap3-adams_contrain}
+        \end{figure} 
         
         \subsubsection{Measures}
         
-        \subsubsection{Forces}
+        Las mediciones en ADAMS representan datos que deseamos medir mientras se desarrolla una simulación, estos datos pueden ser:
         
+        \begin{itemize}
+            \item Desplazamiento, velocidad y aceleración de un punto en una pieza
+            \item Fuerzas en una unión
+            \item Angulo entre dos piezas
+            \item Otros datos derivados de funciones definidas por el usuario
+        \end{itemize}
+        
+        Los datos son visualizados gráficamente durante la simulación y son guardados para su posterior análisis/exportación. La figura \eqref{f:Cap3-adams_mesures} presenta algunos tipos de mediciones posibles de hacer:
+        
+        \begin{figure}[H]
+            \centering
+           \includegraphics[width=0.8\linewidth]{Main/Chapter3/Images3/papeo/mesures.png}
+            \caption{Mediciones según tipo de objeto en ADAMS \cite{adams-basic}}
+            \label{f:Cap3-adams_mesures}
+        \end{figure} 
+        
+        
+        %\subsubsection{Motion}
+        
+        
+        
+        
+    \subsection{Adams/Solver}
+        
+        ADAMS solver es el modulo de ADAMS encargado de resolver las ecuaciones cineamticas y dinamicas del modelo en estudio. 
+        
+        
+        
+
     
-    \subsection{Simulación}
+    % \subsection{Simulación}
     
-        \subsubsection{Analyses}
+    %     \subsubsection{Analyses}
         
-        \subsubsection{Results Sets}
+    %     \subsubsection{Results Sets}
         
-        \subsubsection{Components}
+    %     \subsubsection{Components}
     
             
     

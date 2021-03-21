@@ -2264,68 +2264,754 @@
 
     En esta sección se detalla el desarrollo del prototipo en ADAMS y su simulación, presentando todas las consideraciones tomadas en su elaboración, para el posterior análisis de los datos obtenidos.
 
-    El diseño de un prototipo en ADAMS puede ser tan complejo como se quiera, en la figura \ref{f:Cap6_adams_fases_desarrollo} se observa el proceso de desarrollo para un prototipo en ADAMS, en nuestro caso, el modelo busca validar la cinemática y dinámica del robot delta en estudio por lo que trabajaremos solo en las fases de \textbf{construcción} ("build") y \textbf{prueba}. ("test").
+    El diseño de un prototipo en ADAMS puede ser tan complejo como se quiera, en la figura \eqref{f:Cap6_adams_fases_desarrollo} se observa el proceso de desarrollo para un prototipo en ADAMS, en nuestro caso, el modelo busca validar la cinemática y dinámica del robot delta en estudio por lo que trabajaremos solo en las fases de \textbf{construcción} ("build") y \textbf{prueba}. ("test").
     
     \begin{figure}[h]
         \centering
         \includegraphics[width=0.8\linewidth]{Main/Chapter6/Images6/adams/proceso_prototipo_virtual.png}
-        \caption{Fases de desarrollo para prototipo virtual REFERENCIA}
+        \caption{Fases de desarrollo para prototipo virtual \cite{adams-basic}}
         \label{f:Cap6_adams_fases_desarrollo}
     \end{figure}
     
-    Un robot delta se compone principalmente de una base fija en la parte superior, una base móvil en la parte inferior y tres cadenas cinemáticas compuestas por un antebrazo unido a la base fija y un brazo unido a la base móvil como se observa en la figura \ref{f:ref1}. Desarrollaremos el modelo desde arriba hacia abajo, basándonos en las medidas del robot especificadas en el capitulo \ref{CAP5}.
+    \subsection{ Consideraciones preliminares}
+    
+    Para desarrollar de manera eficiente el modelo, y que sus resultado puedan ser comparados con los obtenidos mediante ROS, fue necesario establecer las siguientes simplificaciones preliminares:
+    
+    \begin{itemize}
+        \item Las medidas utilizadas en cada pieza del modelo, son las establecidas en la tabla \eqref{tab:cap5_tabla_1} y la nomenclatura proviene de la figura \eqref{fig:cap5_1}.
+        \item La simplificación dinámica establecida en \eqref{CAP4-simplificaciones} en cuanto a la posición y distribución de las masas, es también aplicada al modelo en ADAMS, a fin de que ambos resultados puedan ser comparados.
+        \item Se incluye a la simplificación anterior una propia del modelo en ADAMS, en la que la masa central del efector $m_{p}$ se divide en tres, agregando un tercio a cada masa $\frac{m_{2}}{2}$ ubicada al centro de los lados del efector como se muestra en la figura \eqref{f:Cap6_adams_simplificacion_efector}.
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.8\linewidth]{Main/Chapter6/Images6/adams/simplificacion-masas.pdf}
+                \caption{Simplificación de las masas en la base móvil}
+                \label{f:Cap6_adams_simplificacion_efector}
+            \end{figure}
+        \item Consideradas las simplificaciones dinámicas, el modelo del robot sera el indicado en la figura \eqref{f:Cap4_Metodo_B_Modelacion_Dinamica_22}
+        \item Existe otra simplificación propia del modelo en ADAMS, detallada en la sección de la base fija.
+    \end{itemize}
+    
+    % Un robot delta se compone principalmente de una base fija en la parte superior, una base móvil en la parte inferior y tres cadenas cinemáticas que unen dichas bases, cada cadena esta compuesta por un brazo unido a la base fija y un antebrazo unido a la base móvil como se observa en la figura \label{fig:cap5_1}.
+
+    
+    \subsection{ Desarrollo del modelo}
+    
+        El modelo se desarrollará de arriba hacia abajo, con base en la introducción a ADAMS presentada en el capitulo \eqref{CAP3} abrimos ADAMS y generamos un nuevo modelo con la siguiente configuración:
+
+        \begin{scope}
+            \renewcommand{\labelitemi}{\blacklozenge}
+            \renewcommand{\labelitemii}{\checkmark}
+            \begin{itemize}
+                \item New Model
+                \begin{itemize}
+                    \item \textbf{Model Name:} RobotDelta
+                    \item \textbf{Gravity:} Other
+                    \item \textbf{Units:} MMKS
+                    \item \textbf{Workin Directory:} A elección del usuario
+                \end{itemize}
+            \end{itemize}
+            
+            \begin{itemize}
+                \item Gravity Settings
+                \begin{itemize}
+                    \item \textbf{X:} 0.0
+                    \item \textbf{Y:} 0.0
+                    \item \textbf{Z:} -9806.65
+                \end{itemize}
+            \end{itemize}
+        \end{scope}
+        
+        Luego de terminar la configuración inicial se deberá desplegar el GUI de ADAMS, similar a la figura \eqref{f:Cap3-adams_window_GUI}, con la diferencia de que el nombre del modelo sera el configurado anteriormente.
+        
+        Para iniciar nuestro modelo, colocaremos un Marker unido a la tierra, que nos servirá de referencia global para todo nuestro modelo. En la barra de herramientas principal, sección de \textit{Construction} seleccionamos \textit{Marker} y configuramos las siguientes opciones:
+
+        \begin{scope}
+            \renewcommand{\labelitemi}{\blacklozenge}
+            \renewcommand{\labelitemii}{\checkmark}
+            \begin{itemize}
+                \item Geometry Marker
+                \begin{itemize}
+                    \item Add to ground 
+                    \item Global XY Plane
+                \end{itemize}
+                \item Clic derecho en GRID
+                \begin{itemize}
+                    \item XYZ (0.0,0.0,0.0)
+                \end{itemize}
+            \end{itemize}
+        \end{scope}
+
+        
+        Luego de generado el marker, lo buscamos en el árbol del modelo y hacemos clic derecho para renombrarlo como \textit{Marker\_Origen.}. La figura \eqref{f:Cap6_adams_inicio} presenta el resultado esperado, el eje coordenado mostrado en el centro, esta unido a tierra y no se moverá ni rotara con el robot. Este Marker sera la referencia global y según el se definirán los demás ejes locales.
+        
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/adams/inicio.png}
+            \caption{Posición del Marker Origen en ADAMS}
+            \label{f:Cap6_adams_inicio}
+        \end{figure}
+        
+
+        \subsubsection{Base fija}
+        
+        La base fija como su nombre lo indica,esta unida rígidamente al bastidor del robot, por lo que su masa no interviene de ninguna forma en la cinemática y dinámica del robot. Sí nos importan las posiciones de los actuadores que están unidos a la base, por lo que haremos una representación de la base fija mediante lineas sin masa, a modo de poder ubicar luego los actuadores en ella.
+        
+        La posición de los puntos que generan el triangulo de la base fija se presentan en la tabla \eqref{tab:cap6_adams_xy_baseFija}.
+        
+        \begingroup
+            \renewcommand{\arraystretch}{1.5}
+            \begin{table}[H]
+                \centering
+                \begin{tabular}{c c{4cm} c}
+                   \hline
+                   \textbf{Actuador}  & \textbf{X [mm]} & \textbf{Y [mm]} & \textbf{Z [mm]} \\\hline\hline
+                    Punto 1  & -363.73066959           & -210.0    & 0.0      \\\hline
+                    Punto 2  & 363.73066959       & -210.0   & 0.0        \\\hline
+                    Punto 3  & 0           & 420     & 0.0    \\\hline
+                \end{tabular}
+                \caption{Posición XYZ de los puntos que conforman la base fija}
+            \label{tab:cap6_adams_xy_baseFija}
+            \end{table}
+        \endgroup
+        
+        En el mismo apartado \textit{Construction} de la barra de herramientas principal seleccionamos \textit{Point} y agregamos la siguiente configuración:
+        
+        \begin{scope}
+            \renewcommand{\labelitemi}{\blacklozenge}
+            \renewcommand{\labelitemii}{\checkmark}
+            \begin{itemize}
+                \item Geometry Point
+                \begin{itemize}
+                    \item On ground 
+                    \item Don't attach
+                \end{itemize}
+                \item Click derecho en el GRID
+                \begin{itemize}
+                    \item XYZ(-363.73066959,-210.0,0.0)
+                \end{itemize}
+            \end{itemize}
+        \end{scope}
+        
+        Repetimos los pasos para los puntos 2 y 3 y finalmente los renombramos con la siguiente nomenclatura \textit{BaseFija\_Punto\_N} , donde N es el numero del punto.
+        
+        Una vez  dibujados los tres puntos en el \textit{GRID}, los uniremos mediante una \textit{polilínea}, esta se ubica en el apartado \textit{Construction}.
+        
+        \begin{scope}
+            \renewcommand{\labelitemi}{\blacklozenge}
+            \renewcommand{\labelitemii}{\checkmark}
+            \begin{itemize}
+                \item Geometry PolyLine
+                \begin{itemize}
+                    \item On ground 
+                    \item PolyLine
+                \end{itemize}
+                \item Clic izquierdo en el GRID
+                \begin{itemize}
+                    \item Damos clic en cada uno de los puntos creados anteriormente para unirlos con la polilínea.
+                    \item Finalizamos la polilínea con clic derecho en el GRID.
+                \end{itemize}
+            \end{itemize}
+        \end{scope}
+        
+        Renombramos la polilínea como \textit{BaseFija\_Triangulo} . El resultado de los pasos anteriores, se presenta en la figura \eqref{f:Cap6_adams_baseFija}.
+        
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/adams/base-fija/baseFija.png}
+            \caption{Puntos de la base fija unidos mediante polilínea}
+            \label{f:Cap6_adams_baseFija}
+        \end{figure}
+        
+        
+        El calculo de las posiciones de los actuadores se obtiene con el radio de la base fija, obtenido de la tabla tabla \eqref{tab:cap5_tabla_1}, el cual simula un circulo centrado en el origen, donde los actuadores se ubican en algún punto del perímetro del circulo. Agregaremos esta circunferencia como referencia. Nuevamente en el apartado de \textit{Construction}, seleccionamos \textit{Arco}:
+        
+        \begin{scope}
+            \renewcommand{\labelitemi}{\blacklozenge}
+            \renewcommand{\labelitemii}{\checkmark}
+            \begin{itemize}
+                \item Geometry Arc
+                \begin{itemize}
+                    \item On ground
+                    \item Marcamos la opción \textit{Radius} a 210 mm
+                    \item Marcamos la opción \textit{Circle}
+                \end{itemize}
+                \item Clic izquierdo en el GRID
+                \begin{itemize}
+                    \item Damos clic en el marker central \textit{Origen}
+                \end{itemize}
+            \end{itemize}
+        \end{scope}
+        
+        
+        De la figura \eqref{fig:cap5_1} se observa que el actuador numero dos (definido por el ángulo $\theta$) se encuentra en el eje Y a una distancia igual al radio $R_{A}$. La ubicación de los otros dos actuadores sera una rotación de 120$^{\circ}$ y 240$^{\circ}$, ya que en un robot delta los motores están idealmente igualmente espaciados.
+        
+        Del álgebra lineal sabemos que una rotación en dos dimensiones queda definida por las ecuaciones \eqref{eq:cap6_adams_rotacion_x} y \eqref{eq:cap6_adams_rotacion_y} donde $\theta$ sera 120$^{\circ}$, $x$ e $y$ la posición del actuador anterior, $x'$ e $y'$ la posición buscada del siguiente actuador.
+        
+        
+        \begin{align} 
+            x'= xcos(\theta) - ysin(\theta) \\
+            \label{eq:cap6_adams_rotacion_x}
+        \end{align}
+        \begin{align} 
+            y'= xsin(\theta) + ycos(\theta)
+            \label{eq:cap6_adams_rotacion_y}
+        \end{align}
+        
+         La tabla \eqref{tab:cap6_adams_xy_motores} presenta las posiciones de cada actuador.
+        
+         \begingroup
+            \renewcommand{\arraystretch}{1.5}
+            \begin{table}[H]
+                \centering
+                \begin{tabular}{c c{4cm} c}
+                   \hline
+                   \textbf{Actuador}  & \textbf{X [mm]} & \textbf{Y [mm]} & \textbf{Z [mm]} \\\hline\hline
+                    Motor 1  & -181.865335           & 105.0    & 0.0      \\\hline
+                    Motor 2  & 181.865335       & 105.0   & 0.0        \\\hline
+                    Motor 3  & 0           & -210     & 0.0    \\\hline
+                \end{tabular}
+                \caption{Posición XYZ de los motores}
+            \label{tab:cap6_adams_xy_motores}
+            \end{table}
+        \endgroup
+        
+        En la posición de cada motor crearemos otro marker de igual forma que lo hicimos para el \textit{Origen} pero con las posiciones de la tabla \eqref{tab:cap6_adams_xy_motores}. Renombramos cada uno de estos markers con la siguiente nomenclatura \textit{MARKER\_Motor\_N}, donde N es la numeración del motor. El resultado deberá ser similar a la figura \eqref{f:Cap6_adams_basefija_posicion_motores}
+        
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/adams/base-fija/posicion_motores_marker.png}
+            \caption{Markers que definen la posición de cada actuador ubicados en el perímetro de la circunferencia.}
+            \label{f:Cap6_adams_basefija_posicion_motores}
+        \end{figure}
+        
+        Luego de verificar que los actuadores se ubican justo en el perímetro de la circunferencia, podemos eliminarla, ya que no sera necesaria.
+        
+        Se observa en al figura \eqref{f:Cap6_adams_basefija_posicion_motores} que los markers de cada motor, quedan definidos en la misma orientación que el Marker Origen, debemos modificar dicha orientación de tal manera que el eje X de cada Marker de motor, quede perpendicular al lado del triangulo de la base fija al que pertenece, esto para que nuestro modelo quede en sincronía con la nomenclatura y direcciones asumidas en el capitulo \eqref{CAP5}.Con algo de geometría se obtiene que el giro de cada marker viene dado por los siguientes vectores:
+        
+        \begin{itemize}
+            \item \textbf{Marker Motor 1:} (30, 0, 0)
+            \item \textbf{Marker Motor 1:} (150, 0, 0)
+            \item \textbf{Marker Motor 1:} (270, 0, 0)
+        \end{itemize}
+        
+        Para girar los marker, damos doble clic en el nombre del marker en el árbol del modelo y configuramos las rotaciones:
+        
+        \begin{scope}
+            \renewcommand{\labelitemi}{\blacklozenge}
+            \renewcommand{\labelitemii}{\checkmark}
+            \begin{itemize}
+                \item Marker Modify
+                \begin{itemize}
+                    \item \textbf{Orientation:} (150.0, 0.0, 0.0)
+                \end{itemize}
+            \end{itemize}
+        \end{scope}
+        
+        Repetimos los pasos para los otros dos motores. Al finalizar los pasos nuestro modelo deberá ser similar al de la figura \eqref{f:Cap6_adams_basefija_posicion_motores_girados}.
+        
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/adams/base-fija/posicion_motores_marker_giradoss.png}
+            \caption{Markers de cada motor con eje X perpendicular a cada lado de la base fija.}
+            \label{f:Cap6_adams_basefija_posicion_motores_girados}
+        \end{figure}
+        
+
+        \subsubsection{Brazo}
+        
+        En base a la figura \eqref{f:Cap6_adams_fases_desarrollo}, a continuación agregaremos la masa $m_{1}$, que simula el brazo del robot. Esta masa esta ubicada al centro del brazo, es decir a una distancia de 310[mm] desde el efector.
+        
+        Agregamos la masa del brazo numero tres (el brazo unido al motor tres), para esto en la barra de herramientas principal, en la sección de \textit{Solids} seleccionamos \textit{Sphere} y configuramos:
+        
+        \begin{scope}
+            \renewcommand{\labelitemi}{\blacklozenge}
+            \renewcommand{\labelitemii}{\checkmark}
+            \begin{itemize}
+                \item Geometry Sphere
+                \begin{itemize}
+                    \item New Part
+                    \item Seleccionamos \textbf{Radius} con un valor de 5[cm]
+                \end{itemize}
+                \item Clic derecho en GRID
+                \begin{itemize}
+                    \item XYZ (310.0, 0.0, 0.0)
+                    \item Rel. To Object
+                    \item Escribimos ``MARKER\_Motor\_3''
+                \end{itemize}
+            \end{itemize}
+        \end{scope}
+        
+        Se genera un nuevo cuerpo, el cual veremos en el árbol del modelo probablemente llamado \textit{Part\_2} o similar, lo renombramos a \textbf{M2\_BRAZO3} y repetimos las instrucciones para los otros dos brazos, el resultado deberá ser similar a la figura \eqref{f:Cap6_adams_brazo_posicion_m1}
+        
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/adams/brazo/posicion_m1.png}
+            \caption{Masa $m_{1}$ de cada brazo en su posición.}
+            \label{f:Cap6_adams_brazo_posicion_m1}
+        \end{figure}
+        
+        Una ves dispuestas las masas que representan a los brazos, es necesario unirlas a la base fija o en nuestro caso la tierra, que seria el bastidor del robot, de forma que pueda haber un movimiento relativo entre ellas, en especifico una rotación. Este giro se logra agregando una unión de tipo \textit{revoluta} entre el brazo y la base fija, a modo de hombro que solo permitirá el giro en el eje Y del Marker de cada motor.
+        
+        Agregamos la \textit{revoluta} al brazo numero tres dando clic en la barra de herramientas principal, en la pestaña de \textit{Connectors}, apartado de \textit{Joints} y buscamos la unión de \textit{Revolute} y agregamos la siguiente configuración:
+        
+        \begin{scope}
+            \renewcommand{\labelitemi}{\blacklozenge}
+            \renewcommand{\labelitemii}{\checkmark}
+            \begin{itemize}
+                \item Revolute Joint
+                \begin{itemize}
+                    \item 2 Bodies - 1 Location
+                    \item Pick Geomtry Feature
+                    \item Pick Body
+                    \item Pick Body
+                \end{itemize}
+                \item GRID 
+                \begin{itemize}
+                    \item Seleccionamos la primera pieza, en este caso la tierra (clic en cualquier parte del \textit{GRID}, que no tenga un cuerpo)
+                    \item Seleccionamos la segunda pieza, en este caso la masa \textit{M1\_BRAZO3}
+                    \item Seleccionamos una dirección, en este caso el eje Y del \textbf{MARKER\_Motor 3}
+                \end{itemize}
+            \end{itemize}
+        \end{scope}
+        
+        En el árbol de modelo, en la carpeta de \textit{Connectors} ahora aparecerá nuestra unión de revoluta, renombramos a \textit{Revoluta\_Motor\_3. } 
+        
+        Agregamos una polilínea para simular con una linea la sección del brazo que une el motor y la masa $m_{1}$.
+        
+        \begin{scope}
+            \renewcommand{\labelitemi}{\blacklozenge}
+            \renewcommand{\labelitemii}{\checkmark}
+            \begin{itemize}
+                \item Geometry PolyLine
+                \begin{itemize}
+                    \item Add to Part
+                    \item PolyLine
+                \end{itemize}
+                \item Clic izquierdo en el GRID
+                \begin{itemize}
+                    \item Damos clic a la parte donde queremos agregar la linea, en este caso la masa $m_{1}$ del brazo tres.
+                    \item Iniciamos la polilínea dando clic sobre la masa $m_{1}$ nuevamente y otro clic en el Marker del motor 3, luego finalizamos la polilínea con clic derecho en el GRID.
+                \end{itemize}
+            \end{itemize}
+        \end{scope}
+        
+        Repetimos los pasos para los otros dos brazos, el resultado deberá ser similar a la figura \eqref{f:Cap6_adams_brazo_posicion_revoluta}
+        
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/adams/brazo/posicion_revoluta.png}
+            \caption{Revolutas entre cada brazo y la base fija.}
+            \label{f:Cap6_adams_brazo_posicion_revoluta}
+        \end{figure}
+        
+        Hasta ahora el comportamiento de los brazos debiera ser similar al de una masa rotando con radio fijo alrededor de la posición de cada motor.
+        
+        \subsubsection{Antebrazo}
+        
+        El antebrazo se compone de cuatro masas, dos por cada barrilla como se observa en la figura
+        \eqref{f:Cap6_adams_fases_desarrollo}, la simplificación detallada el inicio del capitulo, simplifica las masas superiores de cada barrilla como la suma de ellas ubicada en la posición de $m_{elbow}$, lo mismo sucede en la parte inferior de las barillas.
+        
+        En base a esa simplificación, agregamos la masa $m_{2}$ del brazo numero tres de forma similar a la $m_{1}$, pero al doble de distancia, tomando como referencia el Marker del motor correspondiente: 
+        
+        \begin{scope}
+            \renewcommand{\labelitemi}{\blacklozenge}
+            \renewcommand{\labelitemii}{\checkmark}
+            \begin{itemize}
+                \item Geometry Sphere
+                \begin{itemize}
+                    \item New Part
+                    \item Seleccionamos \textbf{Radius} con un valor de 5[cm]
+                \end{itemize}
+                \item Clic derecho en GRID
+                \begin{itemize}
+                    \item XYZ (620.0, 0.0, 0.0)
+                    \item Rel. To Object
+                    \item Escribimos ``MARKER\_Motor\_3''
+                \end{itemize}
+            \end{itemize}
+        \end{scope}
+        
+
+        
+        La relación de posición entre $m_{2}$ y $m_{1}$ deberá ser una unión rígida, ya que representa el brazo del robot. Para agregar una unión rígida, en la pestaña de \textit{Connectors}, apartado de \textit{Joints} buscamos la unión \textit{Rigid} y agregamos la siguiente configuración:
+        
+        \begin{scope}
+            \renewcommand{\labelitemi}{\blacklozenge}
+            \renewcommand{\labelitemii}{\checkmark}
+            \begin{itemize}
+                \item Fixed Joint
+                \begin{itemize}
+                    \item 2 Bodies - 1 Location
+                    \item Normal to Grid
+                    \item Pick Body
+                    \item Pick Body
+                \end{itemize}
+                \item GRID 
+                \begin{itemize}
+                    \item Seleccionamos la primera pieza, en este caso la masa $m_{1}$
+                    \item Seleccionamos la segunda pieza, en este caso la masa $m_{2}$
+                    \item Seleccionamos una posición, en este caso la masa $m_{1}$
+                \end{itemize}
+            \end{itemize}
+        \end{scope}
+        
+        Renombramos la masa como \textit{M2\_BRAZO3} y la unión  como \textit{Rigid\_Brazo3}. Además agregamos una polilínea de manera similar a las anteriores, que unan la masa $m_{1}$ con    $m_{2}$.
+        
+        Repetimos los pasos para los otros dos brazos, el resultado deberá ser similar a la figura \eqref{f:Cap6_adams_brazo_posicion_m2sup}
+        
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/adams/antebrazo/posicion_m2_sup.png}
+            \caption{Posición de las masas $m_{2}$.}
+            \label{f:Cap6_adams_brazo_posicion_m2sup}
+        \end{figure}
+        
+        \subsubsection{Base móvil}
+    
+        La base móvil se compondrá de tres masas posicionadas a cada lado del triangulo como se observa en la figura \eqref{f:ref1}. Para ubicar estas masas es necesario aplicar las ecuaciones de cinemática directa descritas en el capitulo \eqref{CAP4}. Nuestro modelo se encuentra en la posición inicial del robot, es decir lo ángulos $\theta$ de los efectores están en su posición inicial ( 0,0,0), ayudado de la ecuación \eqref{eq:cap4_eq_3} obtenemos que la posición del centro del efector es (0.0, 0.0, -407.4309757). En dicha posición creamos un marker que nos servirá de referencia para localizar las distintas masas del efector y lo renombramos como \textit{MARKER\_BaseFija\_Origen}:
+        
+        \begin{scope}
+            \renewcommand{\labelitemi}{\blacklozenge}
+            \renewcommand{\labelitemii}{\checkmark}
+            \begin{itemize}
+                \item Geometry Marker
+                \begin{itemize}
+                    \item Add to ground 
+                    \item Global XY Plane
+                \end{itemize}
+                \item Clic derecho en GRID
+                \begin{itemize}
+                    \item XYZ (0.0,0.0,-407.4309757)
+                \end{itemize}
+            \end{itemize}
+        \end{scope}
+
+        De forma similar a como agregamos los Marker de cada motor, agregamos una circunferencia de referencia con radio $R_{b}$ según la tabla \eqref{tab:cap5_tabla_1}. El resultado deberá ser similar al a figura \eqref{f:Cap6_adams_baseMovil_posicion_marker_central}
+   
+          \begin{figure}[h]
+            \centering
+            \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/adams/base-movil/posicion_marker_efector.png}
+            \caption{Posición del Marker central de la Base Móvil, con su respectiva circunferencia de referencia.}
+            \label{f:Cap6_adams_baseMovil_posicion_marker_central}
+        \end{figure}
+        
+        Dado el radio de la circunferencia sabemos que las masas del efector, deberán estar ubicadas en algún lugar de su perímetro, similar a como lo hicimos que con los Marker de los motores, partiremos ubicando la masa unida al brazo dos, que se localiza encima del eje Y, para luego ubicar las otras dos masas, con rotaciones de 120$^{\circ}$ mediante la ecuación \eqref{eq:cap6_adams_rotacion}:
+        
+        \begin{scope}
+            \renewcommand{\labelitemi}{\blacklozenge}
+            \renewcommand{\labelitemii}{\checkmark}
+            \begin{itemize}
+                \item Geometry Sphere
+                \begin{itemize}
+                    \item New Part
+                    \item Seleccionamos \textbf{Radius} con un valor de 5[cm]
+                \end{itemize}
+                \item Clic derecho en GRID
+                \begin{itemize}
+                    \item XYZ (0.0, -50, 0.0)
+                    \item Rel. To Object
+                    \item Escribimos ``MARKER\_BaseFija\_Origen''
+                \end{itemize}
+            \end{itemize}
+        \end{scope}
+        
+        Renombramos la masa como \textit{MP\_BRAZO2} y la unimos a la masa \textit{M2\_BRAZO2} mediante una polilínea.
+        
+        Repetimos los pasos anteriores, haciendo giros de 120$^{\circ}$ desde la masa \textit{MP\_BRAZO2} para ubicar las masas de los otros dos brazos. Finalmente eliminamos la circunferencia de referencia y agregamos una polilínea que una las tres masas del efector para simular el triangulo de la base fija, el resultado deberá ser similar a la figura \eqref{f:Cap6_adams_baseMovil_posicion_baseMovil} 
+
+         \begin{figure}[h]
+            \centering
+            \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/adams/base-movil/base_movil.png}
+            \caption{Posición de las masas que configuran la Base Móvil}
+            \label{f:Cap6_adams_baseMovil_posicion_baseMovil}
+        \end{figure}
+        
+        Debemos  unir ahora las masas \textit{MP\_BRAZO3} y \textit{MP2\_BRAZO3} con una rotula que simule el movimiento del robot en dicha articulación, para ello en la barra de herramientas principal, en la pestaña de \textit{Connectors}, apartado de \textit{Joints} y buscamos la unión de \textit{Spherical} y agregamos la siguiente configuración:
+        
+        \begin{scope}
+            \renewcommand{\labelitemi}{\blacklozenge}
+            \renewcommand{\labelitemii}{\checkmark}
+            \begin{itemize}
+                \item Spherical Joint
+                \begin{itemize}
+                    \item 2 Bodies - 1 Location
+                    \item Normal to Grid
+                    \item Pick Body
+                    \item Pick Body
+                \end{itemize}
+                \item GRID 
+                \begin{itemize}
+                    \item Seleccionamos la primera pieza, en este caso la masa $m_{2}$
+                    \item Seleccionamos la segunda pieza, en este caso la masa $m_{p}$
+                    \item Seleccionamos una posición, en este caso la masa $m_{2}$
+                \end{itemize}
+            \end{itemize}
+        \end{scope}
+        
+        Renombramos la unión como \textit{Spherical\_Brazo\_3} y repetimos los pasos para los otros dos brazos.
+        
+        Para finalizar el modelo, debemos agregar alguna restricción de movimiento a las masas $m_{p}$ que simulan la base móvil, para ello lo lógico seria agregar una unión rígida similar a la ya ocupada, dado que el triangulo de la base móvil es un solido rígido. A pesar de ello surge un problema al aplicar dicha lógica en ADAMS dado que cuando establezcamos dicha unión rígida, las tres cadenas cinemáticas separadas de cada brazo del robot, se unirán para formar una cadena cinemática cerrada, la cual tiene una solución única para la posición de cada pieza, dicha posición a pesar de la cantidad de decimales ocupados en el desarrollo del modelo, no es posible lograrla, por lo que se produce un error, de que el modelo no tiene solución. Para solucionar dicho problema, se utilizaran como unión, rotulas esféricas que permiten variaciones de posición entre las tres masas, esto provocará alguna diferencia en los resultados otorgados por ADAMS y ROS, pero deberán ser de muy baja embreadura, ya que hemos trabajado con varios decimales para lograr la mayor precisión.
+        
+        Agregamos la rotula de manera similar a la anterior, en el siguiente orden:
+        
+        \begin{enumerate}
+            \item MP\_BRAZO1 con MP\_BRAZO2
+            \item MP\_BRAZO2 con MP\_BRAZO3
+            \item MP\_BRAZO3 con MP\_BRAZO1
+        \end{enumerate}
+        
+        Renombramos las rotulas a Spherical\_MP\_N donde N es el numero del brazo donde esta unido la rotula. Las figuras \eqref{f:Cap6_adams_final_superior}, \eqref{f:Cap6_adams_final_frontal}, \eqref{f:Cap6_adams_final_isoemtrica} presentan un resumen del modelo.
+        
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/adams/base-movil/superior.png}
+            \caption{Vista superior del modelo}
+            \label{f:Cap6_adams_final_superior}
+        \end{figure}
+        
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/adams/base-movil/frontal.png}
+            \caption{Vista frontal del modelo}
+            \label{f:Cap6_adams_final_frontal}
+        \end{figure}
+        
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/adams/base-movil/isometrica.png}
+            \caption{Vista isometrica del modelo}
+            \label{f:Cap6_adams_final_isoemtrica}
+        \end{figure}
+        
+        
+        \subsubsection{Trayectorias}
+        
+        Agregaremos ahora los datos XYZ de la trayectoria de la curva 1 \eqref{tab:cap5_tabla_1} para dibujarla en nuestro modelo, con el fin de poder observar luego en la simulación como el centro de la base móvil (efector) pasa por los puntos de la curva.
+        
+        Para crear una trayectoria en ADAMS primero se debe agregar la matriz con los datos, en la barra de herramientas principal debemos dirigirnos a la pestaña de \textit{Elements}, sección de \textit{Data Elements} y seleccionar \textit{Matriz}:
+            
+        
+        \begin{scope}
+            \renewcommand{\labelitemi}{\blacklozenge}
+            \renewcommand{\labelitemii}{\checkmark}
+            \begin{itemize}
+                \item Create Matrix
+                \begin{itemize}
+                    \item \textbf{Row Count:} 251
+                    \item \textbf{Column Count:} 3
+                    \item \textbf{Values:}  Insertar los datos XYZ (posición del efector) obtenidos de ROS, todo en una columna partiendo por X luego Y luego Z.
+                \end{itemize}
+            \end{itemize}
+        \end{scope}
+        
+        Renombramos la matriz a \textit{MATRIX\_CURVA\_1. }
+        
+        Luego de creada la matriz, esta se debe relacionar con una curva, en al misma sección de \textit{Data Elements} seleccionamos \textit{Curve}:
+        
+        \begin{scope}
+            \renewcommand{\labelitemi}{\blacklozenge}
+            \renewcommand{\labelitemii}{\checkmark}
+            \begin{itemize}
+                \item Create Curve
+                \begin{itemize}
+                    \item \textbf{Matrix Name:} MATRIX\_CURVA\_1. 
+                \end{itemize}
+            \end{itemize}
+        \end{scope}
+        
+        Renombramos la curva a CURVA\_1. Hasta ahora solo hemos agregado elementos de datos, los cuales ayudan a integrar datos externos a ADAMS, pero no crean ninguna geometría aun en el espacio de trabajo, para dibujar la curva en este, en la barra de herramientas principal pestaña de \textit{Bodies}, sección de \textit{Construction} y seleccionamos \textit{Spline}:
+        
+        \begin{scope}
+            \renewcommand{\labelitemi}{\blacklozenge}
+            \renewcommand{\labelitemii}{\checkmark}
+            \begin{itemize}
+                \item Geometry: Spline
+                \begin{itemize}
+                    \item On Ground
+                    \item Deseleccionamos \textit{Closed}
+                    \item Points
+                \end{itemize}
+                \item GRID
+                \begin{itemize}
+                    \item Clic izquierdo en el GRID hasta formar cuatro puntos cualesquiera, para finalizar clic derecho.
+                \end{itemize}
+            \end{itemize}
+        \end{scope}
+        
+        Obtendremos una curva Spline en algún lugar de nuestro espacio de trabajo, para relacionarla con la curva y matriz anteriores, le daremos doble clic a la Spline en el árbol del modelo (ground) y configuramos sus datos:
+        
+        \begin{scope}
+            \renewcommand{\labelitemi}{\blacklozenge}
+            \renewcommand{\labelitemii}{\checkmark}
+            \begin{itemize}
+                \item Modify a Geometry Spline
+                \begin{itemize}
+                    \item \textbf{Name:} Spline\_Curva\_1
+                    \item \textbf{Reference Marker:} MARKER\_Origen
+                    \item \textbf{Reference Curve :} CURVA\_1
+                    \item \textbf{Reference Matrix :} MATRIX\_CURVA\_1
+                \end{itemize}
+            \end{itemize}
+        \end{scope}
+        
+        El resultado deberá ser similar a la figura \eqref{f:Cap6_adams_trayectoria} la linea inferior sera la curva que deberá seguir el efector de principio a fin durante la simulación.
+        
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/adams/trayectoria/curva.png}
+            \caption{Modelo robot delta, con trayectoria a seguir en la parte inferior}
+            \label{f:Cap6_adams_trayectoria}
+        \end{figure}
+        
+    \subsection{Desarrollo de la simulación}
+    
+    Hasta ahora nuestro modelo comprende de la estructura base del robot, con las simplificaciones del caso y una trayectoria a seguir, para lograr desarrollar una simulación cinemática y dinámica y poder comprar los resultados, hará falta agregarle masas a las piezas y movimientos a las uniones.
     
     
-    Siguiendo la introducción de ADAMS presentada en el capitulo \ref{CAP3} abrimos ADAMS y generamos un nuevo modelo con la siguiente configuración:
-
-
+    \subsubsection{Masas}
+    
+    Basado en las simplificaciones del modelo, el valor de cada masas es:
+    
+    \begin{itemize}
+        \item \textbf{$m_{1}$} = 2.213 [kg]
+        \item \textbf{$m_{2}$} = 0.6575 [kg]
+        \item \textbf{$m_{p}$} = 0.8275 [kg]
+    \end{itemize}
+    
+    Para agregar dichas masas al modelo, basta hacer doble clic en cada una de las piezas, por ejemplo damos doble clic en \textit{M1\_BRAZO3} y agregamos la siguiente configuración:
+    
     \begin{scope}
         \renewcommand{\labelitemi}{\blacklozenge}
         \renewcommand{\labelitemii}{\checkmark}
         \begin{itemize}
-            \item New Model
+            \item Modify Body
             \begin{itemize}
-                \item \textbf{Model Name:} RobotDelta
-                \item \textbf{Gravity:} Other
-                \item \textbf{Units:} MMKS
-                \item \textbf{Workin Directory} A elección del usuario
-            \end{itemize}
-        \end{itemize}
-        
-        \begin{itemize}
-            \item Gravity Settings
-            \begin{itemize}
-                \item \textbf{X:} 0.0
-                \item \textbf{Y:} -9806.65
-                \item \textbf{Z:} 0.0
+                \item \textbf{Mass:} (2.213kg)
+                \item \textbf{Ixx:} 0.0
+                \item \textbf{Iyy:} 0.0
+                \item \textbf{Izz:} 0.0
             \end{itemize}
         \end{itemize}
     \end{scope}
     
-    Luego de terminar la configuración inicial se debería desplegar el GUI de ADAMS, similar a la figura \ref{f:Cap3-adams_window_GUI}, con la diferencia de que el nombre del modelo sera RobotDelta.
-
-
+    Repetimos los pasos con cada una de las piezas, dándoles la masa que les corresponde.
     
-    \subsection{ Base Fija}
+    \subsubsection{Movimiento}
     
-    \subsection{Antebrazo}
+    Dado que el movimiento que se quiere generar es el del efector pasando por la trayectoria anteriormente dibujada, el input necesario para nuestro modelo, son los ángulos de los actuadores, los cuales mediante cinemática directa, deberían transformarse en los distintos puntos XYZ de los que se compone la trayectoria. 
     
-    \subsection{Brazo}
+    Generaremos una \textit{Spline} con los datos de ángulos y tiempos para la curva 1, para ello en la pestaña de \textit{Elements} en la sección de \textit{Data Elements}, seleccionamos \textit{Spline}, se abrirá una ventana similar a la figura \eqref{f:Cap6_adams_trayectoria_theta} , en donde Y serán los ángulos $\theta$ de la trayectoria e X los tiempos $t$. Agregamos los datos de las posiciones angulares del motor y sus tiempos.
     
-    \subsection{Base Móvil}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/adams/motions/trayectoriateta.png}
+        \caption{Ventana para agregar las posiciones angulares en función del tiempo}
+        \label{f:Cap6_adams_trayectoria_theta}
+    \end{figure}
     
     
+    Repetimos los pasos hasta generar las tres\textit{Spline} corespondientes ala trayectoria de cada motor. Renombramos las \textit{Spline} a THETA\_N, donde N es la numeración de cada motor. Debemos ser cuidadosos en agregar los ángulos $theta$ correspondientes a cada motor en su \textit{Spline}.
     
-
+    Agregamos ahora el movimiento de cada motor, iniciamos con el brazo numero tres, en la pestaña de \textit{Motions} sección de \textit{Joint Motions}, seleccionamos \textit{Rotational}:
     
-   
-   
+    \begin{scope}
+        \renewcommand{\labelitemi}{\blacklozenge}
+        \renewcommand{\labelitemii}{\checkmark}
+        \begin{itemize}
+            \item Rotational Joint Motion
+            \begin{itemize}
+                \item Seleccionamos la unión de revoluta del brazo tres (Revoluta\_Motor\_3)
+                
+            \end{itemize}
+        \end{itemize}
+    \end{scope}
     
-
-
-    % \begin{figure}[H]
-    %     \centering
-    %     \includesvg[width=1\linewidth]{Main/Chapter6/Images6/adams/proceso_prototipo_virtual.svg}
-    %     \caption{Jerarquía de datos en ADAMS}
-    %     \label{f:Cap6-adams_proceso_prototipo}
-    % \end{figure} 
+    En el árbol del modelo, en al carpeta de \textit{Motions} aparecerá un nuevo movimiento llamado \textit{Motion\_1}, cambiamos el numero para que coincida con la numeración del motor. Repetimos los pasos para las otras dos uniones. El resultado deberá ser similar a la figura \eqref{f:Cap6_adams_motions}.
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/adams/motions/motions.png}
+        \caption{\textit{Motions} en cada unión de revoluta}
+        \label{f:Cap6_adams_motions}
+    \end{figure}
+    
+    Finalizado este paso, nuestro modelo ya tendrá la trayectoria angular en cada una de sus uniones de revoluta, que simular los motores del motor. Con esta trayectoria angular, ya podemos reproducir una simulación sencilla sin ninguna medición y comprobar si la base movil efectivamente de desplaza por la curva que generamos.
+    
+    Para agregar una simulación en ADAMS nos dirigimos a la barra de herramientas principal, pestaña de \textit{Simulation} sección de \textit{Simulate} y damos clic a \textit{Interactive Simulation} y damos la siguiente configuración:
+    
+    \begin{scope}
+        \renewcommand{\labelitemi}{\blacklozenge}
+        \renewcommand{\labelitemii}{\checkmark}
+        \begin{itemize}
+            \item Simulation Control
+            \begin{itemize}
+                \item \textbf{End Time:} 0.39 (El tiempo se obtiene de los datos angulares vs tiempo, el ultimo de ellos sera el tiempo final)
+                \item \textbf{Step Size:} 1.0E-03 (Un valor estimado para lograr apreciar el movimiento del modelo.
+                \item \textbf{Sim Type:} Dynamic
+            \end{itemize}
+        \end{itemize}
+    \end{scope}
+    
+    Al hacer clic en play, correrá la simulación y debemos observar como el efector circula por la trayectoria anteriormente dibujada, en las figuras \eqref{f:Cap6_adams_motions_pt1} y \eqref{f:Cap6_adams_motions_pt2} se muestran el inicio y final de la simulación.
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/adams/motions/simulacion_inicial.png}
+        \caption{Movimiento Robot Delta, inicio de la simulación}
+        \label{f:Cap6_adams_motions_pt1}
+    \end{figure}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/adams/motions/simulacion_final.png}
+        \caption{Movimiento Robot Delta, final de la simulación}
+        \label{f:Cap6_adams_motions_pt2}
+    \end{figure}
+    
+    
+    \subsubsection{Mediciones}
+    
+    Con la simulación anterior, ya tenemos una primera aproximación al resultado, pero debemos generar datos y mediciones que se puedan comparar con las obtenidas por ROS para validar estas ultimas. Nos interesa en especifico los torques generados en las uniones de revoluta que simulan los torques de cada motor del robot.
+    
+    Para generar mediciones, en la barra de herramientas principal en la pestaña de \textit{Design Evaluation}, sección de \textit{Measures} seleccionamos \textit{Function Mesure}:
+    
+    \begin{scope}
+        \renewcommand{\labelitemi}{\blacklozenge}
+        \renewcommand{\labelitemii}{\checkmark}
+        \begin{itemize}
+            \item Create or Modify a Function Mesure
+            \begin{itemize}
+                \item En el recuadro escribimos la siguiente función: \\ MOTION(.RobotDelta.MOTION\_N, 0, 8,MARKER\_xx). \\ Donde N es la numeración del motor que se medirá y xx es el Marker generado al crear el \textit{Motion} de cada motor.
+                \item Measure Name: .RobotDelta.Torque\_Motor\_1.
+                \item General Attributes
+                \begin{itemize}
+                    \item \textbf{Units:} Torque
+                \end{itemize}
+            \end{itemize}
+        \end{itemize}
+    \end{scope}
+    
+    Creamos una medición de forma similar para cada \textit{Motion} y corremos nuevamente la simulación, el resultado de las gráficas de torque obtenidas se presenta en las figuras \eqref{f:Cap6_adams_torque1}, \eqref{f:Cap6_adams_torque2}, \eqref{f:Cap6_adams_torque3}.
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/adams/motions/torque1.png}
+        \caption{Torque obtenido para el motor 1, en la curva numero 1}
+        \label{f:Cap6_adams_torque1}
+    \end{figure}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/adams/motions/torque2.png}
+        \caption{Torque obtenido para el motor 2, en la curva numero 1}
+        \label{f:Cap6_adams_torque2}
+    \end{figure}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\linewidth]{Main/Chapter6/Images6/adams/motions/torque3.png}
+        \caption{Torque obtenido para el motor 2, en la curva numero 1}
+        \label{f:Cap6_adams_torque3}
+    \end{figure}
+    
+    Los datos representados por estas mediciones es posible exportarlos para compararlos con los obtenidos por ROS, dicha comparación se detalla en el capitulo \ref{CAP7}.
