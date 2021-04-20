@@ -2447,9 +2447,8 @@
         
         Del álgebra lineal sabemos que una rotación en dos dimensiones queda definida por las ecuaciones \eqref{eq:cap6_adams_rotacion_x} y \eqref{eq:cap6_adams_rotacion_y} donde $\theta$ sera 120$^{\circ}$, $x$ e $y$ la posición del actuador anterior, $x'$ e $y'$ la posición buscada del siguiente actuador.
         
-        
         \begin{align} 
-            x'= xcos(\theta) - ysin(\theta) \\
+            x'= xcos(\theta) - ysin(\theta) 
             \label{eq:cap6_adams_rotacion_x}
         \end{align}
         \begin{align} 
@@ -2695,7 +2694,7 @@
             \label{f:Cap6_adams_baseMovil_posicion_marker_central}
         \end{figure}
         
-        Dado el radio de la circunferencia sabemos que las masas del efector, deberán estar ubicadas en algún lugar de su perímetro, similar a como lo hicimos que con los Marker de los motores, partiremos ubicando la masa unida al brazo dos, que se localiza encima del eje Y, para luego ubicar las otras dos masas, con rotaciones de 120$^{\circ}$ mediante la ecuación \eqref{eq:cap6_adams_rotacion}:
+        Dado el radio de la circunferencia sabemos que las masas del efector, deberán estar ubicadas en algún lugar de su perímetro, similar a como lo hicimos que con los Marker de los motores, partiremos ubicando la masa unida al brazo dos, que se localiza encima del eje Y, para luego ubicar las otras dos masas, con rotaciones de 120$^{\circ}$ mediante las ecuaciones \eqref{eq:cap6_adams_rotacion_x}, \eqref{eq:cap6_adams_rotacion_y}:
         
         \begin{scope}
             \renewcommand{\labelitemi}{\blacklozenge}

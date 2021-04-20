@@ -1196,7 +1196,102 @@ Para definir y almacenar la relación entre los marcos ''base\_link'' y ''base\_
         
     \subsection{Adams/Solver}
         
-        ADAMS solver es el modulo de ADAMS encargado de resolver las ecuaciones cineamticas y dinamicas del modelo en estudio. 
+        % ADAMS / Solver es el modulo de ADAMS encargado de resolver las ecuaciones cinemáticas y dinámicas del modelo en estudio. 
+        
+        ADAMS / Solver se utiliza para simular la evolución temporal de un sistema mecánico. En cada momento, ADAMS /Solver es capaz de indicar la posición, orientación y velocidades asociadas con cada parte del modelo. La posición y orientación de una pieza se controla mediante lo que se denomina coordenadas generalizadas. La elección de coordenadas generalizadas no es única, por ejemplo, se pueden elegir coordenadas cartesianas o coordenadas esféricas. Asimismo, se podría elegir entre coordenadas globales o relativas, en las que la configuración de una pieza
+        (posición, orientación, velocidades) se define con respecto al origen u otra pieza, respectivamente. La observación clave es que una vez que se selecciona un conjunto de coordenadas generalizadas, se espera que defina de manera única la configuración de cada parte del sistema en una instancia de tiempo determinada.
+        
+        En este contexto, en ADAMS / Solver, la posición de un cuerpo rígido está definida por tres coordenadas cartesianas x, y, y z:
+        
+
+        \begin{equation}
+           P = \begin{bmatrix}
+                x\\
+                y\\
+                z
+            \end{bmatrix}
+        \end{equation}
+
+        
+        La orientación de un cuerpo rígido está definida por un conjunto de tres ángulos de Euler que corresponden a la secuencia de rotación 3-1-3: $\psi$, $\phi$, $\theta$, respectivamente. Estos tres ángulos se almacenan en una matriz:
+        
+        \begin{equation}
+           \epsilon = \begin{bmatrix}
+                \psi\\
+                \phi\\
+                \theta
+            \end{bmatrix}
+        \end{equation}
+        
+        El conjunto de coordenadas generalizadas asociadas con el cuerpo rígido. I en ADAMS se denota en lo que sigue por:
+        
+        \begin{equation}
+           q_{i} = \begin{bmatrix}
+                P_{i}\\
+                \epsilon_{i}\\
+            \end{bmatrix}
+        \end{equation}
+        
+        Con base en esta elección de coordenadas generalizadas, la velocidad longitudinal y angular del cuerpo se obtienen como:
+        
+        \begin{equation}
+            u = \dot{P}
+        \end{equation}
+        
+        \begin{equation}
+            \omega = B\dot{\epsilon}
+        \end{equation}
+        
+        donde
+        
+        \begin{equation}
+            B=\begin{bmatrix}
+                sin(\phi)sin(\theta) & 0 & cos(\phi)\\
+                cos(\phi)sin(\theta) & 0 & -sin(\phi)\\
+                cos(\phi) & 1 & 0
+            \end{bmatrix}
+        \end{equation}
+        
+        
+        ADAMS plantea las ecuaciones de movimiento mediante la formulación de euler-lagrange:
+        
+        \begin{equation}
+             \frac{d}{dt} \left( \frac{ \delta K}{ \delta \dot{q}} \right)^T - \left( \frac{ \delta K}{ \delta q} \right)^T + \Phi_{q}^T\lambda = Q
+             \label{eq:cap4_dina_ma_1}
+        \end{equation}
+        
+        Donde K es la energía cinética definida por:
+        
+        \begin{equation}
+            K = \frac{1}{2}u^T*Mu+\frac{1}{2}\omega^TJ\omega
+        \end{equation}
+        
+        
+        El sistema de ecuaciones que rige el comportamiento de cualquier mecanismo en ADAMS / Solver consiste en:
+        
+        \begin{itemize}
+            \item Seis ecuaciones dinámicas de primer orden para cada parte (que relacionan las fuerzas y aceleraciones)
+            \item Seis ecuaciones cinemáticas de primer orden para cada parte (que relacionan posiciones con velocidades)
+            \item Una única restricción algebraica para cada restricción de movimiento
+            \item Una única ecuación algebraica para cada componente de fuerza escalar
+            \item Cualquier número de ecuaciones diferenciales algebraicas o de primer orden definidas por el usuario 
+        \end{itemize}
+        
+        El sistema de ecuaciones anterior esta formado por  Ecuaciones diferenciales y algebraicas mixtas no lineales (DAE).
+
+        Existen varias formas de resolver este sistema de ecuaciones DAE en ADAMS. La forma mas común y el que usamos en nuestra tesis con el integrados GSTIF.
+        
+        En general el sistema de ecuaciones es de la forma
+        \begin{equation}
+            G(q, q’, t) = 0 
+        \end{equation}
+
+        Que es un sistema de N ecuaciones con 2N incógnitas, para reducir el numero de incógnitas a N, la derivada en el tiempo de cada componente se aproxima en base al método de diferenciación hacia atrás (BDF o el metodo de euler alrevez)  hasta que se cumplan los criterios de convergencia del corrector, o hasta que el corrector alcanza el número máximo de iteraciones, que está bajo su control. 
+        
+        Con el método de euler alreves se discretiza el sistema, todas las derivadas en el tiempo de primer orden del as ecuaciones de movimiento se discretizan para producir un conjunto de ecuaciones algebraicas no lineales, a estas se les suma las ecuaciones de las uniones y las fuerzas, este sistema se termina resolviendo mediente Newton- Rhapson.
+
+        
+        
         
         
         
